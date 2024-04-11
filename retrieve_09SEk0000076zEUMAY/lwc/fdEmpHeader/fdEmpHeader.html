@@ -1,0 +1,40 @@
+<!-- sldsValidatorIgnore -->
+<template>
+  <a class="fd-nav-skip" tabindex="0" href="#main-content">Skip to content</a>
+  <header role="banner" class="fd-nav" grid="align-spread" axis="row">
+    <div class="fd-container">
+      <div class={classList}>
+        <div>
+          <a class="fd-nav__fd-logo-wrap" role="button" tabindex="0" onclick={handleHome} onkeyup={handleHome}>
+            <img class="fd-nav__fd-logo" src={logo} alt={label.home} width="40" height="40" />
+            <span class="fd-nav__fd-logo-text" type-style="display-7">{label.title}</span>
+          </a>
+        </div>
+
+        <template lwc:if={notHomePage}>
+          <c-fd-emp-search-input class="fd-nav__nav-search-input" type="inline"></c-fd-emp-search-input>
+        </template>
+
+        <nav role="navigation" class="fd-nav__nav-item-list-wrap" grid-item="align-end">
+          <ul class="fd-nav__nav-list">
+            <li class="fd-nav__nav-list-item">
+              <a role="button" tabindex="0" class="fd-nav__nav-list-item-link" onclick={handleTicketClick}>
+                <span class="fd-nav__nav-list-item-icon fd-nav__nav-list-item-icon--tickets"></span>
+                <span class="fd-nav__nav-list-item-text">{label.tickets}</span>
+              </a>
+            </li>
+            <template lwc:if={isSavedEnabled}>
+              <li class="fd-nav__nav-list-item">
+                <a role="button" tabindex="0" class="fd-nav__nav-list-item-link">
+                  <span class="fd-nav__nav-list-item-icon fd-nav__nav-list-item-icon--saved"></span>
+                  <span class="fd-nav__nav-list-item-text">{label.saved}</span>
+                </a>
+              </li>
+            </template>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <div class="fd-nav-spacer"></div>
+</template>

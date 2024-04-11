@@ -1,0 +1,10 @@
+.fd-home__support-tiles-panel {
+  display: flex;
+  margin-block: var(--wes-g-spacing-8) var(--wes-g-spacing-6);
+  align-items: center;
+  justify-content: center;
+}
+
+.fd-home__support-tile-card:not(:last-child) {
+  margin-inline-end: var(--wes-g-spacing-5);
+}

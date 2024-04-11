@@ -1,0 +1,39 @@
+.fd-home__greetings_section {
+    text-align: center;
+    position: relative;
+}
+
+.fd-home__greetings_text_morning_afternoon_evening,
+.fd-home__greetings_text_night {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.fd-home__greetings_text_night {
+    color: var(--wes-g-color-error-base-1);
+}
+
+.Morning, .Evening, .Afternoon, .Night{
+    height: 432px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.Morning {
+    background-image: url("/sfsites/c/resource/Greetings/greetings_morning.svg");
+}
+
+.Evening {
+    background-image: url("/sfsites/c/resource/Greetings/greetings_evening.svg");
+}
+
+.Afternoon {
+    background-image: url("/sfsites/c/resource/Greetings/greetings_afternoon.svg");
+}
+
+.Night {
+    background-image: url("/sfsites/c/resource/Greetings/greetings_night.svg");
+}

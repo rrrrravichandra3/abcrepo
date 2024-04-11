@@ -1,0 +1,11 @@
+<!-- sldsValidatorIgnore -->
+<template>
+  <div class="fd-nav__search-wrap">
+    <form class={classList} role="search" onsubmit={handleSearch}>
+      <c-wes-icon class="fd-nav__icon fd-nav__icon--reset" symbol="search"></c-wes-icon>
+
+      <input class="fd-nav__search-input" type="search" name="term" placeholder={label.placeholder} value={term}
+        autocomplete="off" maxlength={maxlength} />
+    </form>
+  </div>
+</template>

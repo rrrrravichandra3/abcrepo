@@ -1,0 +1,9 @@
+<template>
+  <div class="fd-home__greetings_section">
+    <template lwc:if={firstName}>
+      <h1 class={greetingsTextClass} type-style="display-2">Good {currentTime},<br />{firstName}.</h1>
+    </template>
+
+    <div class={currentTime}></div>
+  </div>
+</template>

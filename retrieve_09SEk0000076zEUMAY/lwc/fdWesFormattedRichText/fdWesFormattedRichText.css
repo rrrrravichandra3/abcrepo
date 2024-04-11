@@ -1,0 +1,18 @@
+/* Adding style overrides for formatting article rich text
+    These need to be here in static resources to reach through the shadow DOM of 
+    the lightning components which does not work through LWC css file.
+    Applies to both rich text formatting of article body (CMS rich text) and project update body (Salesforce rich text field)
+    Usage: <lightning-formatted-rich-text class="wes-formatted-rich-text"></lightning-formatted-rich-text>
+*/
+
+.wes-formatted-rich-text img {
+    border-radius: var(--wes-g-radius-border-4);
+}
+
+/* For Salesforce rich text field, no concept of H2, H3, etc tags.
+   If the pattern <p><strong>....</strong></p> appears, assume this is a title and style the font-family.
+   That's the most be can do since the font-size is hardcoded.
+*/
+.wes-formatted-rich-text p>strong:only-child {
+    font-family: var(--wes-g-font-family-display);
+}

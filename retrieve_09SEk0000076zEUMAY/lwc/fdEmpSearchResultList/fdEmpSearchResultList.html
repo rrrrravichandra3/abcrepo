@@ -1,0 +1,21 @@
+<template>
+  <div class="search-results" aria-label={label.ARIA_SEARCH_RESULTS}>
+    <div class="fd-container-search-result">
+      <div grid="" gap="large" flow="wrap">
+        <div size="1:12"></div>
+        <div size="6:12" flow="wrap">
+          <div class="search-results">
+            <div class="search-results__title" data-search-count>{searchResultTitle}</div>
+            <ol class="search-result__list" onclick={handleNavigate} onkeyup={handleNavigate}>
+              <template for:each={searchResults} for:item="result">
+                <li key={result.id} class="search-result__list-item">
+                  <c-fd-emp-search-result-tile data-result-url-name={result.urlName} result={result}></c-fd-emp-search-result-tile>
+                </li>
+              </template>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

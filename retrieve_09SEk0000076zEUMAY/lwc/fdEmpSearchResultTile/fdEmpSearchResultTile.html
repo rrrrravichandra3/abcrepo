@@ -1,0 +1,29 @@
+<template>
+  <h2 class="search-result-tile__title">
+    <a role="button" tabindex="0" data-result-url-name={urlName}>{title}</a>
+  </h2>
+  <template lwc:if={hasBadges}>
+    <div class="search-result-tile__badges">
+      <template for:each={regions} for:item="region">
+        <c-wes-badge key={region} type="default" value="cloud-blue" data-result-region>
+          <c-wes-icon symbol="world" slot="start"></c-wes-icon>
+          <span class="badge__label">{region}</span>
+        </c-wes-badge>
+      </template>
+      <template for:each={countries} for:item="country">
+        <c-wes-badge key={country} type="default" value="cloud-blue" data-result-country>
+          <c-wes-icon symbol="world" slot="start"></c-wes-icon>
+          <span class="badge__label">{country}</span>
+        </c-wes-badge>
+      </template>
+      <template lwc:if={isManagerOnly}>
+        <c-wes-badge type="default" value="cloud-blue" data-result-manager-only>
+          <c-wes-icon symbol="user" slot="start"></c-wes-icon>
+          <span class="badge__label">{label.MANAGER_ONLY}</span>
+        </c-wes-badge>
+      </template>
+    </div>
+  </template>
+  <c-fd-wes-formatted-rich-text class="search-result-tile__body" disable-linkify="true" data-result-body
+    value={body}></c-fd-wes-formatted-rich-text>
+</template>

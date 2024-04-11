@@ -1,0 +1,10 @@
+.fd-home__search {
+  display: flex;
+  margin-block-start: calc(var(--wes-g-spacing-7) * -1);
+  margin-inline: var(--wes-g-spacing-6);
+  justify-content: center;
+}
+
+.fd-home__search__input {
+  inline-size: 39rem;
+}

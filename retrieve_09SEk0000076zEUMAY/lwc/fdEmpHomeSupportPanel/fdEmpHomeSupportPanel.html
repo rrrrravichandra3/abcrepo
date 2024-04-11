@@ -1,0 +1,14 @@
+<template>
+    <div if:true={isDataLoaded} class="fd-home__support-tiles-panel">
+        <template for:each={supportTilesData} for:item="supportTileData">
+            <c-fd-emp-support-tile
+                class="fd-home__support-tile-card"
+                key={supportTileData.id}
+                link={supportTileData.link}
+                icon={supportTileData.logo}
+                label={supportTileData.name}
+                internal={supportTileData.isInternal}
+            ></c-fd-emp-support-tile>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,34 @@
+<template>
+    <div  class="c-category-container" onblur={handleBlur} tabindex="0">
+        <div class="c-category-title"  onclick={handleDropdownClick}>
+            <h6 type-style="display-7">{categoryTitle}</h6>
+            <c-wes-icon class="c-dropdwon-icon" symbol='chevrondown' if:true={isDropdownOpen}></c-wes-icon>
+            <c-wes-icon class="c-dropdwon-icon" symbol='chevronright' if:false={isDropdownOpen}></c-wes-icon>
+        </div>
+        <template if:true={isDropdownOpen}>
+            <div class="c-dropdown-content-container">
+                
+                    <ul class="c-dropdown-link-list">
+                        <template for:each={mappedCategoryLinks} for:item="link" if:true={link.label}>
+                            <li key={link.index} class="slds-list_horizontal" > 
+                                <c-wes-icon symbol='new_window'></c-wes-icon>   
+                                <a class="c-dropdown-link" data-index={link.index} data-link=true onmousedown={sendToLink}>{link.label}</a>  
+                            </li>
+                            <template if:false={link.isLastItem}>
+                                <c-wes-divider key={link.index}></c-wes-divider>
+                            </template>
+                        </template>
+                    </ul>
+                
+                <div class="c-buttons-container">
+                    <template for:each={mappedCategoryButtons} for:item="button" if:true={button.label}>
+                        <c-wes-button key={button.index} variant={button.variant} class="slds-m-top_x-small" data-index={button.index} onmousedown={sendToLink} >
+                            {button.label}
+                            <c-wes-icon style={button.style} symbol="forward" slot="end"></c-wes-icon>
+                        </c-wes-button>
+                    </template>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

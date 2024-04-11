@@ -1,0 +1,37 @@
+<template>
+  <template lwc:if={answerHtml}>
+    <div class="search-result-einstein-wrap" aria-label={label.ARIA_EINSTEIN_RESULT} id="main-content">
+      <div class="fd-container">
+        <div class="search-result-einstein" grid="" gap="large" flow="wrap">
+          <div size="1:12"></div>
+          <div size="6:12">
+            <div class="search-result-einstein__answer">
+              <c-fd-wes-formatted-rich-text data-generated-answer-html
+                value={answerHtml}></c-fd-wes-formatted-rich-text>
+            </div>
+            <span class="einstein-feedback-disclaimer" type-style="caption" role="status">
+              <c-wes-icon symbol="info_alt" class="article-badge-icon"></c-wes-icon>
+              <span class="einstein-feedback-disclaimer__text">{label.DISCLAIMER}</span>
+            </span>
+          </div>
+          <div size="1:12"></div>
+          <div size="3:12">
+            <div class="einstein-source-wrap">
+              <div class="einstein-source__title" data-generated-source-count-title>{sourceCountTitle}</div>
+              <ul class="einstein-source__list" onclick={handleNavigate} onkeyup={handleNavigate}>
+                <template for:each={answerSources} for:item="source">
+                  <li key={source.id} class="einstein-source__list-item">
+                    <a data-generated-source-url-name={source.urlName} class="einstein-source__list-item-link"
+                      tabindex="0">
+                      {source.title}
+                    </a>
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+</template>

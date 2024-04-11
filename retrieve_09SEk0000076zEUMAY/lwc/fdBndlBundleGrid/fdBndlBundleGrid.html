@@ -1,0 +1,8 @@
+<template>
+    <div class="container slds-p-bottom_large" if:true={dataAvailable} >
+        <h2 class="header" type-style="display-6">{label.header}</h2> 
+        <template for:each={data} for:item="bundle">
+            <c-fd-bndl-bundle key={bundle.index} category-title={bundle.Label__c} category-buttons={bundle.buttons} category-links={bundle.links}></c-fd-bndl-bundle>
+        </template>
+    </div>
+</template>

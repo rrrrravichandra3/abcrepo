@@ -1,0 +1,29 @@
+<template>
+  <template lwc:if={errors}>
+    <c-fd-emp-error data-search-error errors={errors}></c-fd-emp-error>
+  </template>
+  <template lwc:else>
+    <template lwc:if={isLoading}>
+      <lightning-spinner data-search-spinner class="search-loading-spinner" alternative-text={label.LOADING}
+        size="medium" variant="base"></lightning-spinner>
+    </template>
+    <template lwc:else>
+      <template lwc:if={hasNoResults}>
+        <div class="search-result-none__container-outer">
+            <div class="search-result-none__container-inner">
+            <div class="search-result-none__centered">
+              <img src={noResultsImage} class="search-result-none__image" alt={label.NO_RESULT_TITLE}/>
+              <h6 data-result-none-title class="search-result-none__title" type-style="display-6">{label.NO_RESULT_TITLE}</h6>
+              <p data-result-none-info class="search-result-none__info" type-style="body-2">{label.NO_RESULT_INFO}</p>
+            </div>
+          </div>
+        </div>
+      </template>
+      <template lwc:else>
+        <div class="search-result-spacer"></div>
+        <c-fd-emp-search-generated-answer entity={generatedAnswerEntity}></c-fd-emp-search-generated-answer>
+        <c-fd-emp-search-result-list search-objects={keywordSearchObjects}></c-fd-emp-search-result-list>
+      </template>
+    </template>
+  </template>
+</template>

@@ -1,0 +1,18 @@
+<template>
+  <footer class={classList}>
+    <div class="footer-bg" aria-hidden="true" style={footerStyle}></div>
+    <img class="footer__blade" src={footerBladeImage} alt="" aria-hidden="true" />
+
+    <div class="footer__content">
+      <div class="footer-feedback">
+        <div class="footer-feedback__content" type-style="body-2">
+          <span class={feedbackContainerClass} lwc:dom="manual"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__settings">
+      <slot class="fd-container" name="content"></slot>
+    </div>
+  </footer>
+</template>

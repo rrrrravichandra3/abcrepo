@@ -1,0 +1,51 @@
+/* Search input */
+
+.fd-nav__search {
+    position: relative;
+    display: flex;
+    height: 48px;
+}
+
+.fd-nav__search--default .fd-nav__search-input {
+  box-shadow: var(--wes-g-shadow-1);
+}
+
+.fd-nav__search--inline {
+  --b-search-bar-color-background: var(--wes-g-color-brand-base-2);
+}
+
+.fd-nav__icon {
+    --sds-c-icon-color-foreground: var(--wes-g-color-brand-base-contrast-2);
+    --sds-c-icon-sizing: 20px;
+
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: var(--wes-g-spacing-4);
+    transform: translate3d(0, -50%, 0);
+}
+
+/** `wes-icon` currently inherits its line height from the app, increasing icon sizing — this resets it. */
+.fd-nav__icon--reset {
+    line-height: 0;
+}
+
+.fd-nav__search-input {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    color: inherit;
+    border-radius: 100px;
+    padding-top: 0.875rem;
+    /* 14px */
+    padding-right: 3.375rem;
+    /* 54px */
+    padding-bottom: var(--wes-g-spacing-3);
+    padding-left: var(--wes-g-spacing-8);
+
+    background-color: var(--b-search-bar-color-background, var(--wes-g-color-brand-base-1));
+    border: 1px solid var(--wes-g-color-border-base-2);
+}
+
+.fd-nav__search-input::placeholder {
+    color: var(--wes-g-color-palette-neutral-30);
+}

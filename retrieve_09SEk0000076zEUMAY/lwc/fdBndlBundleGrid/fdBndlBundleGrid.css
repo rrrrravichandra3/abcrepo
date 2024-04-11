@@ -1,0 +1,12 @@
+:host .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--wes-g-spacing-5);
+}
+
+:host .header  {
+    display: flex;
+    flex-basis: 100%;
+    justify-content: center; 
+}

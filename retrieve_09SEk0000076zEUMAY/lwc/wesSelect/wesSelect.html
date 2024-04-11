@@ -1,0 +1,10 @@
+<template>
+  <!-- LWC will not allow anything to be the child of lwc:dom, so we need to move the slot later in JS -->
+  <div class="component" lwc:dom="manual"></div>
+
+  <!-- this will be moved to lwc:dom in JS -->
+  <slot></slot>
+  <slot name="label"></slot>
+  <slot name="help-text"></slot>
+  <slot name="validation-text"></slot>
+</template>

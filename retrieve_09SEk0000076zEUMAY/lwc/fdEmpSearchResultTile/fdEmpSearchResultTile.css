@@ -1,0 +1,32 @@
+:host {
+  --sds-c-icon-spacing-block-start: var(--wes-g-spacing-1);
+  --sds-c-icon-spacing-inline-end: var(--wes-g-spacing-1);
+}
+.search-result-tile__title {
+  display: inline-block;
+  margin-bottom: var(--wes-g-spacing-2);
+
+  font-family: var(--wes-g-font-family-display);
+  font-size: var(--wes-g-font-size-3);
+  line-height: 1.5rem;
+  letter-spacing: 0.08px;
+}
+
+.search-result-tile__title a {
+  color: var(--wes-g-color-palette-blue-20);
+}
+
+.search-result-tile__badges {
+  margin-bottom: var(--wes-g-spacing-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wes-g-spacing-2);
+}
+
+.search-result-tile__body {
+  /** Creates an ellipsized, truncated text overflow element. */
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; 
+}

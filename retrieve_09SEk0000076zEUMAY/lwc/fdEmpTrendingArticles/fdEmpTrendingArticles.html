@@ -1,0 +1,16 @@
+<template>
+    <c-wes-scope>
+    <div if:true={isDataLoaded} class="fd-home__trending_articles_section">
+        <c-wes-card class="fd-home__trending_articles_card" direction="vertical" depth="2">
+            <h2 slot="header" type-style="display-6">Trending Articles</h2>
+            <ul type-style="display-7">
+                <template for:each={articles} for:item="article">
+                    <li key={article.Id} type-style="display-7" class="fd-home__trending_articles_list_item">
+                        <a data-url={article.UrlName} onclick={handleTrendingArticleLinkClick} class="fd-home__trending_articles_list_item_link">{article.Title}</a>
+                    </li>
+                </template>
+            </ul>
+        </c-wes-card>   
+    </div>
+</c-wes-scope>
+</template>

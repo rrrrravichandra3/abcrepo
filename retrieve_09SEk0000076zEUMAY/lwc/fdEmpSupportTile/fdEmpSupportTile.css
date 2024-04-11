@@ -1,0 +1,42 @@
+:host {
+    --fd-emp-support-tile-border-color: var(--wes-g-color-palette-neutral-80);
+    --fd-emp-support-tile-text-color: var(--wes-g-color-brand-inverse-4);
+    --fd-emp-support-tile-shadow-color: var(--wes-g-color-palette-neutral-80);
+}
+
+
+.fd-home__support-tile {
+    border-color: var(--fd-emp-support-tile-border-color);
+    width: 192px;
+    height: 128px;
+    border-radius: var(--wes-g-radius-border-4, 0.25rem);
+    border-width: 1px;
+    box-shadow: 0 2px 8px -2px var(--fd-emp-support-tile-shadow-color);
+}
+
+.fd-home__support-tile:hover{
+    background-color: var(--wes-g-color-brand-base-2);
+    cursor: pointer;
+}
+
+.fd-home__support-tile-icon {
+    height: 2.25rem;
+    margin-bottom: 6px;
+}
+
+.fd-home__support-tile-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--fd-emp-support-tile-text-color);
+    line-height: 18px;
+    padding: 0 40px;
+}
+
+.fd-home__support-tile-link {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    text-decoration: none !important;
+}

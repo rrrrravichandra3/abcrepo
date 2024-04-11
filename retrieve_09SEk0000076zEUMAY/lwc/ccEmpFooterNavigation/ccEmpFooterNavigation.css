@@ -1,0 +1,71 @@
+.footer {
+  --b-footer-color-background: var(--wes-g-color-palette-blue-20);
+  --b-footer-radius-size: 48px;
+
+  position: relative;
+  margin-block-start: calc(var(--wes-g-spacing-12) * var(--b-footer-spacing-multiplier, 1));
+}
+
+/* We increase spacing on knowledge pages to prevent the background image from overlapping the content. */
+.footer--knowledge {
+  --b-footer-spacing-multiplier: 3;
+}
+
+.footer-bg {
+  position: absolute;
+  inline-size: 100%;
+  block-size: 28.5rem;
+  background-size: cover;
+  transform: translate3d(0, calc((100% - var(--b-footer-radius-size)) * -1), 0);
+  z-index: -1;
+}
+
+.footer__blade {
+  inline-size: 100%;
+  block-size: var(--b-footer-radius-size);
+}
+
+.footer__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--b-footer-color-background);
+}
+
+.footer-feedback {
+    margin-top: var(--wes-g-spacing-8);
+    margin-bottom: var(--wes-g-spacing-12);
+}
+
+.footer-feedback__content {
+    color: var(--wes-g-color-neutral-inverse-contrast-4);
+    font-weight: var(--dxp-c-strong-text-weight);
+    text-align: center;
+}
+
+.footer-feedback__content a,
+.footer-feedback__content a:active {
+    color: var(--wes-g-color-palette-blue-60);
+}
+
+.footer-feedback__content a {
+    font-weight: inherit;
+}
+
+.footer-feedback__content a:hover {
+    color: var(--wes-g-color-warning-base-1);
+}
+
+.footer__settings {
+  inline-size: 100%;
+  padding-block: var(--wes-g-spacing-5);
+  margin-block-start: var(--wes-g-sizing-border-1);
+  background-color: var(--b-footer-color-background);
+}
+span.footer-feedback__container > * {
+  padding: 40px;
+}
+.anchorElement {
+  --wes-g-color-palette-blue-60 : white;
+}

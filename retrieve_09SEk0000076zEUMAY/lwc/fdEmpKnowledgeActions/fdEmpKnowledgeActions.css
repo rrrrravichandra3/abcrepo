@@ -1,0 +1,10 @@
+:host {
+    --sds-c-button-display: inline;
+}
+.support-button-list-item {
+    padding-bottom: var(--wes-g-spacing-4);
+}
+
+.support-button {
+    --sds-c-button-width: 100%;
+}

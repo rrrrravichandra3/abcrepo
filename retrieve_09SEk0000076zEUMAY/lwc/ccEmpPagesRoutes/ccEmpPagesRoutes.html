@@ -1,0 +1,16 @@
+<template>
+  <template if:true={isJobsPage}>
+    <c-cc-emp-job-recommendations> </c-cc-emp-job-recommendations>
+  </template>
+  <template if:true={isCareerPage}>
+    <c-cc-emp-career-pathing> </c-cc-emp-career-pathing>
+  </template>
+
+  <template if:true={isJobSearchPage}>
+    <c-cc-emp-jobs-search> </c-cc-emp-jobs-search>
+  </template>
+
+  <template if:true={isEinsteinGPT}>
+    <c-cc-emp-resume-parser> </c-cc-emp-resume-parser>
+  </template>
+</template>

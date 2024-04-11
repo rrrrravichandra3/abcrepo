@@ -1,0 +1,76 @@
+<template>
+    <c-wes-scope>
+        <template if:true={knowledgeArticle}>
+            <!-- Knowledge Template Start -->
+            <div class="fd-article-spacer"></div>
+            <div class="article" aria-label="Knowledge Content" role="main" id="main-content">
+                <div class="fd-container-knowledge">
+                    <div grid="" gap="large" flow="wrap" class="article__header-wrap">
+                        <div size="1:12"></div>
+                        <div size="10:12">
+                            <h1 class="article-title" type-style="display-3">
+                                {knowledgeArticle.Title}
+                            </h1>
+                            <div class="article__details" grid="align-end" axis="vertical">
+                                <div bump="right" align="end">
+                                    <div class="article__info">
+                                        <div class="article__info-date">
+                                            {label.updated} {formattedDate}
+                                        </div>
+                                        <div class="article__info-likes">
+                                            <!-- 109 Likes -->
+                                        </div>
+                                        <div class="article__info-time">
+                                            <!-- 5 min read -->
+                                        </div>
+                                    </div>
+                                    <!-- if there are no badges, hide article__badges entirely -->
+                                    <div class="article__badges">
+                                        <template if:true={regionLabels}>
+                                            <template for:each={regionLabels} for:item="region">
+                                                <c-wes-badge key={region} aria-labelledby={region} type="default" value="cloud-blue">
+                                                    <c-wes-icon symbol="world" slot="start" class="article-badge-icon"></c-wes-icon>
+                                                    <span class="badge__label">{region}</span>
+                                                </c-wes-badge>
+                                            </template>
+                                            <template for:each={countryLabels} for:item="country">
+                                                <c-wes-badge key={country} aria-labelledby={country} type="default" value="cloud-blue">
+                                                    <c-wes-icon symbol="world" slot="start" class="article-badge-icon"></c-wes-icon>
+                                                    <span class="badge__label">{country}</span>
+                                                </c-wes-badge>
+                                            </template>
+                                            <template if:true={isManagerOnly}>
+                                                <c-wes-badge type="default" value="cloud-blue">
+                                                    <c-wes-icon symbol="user" slot="start" class="article-badge-icon"></c-wes-icon>
+                                                    <span class="badge__label">{label.managerOnly}</span>
+                                                </c-wes-badge>
+                                            </template>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fd-container-knowledge">
+                    <div grid="" gap="large" flow="wrap">
+                        <div size="1:12"></div>
+                        <div size="6:12">
+                            <div class="article__content">
+                                <c-fd-wes-formatted-rich-text value={knowledgeArticle.Body__c}
+                                class-name="slds-m-top_xx-small"></c-fd-wes-formatted-rich-text>
+                            </div>
+                        </div>
+                        <div size="1:12"></div>
+                        <div size="3:12">                        
+                            <c-fd-emp-knowledge-actions knowledge-id={knowledgeArticle.Id}></c-fd-emp-knowledge-actions>                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template if:true={error}>
+            <c-fd-emp-error errors={error}></c-fd-emp-error>
+        </template>
+    </c-wes-scope>
+</template>

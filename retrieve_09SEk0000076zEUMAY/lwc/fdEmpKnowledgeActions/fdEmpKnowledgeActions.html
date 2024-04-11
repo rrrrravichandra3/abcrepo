@@ -1,0 +1,18 @@
+<template> 
+    <template if:true={actions}>
+        <div>
+            <ul>
+              <template for:each={actions} for:item="action">
+                <li class="support-button-list-item" key={action.actionType} >
+                  <template if:true={action.actionLabel}>
+                    <c-wes-button data-action-type={action.actionType} data-action-id={action.actionId} class="support-button" variant={action.preference} size="hero" onclick={sendToLink}>
+                      <img slot="start" src={action.icon} alt={action.actionLabel}/>
+                      <span class="support-button-label">{action.actionLabel}</span>
+                    </c-wes-button>
+                  </template>
+                </li>
+              </template>
+            </ul>
+          </div>
+    </template>
+</template>

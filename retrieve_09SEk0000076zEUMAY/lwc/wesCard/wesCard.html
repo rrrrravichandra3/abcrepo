@@ -1,0 +1,11 @@
+<template>
+  <!-- LWC will not allow anything to be the child of lwc:dom, so we need to move the slot later in JS -->
+  <div class="component" lwc:dom="manual"></div>
+
+  <!-- this will be moved to lwc:dom in JS -->
+  <slot name="header-start"></slot>
+  <slot name="header"></slot>
+  <slot name="header-end"></slot>
+  <slot></slot>
+  <slot name="footer"></slot>
+</template>

@@ -1,0 +1,47 @@
+:host {
+  --card-spacing: var(--wes-g-spacing-6);
+
+  --sds-c-card-header-spacing-block-start: var(--card-spacing);
+  --sds-c-card-header-spacing-block-end: 0;
+
+  --sds-c-card-header-spacing-inline-start: var(--card-spacing);
+  --sds-c-card-header-spacing-inline-end: var(--card-spacing);
+
+  --sds-c-card-body-spacing-inline-start: var(--card-spacing);
+  --sds-c-card-body-spacing-inline-end: var(--card-spacing);
+
+  --sds-c-card-body-spacing-block-start: var(--wes-g-spacing-3);
+  --sds-c-card-body-spacing-block-end: var(--card-spacing);
+
+  --sds-c-card-footer-spacing-block-start: 0;
+  --sds-c-card-footer-spacing-block-end: 0;
+}
+
+.card-header {
+  color: var(--wes-g-color-palette-indigo-15);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.fd-home__trending_articles_card {
+  inline-size: 52.5rem;
+}
+
+.fd-home__trending_articles_section {
+  display: flex;
+  justify-content: center;
+}
+
+.fd-home__trending_articles_list {
+  font-size: 20px;
+  font-weight: 700;
+  padding: 10px 0;
+}
+
+.fd-home__trending_articles_list_item {
+  cursor: pointer;
+}
+
+.fd-home__trending_articles_list_item_link:hover {
+  text-decoration: none;
+}

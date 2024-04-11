@@ -1,0 +1,11 @@
+<template>
+  <div if:true={isLoaded}>
+    <img alt="connectcareerimg" src={headerImgUrl} />
+    <c-cc-emp-header-navigation
+      current-page-id={currentPageId}
+      menu-items={menuItems}
+      current-page-reference={currentPageReference}
+    ></c-cc-emp-header-navigation>
+    <c-cc-emp-pages-routes current-page-id={currentPageId}></c-cc-emp-pages-routes>
+  </div>
+</template>
