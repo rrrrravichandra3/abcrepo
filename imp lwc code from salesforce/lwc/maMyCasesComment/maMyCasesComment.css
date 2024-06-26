@@ -1,0 +1,14 @@
+.container {
+    height:100vh;
+    background-color: white;
+}
+
+.showCaseComments {
+    height: 70vh;
+    overflow: auto;
+}
+
+.newCaseComment {
+    height: 30vh;
+    overflow: auto;
+}

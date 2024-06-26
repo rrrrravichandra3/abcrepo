@@ -1,0 +1,40 @@
+<template>
+    <c-toast-message></c-toast-message>
+    <div class="background2">
+        <img src={_background2} alt="background2"/>
+    </div>
+    <div class="nav">
+        <c-home-nav currentpage={_currentTask} onbtnclick={handleNav} buttonlabel={navlabel}></c-home-nav>
+    </div>
+    <template lwc:if={isLoading}>
+        <div class="spinner">
+            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+        </div>
+    </template>
+    <template lwc:else>
+        <template lwc:if={data}>
+            <div class="main">
+                <template lwc:if={_showmain}>
+                     <c-home-main oncontinuetask={handleNav} tasks-completed={_currentTask} total-tasks={_totalTasks} prov-case={data}></c-home-main>
+                </template>
+                <template lwc:else>
+                     <template if:true={_tasks.equipment}>
+                        <c-equipment-select prov-case={data} onbacktohome={handleNav} onselectedequipment={handleTaskComplete}></c-equipment-select>
+                     </template>
+                     <template if:true={_tasks.workday}>
+                         <c-nhw-experience-workday onbacktohome={handleNav} onworkday={handleTaskComplete}></c-nhw-experience-workday>
+                     </template>
+                     <template if:true={_tasks.accessiblity}>
+                        <c-accessibility-needs prov-case={data} onbacktohome={handleNav} onaccessiblityneeds={handleTaskComplete}></c-accessibility-needs>
+                     </template>
+                     <template if:true={_tasks.badge}>
+                         <c-nhw-experience-badge onbacktohome={handleNav} onbadge={handleTaskComplete}></c-nhw-experience-badge>
+                     </template>
+                </template>
+             </div>
+        </template>
+    </template>
+    <div class="background">
+        <img src={_background} alt="background"/>
+    </div>
+</template>

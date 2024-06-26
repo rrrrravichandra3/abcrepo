@@ -1,0 +1,146 @@
+.titleSection{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 2%;
+}
+
+.icon {
+    background-color: black;
+}
+
+.flagColor {
+    --sds-c-icon-color-foreground-default: red;
+}
+
+.downArrow{
+    --sds-c-button-text-color: #0070d2 !important;
+}
+
+.urlColor a{
+    color: blue;
+}
+
+.home-page-font-size {
+    font-size: 14px;
+}
+
+.slds-card {
+    padding:1rem;
+}
+
+.slds-text-heading_medium {
+    font-family: Salesforce Sans;
+}
+
+.task-divider {
+    margin:0rem;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.headerText {
+    font-weight: bold;
+    color: black;
+}
+
+.requiredClass{
+    font-weight: bold;
+    color: red;
+    font-size: x-large;
+    padding-left: 2px;
+    height: 0px;
+    width: 0px;
+    position: relative;
+    bottom: 5px;
+}
+
+.dropdownSection{
+    display: flex;
+    justify-content: center;
+}
+
+.rowEvent{
+    display: flex;
+    justify-content: space-between;
+}
+
+.widthCell{
+    width: 30%;
+}
+
+.requiredCell{
+   /* display: flex;*/
+    justify-content: center;
+}
+
+.detailEventConatiner{
+    border-radius: 6px;
+    background-color: white;
+}
+
+.titleSF{
+    font-family: HeaderFont;
+    color: #215ca0;
+    font-size: x-large;
+}
+
+.transparentBackground{
+    background: transparent;
+    border: 0;
+}
+
+.linkStyle{
+    color: #006dcc !important;
+}
+
+.containerDetails{
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.boldHeading{
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.headingTime{
+    font-size: .8em;
+    margin-top: 6px;
+}
+
+.headerTextDate{
+    font-weight: 500;
+    color: #000;
+}
+
+.requiredBadge{
+    padding: 7px;
+    height: 23px;
+    font-size: 12px;
+}
+
+.rsvpbuttons {
+    font-size: 13px !important;
+    margin-bottom: 10px;
+}
+
+.eventfile{
+    font-size: 14px;
+    margin-top: 18px;
+    font-style: italic;
+}
+
+.eventfile a{
+    color: #323097;
+}
+
+.titleStyle{
+    color: #215ca0;
+    text-transform: uppercase;
+    font-weight: bold;
+}

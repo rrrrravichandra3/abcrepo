@@ -1,0 +1,69 @@
+<template>
+    <template if:false={firstLoginComplete}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-modal_large slds-fade-in-open">
+        <div class="slds-modal__container">
+        
+        <!-- modal body start -->
+        <div class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-1" style="overflow: auto;">
+            <div class="slds-text-heading_medium slds-align_absolute-center">
+              Is this information correct? 
+            </div>
+            <div class="slds-align_absolute-center slds-var-p-bottom_small">
+              To optimize your experience, please provide as much detail as possible.
+            </div>
+            <div class="slds-grid">
+              <div class="slds-col slds-size_1-of-1 slds-large-size_3-of-12">
+                  <div class="slds-align_absolute-center slds-p-bottom-small" style="position: relative;">
+                    <c-te_profile-photo 
+                      img-url={usr.FullPhotoUrl} 
+                      edit-enabled="true">
+                    </c-te_profile-photo>
+                  </div>
+                  <div class="slds-grid slds-grid_vertical slds-var-p-top_small">
+                    <div class="slds-col slds-align-middle slds-var-p-top_small slds-text-heading_small slds-text-align_center">
+                        {contact.FirstName} {contact.LastName}
+                    </div>
+                    <div class="slds-col slds-align-middle slds-text-align_center ">
+                        {contact.Title} 
+                    </div>
+                    <!--<div class="lds-col slds-align-middle slds-text-align_center ">
+                        Grade {contact.ES_DJC_Grade__c}
+                    </div>-->
+                  </div>
+              </div>
+              <div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12">
+
+                  <c-talent-m-p_skills contact={contact} skillslist={skillList} title="My Skills" onupdateskills={handleSaveSkills} edit-ability=true></c-talent-m-p_skills>
+
+                <!-- <template lwc:else >
+                  <lightning-card title="My Skills">
+                  <template if:true={spinner}>
+                    <lightning-spinner alternative-text="Loading"></lightning-spinner>
+                  </template>
+                  <div>
+                    Hmm... It doesn't look like we have any skills for you. Would you like to upload a pdf resume to jump start your skills? 
+                  </div>
+                  <lightning-input type="file" accept=".pdf" onchange={handleFileChange}></lightning-input>
+                  <a onclick={showSkillCmp}>No thanks, I will add them manually. </a>
+                  </lightning-card>
+                </template> -->
+                <div class="slds-text-color_error">
+                  {errorText}
+                </div>
+                <c-te_certification contact={contact}></c-te_certification>
+              </div>
+              <div class="slds-col slds-size_1-of-1 slds-large-size_5-of-12">
+                <c-talent-mp_-work-experience contact={contact}></c-talent-mp_-work-experience>
+              </div>
+            </div>
+        </div>
+        <!-- modal footer start-->
+        <footer class="slds-modal__footer">
+          <lightning-button label="Yes, looks good!" variant="brand" onclick={hideModal} ></lightning-button>
+        </footer>
+        
+        </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

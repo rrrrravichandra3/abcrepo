@@ -1,0 +1,73 @@
+<template>
+  <!--User Overview-->
+
+  <lightning-layout vertical-align="stretch" multiple-rows>
+    <lightning-layout-item size="12" class="light-background" large-device-size="6" medium-device-size="6" small-device-size="12">
+      <!--Header User Info-->
+      <h1 class="slds-text-heading_large slds-p-bottom_x-small">
+        {name}
+      </h1>
+      <template if:true={title}>
+        <h2 class="slds-text-heading_medium slds-p-bottom_x-small">{title}</h2>
+      </template>
+      <template if:true={location}>
+        <h2 class="slds-text-heading_medium slds-p-bottom_x-small">{location}</h2>
+      </template>
+    </lightning-layout-item>
+    <lightning-layout-item size="12">
+      <c-mentor-badges show-leader-badge={showSalesLeaderBadge} linkedin-username={linkedinProfile} profile></c-mentor-badges>
+    </lightning-layout-item>
+
+    <template if:true={showMessageComposer}>
+    <c-message-composer oncancel={toggleComposer} onsubmit={sendRequest} input-label="Write something about yourself" heading="Request mentor" button-label="Send Request"></c-message-composer>
+    </template>
+
+    <template if:true={showOptions}>
+      <lightning-layout-item size="12">
+        <div class="slds-form-element">
+          <span class="slds-form-element__label">
+            <label class="slds-text-heading_small slds-m-right_none color-fix">Role</label>
+            <!-- <a class="slds-m-left_small" onclick={switchMode}>Switch Mentoring Mode</a> -->
+            <!-- <lightning-button-icon icon-name="utility:edit" variant="bare" alternative-text="Switch Mentoring Mode" class="slds-m-left_xx-small color-fix" title="Switch Mentoring Mode" onclick={switchMode}></lightning-button-icon> -->
+          </span>
+          <div class="slds-form-element__control">
+            <!--<lightning-badge onclick={switchMode} class="badge-fix" icon-name="utility:edit" icon-alternative-text="Switch Mentoring Mode" icon-position="end" label={mode}></lightning-badge>
+            <lightning-button onclick={switchMode} class="badge-fix" icon-name="utility:edit" icon-alternative-text="Switch Mentoring Mode" icon-position="end" label={mode} aria-label={getAriaText}></lightning-button>-->
+            <lightning-button variant="brand" class="badge-fix" icon-name="utility:edit" icon-alternative-text="Switch Mentoring Mode" icon-position="end" label={mode} aria-label={getAriaText} onclick={switchMode} aria-haspopup="modal"></lightning-button>
+          </div>
+        </div>
+        <div class="slds-form-element">
+          <span class="slds-form-element__label">
+            <label class="slds-text-heading_small slds-m-right_none color-fix">Availability</label>
+          </span>
+          <div class="slds-form-element__control">
+            <lightning-input type="toggle" label="Availability" checked={available} variant="label-hidden" message-toggle-active="Available" message-toggle-inactive="Unavailable" onchange={handleToggleChange}></lightning-input>
+          </div>
+        </div>
+        <div class="slds-form-element">
+          <span class="slds-form-element__label">
+            <label class="slds-text-heading_small slds-m-right_none color-fix">Mentee Capacity</label>
+          </span>
+          <div class="slds-form-element__control width-control">
+            <button class="slds-button slds-button_icon slds-button_icon-small slds-input__button_decrement" title="Decrease Capacity" onclick={decrementCounter}>
+              <lightning-icon icon-name="utility:ban" alternative-text="Decrement counter" title="Decrement counter" size="x-small"></lightning-icon>
+              <!--<span>Decrement counter</span>-->
+            </button>
+            <input type="number" value={capacity} min="0" max="10" class="slds-input slds-input_counter" />
+            <button class="slds-button slds-button_icon slds-button_icon-small slds-input__button_increment" title="Increase Capacity" onclick={incrementCounter}>
+              <lightning-icon icon-name="utility:new" alternative-text="Increment counter" title="Increment counter" size="x-small"></lightning-icon>
+              <!--<span>Increment counter</span>-->
+            </button>
+          </div>
+        </div>
+      </lightning-layout-item>
+    </template>
+    <lightning-layout-item size="12" class="slds-m-top_xx-large">
+      <div class="slds-clearfix slds-m-top_xx-large" if:false={loggedInUser}>
+        <!--<lightning-button label="Send Request" class="slds-m-right_xx-small slds-float--right" title="Send Request" onclick={toggleComposer} variant="brand"></lightning-button>-->
+        <lightning-button variant="brand" class="slds-m-right_xx-small slds-float--right" title="Send Request" label="Send Request"  onclick={toggleComposer} aria-haspopup="modal">
+    </lightning-button> 
+      </div>
+    </lightning-layout-item>
+  </lightning-layout>
+</template>

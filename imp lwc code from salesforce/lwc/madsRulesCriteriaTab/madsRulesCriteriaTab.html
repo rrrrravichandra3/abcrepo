@@ -1,0 +1,79 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <div class="rules-tab-spinner">
+        <template lwc:if={showSpinner}>
+            <lightning-spinner variant="brand" alternative-text="Loading Rules..."></lightning-spinner>
+        </template>
+    </div>
+
+    <lightning-layout multiple-rows="true" vertical-align="stretch">
+        <lightning-layout-item class="object-layout-item slds-p-horizontal_xx-small">
+            <lightning-combobox name="objects"
+                                data-id="rulesObjCombobox"
+                                label={label.objectLabel}
+                                value={selectedObject}
+                                placeholder="Select Object"
+                                options={objectOptions}
+                                onchange={objectChangeHandler}
+                                class="object-combo-box bold-font">
+            </lightning-combobox>
+        </lightning-layout-item>
+
+        <lightning-layout-item class="field-layout-item slds-p-horizontal_xx-small">
+            <lightning-combobox name="fields"
+                                label={label.fieldLabel}
+                                value={selectedField}
+                                placeholder="Select Field"
+                                options={fieldOptions}
+                                onchange={fieldChangeHandler}
+                                class="field-combo-box bold-font">
+            </lightning-combobox>
+        </lightning-layout-item>
+
+        <lightning-layout-item class="operator-layout-item slds-p-horizontal_xx-small">
+            <lightning-combobox name="operators"
+                                label={label.operatorLabel}
+                                value={selectedOperator}
+                                placeholder="Select Operator"
+                                options={operatorOptions}
+                                onchange={operatorChangeHandler}
+                                class="operator-combo-box bold-font">
+            </lightning-combobox>
+        </lightning-layout-item>
+
+        <lightning-layout-item class="value-layout-item align-bottom bold-font slds-p-horizontal_xx-small">
+            <c-mads-rules-criteria-value edit-mode={editMode} operator={selectedOperator} field-wrapper={selectedFieldWrapper}>
+            </c-mads-rules-criteria-value>
+        </lightning-layout-item>
+
+        <lightning-layout-item class="add-layout-item align-bottom slds-p-horizontal_xx-small">
+            <lightning-button label={ruleButtonLabel} variant="brand" icon-name="utility:add" stretch="true" class={buttonClassList} onclick={handleRuleButtonClick}>
+            </lightning-button>
+        </lightning-layout-item>
+
+        <lightning-layout-item class="object-layout-item slds-p-horizontal_xx-small"></lightning-layout-item>
+        <lightning-layout-item class="field-layout-item slds-p-horizontal_xx-small"></lightning-layout-item>
+        <lightning-layout-item class="operator-layout-item slds-p-horizontal_xx-small"></lightning-layout-item>
+        <lightning-layout-item class="value-layout-item slds-p-horizontal_xx-small">
+            <lightning-formatted-text value={errorMessage} class="error-message bold-font"></lightning-formatted-text>
+        </lightning-layout-item>
+        <lightning-layout-item class="add-layout-item slds-p-horizontal_xx-small"></lightning-layout-item>
+
+        <template for:each={selectedRules} for:item="selectedRule" for:index="objectRuleIndex">
+            <lightning-layout-item key={selectedRule.objectKey} class="selected-obj-rule-layout-item slds-m-top_medium slds-p-horizontal_xx-small">
+                <lightning-layout multiple-rows="true" vertical-align="start">
+                    <lightning-layout-item size="12" class="object-label-layout-item bold-font">
+                        <lightning-formatted-text value={selectedRule.objectLabel}></lightning-formatted-text>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="12" class="slds-m-top_xx-small slds-p-around_none">
+                        <c-mads-selected-rules data-id={selectedRule.objectKey} object-key={selectedRule.objectKey} rule-logic={selectedRule.ruleLogic} 
+                                               custom-logic={selectedRule.customLogic} rules={selectedRule.rules} onremove={handleRemoveRule} 
+                                               oncustomlogic={handleCustomLogic} onselect={handleEditRule} onclear={handleClearEditMode} rules-criteria>
+                        </c-mads-selected-rules>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-layout-item>
+        </template>
+    </lightning-layout>
+</template>

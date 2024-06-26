@@ -1,0 +1,13 @@
+/* treeNode.css */
+.tree-node {
+    position: relative;
+    display: inline-block; /* Prevent stacking */
+}
+
+.line {
+    position: absolute;
+    border-left: 1px solid #000; /* Adjust color and style as needed */
+    height: 100%;
+    left: 50%;
+    top: 0;
+}

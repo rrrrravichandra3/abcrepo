@@ -1,0 +1,32 @@
+<template>
+  <template if:true={loading}>
+    <lightning-spinner alternative-text="Loading"></lightning-spinner>
+  </template>
+
+
+  <c-back-button heading="Location Preferences"></c-back-button>
+  <c-preference-tabs label1={capitalMentorLabel} label2={capitalMenteeLabel} active-tab={activeTab}>
+    <div slot="tab1" class="slds-p-bottom_xx-large">
+      <h2 class="slds-text-heading_small slds-p-horizontal_small slds-m-bottom_medium">
+        <strong>{labels.typeOfMentoringLabel}</strong>
+      </h2>
+      <c-multi-picklist field={menteeTypeField} record-id={userId}></c-multi-picklist>
+      <h2 class="slds-text-heading_small slds-p-horizontal_small slds-m-top_large slds-m-bottom_medium">
+        <strong>{labels.lookingForAMenteeInLabel}</strong>
+      </h2>
+      <c-multi-picklist field={menteeLocationPreferenceField} record-id={userId}>
+      </c-multi-picklist>
+    </div>
+    <div slot="tab2">
+      <h2 class="slds-text-heading_small slds-p-horizontal_small slds-m-bottom_medium">
+        <strong>{labels.typeOfMentoringLabel}</strong>
+      </h2>
+      <c-multi-picklist field={mentorTypeField} record-id={userId}></c-multi-picklist>
+      <h2 class="slds-text-heading_small slds-p-horizontal_small slds-m-top_large slds-m-bottom_medium">
+        <strong>{labels.lookingForAMentorInLabel}</strong>
+      </h2>
+      <c-multi-picklist field={mentorLocationPreferenceField} record-id={userId}>
+      </c-multi-picklist>
+    </div>
+  </c-preference-tabs>
+</template>

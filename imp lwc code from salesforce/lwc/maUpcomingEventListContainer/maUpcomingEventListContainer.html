@@ -1,0 +1,10 @@
+<template>
+    
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>            
+    </template>
+    <template if:false={isLoading}>
+        <c-ma-upcoming-events-list eventlist={rsvpRecords} settings={setting} homepage={isHomePage} wrapperpicklist={picklistValues}></c-ma-upcoming-events-list>
+    </template>
+    
+</template>

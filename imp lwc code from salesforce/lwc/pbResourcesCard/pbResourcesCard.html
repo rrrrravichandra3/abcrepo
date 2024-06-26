@@ -1,0 +1,17 @@
+<template>
+    <wes-card 
+        lwc:external
+        direction="2" 
+        depth="vertical"
+        >
+            <h6 slot="header" class="subheader slds-var-p-bottom_small">{subheader}</h6>
+            <h2 slot="header" type-style="display-6" >{title}</h2>
+
+            <div type-style="body-2" class="card-paragraph">{paragraph}</div>
+            <div  slot="footer">
+                <a href={link} target="_blank" rel="noopener">
+                    <img src={arrowIcon} alt="Arrow Icon" title="Learn More" class="arrowIcon">
+                </a>
+            </div>
+    </wes-card>
+</template>

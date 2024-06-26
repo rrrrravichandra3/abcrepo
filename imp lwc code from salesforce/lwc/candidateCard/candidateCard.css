@@ -1,0 +1,82 @@
+.cardHeaderColor {
+    background: rgb(7, 29, 80);
+    color: white;
+}
+.whiteDropDown{
+    --lwc-colorTextIconDefault: white;
+}
+.headTruncate{
+    width: 100px;
+}
+.whiteBorder{
+    border: 0.5px solid white;
+}
+.headingFont {
+    font-size: 13px;
+  }
+.labelTextFont {
+    font-size: 9.5px;
+}
+.textFont {
+    font-size: 10.5px;
+}
+.contactInfoFont {
+    font-size: 9.5px;
+}
+.badgeTextFont {
+    font-size: 9px;
+}
+.noOverFlow {
+    overflow-wrap: break-word;
+}
+.lgc-bg {
+    background-color: rgb(7, 29, 80);
+}
+.lgc-bg-inverse {
+    background-color: rgb(232, 235, 240);
+}
+.scrollHideHorizontal {
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-x: scroll; 
+  }
+  
+.scrollHideHorizontal::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+}
+.valueTruncate{
+    width: 150px;
+}
+
+.cardSize{
+    width: 350px;
+    height: 280px;
+}
+.bodySize{
+    width: 350px;
+    height: 190px;
+}
+.footerSize{
+    width: 350px;
+    height: 30px;
+}
+.valueHeight{
+    overflow: hidden;
+    height: 35px;
+}
+.curvedBorder{
+    border-radius: 15px;
+}
+.curvedTopBorder{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.greyBG{
+    background-color: #D0D0D0;
+}
+.resumeModal{
+    max-width: 70%;
+}
+.slds-modal__content {
+    overflow: visible;
+}

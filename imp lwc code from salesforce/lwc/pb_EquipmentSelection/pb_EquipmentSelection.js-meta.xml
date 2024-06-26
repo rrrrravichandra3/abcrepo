@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>PB: Equipment Selection</masterLabel>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="devMode" label="Developer's Mode" type="Boolean" default="false" description="As soon as this propety is enabled we will use mocks instead of real data from the organization"/>
+            <property name="phoneImage" label="Phone Image" type="ContentReference" description="An image to be used for the phone selection in equipment selection"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,8 @@
+.icon_color{
+    --slds-c-icon-color-foreground: #0176D3;
+}
+.custom-description {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}

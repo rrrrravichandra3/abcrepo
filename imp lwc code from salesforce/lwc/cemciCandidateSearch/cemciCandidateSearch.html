@@ -1,0 +1,423 @@
+<!--
+  @description       : 
+  @author            : Urvish Shah (ushah)
+  @group             : 
+  @last modified on  : 01-17-2023
+  @last modified by  : Urvish Shah (ushah)
+-->
+<template>
+    <div class="whiteBackground">
+        <!-- Add to Campaign modal start -->
+        <template if:true={isShowLookupModal}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- modal header start -->
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={hideLookupSearchModal}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                                size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Talent Community
+                            Search</h2>
+                    </header>
+
+                    <!-- modal body start -->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <c-cemci-lookup errors={errors} onsearch={handleLookupSearch}
+                            onselectionchange={handleLookupSelectionChange} label="Search"
+                            placeholder="Search from Existing Talent Communities" is-multi-entry={isMultiEntry}
+                            object-name="Campaign" required>
+                        </c-cemci-lookup>
+                    </div>
+
+                    <!-- modal footer start-->
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_brand" onclick={addToCampaign}>Add Candidates</button>
+                        <button class="slds-button slds-button_neutral" onclick={hideLookupSearchModal}>Cancel</button>
+                    </footer>
+
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+        <!-- modal end -->
+
+        <!-- Talent Pipeline modal start -->
+        <template if:true={isShowTalentPipelineModal}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- modal header start -->
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={hideTalentPipelineModal}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                                size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">Talent Pipeline Search
+                        </h2>
+                    </header>
+
+                    <!-- modal body start -->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                        <c-cemci-lookup errors={errors} onsearch={handleLookupSearch}
+                            onselectionchange={handleLookupSelectionChange} label="Search"
+                            placeholder="Search from Existing Talent Pipelines"
+                            is-multi-entry={isMultiEntryTalentPipeline} object-name="TalentPipeline" required>
+                        </c-cemci-lookup>
+                        <div class="slds-media slds-media_center slds-listbox__option slds-listbox__option_entity slds-p-top_large"
+                            onclick={handleNewRecordClick} data-sobject='Talent_Pipeline__c' role="option">
+                            <span class="slds-media__figure slds-listbox__option-icon">
+                                <lightning-icon icon-name="utility:add" size="small"
+                                    alternative-text='New Talent Pipeline'></lightning-icon>
+                            </span>
+                            <span class="slds-media__body">
+                                <span class="slds-listbox__option-text">Create New Talent Pipeline</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- modal footer start-->
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_brand" onclick={addToTalentPipeline}>Add
+                            Candidates</button>
+                        <button class="slds-button slds-button_neutral"
+                            onclick={hideTalentPipelineModal}>Cancel</button>
+                    </footer>
+
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+        <!-- modal end -->
+
+        <!-- New Talent Pipeline create modal start-->
+        <template if:true={isShowNewTalentPipelineModal}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- modal body start -->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-3" style="overflow: auto;">
+                        <h2
+                            class="slds-text-heading_medium slds-hyphenate slds-p-around_medium slds-align_absolute-center">
+                            New Talent Pipeline</h2>
+                        <lightning-record-form object-api-name='Talent_Pipeline__c' fields={fields} columns="2"
+                            mode="edit" oncancel={closeNewTalentPipelineModal} onsuccess={handleNewTPSuccess}>
+                        </lightning-record-form>
+                        <span>
+                            <h5 style="font-style: oblique;">{newPipelineSuccessMessage}</h5>
+                        </span>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+        <!-- modal end-->
+
+        <!-- Resume modal start-->
+        <template if:true={isShowResumeModal}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-03" aria-modal="true" aria-describedby="modal-content-id-4" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container resumeModal">
+            <!-- modal header start -->
+            <header class="slds-modal__header">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideTextResume}>
+            <lightning-icon icon-name="utility:close"
+            alternative-text="close"
+            variant="inverse"
+            size="small" ></lightning-icon>
+            <span class="slds-assistive-text">Close</span>
+            </button>
+            <h2 id="modal-heading-03" class="slds-text-heading_medium slds-hyphenate">Text Resume</h2>
+            </header>
+            
+            <!-- modal body start -->
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-4" style="overflow: auto;">
+                <lightning-formatted-text value={contactResume}></lightning-formatted-text>
+            </div>
+            
+            <!-- modal footer start-->
+            <footer class="slds-modal__footer">
+            <button class="slds-button slds-button_neutral" onclick={hideTextResume}>Close</button>
+            </footer>
+            
+            </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+        <!-- modal end -->
+
+        <template if:true={spinner}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+        <lightning-layout class="slds-var-p-bottom_x-small">
+            <lightning-layout-item size="3" class="slds-var-p-bottom_small slds-p-top_xx-small">
+                <div class="slds-p-top_large slds-float_left slds-p-left_medium">
+                    <lightning-button if:true={candidateSearchFromPipeline}  label="Back to Talent Pipeline" title="back" icon-name="action:back"
+                        onclick={backtoTalentPipeline}>
+                    </lightning-button>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item size={getElementSize} class="slds-p-bottom_x-small slds-p-top_xx-small">
+                <div onkeyup={handleKeyUp} class="slds-p-left_x-large">
+                    <lightning-input name="searchText" type="search" placeholder="Search for Candidates.."
+                        onchange={handleSearchTextChange}>
+                    </lightning-input>
+                </div>
+            </lightning-layout-item>
+            <template if:true={helpLink}>
+                <lightning-layout-item size="1" class="slds-p-bottom_x-small slds-p-left_x-small slds-p-top_large">
+                    <lightning-helptext onclick={handleHelpLink} content="Click icon for help on this page.">
+                    </lightning-helptext>
+                </lightning-layout-item>
+            </template>
+            <lightning-layout-item size="3" style="text-align: left;">
+                <div class="slds-p-top_large slds-float_right slds-p-right_medium">
+                    <lightning-button-group>
+                        <lightning-button class="slds-p-right_x-small" label="Search" title="Search" onclick={handleSearch}>
+                        </lightning-button>
+                        <lightning-button class="slds-p-right_x-small" label="Add To Talent Community"
+                                title="Add To Talent Community" onclick={showLookupSearchModal}>
+                        </lightning-button>
+                        <lightning-button if:false={resolutionMedium} class="slds-p-right_x-small" label="Add To Pipeline" title="Add To Pipeline"
+                                onclick={showTalentPipelineModal}>
+                        </lightning-button>
+                        <lightning-button-menu if:true={resolutionMedium} alternative-text="Show menu" variant="border-filled">
+                            <lightning-menu-item class="slds-p-right_x-small" label="Add To Pipeline" title="Add To Pipeline"
+                            onclick={showTalentPipelineModal}></lightning-menu-item>
+                        </lightning-button-menu>
+                    </lightning-button-group>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item size="1" class="slds-p-top_large slds-float_right slds-p-right_medium">
+                <lightning-input class="slds-p-right_x-small" type="toggle" label="List View" name="csListView" onchange={handleListViewToggle} checked={listView}></lightning-input>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-layout>
+            <!--Filter Components-->
+            <lightning-layout-item flexibility="no-flex" padding="around-small"
+                class="slds-theme_shade slds-p-top_none">
+                <div class="slds-grid fixedWidth">
+                    <lightning-layout>
+                        <lightning-layout-item flexibility="no-grow">
+                            <div class="slds-align_absolute-center">
+                                <lightning-card variant="Narrow" icon-name="standard:filter">
+                                    <h1 slot="title">Card Filters
+                                        <lightning-button-icon class="slds-p-left_x-large" icon-name="utility:close"
+                                            alternative-text="Clear all filters" title="Clear filters"
+                                            onclick={clearFilters}></lightning-button-icon>
+                                        <lightning-button-icon class="slds-p-left_x-small" icon-name="utility:refresh"
+                                            alternative-text="Get filtered Contact Data" title="Get Contact data"
+                                            onclick={handleSearch}></lightning-button-icon>
+                                    </h1>
+                                    <lightning-accordion allow-multiple-sections-open>
+                                        <lightning-accordion-section name="contactFilters" label="Contact Filters">
+                                            <div class="slds-p-right_xx-large slds-p-left_medium slds-p-bottom_small">
+                                                <template if:true={contactStages}>
+                                                    <c-cemci-multi-select-combo-box multi-select="true"
+                                                        onselectoption={handleMultiSelectStages} options={contactStages}
+                                                        selected-value={selectedContactStages}
+                                                        label="Candidate Stage(s)" name="contactStages"
+                                                        id="contactStages">
+                                                    </c-cemci-multi-select-combo-box>
+                                                </template>
+                                            </div>
+                                            <div class="slds-p-right_xx-large slds-p-left_medium slds-p-bottom_small">
+                                                <c-cemci-lookup errors={errors} onsearch={handleLookupSearch}
+                                                    onselectionchange={handleLookupSelectionChange}
+                                                    label="Current Employer"
+                                                    placeholder="Search from Existing Employers"
+                                                    is-multi-entry={isMultiEntryAccount} object-name="Account">
+                                                </c-cemci-lookup>
+                                            </div>
+                                            <div>
+                                                <lightning-input name="title"
+                                                    class="slds-p-right_xx-large slds-p-left_medium slds-p-bottom_small"
+                                                    type="text" label="Title">
+                                                </lightning-input>
+                                            </div>
+                                            <div>
+                                                <lightning-input name="School"
+                                                    class="slds-p-right_xx-large slds-p-left_medium slds-p-bottom_small"
+                                                    type="text" label="School">
+                                                </lightning-input>
+                                            </div>
+                                            <div class="slds-p-right_xx-large slds-p-left_medium slds-p-bottom_small">
+                                                <template if:true={candidateFieldOfStudyValues}>
+                                                    <c-cemci-multi-select-combo-box multi-select="true"
+                                                        name="candidateFieldOfStudyValues"
+                                                        onselectoption={handleMultiSelectCandidateFieldOfStudy}
+                                                        options={candidateFieldOfStudyValues}
+                                                        selected-value={selectedCandidateFieldOfStudy}
+                                                        label="Candidate Field of Study"
+                                                        id="candidateFieldOfStudyValues">
+                                                    </c-cemci-multi-select-combo-box>
+                                                </template>
+                                            </div>
+                                            <div class="slds-p-right_xx-large slds-p-left_medium slds-p-bottom_small">
+                                                <template if:true={candidateSourceValues}>
+                                                    <c-cemci-multi-select-combo-box multi-select="true"
+                                                        name="candidateSourceValues"
+                                                        onselectoption={handleMultiSelectCandidateSources}
+                                                        options={candidateSourceValues}
+                                                        selected-value={selectedCandidateSources}
+                                                        label="Candidate Source" id="candidateSourceValues">
+                                                    </c-cemci-multi-select-combo-box>
+                                                </template>
+                                            </div>
+                                            <div class="slds-p-right_xx-large slds-p-left_medium slds-p-bottom_small">
+                                                <template if:true={candidateDegreeValues}>
+                                                    <c-cemci-multi-select-combo-box multi-select="true"
+                                                        name="candidateDegreeValues"
+                                                        onselectoption={handleMultiSelectCandidateDegrees}
+                                                        options={candidateDegreeValues}
+                                                        selected-value={selectedCandidateDegrees}
+                                                        label="Candidate Degree" id="candidateDegreeValues">
+                                                    </c-cemci-multi-select-combo-box>
+                                                </template>
+                                            </div>
+                                            <div class="slds-p-left_medium slds-form-element__label slds-p-top_small">
+                                                Week range
+                                            </div>
+                                            <lightning-layout>
+                                                <lightning-layout-item>
+                                                    <div
+                                                        class="slds-p-left_medium slds-text-align_center dateRangeFieldWidth">
+                                                        <lightning-input name="fromWeek" type="number" label="From"
+                                                            min="0">
+                                                        </lightning-input>
+                                                    </div>
+                                                </lightning-layout-item>
+                                                <lightning-layout-item>
+                                                    <div
+                                                        class="slds-p-left_xx-small slds-p-right_xx-small slds-p-top_x-large">
+                                                        -</div>
+                                                </lightning-layout-item>
+                                                <lightning-layout-item>
+                                                    <div
+                                                        class="slds-p-left_xx-small slds-text-align_center dateRangeFieldWidth">
+                                                        <lightning-input name="toWeek" type="number" label="To" min="0">
+                                                        </lightning-input>
+                                                    </div>
+                                                </lightning-layout-item>
+                                            </lightning-layout>
+                                            <div
+                                                class="slds-p-right_xx-large slds-p-left_medium slds-p-bottom_small slds-p-top_medium">
+                                                <lightning-input type="toggle" label="Boomerang" name="boomerang">
+                                                </lightning-input>
+                                            </div>
+
+                                        </lightning-accordion-section>
+                                        <lightning-accordion-section name="location" label="Location Filter">
+                                            <div>
+                                                <span class="slds-float_right">
+                                                    <lightning-button-icon class="slds-p-left_x-large" icon-name="utility:close"
+                                                        alternative-text="Clear Location" title="Clear Location"
+                                                        onclick={clearLocation}>
+                                                    </lightning-button-icon>
+                                                </span><br/><br/>
+                                                <lightning-input-address address-label="Address" street-label="Street"
+                                                    city-label="City" country-label="Country" province-label="Province"
+                                                    postal-code-label="PostalCode" street="" city="" country=""
+                                                    province="" postal-code="" name="addressLookup"
+                                                    variant="label-hidden" read-only="true" show-address-lookup>
+                                                </lightning-input-address>
+                                                <lightning-input name="distance" type="number" label="Radius Distance (mi)"
+                                                    class="slds-p-right_xx-large slds-p-bottom_small" value={distance} min="1">
+                                                </lightning-input>
+                                            </div>
+                                        </lightning-accordion-section>
+                                        <lightning-accordion-section name="tagsFilters" label="Tag Filters">
+                                            <div class="slds-size_small">
+                                                <c-cemci-tag-container object-api-name="Contact" record-id={reqRecordId}
+                                                    dont-add-tag="true" onselected={handleTags}></c-cemci-tag-container>
+                                            </div>
+                                        </lightning-accordion-section>
+                                    </lightning-accordion>
+
+                                </lightning-card>
+                            </div>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
+
+            </lightning-layout-item>
+            <lightning-layout-item padding="horizontal-large">
+                <lightning-layout multiple-rows="true">
+                    <template if:true={firstLoad}>
+                        <div class="slds-var-p-around_medium lgc-bg">
+                            {label.CandidateCardHelptext}
+                        </div>
+                    </template>
+                    <template if:false={contactResults.length}>
+                        <div class="slds-var-p-around_medium">
+                            No results to display
+                        </div>
+                    </template>
+                    <template if:true={contactResults.length}>
+                        <lightning-layout multiple-rows="true">
+                            <template if:true={resultExhausted}>
+                                <lightning-layout-item size="12">
+                                    <div class="slds-var-p-around_medium lgc-bg">
+                                        {label.MaximumResultsReached}
+                                    </div>
+                                </lightning-layout-item>
+                            </template>
+                            <template if:false={listView}>
+                                <template for:each={visibleContacts} for:item="con">
+                                    <lightning-layout-item key={con.Id} flexibility="no-flex" padding="around-medium">
+                                        <c-candidate-card contact={con} reviewed-candidates={reviewedCandidates}
+                                            applied-candidates={appliedContacts} selected-candidates={selectedCandidatesMap}
+                                            onaddcandidate={addCandidateToSelected}
+                                            onremovecandidate={removeCandidateFromSelected}
+                                            onmarkcandidateasreviewed={addToReviewedList}
+                                            onunmarkcandidateasreviewed={removeFromReviewedList}>
+                                        </c-candidate-card>
+                                    </lightning-layout-item>
+                                </template>
+                            </template>
+                            <template if:true={listView}>
+                                <div class={dataTableSizeClass}>
+                                <lightning-datatable
+                                    key-field="Id"
+                                    column-widths-mode="fixed"
+                                    data={contactResultsListView}
+                                    selected-rows={selectedRows}
+                                    columns={columns}
+                                    onrowselection={handleRowSelect}
+                                    onrowaction={callRowAction}
+                                    enable-infinite-loading="true"
+                                    onloadmore={loadMoreDataOnScroll}
+                                    sorted-by={sortBy}
+                                    sorted-direction={sortDirection}
+                                    onsort={doSorting}>
+                                </lightning-datatable>
+                            </div>
+                            <!--{loadMoreStatus}-->
+                            <lightning-layout-item size="10"></lightning-layout-item>
+                            <p class="slds-var-p-left_x-small slds-var-p-top_xx-small slds-var-p-right_x-small slds-text-align_center">
+                                Found {contactResultsListView.length} results</p>
+                            <p class="slds-var-p-left_x-small slds-var-p-top_xx-small slds-var-p-right_x-small slds-text-align_center">
+                                Max {maxNumberOfRecords}</p>
+                            </template>
+                        </lightning-layout>
+                    </template>
+                </lightning-layout>
+                <template if:true={contactResults.length}>
+                    <template if:false={listView}>
+                        <div>
+                            <c-pagination records={contactResults} onupdate={updateContactHandler} onload={loadMoreData}
+                                onresultsexhausted={handleMaximumResultsReached} row-limit={rowLimit}
+                                less-than-limit-returned={lessThanLimitReturned} max-number-of-records={maxNumberOfRecords}>
+                            </c-pagination>
+                        </div>
+                    </template>
+                </template>
+
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+</template>

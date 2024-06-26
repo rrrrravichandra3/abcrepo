@@ -1,0 +1,41 @@
+<template>
+    <template if:true={showModal}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-label="Meaningful description of the modal content"
+            class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                    <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                    </svg>
+                    <span class="slds-assistive-text">close</span>
+                </button>
+                <div class="slds-modal__content slds-p-around_medium slds-modal__content_headless">
+                    <template if:true={isComponentReady}>
+                        <div class="slds-m-around_medium">
+                            <lightning-input type="file" label={LABELS.IMAGE_CROPPER_LABEL} onchange={handleFileChange}
+                                accept="image/png, image/jpg"></lightning-input>
+                            <div class="slds-m-vertical_medium">
+                                <img src="#" class="slds-m-vertical_large cropperImage" style="display: none"
+                                    onload={imageLoadHandler} alt={LABELS.IMAGE_CROPPER_BROKEN_FILE_ALT_TEXT} />
+                            </div>
+                            <template if:true={isCroppingEnabled}>
+                                <lightning-button label={LABELS.IMAGE_CROPPER_BUTTON_LABEL} onclick={handleImageCrop}
+                                    class="slds-m-vertical_medium imgCropBtn"></lightning-button>
+                            </template>
+                            <canvas style="display: none"></canvas>
+                        </div>
+                    </template>
+                </div>
+                <div class="slds-modal__footer">
+                    <lightning-button label="Close" onclick={close} class="slds-m-vertical_medium"></lightning-button>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+
+    </template>
+    <template if:true={showSpinner}>
+        <c-cc-emp-spinner></c-cc-emp-spinner>
+    </template>
+
+</template>

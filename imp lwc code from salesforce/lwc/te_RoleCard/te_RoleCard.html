@@ -1,0 +1,53 @@
+<template>
+    <div class="card">
+        <div class="slds-p-horizontal_small">
+            <div class="titleHeight">
+                <div class="slds-p-top_medium slds-text-heading_small">
+                    {title}
+                </div>
+            </div>
+            <div class="slds-p-vertical_small slds-border_bottom">
+                <span>Grade</span>
+                <span class="slds-float_right">{grade}</span>
+            </div>
+            <div class="slds-p-vertical_small slds-border_bottom">
+                <span>Team</span>
+                <span class="slds-float_right">{team}</span>
+            </div>
+            <div class="slds-p-vertical_small slds-border_bottom">
+                <span>Salary Range</span>
+                <span class="slds-float_right">{salaryRange}</span>
+            </div>
+            <div class="slds-p-top_medium">
+                <div class="slds-p-bottom_small">Skills</div>
+                <template for:each={skillsList} for:item="skillName">
+                    <span key={skillName.Id} class="slds-badge slds-theme_success slds-m-vertical_xx-small">
+                        <span class="slds-badge__icon slds-badge__icon_left">
+                          <span class="slds-icon_container slds-icon-utility-moneybag slds-current-color" title="Description of icon when needed">
+                            <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                              <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#success"></use>
+                            </svg>
+                          </span>
+                        </span>{skillName.Skill__r.Name}</span>
+                </template>
+                <template for:each={skillsMissingList} for:item="skillMissingName">
+                    <span key={skillMissingName} class="slds-badge slds-m-vertical_xx-small">
+                        {skillMissingName}
+                    </span>
+                </template>
+                <div class="slds-p-top_large">
+                    <template lwc:if={hasOpenPositions}>
+                        <div class="slds-align_absolute-center slds-p-bottom_small">
+                            <lightning-button disabled="true" variant="base" label="No Open Positions" class=""></lightning-button>
+                        </div>
+                    </template>
+                    <template lwc:else>
+                        <div class="slds-align_absolute-center slds-p-bottom_small">
+                            <lightning-button variant="brand-outline" label={buttonText} class=""></lightning-button>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

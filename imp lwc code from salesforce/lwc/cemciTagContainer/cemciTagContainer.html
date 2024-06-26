@@ -1,0 +1,58 @@
+<!--
+  @description       : 
+  @author            : Urvish Shah (ushah)
+  @group             : 
+  @last modified on  : 07-25-2022
+  @last modified by  : Urvish Shah (ushah)
+-->
+<template>
+    <lightning-card>
+        <div slot="title">
+            <lightning-icon icon-name="standard:topic2" size="x-small"></lightning-icon>
+            <span class="slds-p-left_small slds-text-heading_small ">
+            Tags ({selectedRecords.length})
+            </span>
+        </div>
+        <div>
+            <div class="slds-form-element">
+                <div class="">
+                    <div class="slds-p-right--small slds-p-left--small">
+                        <div class={txtclassname} data-id="resultBox" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                            <div class="slds-p-bottom_small" role="none">
+                                <lightning-input type="text" placeholder="Type a tag name." data-id="userinput" label={Label} name="searchText" onchange={searchField} class="slds-c-input-spacing-horizontal-start"></lightning-input>
+                            </div>
+                            <div id="listbox-id-1" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
+                                <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                    <template for:each={searchRecords} for:item="serecord">
+                                        <li role="presentation" class="slds-listbox__item" key={serecord.recId}>
+                                            <div data-id={serecord.recId} data-name={serecord.recName} onclick={setSelectedRecord} class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+                                                <span class="slds-media__body">
+                                                    <span class="slds-listbox__option-text slds-listbox__option-text_entity">{serecord.recName}</span>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </div>
+                            <div if:true={messageFlag}>
+                                No result found.
+                            </div>
+                            <div if:true={LoadingText}>
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-p-left--small">
+                <template for:each={selectedRecords} for:item="serecord">
+                    <span class="slds-p-around_xxx-small" key={serecord.recId}>
+                    <lightning-pill class="slds_pill__label pill_color" label={serecord.recName} name={serecord.recId} onremove={removeRecord}>
+                    </lightning-pill>
+                    </span>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>
+</template>

@@ -1,0 +1,101 @@
+.rule-num-margin {
+    margin-left: 0rem;
+    margin-right: 0rem;
+}
+
+.rule-num {
+    font-size: 0.9rem;
+}
+
+.rule-item-no-custom-logic {
+    width: 100%;
+}
+
+.rule-item-padding {
+    padding: 0rem;
+}
+
+.rules-layout-item {
+    height: 350px;
+    padding : 0.25rem;
+    max-height : 350px;
+    overflow-y : scroll;
+    border-top: 2px solid rgb(217, 219, 221);
+}
+
+.bold-font {
+    font-weight : 500;
+}
+
+.rule-logic-label {
+    font-size : 0.8rem;
+    line-height : 1.25;
+}
+
+.top-align {
+    vertical-align: top;
+}
+
+.remove-logic {
+    text-align: right;
+}
+
+.rule-logic-help-text {
+    vertical-align: super !important;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance : none;
+    width : 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius : 4px;
+    background-color : rgba(0, 0, 0, .5);
+    -webkit-box-shadow : 0 0 1px rgba(255, 255, 255, .5);
+}
+
+@media screen and (min-width : 1301px) {
+    .rule-num-layout-item {
+        width: 3%;
+    }
+    .rule-item-custom-logic {
+        width: 95%;
+    }
+}
+
+@media screen and (min-width : 1025px) and (max-width : 1300px) {
+    .rule-num-layout-item {
+        width: 6%;
+    }
+    .rule-item-custom-logic {
+        width: 91%;
+    }
+}
+
+@media screen and (min-width : 769px) and (max-width : 1024px) {
+    .rule-num-layout-item {
+        width: 5%;
+    }
+    .rule-item-custom-logic {
+        width: 93%;
+    }
+}
+
+@media screen and (min-width : 481px) and (max-width : 768px) {
+    .rule-num-layout-item {
+        width: 6%;
+    }
+    .rule-item-custom-logic {
+        width: 91%;
+    }
+}
+
+@media screen and (min-width : 320px) and (max-width : 480px) {
+    .rule-num-layout-item {
+        width: 7%;
+    }
+    .rule-item-custom-logic {
+        width: 90%;
+    }
+}

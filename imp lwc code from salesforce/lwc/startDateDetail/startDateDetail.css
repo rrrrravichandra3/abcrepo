@@ -1,0 +1,9 @@
+span {
+    font-weight: bolder;
+} 
+
+p {
+    padding-top: 5px;
+    font-size: xx-small;
+    line-height: inherit;
+}

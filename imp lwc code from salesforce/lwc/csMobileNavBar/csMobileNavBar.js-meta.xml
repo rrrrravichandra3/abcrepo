@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" fqn="CsMobileNavBar">
+    <apiVersion>53.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Mobile Nav Bar</masterLabel>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="myMentorsURL" type="String" default="my-mentors"/>
+            <property name="myMenteesURL" type="String" default="my-mentees"/>
+            <property name="searchMentorsURL" type="String" default="search-mentors"/>
+            <property name="meetingsURL" type="String" default="my-meetings"/>
+            <property name="showMoreURL" type="String" default="show-more"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

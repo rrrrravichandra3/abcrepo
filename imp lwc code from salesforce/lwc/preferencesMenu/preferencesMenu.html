@@ -1,0 +1,44 @@
+<template>
+  <!--Modals for Desktop-->
+  <template if:true={modal}>
+    <c-lightning-modal hide-footer onclose={closeModal}>
+      <div class="slds-p-vertical_small">
+        <template if:true={showLocationModal}>
+          <c-location-preferences></c-location-preferences>
+        </template>
+        <template if:true={showSkillsModal}>
+          <c-skill-preferences></c-skill-preferences>
+        </template>
+        <template if:true={showInterestModal}>
+          <c-interest-preferences></c-interest-preferences>
+        </template>
+        <template if:true={showGroupModal}>
+          <c-equality-group-preferences></c-equality-group-preferences>
+        </template>
+        <template if:true={showCausesModal}>
+          <c-causes-preferences></c-causes-preferences>
+        </template>
+      </div>
+    </c-lightning-modal>
+  </template>
+
+
+
+  <div class="slds-p-horizontal_small slds-m-top_medium">
+    <h2 class="slds-text-heading_small slds-m-bottom_x-small">{labels.mentoringPreferencesLabel}</h2>
+  </div>
+  <template for:each={preferences} for:item="preference">
+    <div key={preference.id} onclick={goToUrl} data-nav={preference.url} class={preferenceClasses}>
+      <div class="slds-shrink slds-m-right_x-small">
+        <lightning-icon icon-name={preference.iconName} size="xx-small">
+        </lightning-icon>
+      </div>
+      <div>{preference.label}</div>
+      <template if:true={isMobile}>
+        <div class="slds-col_bump-left">
+          <lightning-icon icon-name="utility:chevronright" size="x-small"></lightning-icon>
+        </div>
+      </template>
+    </div>
+  </template>
+</template>

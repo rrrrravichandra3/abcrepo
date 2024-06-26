@@ -1,0 +1,42 @@
+.card-paragraph {
+    color: #747474;
+    font-size: 16px;
+
+    height:100px;
+}
+
+.subheader {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--blue-blue-20, #032D60);
+}
+
+ /* MOBILE: only show for 480px and smaller */
+ @media screen and (max-width: 480px) {
+    h2 {
+        min-height: 100px;
+    }
+}
+
+/* TABLET: 481px to 1024px */
+@media (min-width: 481px) and (max-width: 1023px) {
+    h2 {
+        min-height: 100px;
+    }
+}
+
+/* DESKTOP: 1024px to  1439 */
+@media (min-width:1024px) and (max-width: 1439px)  {
+    h2 {
+        min-height: 100px;
+    }
+}
+
+/* DESKTOP LG: 1440px and up  */
+@media screen and (min-width:1440px) {
+    h2 {
+        min-height: 80px;
+    }
+}

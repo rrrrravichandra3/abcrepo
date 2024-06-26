@@ -1,0 +1,127 @@
+<template>
+    <div grid flow="wrap" class="slds-text-align_left" style="margin-bottom: 2rem;">
+        <div size="8:12">
+            <div grid="align-center" axis="vertical" class="slds-grid_vertical-align-center">
+                <h5 type-style="display-5">{labels.skills}</h5>
+                <a type-style="display-8" class="slds-m-left_medium" href="javascript:void(0);" onclick={addNewSkill}>Add New</a>
+            </div>
+            <span>{labels.skillsDescription}</span>
+        </div>
+        <div size="4:12">
+            <c-wes-select>
+                <div slot="label">{labels.visibleTo}</div>
+                <option value="">Everyone</option>
+                <option value="opt2">Only Me</option>
+                <option value="opt3">Hiring Manager</option>
+            </c-wes-select>
+        </div>
+    </div>
+    <div class="slds-grid slds-grid_align-spread">
+        <div grid flow="wrap" class="slds-col slds-size_12-of-12 slds-text-align_left">
+            <div size="1:1">
+                <h5 type-style="display-8">{labels.topSkills}</h5>
+                <div style="display: flex;flex-wrap: wrap;">
+                    <template for:each={topSkills} for:item="skill" for:index="index">
+                        <span type-style="display-8" key={skill.Id} class="slds-badge slds-m-vertical_xx-small slds-m-left_none slds-var-m-right_xx-small"
+                            style="padding: 14.5px 22px 14.5px 22px;border: none;background: #EEF4FF;"  tabindex="0"
+                        >
+                            {skill.Skill__r.Name}
+                            <c-wes-icon 
+                                symbol="edit"
+                                class="slds-m-left_x-small"
+                                style="--sds-c-icon-sizing: 16px;cursor:pointer;"
+                                data-index={index}
+                                onclick={handleTopSkillToolsClick}
+                                onblur={handleSkillToolsBlur}
+                            >
+                            </c-wes-icon>
+                        </span>
+                        <div key={skill.Id} class={popoverToggleCss} data-top-skill-index={index} style="position: relative;">
+                            <div class="slds-dropdown slds-dropdown_right slds-dropdown_small skills-dropdown" data-is-button-type={isButtonType} style="position: absolute;">
+                                <ul class="slds-dropdown__list" role="menu" aria-label={labels.editSkill}>
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="#" role="menuitem" tabindex="0" data-skill={skill.Id} title={labels.delete} onclick={handleClick} onmousedown={handleMouseDown}>
+                                                <span class="slds-truncate">Delete Skill</span>
+                                                <c-wes-icon symbol="delete" style="--sds-c-icon-sizing: 16px;sds-c-icon-color-foreground: #747474;"></c-wes-icon>
+                                            </a>
+                                        </li>
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="#" role="menuitem" tabindex="0" data-skill={skill.Id} title={labels.unmark} onclick={handleUnmarkTopSkill} onmousedown={handleMouseDown}>
+                                                <span class="slds-truncate slds-text-align_left" title={labels.unmark}>
+                                                    <span grid="align-center" class="slds-text-align_left" style="align-items: center;">
+                                                        <span class="slds-truncate">Unmark as top 5</span>
+                                                        <c-wes-icon symbol="favorite" style="--sds-c-icon-sizing: 16px; sds-c-icon-color-foreground: #747474;"></c-wes-icon>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <span style="color: #444444;">{topSkillsCount}/5 top skills added</span>
+            </div>
+            <div size="1:1" class="slds-m-top_medium">
+                <div grid="align-spread" style="display: flex;justify-content: space-between; align-items: center;">
+                    <h5 type-style="display-8">My Skills</h5>
+                    <button onclick={addNewSkill} class="add-skill__button">
+                        <c-wes-icon 
+                        symbol="add" 
+                        class="add-icon">
+                        </c-wes-icon>
+                    </button>
+                </div>
+
+                <div style="display: flex;flex-wrap: wrap;">
+                    <template for:each={mySkills} for:item="skill" for:index="index">
+                        <c-wes-badge key={skill.Id} type="status" class="slds-m-around_xx-small" tabindex="0">
+                            <span part="badge" style="padding: 0;">
+                                <slot name="start"></slot>
+                                {skill.Skill__r.Name}
+                                <slot name="end">
+                                    <c-wes-icon
+                                        onclick={handleSkillToolsClick} 
+                                        onblur={handleSkillToolsBlur}
+                                        onkeydown={trapFocus} 
+                                        symbol="edit" 
+                                        class="slds-m-left_x-small"
+                                        data-index={index}
+                                        style="cursor: pointer;">
+                                    </c-wes-icon>
+                                </slot>
+                            </span>
+                        </c-wes-badge>
+                        <div key={skill.Id} class={popoverToggleCss} data-skill-index={index} style="position: relative;">
+                            <div class="slds-dropdown slds-dropdown_right slds-dropdown_small skills-dropdown" data-is-button-type={isButtonType} style="position: absolute;">
+                                <ul class="slds-dropdown__list" role="menu" aria-label={labels.editSkill}>
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="#" role="menuitem" tabindex="0" id="delete" title={deleteTitle} data-skill={skill.Id} onclick={handleClick} onmousedown={handleMouseDown}>
+                                                <span class="slds-truncate">Delete Skill</span>
+                                                <c-wes-icon symbol="delete" style="--sds-c-icon-sizing: 16px;sds-c-icon-color-foreground: #747474;"></c-wes-icon>
+                                            </a>
+                                        </li>
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="#" role="menuitem" tabindex="0" id="unmark" title={unmarkTitle} data-skill={skill.Id} onclick={handleMarkAsTopSkill} onmousedown={handleMouseDown}>
+                                                <span class="slds-truncate">Mark as top 5</span>
+                                                <c-wes-icon symbol="favorite" style="--sds-c-icon-sizing: 16px;sds-c-icon-color-foreground: #747474;"></c-wes-icon>
+                                            </a>
+                                        </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <span style="color: #444444;">{mySkillsCount}/15 skills added</span>
+            </div>
+
+            <div size="1:1" class="slds-m-top_medium">
+                <h5 type-style="display-8">Skills Interests</h5>
+                <span>You can add skills you’re interested in learning in your platform settings page.</span>
+                <div>
+                    <a href="javascript:void(0);" type-style="display-8" style="display: flex; font-size:14px">Go to Career Connect Settings <c-wes-icon symbol="settings" class="slds-m-left_xx-small gear-icon" style="width: 13px;"></c-wes-icon></a> 
+                </div>
+            </div>
+        </div>
+    </div> 
+</template>

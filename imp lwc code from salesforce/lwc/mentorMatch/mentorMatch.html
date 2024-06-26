@@ -1,0 +1,78 @@
+<template>
+    <div class={containerClasses}>
+        <!--Show spinner when loading-->
+        <template if:true={loading}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+
+        <!--Dynamically assign classes to lock scroll when filter page is active-->
+        <!--Filter Page-->
+
+
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="12">
+                <c-page-header class="slds-show_inline-block" heading={pageHeading}></c-page-header>
+                <lightning-button label="View Profile" variant="brand" onclick={goToProfile}></lightning-button>
+            </lightning-layout-item>
+
+            <template if:false={isMobile}>
+                <lightning-layout-item size="12" class="slds-card slds-p-vertical_small slds-p-horizontal_large slds-m-bottom_medium card-shadow">
+                    <lightning-layout multiple-rows>
+                        <lightning-layout-item size="3" padding="around-small">
+                            <nav class="slds-nav-vertical">
+                                <div class="slds-nav-vertical__section">
+                                    <h2 id="entity-header" class="slds-nav-vertical__title">{labels.yourJourneyLabel}</h2>
+                                    <ul>
+                                        <template if:true={program}>
+                                            <template for:each={program.programStages} for:item="stage">
+                                                <c-program-stage-nav-item key={stage} stage={stage} onnavitemclick={programStageClicked}></c-program-stage-nav-item>
+                                            </template>
+                                        </template>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="6" padding="around-small">
+                            <template if:true={description}>
+                                <lightning-formatted-rich-text value={description}></lightning-formatted-rich-text>
+                            </template>
+
+                            <template if:true={linksDescription}>
+                                <lightning-formatted-rich-text value={linksDescription}></lightning-formatted-rich-text>
+                            </template>
+
+                            <template if:true={links}>
+                                <template for:each={links} for:item="link">
+                                    <c-program-stage-link key={link.Id} label={link.Name} link={link.Link__c}></c-program-stage-link>
+                                </template>
+                            </template>
+
+                            <template if:true={sessionsDescription}>
+                                <lightning-formatted-rich-text value={sessionsDescription}></lightning-formatted-rich-text>
+                            </template>
+
+                            <template if:true={sessions}>
+                                <template for:each={sessions} for:item="session">
+                                    <c-program-stage-link key={session.Id} label={session.Name} link={session.Link__c}></c-program-stage-link>
+                                </template>
+                            </template>
+                            <div class="slds-m-top_small">
+                                <template if:true={showMarkCompletedButton}>
+                                    <lightning-button class="slds-m-right_x-small" label={labels.markCompletedLabel} variant="brand" onclick={markCompletedButtonClick}></lightning-button>
+                                </template>
+                                <template if:true={showOnLastStage}>
+                                    <lightning-button class="slds-m-right_x-small" label={labels.templateSurveyLabel} variant="success" onclick={goToSurveyButtonClick}></lightning-button>
+                                </template>
+                                
+                            </div>
+
+                        </lightning-layout-item>
+                        <lightning-layout-item size="3" padding="around-small">
+                            <c-match-tracker record-id={recordId} mode={mode}></c-match-tracker>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </lightning-layout-item>
+            </template>
+        </lightning-layout>
+    </div>
+</template>

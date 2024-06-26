@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Core Values Section</masterLabel>
+
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property type="String" name="header" translatable="true" />
+            <property type="String" name="subheader" translatable="true" />
+            <property type="String" name="value1header" translatable="true" />
+            <property type="String" name="value1text" translatable="true" />
+            <property type="String" name="value2header" translatable="true" />
+            <property type="String" name="value2text" translatable="true" />
+            <property type="String" name="value3header" translatable="true" />
+            <property type="String" name="value3text" translatable="true" />
+            <property type="String" name="value4header" translatable="true" />
+            <property type="String" name="value4text" translatable="true" />
+            <property type="String" name="value5header" translatable="true" />
+            <property type="String" name="value5text" translatable="true" />
+            <property type="ContentReference" name="value1" label="value1" filter="cms_image" />
+            <property type="ContentReference" name="value2" label="value2" filter="cms_image" />
+            <property type="ContentReference" name="value3" label="value3" filter="cms_image" />
+            <property type="ContentReference" name="value4" label="value4" filter="cms_image" />
+            <property type="ContentReference" name="value5" label="value5" filter="cms_image" />
+            <property type="ContentReference" name="bushesImageId" label="bushesImageId" filter="cms_image" />
+        </targetConfig>
+    </targetConfigs>
+
+</LightningComponentBundle>

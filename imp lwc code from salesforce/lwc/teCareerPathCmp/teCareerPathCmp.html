@@ -1,0 +1,79 @@
+<!--
+  @description       : 
+  @author            : Urvish Shah (ushah)
+  @group             : 
+  @last modified on  : 02-07-2024
+  @last modified by  : Urvish Shah (ushah)
+-->
+<template>
+    <div class="slds-var-p-horizontal_small">
+        <template if:true={recommendedJobs}>
+            <div class="slds-text-heading_small blueText">
+                Strictly Skill based Matching
+                <lightning-helptext content="All suggestions are based on your preferred work location and your skill set."></lightning-helptext>
+            </div>
+            <div class="slds-align">
+                <span class="slds-text-heading_medium slds-var-p-vertical_small">
+                    Matching Skills to Skills
+                </span>
+                <span class="slds-float_right"><a onclick={navigateToJobPage}>See All Jobs</a></span>
+            </div>
+            <div>
+                <c-te-job-recommendation-carousel 
+                recommended-jobs={recommendedJobs}
+                contact={contact}
+                skills={skills}
+                
+                ></c-te-job-recommendation-carousel>
+            </div>
+        </template>
+        <template if:false={recommendedJobs}>
+            Hang tight! We are loading your recommendations!
+        </template>
+        <template if:true={recommendedJobsFullEmbded}>
+            <div class="slds-text-heading_small blueText">
+                Beyond Skills
+                <lightning-helptext content="All suggestions are based on your preferred work location and your skill set."></lightning-helptext>
+            </div>
+            <div class="slds-align">
+                <span class="slds-text-heading_medium slds-var-p-vertical_small">
+                    Matching Full Employee to Full Job Description
+                </span>
+                <span class="slds-float_right"><a onclick={navigateToJobPage}>See All Jobs</a></span>
+            </div>
+            <div>
+                <c-te-job-recommendation-carousel 
+                recommended-jobs={recommendedJobsFullEmbded}
+                contact={contact}
+                skills={skills}
+                
+                ></c-te-job-recommendation-carousel>
+            </div>
+        </template>
+        <template if:true={relocationJobs}>
+            <template if:true={preferences.Open_to_Relocation__c}>
+                <div class="slds-grid">
+                    <div class="slds-text-heading_small blueText slds-var-p-top_medium">
+                        <span class="slds-text-heading_small blueText">Location Based</span>
+                    </div>
+                    <div>
+                        <lightning-helptext content="All suggestions are based on the country you are in and your skill set."></lightning-helptext>
+                    </div>
+                </div>
+                <div class="slds-align">
+                    <span class="slds-text-heading_medium slds-var-p-vertical_small">
+                        Relocation Opportunities
+                    </span>
+                    <span class="slds-float_right"><a onclick={navigateToJobPage}>See All Jobs</a></span>
+                </div>
+                <div>
+                    <c-te-job-recommendation-carousel 
+                    recommended-jobs={relocationJobs}
+                    contact={contact}
+                    skills={skills}
+                    ></c-te-job-recommendation-carousel>
+                </div>
+            </template>
+        </template>
+    </div>
+</template>

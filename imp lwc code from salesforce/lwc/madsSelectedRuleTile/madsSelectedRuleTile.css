@@ -1,0 +1,44 @@
+.rule-tile-spinner .slds-spinner_container {
+    position: inherit !important;
+}
+
+.rule-tile-layout {
+    padding: 0rem !important;
+}
+
+.rule-selection-background {
+    background-color: rgb(187, 187, 187) !important;
+}
+
+.rule-layout-item {
+    width: 95%;
+    padding: 0.75rem !important;
+}
+
+.close-btn-layout-item {
+    width: 5%;
+}
+
+.field-label {
+    font-size : 0.9rem;
+}
+
+.bold-font {
+    font-weight : 500;
+}
+
+.subtitle-text {
+    font-size : 0.8rem;
+    font-style: italic;
+}
+
+.subtitle-text-val {
+    font-size : 0.85rem;
+}
+
+.close-button:focus {
+    outline : 0 !important;
+    box-shadow : none;
+    text-decoration : none;
+    border : 0;
+}

@@ -1,0 +1,10 @@
+.profileImg {
+    position: absolute;
+    border-radius: var(--lwc-borderRadiusCircle, 50%);
+    height: 110px;
+    width: 110px;
+}
+.editIcon {
+    padding-left: 95px;
+    padding-top: 95px;
+}

@@ -1,0 +1,79 @@
+<template>
+    <!-- <div key={category.name} class="slds-m-bottom_medium">
+        <p class="slds-m-bottom_x-small">{category.name}</p>
+
+
+        <div class="slds-grid slds-wrap">
+
+
+            <template for:each={category.filters} for:item="filter">
+                <template if:true={filter.searchDisplay}>
+                    <div class="slds-m-bottom_x-small" key={filter.id}>
+                        <c-filter-button filter={filter} start-filters={startFilters} onpressclick={handleFilterClick}>
+                        </c-filter-button>
+                    </div>
+                </template>
+            </template>
+            <template if:true={filterTooSpecific}>
+                <div class="slds-m-bottom_x-small slds-align_absolute-center">
+                    Please try a less specific filter term.
+                </div>
+            </template>
+        </div>
+    </div> -->
+     <!-- Header Label -->
+     <!--<template if:true={category.name}>
+        <label class="slds-form-element__label">{category.name}</label>
+    </template>-->
+    <div class="slds-combobox_container">
+        <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open" aria-expanded="true" aria-haspopup="listbox" role="combobox">
+            <!-- Search Input -->
+            <!--<div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">-->
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="combobox-id-1">{category.name}</label>
+                        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                            <lightning-icon class="slds-icon slds-input__icon slds-input__icon_left"  icon-name="utility:down" size="x-small" alternative-text="search"></lightning-icon>
+                            <input type="text" disabled={disabled} class="slds-input" style="width: 100%;" placeholder={label.SelectAnOptionLabel} onblur={blurEvent} onfocus={showFilters} onclick={showFilters} onkeyup={filterFilters} value={searchString} autocomplete="off"  id="combobox-id-1"  data-id="combobox1" aria-expanded={showDropdown} aria-controls="listbox-id-1"  aria-multiselectable="true"/>
+                          </div>
+                      </div>
+                <!--<lightning-input disabled={disabled} class="inputBox" placeholder={label.SelectAnOptionLabel} onblur={blurEvent} onfocus={showFilters} onclick={showFilters} onkeyup={filterFilters} value={searchString} auto-complete="off" variant="label-hidden" id="combobox-id-1" aria-expanded="false" aria-controls="id-of-dropdown-element" aria-multiselectable="true"></lightning-input>-->
+            <!--</div>-->
+            <!-- Dropdown List -->
+            <template if:true={showDropdown}>
+                <div id="listbox-id-1" class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid"><!--style="{! 'max-height:' + (8 + (v.recordCount * 40)) + 'px' }""-->
+                    <ul class="slds-listbox slds-listbox_vertical recordListBox" role="listbox">
+                        <template if:false={message} >
+                            <template for:each={filterData} for:item="filter">
+                                <template if:true={filter.isVisible}>
+                                    <li tabindex=0 key={filter.id} role="option" aria-selected={filter.isActive} data-id={filter.id} onmousedown={selectItem} onkeyup={handleKeyUpEvent} onblur={handleBlurEventOnList} class="slds-listbox__item eachItem">
+                                        <!--<c-filter-button filter={filter} start-filters={startFilters} onpressclick={handleFilterClick} key={filter.Id}>
+                                        </c-filter-button>-->
+                                        <template if:true={filter.isActive}>
+                                            <lightning-icon icon-name="utility:check" size="x-small" alternative-text="icon"></lightning-icon>
+                                            </template>
+                                        <span class="slds-media slds-listbox__option_entity verticalAlign slds-truncate" title={filter.name}>{filter.name}</span>
+                                    </li>
+                                </template>
+                            </template>
+                        </template>
+                        <template if:true={message} >
+                            <li class="slds-listbox__item">
+                                <span class="slds-media slds-listbox__option_entity verticalAlign slds-truncate">{message}</span>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </template>
+        </div>
+    </div>
+
+
+    <!-- Multi Select Pills -->
+
+
+    <!-- <template for:each={optionData} for:item="option">
+        <template if:true={option.selected}>
+            <lightning-pill key={option.value} class="slds-m-around_xx-small" name={option.value} label={option.label} onremove={removePill}></lightning-pill>
+        </template>
+    </template> -->
+</template>

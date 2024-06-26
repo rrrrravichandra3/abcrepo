@@ -1,0 +1,48 @@
+<template>
+    <div grid flow="wrap">
+        <div size="1:1">
+            <c-pb-field label={subjectLabel} value={subject}></c-pb-field>
+        </div>
+        <div size="1:2">
+            <c-pb-field label={ticketNumLabel} value={caseNumber}></c-pb-field>
+        </div>
+        <div size="1:2">
+            <template if:true={isClosed}>
+                <c-pb-field label={statusLabel} value={closedStatusText}></c-pb-field>
+            </template>
+            <template if:false={isClosed}>
+                <c-pb-field label={statusLabel} value={openStatusText}></c-pb-field>
+            </template>
+        </div>
+        <div size="1:2">
+            <c-pb-field label={createdDateLabel} value={dateCreated}></c-pb-field>
+        </div>
+        <div size="1:2">
+            <c-pb-field label={lastModifiedLabel} value={lastModified}></c-pb-field>
+        </div>
+        <div size="1:1">
+            <div class="slds-var-p-around_small">
+                <p type-style="body-2" class="attachmentsLabel" title={attachmentsLabel}>{attachmentsLabel}</p>
+                <template if:true={files}>
+                    <ul>
+                        <template for:each={files} for:item="fileItem">
+                            <li key={fileItem.ContentDocumentId} class="fileItem">
+                                <a 
+                                href={fileItem.downloadUrl} 
+                                download={fileItem.label}
+                                title={fileItem.label}
+                                class="fileLink">
+                                    {fileItem.label}
+                                </a>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+            </div>
+        </div>
+        <div size="1:1">
+            <c-pb-field label={descriptionLabel} value={description}></c-pb-field>
+        </div>
+
+    </div>
+</template>

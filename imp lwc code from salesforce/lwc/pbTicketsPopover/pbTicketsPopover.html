@@ -1,0 +1,35 @@
+<template>
+    <div style="--wes-c-popover-background-color: #ffffff;">
+        <wes-popover lwc:external placement="below-left" depth="2" arrow-placement="end" arrow dismissable>
+            <div slot="source" >
+                <h6 type-style="display-8">
+                    <lightning-icon
+                        icon-name="utility:help_center" 
+                        alternative-text="My Tickets Icon" 
+                        size="x-small" 
+                        class="slds-var-p-right_x-small">
+                    </lightning-icon>
+                    My Tickets
+                </h6>
+            </div>
+
+            <div>
+                <wes-card lwc:external direction="2" depth="vertical" media="fill" class="myTicketsContainer">
+                    <div slot="header-start">
+                        <h6 type-style="display-6">
+                            <lightning-icon 
+                                icon-name="utility:help_center" 
+                                alternative-text="My Tickets Icon" 
+                                size="medium" 
+                                class="slds-var-p-right_small">
+                            </lightning-icon>
+                            My Tickets
+                        </h6>
+                    </div>    
+                    
+                    
+                </wes-card>
+            </div>
+        </wes-popover>
+    </div>
+</template>

@@ -1,0 +1,17 @@
+<template>
+  <template if:true={skills}>
+    <h2 class="slds-text-heading_small">
+      <strong>{labels.matchingSkillsAndInterestsLabel}</strong>
+    </h2>
+    <div class="slds-grid slds-wrap">
+      <template for:each={skills} for:item="skill">
+        <div
+          class="pill slds-m-right_x-small slds-m-top_x-small slds-theme_default slds-border_right slds-border_left slds-border_bottom slds-border_top slds-p-horizontal_x-small slds-p-vertical_xx-small slds-grid slds-grid_vertical-align-center"
+          key={skill}>
+          <span class="slds-m-right_xx-small color-brand">#{skill}</span>
+          <lightning-icon icon-name="utility:success" variant="success" size="x-small"></lightning-icon>
+        </div>
+      </template>
+    </div>
+  </template>
+</template>

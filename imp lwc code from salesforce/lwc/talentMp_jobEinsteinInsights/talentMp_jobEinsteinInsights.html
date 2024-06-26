@@ -1,0 +1,29 @@
+<!--
+  @description       : 
+  @author            : Urvish Shah (ushah)
+  @group             : 
+  @last modified on  : 01-02-2024
+  @last modified by  : Urvish Shah (ushah)
+-->
+<template>
+    <template lwc:if={isLoading}>
+        <lightning-spinner></lightning-spinner>
+    </template>
+    <template lwc:else>
+        <lightning-tabset variant="">
+            <lightning-tab label="Match Strength">
+                {matchStrength}
+            </lightning-tab>
+            <lightning-tab label="Improvement Areas">
+                <template for:each={improvementAreas} for:item="improvement">
+                    <li key={improvement}>{improvement}</li>
+                </template>
+            </lightning-tab>
+            <lightning-tab label="Additional Notes">
+                <template for:each={additionalNotes} for:item="note">
+                    <li key={note}>{note}</li>
+                </template>
+            </lightning-tab>
+        </lightning-tabset>
+    </template>
+</template>

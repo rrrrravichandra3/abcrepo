@@ -1,0 +1,111 @@
+<!-- Code by CafeForce || www.cafeforce.com || support@cafeforce.com || Mandatory Header -->
+<template>
+    <div class="slds-form-element">
+    <!-- Header Label -->
+    <template if:true={label}>
+        <label class="slds-form-element__label"></label>
+    </template>
+    <div class="slds-form-element__control">
+    <div class="slds-combobox_container slds-m-bottom_x-small">
+        <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open" aria-expanded="true" aria-haspopup="listbox" role="combobox">
+            <!-- Search Input -->
+            <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                <div class={hasInputError}>
+                <label class="slds-form-element__label" for="combobox-id-1">
+                     <!-- <abbr class="slds-required" title="required">* </abbr>-->
+                      {customLabel}</label>
+                    <div class="slds-form-element__control">
+                      <input type="text" tabindex=0 aria-multiselectable="true" aria-expanded={showDropdown} disabled={disabled} class="slds-input" placeholder={labels.SelectAnOptionLabel} onblur={blurEvent} onfocus={showOptions} onclick={showOptions} onkeyup={filterOptions} value={searchString} autocomplete="off" id="combobox-id-1" data-id="combobox1" aria-required="true" aria-invalid={invalid} aria-errormessage="error-message-id-49" required=""/>
+                    </div>
+                    <template if:true={invalid}>
+                        <div class="slds-form-element__help" id="error-message-id-49">{labels.PleaseselectanoptionLabel}</div>
+                    </template>
+                </div>
+                <!--<lightning-input tabindex=0 aria-multiselectable="true" aria-expanded={showDropdown} disabled={disabled} class="inputBox" placeholder={labels.SelectAnOptionLabel} onblur={blurEvent} onfocus={showOptions} onclick={showOptions} onkeyup={filterOptions} value={searchString} autocomplete="off" label={label} id="combobox-id-1" data-id="combobox1"></lightning-input>-->
+                <lightning-icon class="slds-input__icon" icon-name="utility:down" size="x-small" alternative-text="search"></lightning-icon>
+            </div>
+            <!-- Dropdown List -->
+            <template if:true={showDropdown}>
+                <div id="listbox-id-1" class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid">
+                    <!--style="{! 'max-height:' + (8 + (v.recordCount * 40)) + 'px' }""-->
+                    <ul class="slds-listbox slds-listbox_vertical recordListBox" role="presentation">
+                        <template if:false={message}>
+                            <template if:false={isTree}>
+                                <template for:each={optionData} for:item="option">
+                                    <template if:true={option.isVisible}>
+                                        <!-- <li tabindex=0 key={option.value} role="presentation" aria-selected={option.selected} data-id={option.value} onmousedown={selectItem} onkeyup={handleKeyUp} onblur={handleBlurEventOnList} class="slds-listbox__item eachItem"> -->
+                                            <li tabindex=0 key={option.value} role="listitem" aria-label={option.value}   aria-selected={option.selected} data-id={option.value} onmousedown={selectItem} onkeyup={handleKeyUp} onblur={handleBlurEventOnList} class="slds-listbox__item eachItem">
+                                            <template if:true={option.selected}>
+                                                <lightning-icon icon-name="utility:check" size="x-small" alternative-text="icon"></lightning-icon>
+                                                </template>
+                                            <span class="slds-media slds-listbox__option_entity verticalAlign slds-truncate">{option.label}</span>           
+                                        </li>
+                                    </template>
+                                </template>
+                            </template>
+                            <template if:true={isTree}>
+                                <template for:each={optionData} for:item="option">
+                                    <template if:true={option.isVisible}>
+                                        <!-- <li key={option.Name} data-id={option.Id} onmousedown={selectItem} class="slds-listbox__item eachItem">
+                                            <template if:true={option.selected}>
+                                                <lightning-icon icon-name="utility:check" size="x-small" alternative-text="icon" ></lightning-icon>
+                                            </template>
+                                            <span class="slds-media slds-listbox__option_entity verticalAlign slds-truncate">{option.Name}</span>
+                                        </li> -->
+                                        <li class="slds-listbox__item eachItem" aria-expanded="true" aria-label="Tree Branch" aria-level="1" role="treeitem" key={option.Id} onmousedown={toggleChildren}>
+                                            <div class="slds-tree__item" data-id={option.Id} onmousedown={toggleChildren}>
+                                                <button class="slds-button slds-button_icon slds-m-right_x-small" aria-hidden="true" tabindex="-1" title="Expand Tree Branch">
+                                                    <lightning-icon icon-name="utility:right" alternative-text="Expand" title="Expand" size="xx-small" data-icon={option.Id}></lightning-icon>
+                                                    <span class="slds-assistive-text">Expand {option.Name}</span>
+                                                </button>
+                                                <span class="slds-has-flexi-truncate" style="display: flex">
+                                                    <div class="iconHolder">
+                                                    </div>
+                                                    <span class="slds-tree__item-label slds-truncate" title={option.Name}>{option.Name}</span>
+                                                </span>
+
+                                                <!-- <ul role="group" class="slds-truncate" data-filter={option.Id} style="display:none;"> -->
+                                                    <ul role="list" class="slds-truncate" data-filter={option.Id} style="display:none;">  
+                                                    <template for:each={option.children} for:item="item">
+                                                        <li  role="listitem" aria-label={item.label} key={item.key} data-id={item.value} data-parent={option.Id} onmousedown={selectItem} class="slds-listbox__item eachItem" aria-level="2" >
+                                                        <!-- <li key={item.key} data-id={item.value} data-parent={option.Id} onmousedown={selectItem} class="slds-listbox__item eachItem" aria-level="2" role="treeitem"> -->
+                                                            <div class="slds-tree__item" data-id={item.value} data-parent={option.Id} onmousedown={selectItem}>
+                                                                <template if:true={item.selected}>
+                                                                    <lightning-icon icon-name="utility:check" size="x-small" alternative-text="icon"></lightning-icon>
+                                                                </template>
+
+                                                                <span data-id={item.value} data-parent={option.Id} class="slds-listbox__option_entity verticalAlign slds-truncate" title={item.label}>{item.label}</span>
+                                                            </div>
+                                                        </li>
+                                                    </template>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </template>
+                                </template>
+                            </template>
+                        </template>
+                        <template if:true={message}>
+                            <li class="slds-listbox__item">
+                                <span class="slds-media slds-listbox__option_entity verticalAlign slds-truncate">{message}</span>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </template>
+        </div>
+    </div>
+    </div>
+    <!-- Multi Select Pills -->
+    <template for:each={optionData} for:item="option">
+        <template if:true={option.selected}>
+            <lightning-pill key={option.value} class="marginFix" name={option.value} label={option.label} onremove={removePill}></lightning-pill>
+        </template>
+    </template>
+</div>
+</template>
+<!-- 
+    Code by CafeForce 
+    Website: http://www.cafeforce.com 
+    DO NOT REMOVE THIS HEADER/FOOTER FOR FREE CODE USAGE 
+-->

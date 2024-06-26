@@ -1,0 +1,67 @@
+<template>
+  
+  
+  <lightning-layout vertical-align="center" class="slds-m-bottom_x-small">
+
+    <template if:true={linkedinUsername}>
+      <lightning-layout-item class="slds-p-right_x-small slds-is-relative" name="linkedInLogo">
+        <a href={linkedInLink} target="_blank">
+          <img src={linkedInLogo} alt="LinkedIn Profile" class="link"></img>
+        </a>
+      </lightning-layout-item>
+    </template>
+
+    <template if:true={showLeaderBadge}>
+      <lightning-layout-item class="slds-p-right_x-small slds-is-relative" name="salesLeader" onmouseover={showHelpText} onmouseout={hideHelpText}>
+        <img src={salesLeaderLogo} alt="Sales Leader Logo" class="badge"></img>
+        <template if:true={showSalesLeaderHelpText}>
+          <section aria-label="Dialog title" aria-describedby="popover-body-id" class="slds-popover slds-nubbin_top-right popover sales-popover" role="dialog">
+            <div class="slds-popover__body slds-grid slds-grid_vertical-align-center">
+              <img src={salesLeaderLogo} alt="Sales Leader Logo" class="badge slds-m-right_small"></img>
+              <p>{labels.salesLeaderLabel}</p>
+            </div>
+          </section>
+        </template>
+      </lightning-layout-item>
+    </template>
+    <template if:true={showTopBadge}>
+      <lightning-layout-item class="slds-p-right_x-small best-match slds-is-relative" name="topMentor" onmouseover={showHelpText} onmouseout={hideHelpText}>
+        <img src={topMentorLogo} alt="top Mentor Logo" class="badge"></img>
+        <template if:true={showTopBadgeHelpText}>
+          <section aria-label="Dialog title" aria-describedby="popover-body-id" class="slds-popover slds-nubbin_top-right popover mentor-popover" role="dialog">
+            <div class="slds-popover__body slds-grid slds-grid_vertical-align-center">
+              <img src={topMentorLogo} alt="top Mentor Logo" class="badge slds-m-right_small"></img>
+              <p>{labels.overallBestMatchLabel}</p>
+            </div>
+          </section>
+        </template>
+      </lightning-layout-item>
+    </template>
+    <template if:true={showValueBadge}>
+      <lightning-layout-item class="slds-p-right_x-small slds-is-relative" name="topValue" onmouseover={showHelpText} onmouseout={hideHelpText}>
+        <img src={topValueLogo} alt="top Value Logo" class="badge"></img>
+        <template if:true={showTopValueHelpText}>
+          <section aria-label="Dialog title" aria-describedby="popover-body-id" class="slds-popover slds-nubbin_top-right popover value-popover" role="dialog">
+            <div class="slds-popover__body slds-grid slds-grid_vertical-align-center">
+              <img src={topValueLogo} alt="top Value Logo" class="badge slds-m-right_small"></img>
+              <p>{labels.bestValueAndInterestsMatchLabel}</p>
+            </div>
+          </section>
+        </template>
+      </lightning-layout-item>
+    </template>
+    <template if:true={showCareerBadge}>
+      <lightning-layout-item class="slds-p-right_x-small slds-is-relative" name="topCareer" onmouseover={showHelpText} onmouseout={hideHelpText}>
+        <img src={topCareerLogo} alt="top Career Logo" class="badge"></img>
+        <template if:true={showTopCareerHelpText}>
+          <section aria-label="Dialog title" aria-describedby="popover-body-id" class="slds-popover slds-nubbin_top-right popover career-popover" role="dialog">
+            <div class="slds-popover__body slds-grid slds-grid_vertical-align-center">
+              <img src={topCareerLogo} alt="top Career Logo" class="badge slds-m-right_small"></img>
+              <p>{labels.bestCareerMatchLabel}</p>
+            </div>
+          </section>
+        </template>
+      </lightning-layout-item>
+    </template>
+  </lightning-layout>
+</template>

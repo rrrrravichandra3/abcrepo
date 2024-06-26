@@ -1,0 +1,32 @@
+<template>
+    <lightning-layout>
+    
+        <lightning-layout-item padding="around-small" size="4">
+            <lightning-card class="slds-p-around_medium" variant="narrow" title="Filter Jobs">
+                <h2 class="slds-text-heading_small">
+                    Keywords
+                </h2>
+                <lightning-input class="slds-p-around-small" type="text"> </lightning-input>
+                <lightning-accordion>
+                    <lightning-accordion-section name="locationFilters" label="Location">
+
+                    </lightning-accordion-section>
+                    <lightning-accordion-section name="teamFilters" label="Team">
+
+                    </lightning-accordion-section>
+                    <lightning-accordion-section name="ContractFilters" label="Contract">
+
+                    </lightning-accordion-section>
+                </lightning-accordion>
+            </lightning-card>
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-small" size="8">
+            <template for:each={openJobs} for:item="job">
+                <lightning-card class="slds-p-around_medium" key={job.Id} title={job.Name} variant="narrow">
+                    <lightning-button-icon id={job.Id}  icon-name="utility:bookmark_stroke" variant="border-filled" onclick={handlebookMark} alternative-text="saveJob" slot="actions"></lightning-button-icon>
+                    {job.Primary_Work_Location__c}
+                </lightning-card>
+            </template>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

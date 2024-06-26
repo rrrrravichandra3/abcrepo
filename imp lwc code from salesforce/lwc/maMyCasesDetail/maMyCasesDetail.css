@@ -1,0 +1,10 @@
+.container {
+    height:100vh;
+    background-color:#f3f2f2;   
+}
+
+
+.limitVert{
+    max-height: 26vh;
+    overflow: auto;
+}

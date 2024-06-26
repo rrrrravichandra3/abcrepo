@@ -1,0 +1,43 @@
+<template>
+    <div class="slds-card">
+        <div class="slds-var-p-horizontal_medium">
+            <div class="slds-var-p-top_small">
+                <span class="slds-var-p-top_medium slds-text-heading_medium">
+                    {skillName}
+                </span>
+                <template lwc:if={isCritical}>
+                    <span class="slds-float_right">
+                        <span class="slds-icon_container slds-icon_container_circle slds-icon-action-description slds-icon-text-warning" title="This skill is considered strategic for Salesforce">
+                            <svg class="slds-icon slds-icon_small slds-icon-text-warning" aria-hidden="true">
+                                <use xlink:href="/assets/icons/action-sprite/svg/symbols.svg#new_opportunity"></use>
+                            </svg>
+                            <span class="slds-assistive-text">Critical Skill</span>
+                        </span>
+                    </span>
+                </template>
+            </div>
+            <div class="slds-var-p-vertical_small">
+                <span>{skillDescription}</span>
+            </div>
+            <div class="slds-var-p-vertical_small slds-border_bottom">
+                <span>{numberEmployeesWithSkill} employees report having this skill</span>
+            </div>
+            <div lwc:if={showMentorships} class="slds-var-p-vertical_small slds-border_bottom">
+                <span class="slds-text-title_bold">Suggested mentors with {skillName}</span>
+            </div>
+            <div lwc:if={showTraining} class="slds-var-p-vertical_small slds-border_bottom">
+                <span class="slds-text-title_bold">Training for {skillName}</span>
+            </div>
+            <div lwc:if={showGigs} class="slds-var-p-vertical_small slds-border_bottom">
+                <span class="slds-text-title_bold">Gigs to work on {skillName}</span>
+            </div>
+            <div class="slds-var-p-top_large">
+                <template lwc:if={userDoesNotHaveSkill}>
+                    <div class="slds-align_absolute-center slds-var-p-bottom_small">
+                        <lightning-button variant="brand-outline" label="Add this Skill" class=""></lightning-button>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

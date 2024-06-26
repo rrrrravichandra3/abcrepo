@@ -1,0 +1,10 @@
+<template>
+  <c-button-tile button-id={equalityGroup.name} onselect={selectHandler} selected={equalityGroup.selected}>
+    <div class="slds-size_1-of-4">
+      <img src={equalityGroup.logo} alt="image" />
+    </div>
+    <div class="slds-size_3-of-4 slds-text-align_center slds-text-color_weak slds-text-heading_small">
+      {equalityGroup.name}
+    </div>
+  </c-button-tile>
+</template>

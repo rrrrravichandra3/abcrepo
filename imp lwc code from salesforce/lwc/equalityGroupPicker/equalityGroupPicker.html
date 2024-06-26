@@ -1,0 +1,14 @@
+<template>
+  <!--Show spinner if loading-->
+  <template if:true={loading}>
+    <lightning-spinner alternative-text="Loading"></lightning-spinner>
+  </template>
+
+  <div class="slds-grid slds-wrap slds-size_1-of-1 slds-p-horizontal_small">
+    <template for:each={equalityGroups} for:item="group">
+      <div key={group.name} class="slds-size_1-of-2 slds-large-size_1-of-3 slds-medium-size_1-of-3 slds-p-around_small">
+        <c-equality-group-tile equality-group={group} onselect={groupSelectHandler}></c-equality-group-tile>
+      </div>
+    </template>
+  </div>
+</template>

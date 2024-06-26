@@ -1,0 +1,32 @@
+/* :host {
+    --sds-c-icon-color-foreground-default: white;
+
+} */
+
+.containerHeight {
+    min-height: 400px;
+}
+.heightFix{
+    --sds-c-textarea-sizing-min-height:175px;
+}
+.badge-fix{
+    margin-bottom: var(--lwc-spacingXSmall,0.5rem);
+    margin-right: var(--lwc-spacingXSmall,0.5rem);
+    margin-left: 0 !important;
+}
+.character {
+    height: 4.25rem;
+  }
+
+  h2:focus{
+    outline: 50;
+  }
+  .onhover:hover{
+    /* border: 1px solid blue; */
+    overflow: hidden;
+    box-shadow: 0 0 0 2px #d0d0d0
+
+}
+.slds-modal__container{
+margin-top:100px;
+}

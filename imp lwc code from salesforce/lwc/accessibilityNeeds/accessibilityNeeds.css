@@ -1,0 +1,244 @@
+.main {
+    margin: auto;
+}
+
+.container1 {
+    box-shadow: var(--wes-g-shadow-4, 0px 24px 48px -4px rgba(24, 24, 24, 0.20));
+    border-radius: 16px;
+    z-index: 3;
+    width: 70%;
+    background: #ffffff;
+    margin: auto;
+    margin-top: 5%;
+    position: relative;
+}
+
+.reqHeading {
+    text-align: left;
+    padding-left: 7%;
+    padding-top: 4%;
+    padding-bottom: 10px;
+}
+
+.reqLink {
+    padding-top: 10px;
+}
+
+.accessiChoice {
+    margin-top: 4%;
+}
+
+.note2 {
+    border-radius: 16px;
+    background: #F6F9FF;
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    text-align: left;
+}
+
+.confirmList {
+    width: 70%;
+    overflow: auto;
+    white-space: nowrap;
+    border-radius: 16px;
+    border: 2px solid var(--foundation-gray-neutral-50, #747474);
+    background: #FFF;
+    display: inline-flex;
+    padding: 15px;
+    justify-content: left;
+    height: fit-content;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.confirmSoftware {
+ width: fit-content;
+}
+
+.confirmContainer {
+ width: 95%;
+ margin: auto;
+ margin-top: 4%;
+ display: flex;
+ justify-content: center;
+}
+
+.note2icon {
+    --sds-c-icon-sizing-width:20px;
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.hardwareLink {
+    border-radius: 5px;
+    background: #F1F1F1;
+    --sds-c-icon-sizing-width:15px;
+    width: fit-content;
+    float: right;
+    height: 40px;
+    padding: 10px;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    color: black;
+}
+
+.accessiHardwareOptions {
+    display: flex;
+    justify-content: start;
+    overflow: auto;
+    margin-left: 50px;
+    position: relative;
+}
+
+.amazonLogo {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 60px;
+}
+
+.arrowHidden {
+    display: none;
+}
+
+
+.whitefade {
+    background: linear-gradient(270deg, #FFF 0%, rgba(255, 255, 255, 0.00) 100%);
+    width: 30px;
+    height: 100%;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+
+.arrow {
+    position: sticky;
+    right: 15px;
+    top: 40%;
+    display: inline-flex;
+    height: 44px;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    border: 2px solid var(--vibrant-blue-50, #0176D3);
+    background: #FFF;
+}
+
+
+.hardwareOption {
+    border-radius: 16px;
+    border: 2px solid var(--foundation-gray-neutral-50, #747474);
+    padding: 10px;
+    margin: 0 20px;
+    min-width: 300px;
+    text-align: center;
+}
+
+.accessiHardwareOptions::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+.accessiHardwareOptions {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+ }
+
+
+.hardwareImg {
+    width: 200px;
+    margin: auto;
+}
+
+.confirmSoftwareImg {
+    width: 400px;
+}
+
+.note2text {
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.019px;
+    font-size: 14px;
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.note {
+    width: 80%;
+    margin: auto;
+    font-size: 0.7rem;
+    font-weight: 300;
+    /* color: gray; */
+    line-height: 0.9rem;
+    padding-top: 15px;
+}
+
+.confirmSoftwareImg {
+    max-width: 200px;
+    padding: 10px;
+}
+
+.navicon {
+    scale: 150%;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    background: #F6F6F6;
+    margin-top: 5%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+.button {
+    scale: 75%;
+    margin-left: 25px;
+ }
+
+.heading {
+    padding-top: 5%;
+    font-weight: bolder;
+    font-size: 1rem;
+    color: var(--wes-g-color-palette-cloud-blue-65,blue);
+}
+
+.subheading {
+    margin-top: 2%;
+}
+
+.navbar {
+    padding-top: 0.6%;
+    width: 40%;
+    scale: 70%;
+}
+
+
+.submain {
+    text-align: center;
+}
+
+
+.checked {
+    --sds-c-icon-sizing-border: 3px;
+    --sds-c-icon-sizing-width: 15px;
+    --sds-c-icon-radius-border: 20px;
+    --sds-c-icon-color-background: var(--foundation-cloud-blue-cloud-blue-60,blue);
+    --sds-c-icon-color-foreground: #ffffff;
+    --sds-c-icon-color-border: transparent;
+}

@@ -1,0 +1,55 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <lightning-layout multiple-rows="true" class="slds-size_1-of-1">
+        <lightning-layout-item size="12" class="rules-layout-item slds-box slds-scrollable_y">
+            <lightning-layout multiple-rows="true" class="slds-size_1-of-1">
+                <template for:each={rules} for:item="rule" for:index="ruleIndex">
+                    <template lwc:if={customLogic}>
+                        <lightning-layout-item key={rule.ruleNum} class="rule-num-layout-item rule-num-margin slds-align_absolute-center">
+                            <lightning-formatted-text value={rule.ruleNum} class="rule-num bold-font"></lightning-formatted-text>
+                        </lightning-layout-item>
+                    </template>
+
+                    <lightning-layout-item key={rule.ruleNum} class={ruleItemClassList}>
+                        <c-mads-selected-rule-tile data-id={rule.fieldKey} rule-num={rule.ruleNum} field-key={rule.fieldKey} field-val={rule.fieldVal} 
+                                                   operator={rule.operator} object-key={objectKey} field-label={rule.fieldLabel} rules-criteria={rulesCriteria} 
+                                                   sample-size={rule.sampleSize}>
+                        </c-mads-selected-rule-tile>
+                    </lightning-layout-item>
+                </template>
+            </lightning-layout>
+        </lightning-layout-item>
+
+        <template lwc:if={displayAddRuleLogic}>
+            <lightning-layout-item size="12" class="rule-logic-layout-item slds-m-top_x-small">
+                <template lwc:if={customLogic}>
+                    <lightning-layout multiple-rows="true" class="slds-size_1-of-1">
+                        <lightning-layout-item size="8">
+                            <lightning-formatted-text data-id="ruleLogicLabel" value={labels.ruleLogic} class="rule-logic-label top-align bold-font slds-m-right_xx-small"></lightning-formatted-text>
+                            <lightning-helptext content={labels.ruleLogicHelpText} class="rule-logic-help-text"></lightning-helptext>
+                        </lightning-layout-item>
+                            
+                        <lightning-layout-item size="4" class="remove-logic">
+                            <a onclick={handleRemoveRuleLogic}>
+                                <lightning-formatted-text value={labels.removeLabel} class="rule-logic-label bold-font"></lightning-formatted-text>
+                            </a>
+                        </lightning-layout-item>
+
+                        <lightning-layout-item size="12">
+                            <lightning-textarea data-id="ruleLogic" label="" value={customRuleLogic} variant="label-hidden" placeholder={labels.ruleLogicPlaceholder}></lightning-textarea>
+                        </lightning-layout-item>
+
+                        <lightning-layout-item  size="12" data-id="scrollToBottomCmp" class="slds-m-top_large">
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </template>
+
+                <template lwc:else>
+                    <a onclick={handleAddRuleLogic}>
+                        <lightning-formatted-text value={labels.addRuleLogic} class="rule-logic-label bold-font"></lightning-formatted-text>
+                    </a>
+                </template>
+            </lightning-layout-item>
+        </template>
+    </lightning-layout>
+</template>

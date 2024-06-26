@@ -1,0 +1,90 @@
+<template>
+    <div class="slds-grid slds-gutters slds-align_absolute-center">
+        <template lwc:if={isLoading}>
+            <div class="spinner">
+                <lightning-spinner variant="brand" alternative-text="Loading" size="small"></lightning-spinner>
+            </div>
+          </template>
+        <template lwc:else>
+        <div class="position">
+            <div class="heading">
+                <p1 type-style="caption" >
+                    Complete your tasks in Workday
+                </p1>
+            </div>
+            <div>
+                <p2 type-style="display-6" >
+                    Workday Inbox Tasks
+                </p2>
+            </div>
+            <div>
+                <p3 type-style="caption">
+                    There are a few tasks that you need to complete in Workday. After you are done, please return to this site to continue
+                </p3>
+            </div>
+            <div class="slds-grid slds-gutters" style="padding-top: 100px">
+                <div class="slds-col">
+                    <span>
+                        <p1>Step 1</p1>
+                        <div>
+                            <textdetail>
+                                Login to &nbsp;
+                            </textdetail>
+                            <workdaystep1>
+                                Workday
+                            </workdaystep1>
+                            <div class="workdayimagecontainer">
+                                    <img style="height: 189px; width: 308px;" src={_image1}/>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+                <div class="slds-col">
+                    <span>
+                        <p1>Step 2</p1>
+                        <div>
+                            <textdetail>
+                                Click the inbox icon
+                            </textdetail>
+                        </div>
+                        <div class="workdayimagecontainer">
+                                <img style="height: 189px; width: 308px;" src={_image2}/>
+                        </div>
+                    </span>
+                </div>
+                <div class="slds-col">
+                    <span>
+                        <p1>Step 3</p1>
+                        <div>
+                            <textdetail>
+                                Complete tasks
+                            </textdetail>
+                        </div>
+                        <div class="workdayimagecontainer">
+                                <img style="height: 189px; width: 308px;" src={_image3}/>
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div class="confirm">
+                <div class="slds-align_absolute-center">
+                       <div class="confirmationtext">
+                            <input type="checkbox" name="options" id="checkbox-unique-id-85" value="checkbox-unique-id-85" onchange={handlecheck}/>
+                            &nbsp;I confirm I have completed my tasks in Workday
+                        </div>
+                </div>
+            </div>
+            <div class="nav">
+                <div class="button">
+                    <lightning-button variant="brand" label="Back to home" onclick={handleHome}>
+                    </lightning-button>
+                </div>
+                <div class="button2">
+                    <lightning-button variant="brand" label = "Next Step: Accessibility Needs"  disabled = "{disabledValue}" onclick={handleNext}>
+                    </lightning-button>
+                </div>
+            </div>
+        </div>
+        </template>
+    </div>
+</template>

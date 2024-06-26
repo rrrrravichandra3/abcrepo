@@ -1,0 +1,146 @@
+<template>
+    <div>
+          <div class="container1">
+                <div class="main">
+                    <div class="submain">
+                        <div class="heading"> 
+                            <p>{_heading}</p>
+                        </div>
+                        <div class="subheading">
+                            <h6 type-style="display-6">{_subHeading} </h6>
+                        </div>
+                        <div class="note">
+                           {_note}
+                        </div>
+                        <div class="picker">
+                            <template lwc:if={_isSubPage2}>
+                                <div class="reqContainer">
+                                    <div class="reqHeading">
+                                        <h6 type-style="display-7">Software Requests</h6>
+                                    </div>
+                                    <c-custom-visual-picker-group class="softwareReq" onselect={handleRequestSelection} items={_accessiSoftwareData} multiselect=true></c-custom-visual-picker-group>
+                                    <div class="reqLink">
+                                        <a>I could not find the software I need</a>
+                                    </div>
+                                </div>
+
+
+                                <!--commenting out Accessiblity Hardware & Service Requests -->
+
+                                <!-- <div class="reqContainer">
+                                    <div class="reqHeading">
+                                        <h6 type-style="display-7">Hardware Requests</h6>
+                                    </div>
+                                   <div class="accessiHardwareOptions">
+                                    <template for:each={_accessiHardwareData} for:item="option">
+                                        <div class="hardwareOption" key={option.id}>
+                                            <a href={option.url}>
+                                                <div class="hardwareLink">
+                                                    Order now at 
+                                                     <span><img class="amazonLogo" src={_amazonLogo}/></span>
+                                                     <span><wes-icon lwc:external symbol="link"></wes-icon></span>
+                                                </div>
+                                            </a>
+                                            <div class="hardwareImg">
+                                                <img src={option.imgsrc}>
+                                            </div>
+                                            <div class="hardwareName">
+                                                <h6 type-style="display-8">{option.name}</h6>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <div class={getHardwareArrowStyle} onclick={scrollRight}>
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g>
+                                            <path id="Icon" fill-rule="evenodd" clip-rule="evenodd" d="M6.88467 1.69233L14.8462 9.57694C15.077 9.80771 15.077 10.1923 14.8462 10.4231L6.88467 18.3077C6.6539 18.5385 6.26929 18.5385 6.03852 18.3077L5.19236 17.4616C4.96159 17.2308 4.96159 16.8462 5.19236 16.6154L11.4616 10.4231C11.6924 10.1923 11.6924 9.80771 11.4616 9.57694L5.23083 3.38463C5.00006 3.15386 5.00006 2.76925 5.23083 2.53848L6.07698 1.69233C6.30775 1.50002 6.6539 1.50002 6.88467 1.69233Z" fill="#0176D3"/>
+                                            </g>
+                                        </svg>    
+                                    </div>
+                                   </div>
+                                   <div class="whitefade"></div>
+
+                                    <div class="reqLink">
+                                        <a>I could not find the hardware I need</a>
+                                    </div>
+                                </div>
+                                <div class="reqContainer">
+                                    <div class="reqHeading">
+                                        <h6 type-style="display-7">Service Requests</h6>
+                                    </div>
+                                    <c-custom-visual-picker-group class="serviceReq" onselect={handleRequestSelection} items={_accessiServiceData}></c-custom-visual-picker-group>
+                                    <div class="reqLink">
+                                        <a>I could not find the accomodation I need</a>
+                                    </div>
+                                </div> -->
+                            </template>
+                            <template lwc:elseif={_isSubPage1}>
+                                <div class="accessiChoice">
+                                    <c-custom-visual-picker-group onselect={handleAccessiSelection} items={_accessiYesorNo}></c-custom-visual-picker-group>
+                                </div>
+                                <div class="note2">
+                                    <div class="note2icon">
+                                        <wes-icon lwc:external symbol="info"></wes-icon>
+                                    </div>
+                                    <div class="note2text">Your selection on this screen won’t be visible to your manager.
+                                    </div>
+                                </div>
+                            </template>
+                            <template lwc:else>
+                                <div class="confirmContainer">
+                                    <div class="confirmList">
+                                        <template for:each={_selectedSoftwareRequests} for:item="req">
+                                            <div class="confirmSoftware" key={req.Id}>
+                                                <div class="confirmSoftwareImg">
+                                                    <img src={req.Static_Resource_image_URL__c}>
+                                                </div>
+                                                <div class="confirmSoftwareName">
+                                                    <h6 type-style="display-8">{req.Name}</h6>
+                                                </div>
+                                            </div>
+                                           
+                                        </template>
+                                    </div>
+                                    <div >
+                                        <img class="astroImg" src={_astroImgSrc}/>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav">
+                    <div class="button">
+                            <lightning-button label='Back to Home' onclick={handleBack}>
+                            </lightning-button>
+                    </div>
+                    <div class="navbar">
+                        <template lwc:if = {_isSubPage2}>
+                        <div class="slds-progress">
+                            <ol class="slds-progress__list">
+                              <li class="slds-progress__item ">
+                                <div class="checkicon checked">
+                                    <wes-icon lwc:external symbol="check"></wes-icon>
+                                  </div>     
+                              </li>
+                              <li class="slds-progress__item" slds-is-active>
+                                <button class="slds-button slds-progress__marker">
+                                  <span class="slds-assistive-text">Step 2 </span>
+                                </button>
+                              </li>
+                            </ol>
+                            <div class="slds-progress-bar slds-progress-bar_x-small" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Progress bar" role="progressbar">
+                              <span class="slds-progress-bar__value" style="width:0%">
+                                <span class="slds-assistive-text">Progress: 50%</span>
+                              </span>
+                            </div>
+                          </div>
+                          </template>
+                    </div>
+                    <div class="button">
+                        <lightning-button variant="brand" label = {_nextBtnLabel}  disabled = {disableButton} onclick={handleNext}>
+                        </lightning-button>
+                    </div>
+                </div>
+        </div>
+    </div>
+</template>

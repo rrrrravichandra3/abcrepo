@@ -1,0 +1,26 @@
+<template>
+  <p type-style="body-1">Enter Skills Names for GPT Suggestions for Career Connect</p>
+
+  <lightning-input type="text" label="Enter some skills for Testing for LWC" onchange={handleInputChange}></lightning-input>
+
+  <lightning-button variant="brand" label="Send" onclick={callEinsteinGPTToGetSkillSuggestions}></lightning-button>
+
+  <template for:each={suggestedSkills} for:item="skill">
+    <lightning-badge
+      label={skill}
+      key={skill}
+      class="slds-var-m-around_x-small"
+      icon-name="utility:add"
+      style="cursor: pointer"
+      data-id={skill}
+      data-value={skill}
+      icon-position="end"
+    >
+    </lightning-badge>
+
+    <!-- <c-wes-badge key={skill} aria-labelledby={skill} type="default" value="cloud-blue"  style="cursor:pointer;" >
+          <c-wes-icon symbol="add" slot="start" class="article-badge-icon"></c-wes-icon>
+          <span class="badge__label">{skill}</span>
+      </c-wes-badge> -->
+  </template>
+</template>

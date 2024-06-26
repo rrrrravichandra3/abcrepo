@@ -1,0 +1,48 @@
+<template>
+    <lightning-card  variant="narrow" title="Retrigger Email to Candidate">
+        <template if:true={hasError}>
+            <div id="registerError" class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error"
+                role="alert">
+                <span class="slds-assistive-text">error</span>
+                <h2>{errorMessage}
+                </h2>
+            </div>
+        </template>
+        <div class="spinner">
+            <template if:true={isProcessing}>
+                 <lightning-spinner alternative-text="Processing.." variant="brand" size="large">
+                 </lightning-spinner>
+            </template>
+        </div>
+        <template  if:true={isProgramAdmin}>
+            <div class="slds-p-around_x-small slds-m-around_medium">
+                <p>Please follow steps in this <lightning-formatted-url value={documetntURL} tooltip={documetntURL} label="Document" target="_blank" ></lightning-formatted-url></p>
+                <p>Note: Enter WD Job Application Salesforce Ids Semi colon separated to send Invitation Email to multiple candidates.</p>
+                <lightning-textarea name="Record Id's" label="Record Id's" required onchange={emailAddressHandler} value={ids}></lightning-textarea>
+                <p>Number of Records :{recordCount}</p>
+            </div>
+            
+            <div class="slds-form-element slds-p-around_x-small slds-m-around_medium">
+                <label class="slds-form-element__label">
+                    Email Template
+                </label>
+                <div class="slds-form-element__control">
+                    <div class="slds-select_container">
+                        <select class="slds-select" onchange={selectEmailTemplateHandler} >
+                            <option value="">Select</option>
+                            <template if:true={templateOptions}>
+                                <template for:each={templateOptions} for:item="option">
+                                    <option key={option.label} class="uiInputSelectOption" value={option.value}>{option.label}</option>
+                                </template>
+                            </template>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="slds-m-around_medium">
+                <lightning-button variant="brand" label="Send" disabled={btnDisabled} onclick={sendEMailsToCandidate} class="slds-m-left_x-small"></lightning-button>
+            </div>
+        </template>
+    </lightning-card>
+</template>

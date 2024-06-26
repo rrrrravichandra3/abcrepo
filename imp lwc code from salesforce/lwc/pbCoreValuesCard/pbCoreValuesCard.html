@@ -1,0 +1,202 @@
+<template>
+	<section class="pb-core-section">
+		<div class="headerContainer slds-var-m-around_xx-large slds-var-p-around_xx-large text-center">
+			<div grid axis="row" class="custom-grid-container">
+				<div>
+					<h2 type-style="display-4" class=" header-style">
+						{header}
+					</h2>
+					<div>
+
+						<p class="subheaderContainer text">
+							{subheader}
+						</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="swipercontainer">
+		  <div class="container">
+			
+			<div class="col-12">
+
+			<div class="swiper mySwiper" style="overflow:visible">
+				<div class="swiper-wrapper">
+
+					<!--slide1-->
+					<div class="swiper-slide">
+						<div class="slds-grid ">
+							<div class="slds-card slide-card">
+								<div class="container fade-in-up" style="padding:2.5rem">
+									<div class="slds-grid slds-wrap">
+										<div class="slds-col slds-size_1-of-2 slide-col">
+											<div class="text-container">
+												<h3 type-style="display-6" class="header-style"
+													style="margin-bottom:12px">
+													{value1header}
+												</h3>
+												<p class="text" style="margin-bottom:20px">{value1text} </p>
+                                                
+												<a  class="btn btn-link stretched-link" href="https://trust.salesforce.com/?_ga=2.190864234.1793531575.1694805634-714980719.1694526233"
+													target="_blank">Learn more</a>
+												
+													
+
+											</div>
+										</div>
+										<div class="slds-col slds-size_1-of-2">
+											<div class="circle">
+												<img src={Value1Url} alt="Image" class="circle-image" />
+												<img src={bushesUrl} alt="Image" class="bush-image" />
+											</div>
+                                          </div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					
+
+					<!--slide2-->
+					<div class="swiper-slide">
+						<div class="slds-grid ">
+							<div class="slds-card slide-card">
+								<div class="container fade-in-up" style="padding:2.5rem">
+									<div class="slds-grid slds-wrap">
+										<div class="slds-col slds-size_1-of-2 slide-col">
+											<div class="text-container">
+												<h3 type-style="display-6" class="header-style"
+													style="margin-bottom:12px">
+													{value2header}
+												</h3>
+												<p class="text" style="margin-bottom:20px">{value2text}</p>
+												<a class="btn btn-link stretched-link"
+													href="https://www.salesforce.com/customer-success-stories/#!page=1"
+													target="_blank">Learn more</a>
+											</div>
+										</div>
+										<div class="slds-col slds-size_1-of-2">
+											<div class="circle">
+												<img src={Value2Url} alt="Image" class="circle-image" />
+												<img src={bushesUrl} alt="Image" class="bush-image" />
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--slide3-->
+					<div class="swiper-slide">
+						<div class="slds-grid ">
+							<div class="slds-card slide-card">
+								<div class="container fade-in-up" style="padding:2.5rem">
+									<div class="slds-grid slds-wrap">
+										<div class="slds-col slds-size_1-of-2 slide-col">
+											<div class="text-container">
+												<h3 type-style="display-6" class="header-style"
+													style="margin-bottom:12px">
+													{value3header}
+												</h3>
+												<p class="text" style="margin-bottom:20px">{value3text}</p>
+												<a class="btn btn-link stretched-link"
+													href="https://www.salesforce.com/products/innovation/summer-21-release/"
+													target="_blank">Learn more</a>
+											</div>
+										</div>
+										<div class="slds-col slds-size_1-of-2">
+											<div class="circle">
+												<img src={Value3Url} alt="Image" class="circle-image" />
+												<img src={bushesUrl} alt="Image" class="bush-image" />
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--slide4-->
+					<div class="swiper-slide">
+						<div class="slds-grid ">
+							<div class="slds-card slide-card">
+								<div class="container fade-in-up" style="padding:2.5rem">
+									<div class="slds-grid slds-wrap">
+										<div class="slds-col slds-size_1-of-2 slide-col">
+											<div class="text-container">
+												<h3 type-style="display-6" class="header-style"
+													style="margin-bottom:12px">
+													{value4header}
+												</h3>
+												<p class="text" style="margin-bottom:20px">{value4text}</p>
+												<a class="btn btn-link stretched-link"
+													href="https://www.salesforce.com/company/equality/"
+													target="_blank">Learn more</a>
+											</div>
+										</div>
+										<div class="slds-col slds-size_1-of-2">
+											<div class="circle">
+												<img src={Value4Url} alt="Image" class="circle-image" />
+												<img src={bushesUrl} alt="Image" class="bush-image" />
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--slide5-->
+					<div class="swiper-slide">
+						<div class="slds-grid ">
+							<div class="slds-card slide-card">
+								<div class="container fade-in-up" style="padding:2.5rem">
+									<div class="slds-grid slds-wrap">
+										<div class="slds-col slds-size_1-of-2 slide-col">
+											<div class="text-container">
+												<h3 type-style="display-6" class="header-style"
+													style="margin-bottom:12px">
+													{value5header}
+												</h3>
+												<p class="text" style="margin-bottom:20px">{value5text}</p>
+												<a class="btn btn-link stretched-link"
+													href="https://www.salesforce.com/company/sustainability/"
+													target="_blank">Learn more</a>
+											</div>
+										</div>
+										<div class="slds-col slds-size_1-of-2">
+											<div class="circle">
+												<img src={Value5Url} alt="Image" class="circle-image" />
+												<img src={bushesUrl} alt="Image" class="bush-image" />
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="swiper-button-wrapper">
+					<div class="swiper-button-next slide-next-button" onclick={handleButtonClick}
+						style="right:27px; font-weight: bold;    top: 42%;"></div>
+					<div class="swiper-button-prev slide-prev-button" onclick={handleButtonClick}
+						style="left:-37px; font-weight: bold; top: calc(50% - 68px);"></div>
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+		</div>
+      </div>
+</div>
+		<div class="container" style="padding-bottom:66px">
+			<div class="swiper-pagination" ></div>
+		</div>
+	</section>
+
+</template>

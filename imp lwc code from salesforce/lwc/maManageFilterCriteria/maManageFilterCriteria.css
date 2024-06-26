@@ -1,0 +1,4 @@
+.c-container{padding:20px;min-height: 50vh;}
+.criteriaDisplay table tr th:first-child{width:10% !important;}
+.criteriaDisplay table tr th:last-child {width:15% !important;}
+.criteriaDisplay table tr th{width:25% !important;}

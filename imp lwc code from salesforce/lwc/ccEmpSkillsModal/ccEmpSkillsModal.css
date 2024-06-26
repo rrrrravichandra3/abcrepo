@@ -1,0 +1,15 @@
+.popup-action {
+    cursor: pointer;
+    font-size: 0.875rem;
+    padding: .35rem .875rem;
+    list-style-type: none;
+}
+
+.popup-action:hover {
+    background: #F4F6FB;
+    border-radius: 3px;
+}
+
+.remove-icon {
+    cursor: pointer;
+}

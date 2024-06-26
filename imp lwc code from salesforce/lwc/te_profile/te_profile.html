@@ -1,0 +1,60 @@
+<!--
+  @description       : 
+  @author            : Urvish Shah (ushah)
+  @group             : 
+  @last modified on  : 02-01-2024
+  @last modified by  : Urvish Shah (ushah)
+-->
+<template>
+    <template if:true={contact}>
+        <img src={headerImgUrl}>
+        <div class="slds-grid slds-gutters slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-large-size_3-of-12">
+                <div class="">
+                    <div class="profileImg slds-align_absolute-center">
+                        <c-te_profile-photo 
+                            img-url={usr.FullPhotoUrl} 
+                            edit-enabled="true">
+                        </c-te_profile-photo>
+                    </div>
+                    <div class="slds-grid slds-grid_vertical slds-var-p-top_xx-large">
+                        <div class="slds-col slds-align-middle slds-var-p-top_small slds-text-heading_small slds-text-align_center">
+                            {contact.FirstName} {contact.LastName}
+                        </div>
+                        <div class="slds-col slds-align-middle slds-text-align_center ">
+                            {contact.Title} 
+                        </div>
+                        <!--<div class="lds-col slds-align-middle slds-text-align_center ">
+                            Grade {contact.ES_DJC_Grade__c}
+                        </div>-->
+                    </div>
+                    <div class="slds-var-p-top_small">
+                        <c-te_profile-bio record-id={contact.Id}></c-te_profile-bio>
+                    </div>
+                    <!--
+                    <div class="slds-var-p-top_small">
+                        <div class="slds-text-heading_small">
+                            My Links
+                        </div>
+                    </div>  
+                    -->  
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-large-size_5-of-12">
+                <div class="slds-var-p-around_small">
+                    <c-talent-m-p_skills title="Skills" contact={contact} skillslist={skillList} onupdateskills={handleSaveSkills} edit-ability=true></c-talent-m-p_skills>
+                </div>
+                <div class="slds-var-p-around_small">
+                    <c-te_certification contact={contact}></c-te_certification>
+                </div>
+
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12">
+                <div class="slds-var-p-around_small">
+                    <c-talent-mp_-work-experience contact={contact}></c-talent-mp_-work-experience>
+                </div>
+            </div>
+
+        </div>
+    </template>
+</template>

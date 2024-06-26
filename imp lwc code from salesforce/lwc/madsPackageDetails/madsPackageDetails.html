@@ -1,0 +1,33 @@
+<template>
+    <lightning-layout multiple-rows="true" vertical-align="stretch">
+        <lightning-layout-item padding="around-small" class="package-name col-1-style" size="6">
+            <lightning-formatted-text value={label.packageNameStr} class="bold-font"></lightning-formatted-text>
+            <lightning-formatted-text value={packageName} class="slds-m-left_xx-small"></lightning-formatted-text>
+        </lightning-layout-item>
+
+        <lightning-layout-item padding="around-small" class="has-derived-package col-2-style" size="6">
+            <lightning-formatted-text value={label.isPackageCopiedStr} class="bold-font"></lightning-formatted-text>
+            <lightning-formatted-text value={isPackageCopied} class="slds-m-left_xx-small"></lightning-formatted-text>
+        </lightning-layout-item>
+
+        <lightning-layout-item padding="around-small" class="package-description col-1-style" size="6">
+            <lightning-formatted-text value={label.packageDescriptionStr} class="bold-font"></lightning-formatted-text>
+            <lightning-formatted-text value={packageDescription} class="slds-m-left_xx-small"></lightning-formatted-text>
+        </lightning-layout-item>
+
+        <lightning-layout-item padding="around-small" class="derived-distributions col-2-style" size="6">
+            <lightning-formatted-text value={label.derivedPackageDistributionsStr} class="bold-font"></lightning-formatted-text>
+            <lightning-formatted-number value={derivedDistributionsCount} class="slds-m-left_xx-small"></lightning-formatted-number>
+        </lightning-layout-item>
+
+        <lightning-layout-item padding="around-small" class="available-templates col-1-style" size="6">
+            <lightning-formatted-text value={label.availableTemplatesStr} class="bold-font"></lightning-formatted-text>
+            <lightning-formatted-number value={availableTemplatesCount} class="slds-m-left_xx-small"></lightning-formatted-number>
+        </lightning-layout-item>
+
+        <lightning-layout-item padding="around-small" class="derived-templates col-2-style" size="6">
+            <lightning-formatted-text value={label.derivedTemplatesStr} class="bold-font"></lightning-formatted-text>
+            <lightning-formatted-number value={derivedTemplatesCount} class="slds-m-left_xx-small"></lightning-formatted-number>
+        </lightning-layout-item>
+    </lightning-layout>    
+</template>

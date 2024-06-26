@@ -1,0 +1,140 @@
+.rules-tab-spinner .slds-spinner_container {
+    position: inherit !important;
+}
+
+.add-layout-item {
+    text-align: right;
+}
+
+.align-bottom {
+    display: grid;
+    align-items: flex-end;
+}
+
+.bold-font {
+    font-weight : 500;
+}
+
+.error-message {
+    font-size: 0.75rem;
+    color: var(--slds-g-color-error-base-40, var(--lwc-colorTextError,rgb(234, 0, 30)));
+}
+
+.date-time-margin {
+    margin-bottom: 0.25rem;
+}
+
+.object-label-layout-item {
+    font-size : 0.9rem;
+    line-height : 1.25;
+}
+
+@media screen and (min-width : 1201px) {
+    .object-layout-item {
+        width: 20%;
+    }
+    .field-layout-item  {
+        width: 25%;
+    }
+    .operator-layout-item {
+        width: 20%;
+    }
+    .value-layout-item {
+        width: 25%;
+    }
+    .add-layout-item {
+        width: 10%;
+    }
+    .selected-obj-rule-layout-item {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width : 1025px) and (max-width : 1200px) {
+    .object-layout-item {
+        width: 35%;
+    }
+    .field-layout-item  {
+        width: 35%;
+    }
+    .operator-layout-item {
+        width: 30%;
+    }
+    .value-layout-item {
+        width: 50%;
+    }
+    .add-layout-item {
+        width: 50%;
+        text-align: left !important;
+    }
+    .selected-obj-rule-layout-item {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width : 769px) and (max-width : 1024px) {
+    .object-layout-item {
+        width: 35%;
+    }
+    .field-layout-item  {
+        width: 35%;
+    }
+    .operator-layout-item {
+        width: 30%;
+    }
+    .value-layout-item {
+        width: 50%;
+    }
+    .add-layout-item {
+        width: 50%;
+        text-align: left !important;
+    }
+    .selected-obj-rule-layout-item {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width : 481px) and (max-width : 768px) {
+    .object-layout-item {
+        width: 50%;
+    }
+    .field-layout-item  {
+        width: 50%;
+    }
+    .operator-layout-item {
+        width: 50%;
+    }
+    .value-layout-item {
+        width: 50%;
+    }
+    .add-layout-item {
+        width: 50%;
+        margin-top: 0.5rem;
+        text-align: left !important;
+    }
+    .selected-obj-rule-layout-item {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width : 320px) and (max-width : 480px) {
+    .object-layout-item {
+        width: 100%;
+    }
+    .field-layout-item  {
+        width: 100%;
+    }
+    .operator-layout-item {
+        width: 100%;
+    }
+    .value-layout-item {
+        width: 100%;
+    }
+    .add-layout-item {
+        width: 100%;
+        text-align: left !important;
+    }
+    .selected-obj-rule-layout-item {
+        width: 100%;
+    }
+}

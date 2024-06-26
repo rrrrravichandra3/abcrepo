@@ -1,0 +1,30 @@
+<template>
+  <lightning-layout horizontal-align="center" vertical-align="start" multiple-rows class="slds-size_1-of-1">
+    <template if:true={loading}>
+      <lightning-spinner alternative-text="Loading"></lightning-spinner>
+    </template>
+
+    <template if:true={records}>
+      <template for:each={records} for:item="record">
+        <lightning-layout-item key={record.id} size="12"
+          class="slds-border_bottom slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-p-vertical_x-small slds-p-horizontal_medium">
+          <p class="slds-col slds-text-heading_small">
+            {record.Name}
+          </p>
+          <div class="slds-col">
+            <template if:true={record.selected}>
+              <lightning-button-icon-stateful size="small" icon-name="utility:check" selected={record.selected}
+                data-id={record.id} onclick={handleSelected} alternative-text="Select">
+              </lightning-button-icon-stateful>
+            </template>
+            <template if:false={record.selected}>
+              <lightning-button-icon-stateful size="small" icon-name="" selected={record.selected}
+                data-id={record.id} onclick={handleSelected} alternative-text="Select">
+              </lightning-button-icon-stateful>
+            </template>
+          </div>
+        </lightning-layout-item>
+      </template>
+    </template>
+  </lightning-layout>
+</template>

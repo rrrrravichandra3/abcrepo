@@ -1,0 +1,210 @@
+<template>
+  <!--Show spinner when loading-->
+  <template if:true={loading}>
+    <lightning-spinner alternative-text="Loading"></lightning-spinner>
+  </template>
+
+  <template if:false={loading}>
+    <!--Profile Body - MOBILE-->
+    <template if:true={isMobile}>
+      <div class="full-height">
+        <template if:false={availableAsMentor}>
+          <div class="banner slds-theme_warning slds-theme_alert-texture slds-p-around_small">
+            <p>
+              {labels.weThingThisUSerMightBeAGreatMatchButLabel}
+              <strong> {labels.youWontBeAbleToSendThemARequestLabel}</strong>
+              {labels.apologiesForAnyInconvenienceCausedLabel}
+            </p>
+          </div>
+        </template>
+
+        <!--Profile image & name-->
+        <section class="slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-p-around_medium slds-is-relative header">
+          <div class={bannerClasses} style={bannerBackground}></div>
+          <template if:true={showEditButton}>
+            <lightning-button-icon class="button-icon" onclick={editProfileHandler} icon-name="utility:edit" variant="bare" icon-class="slds-text-color_inverse"></lightning-button-icon>
+          </template>
+          <lightning-button-icon class="button-icon-left" onclick={backHandler} icon-name="utility:chevronleft" variant="bare" icon-class="slds-text-color_inverse"></lightning-button-icon>
+          <div class="slds-col slds-grow slds-grid slds-grid_vertical slds-grid_align-center slds-grid_vertical-align-center">
+            <div class="image-container" style={imageBackground}></div>
+          </div>
+          <div class="slds-col slds-size_1-of-1 slds-p-vertical_small in-front">
+            <lightning-layout horizontal-align="spread" vertical-align="center">
+              <lightning-layout-item>
+                <h1 class="slds-text-heading_large">
+                  {name}
+                </h1>
+                <h2 class="slds-m-top_xx-small">
+                  {title}
+                </h2>
+              </lightning-layout-item>
+              <template if:true={showScore}>
+                <lightning-layout-item>
+                  <div class="score slds-p-around_small">
+                    <div class="badge" style={badgeColor}>{score}</div>
+                  </div>
+                </lightning-layout-item>
+              </template>
+            </lightning-layout>
+          </div>
+        </section>
+
+        <!--Custom Tabs-->
+        <section class="slds-col">
+          <div class="slds-tabs_default rounded">
+            <ul class="slds-tabs_default__nav slds-grid" role="tablist">
+              <li class={overviewClasses} title="Item One" role="presentation">
+                <a class="slds-tabs_default__link slds-text-align_center slds-text-color_default" data-tab="overview" onclick={changeTabHandler} role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">{labels.overviewLabel}</a>
+              </li>
+              <li class={aboutMeClasses} title="Item Two" role="presentation">
+                <a class="slds-tabs_default__link slds-text-align_center slds-text-color_default" data-tab="aboutMe" onclick={changeTabHandler} role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">{labels.detailsLabel}</a>
+              </li>
+            </ul>
+          </div>
+
+          <template if:true={showOverview}>
+            <template if:true={user}>
+              <div class="slds-p-around_small">
+                <c-user-overview user={user}></c-user-overview>
+              </div>
+              <template if:true={matchingSkills}>
+                <div class="slds-p-around_small">
+                  <c-matching-skills skills={matchingSkills}></c-matching-skills>
+                </div>
+              </template>
+              <div class="slds-m-top_medium">
+                <template if:true={customBio}>
+                  <p class="slds-p-horizontal_medium slds-text-color_weak">
+                    <strong>{labels.mentorfinderBioLabel}</strong>
+                  </p>
+                  <p class="slds-p-horizontal_medium">
+                    <lightning-formatted-rich-text value={customBio}></lightning-formatted-rich-text>
+                  </p>
+                </template>
+                <template if:true={about}>
+                  <p class="slds-p-horizontal_medium slds-m-top_medium slds-text-color_weak">
+                    <strong>{labels.org62BioLabel}</strong>
+                  </p>
+                  <p class="slds-p-horizontal_medium">
+                    <lightning-formatted-rich-text value={about}></lightning-formatted-rich-text>
+                  </p>
+                </template>
+                <template if:true={noBio}>
+                  <c-illustration text={labels.looksLikeThisUserDoesntHaveABioLabel}>
+                  </c-illustration>
+                </template>
+              </div>
+            </template>
+          </template>
+
+          <template if:true={showAboutMe}>
+            <lightning-record-view-form record-id={user.id} object-api-name="User">
+              <div class="slds-p-around_small">
+                <lightning-output-field field-name="Email"></lightning-output-field>
+                <lightning-output-field field-name="MobilePhone"></lightning-output-field>
+                <lightning-output-field field-name="Address"></lightning-output-field>
+              </div>
+            </lightning-record-view-form>
+          </template>
+        </section>
+
+        <!--Mentorship Request Buttons-->
+        <template if:true={showRequestButtons}>
+          <footer class="slds-col position-bottom">
+            <template if:true={user}>
+              <c-mentor-request-buttons user={user} score={score}></c-mentor-request-buttons>
+            </template>
+          </footer>
+        </template>
+      </div>
+    </template>
+
+    <!--Profile Body - DESKTOP-->
+    <template if:false={isMobile}>
+      <template if:false={availableAsMentor}>
+        <div class="banner slds-theme_warning slds-theme_alert-texture slds-p-around_small">
+          <p>
+            {labels.weThingThisUSerMightBeAGreatMatchButLabel}
+            <strong> {labels.youWontBeAbleToSendThemARequestLabel}</strong>
+            {labels.apologiesForAnyInconvenienceCausedLabel}
+          </p>
+        </div>
+      </template>
+
+      <!--Profile image & name-->
+      <section class="slds-grid slds-grid_vertical-align-center slds-p-around_medium slds-is-relative header">
+        <div class="buttons slds-grid slds-grid_vertical-align-center">
+          <c-mentor-request-buttons user={user} score={score}></c-mentor-request-buttons>
+        </div>
+
+        <div class={bannerClasses} style={bannerBackground}></div>
+        <template if:true={showEditButton}>
+          <lightning-button-icon class="button-icon" onclick={editProfileHandler} icon-name="utility:edit" variant="bare" icon-class="slds-text-color_inverse"></lightning-button-icon>
+        </template>
+
+        <!--Circular Profile Image-->
+        <div class="slds-shrink slds-m-horizontal_xx-large">
+          <div class="image-container large-image slds-is-relative slds-grid slds-grid_align-center" style={imageBackground}></div>
+        </div>
+
+        <!--Header User Info-->
+        <div class="slds-grid slds-grid_vertical slds-grid_vertical-align-start">
+          <template if:true={showScore}>
+            <div class="badge slds-p-horizontal_small slds-p-vertical_xx-small slds-m-bottom_x-small" style={badgeColor}>
+              {labels.matchScoreLabel} {score}
+            </div>
+          </template>
+          <h1 class="slds-text-heading_large">
+            {name}
+          </h1>
+          <h2 class="">{title}</h2>
+        </div>
+      </section>
+
+      <section class="slds-col">
+        <template if:true={user}>
+          <div class="slds-m-vertical_medium">
+            <c-user-overview user={user}></c-user-overview>
+          </div>
+          <div class="slds-grid">
+            <lightning-card title="Contact Details" class="slds-size_1-of-3 slds-large-size_1-of-4">
+              <div class="slds-p-horizontal_small">
+                <lightning-record-view-form record-id={user.id} object-api-name="User">
+                  <lightning-output-field field-name="Email"></lightning-output-field>
+                  <lightning-output-field field-name="MobilePhone"></lightning-output-field>
+                  <lightning-output-field field-name="Address"></lightning-output-field>
+                </lightning-record-view-form>
+              </div>
+            </lightning-card>
+            <div class="slds-p-horizontal_small slds-size_2-of-3 slds-large-size_3-of-4">
+              <c-mentor-badges></c-mentor-badges>
+              <template if:true={matchingSkills}>
+                <c-matching-skills skills={matchingSkills}></c-matching-skills>
+              </template>
+              <template if:true={customBio}>
+                <p class="slds-text-heading_small slds-m-top_medium">
+                  <strong>{labels.mentorfinderBioLabel}</strong>
+                </p>
+                <p>
+                  <lightning-formatted-rich-text value={customBio}></lightning-formatted-rich-text>
+                </p>
+              </template>
+              <template if:true={about}>
+                <p class="slds-text-heading_small slds-m-top_medium">
+                  <strong>{labels.org62BioLabel}</strong>
+                </p>
+                <p>
+                  <lightning-formatted-rich-text value={about}></lightning-formatted-rich-text>
+                </p>
+              </template>
+              <template if:true={noBio}>
+                <c-illustration text={labels.looksLikeThisUserDoesntHaveABioLabel}>
+                </c-illustration>
+              </template>
+            </div>
+          </div>
+        </template>
+      </section>
+    </template>
+  </template>
+</template>

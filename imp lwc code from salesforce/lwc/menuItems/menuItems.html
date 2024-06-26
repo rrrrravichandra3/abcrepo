@@ -1,0 +1,34 @@
+<template>
+  <lightning-layout multiple-rows>
+    <template for:each={menuItems} for:item="menuItem">
+      <lightning-layout-item key={menuItem.label} size="12">
+        <div class="slds-p-around_small slds-border_bottom">
+          <lightning-layout vertical-align="center">
+            <lightning-layout-item size="1">
+              <c-mentoring-app-icon icon-name={menuItem.icon} color="#006BC8"></c-mentoring-app-icon>
+            </lightning-layout-item>
+            <lightning-layout-item size="11">
+              <lightning-button variant="base" name={menuItem.redirectUrl} class="slds-text-heading_small"
+                onclick={menuItemClickedHandler} label={menuItem.label}></lightning-button>
+            </lightning-layout-item>
+          </lightning-layout>
+        </div>
+      </lightning-layout-item>
+    </template>
+
+    <!--My Cases-->
+    <lightning-layout-item size="12">
+      <div class="slds-p-around_small slds-border_bottom">
+        <lightning-layout vertical-align="center">
+          <lightning-layout-item size="1">
+            <c-mentoring-app-icon icon-name="thumbs-up" color="#006BC8"></c-mentoring-app-icon>
+          </lightning-layout-item>
+          <lightning-layout-item size="11">
+            <lightning-button variant="base" class="slds-text-heading_small"
+              onclick={goToMyCases} label={labels.pilotFeedbackLabel}></lightning-button>
+          </lightning-layout-item>
+        </lightning-layout>
+      </div>
+    </lightning-layout-item>
+  </lightning-layout>
+</template>

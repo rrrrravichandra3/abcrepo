@@ -1,0 +1,87 @@
+<template>
+    <div if:true={localSelectedCaseId} >
+    <div class="container slds-p-around_large slds-scrollable_y slds-theme_shade">
+    <!--<lightning-card>-->
+         <!--  <template if:false={closedcase}> 
+                <div class="slds-align_absolute-center slds-border_bottom">
+                    <lightning-button variant="neutral" label={buttonLabel} title="Primary action with lighter look" onclick={handleCloseClick} class="slds-m-bottom_small"></lightning-button>
+                </div>
+            </template>
+            <template if:true={closedcase}>  
+                <div class="slds-align_absolute-center slds-border_bottom">
+                    <lightning-button variant="neutral" label="ReOpen Case" title="Primary action with lighter look" onclick={handleReOpenClick} class="slds-m-bottom_small"></lightning-button>
+                </div>
+            </template>-->
+
+            <div class="slds-align_absolute-center slds-border_bottom">
+                <lightning-button variant="neutral" label={casebuttonLabel} title="Primary action with lighter look" onclick={handleCaseClick} class="slds-m-bottom_small"></lightning-button>
+            </div>
+            <br/>
+            <lightning-formatted-text class="slds-text-heading_medium slds-text-align_left" value={caseSubject}></lightning-formatted-text>
+            <br/><br/>
+            <div class="slds-p-horizontal_x-small">
+                <template if:true={isLoaded}>    
+                    <div class="slds-is-relative">
+                        <lightning-spinner alternative-text="Loading..." variant="brand">
+                        </lightning-spinner>
+                    </div>               
+                </template>
+                <lightning-layout>
+                    <lightning-layout-item size="12">
+                        <div class="slds-form-element__label">Case Number</div><br/>
+                        <lightning-formatted-text value={caseNumber}></lightning-formatted-text><br/>
+                        <div class="slds-form-element__label">Status</div><br/>
+                        <lightning-formatted-text value={status}></lightning-formatted-text><br/>
+                        <div class="slds-form-element__label">Case Owner</div><br/>
+                        <lightning-formatted-text value={ownerName}></lightning-formatted-text><br/>
+                        <div class="slds-form-element__label">Created Date</div><br/>
+                        <lightning-formatted-text value={createdDate}></lightning-formatted-text><br/> 
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+        
+            <br/>
+
+            <div class="slds-p-horizontal_x-small" >
+                <lightning-layout>
+                    <lightning-layout-item size="12"> 
+                        <b>Attachments ({count})</b> 
+                        <br/>
+
+                            <lightning-layout class="slds-grid slds-grid_vertical limitVert" horizontal-align="left">
+                                
+                                <template for:each={existingAllFiles} for:item="existingAllFile">
+                                    <div key={existingAllFile.Id} style="margin-top:10px;">
+                                        <lightning-icon icon-name="doctype:attachment" size="small" title="Attachment"></lightning-icon>
+                                        &nbsp; 
+                                        <a href={attachmentURL}
+                                        target="_blank" 
+                                        data-id={existingAllFile.Id} 
+                                        onclick={downloadAttachment}>{existingAllFile.Title}</a> 
+                                        <lightning-button-icon icon-name="utility:clear"    alternative-text="Delete"   class="slds-m-left_xx-small" title="Delete" onclick={handleDelete} data-recordid={existingAllFile.Id}></lightning-button-icon>
+                                    </div>
+                                </template>
+                            
+                            </lightning-layout>  
+                       
+                        <br/>   
+                        <div class="slds-p-left_medium" if:false={closedcase}>
+                            <lightning-file-upload
+                                label="Attach Files"
+                                name="uploadFile"
+                                disabled={closedcase}
+                                accept={acceptedFormats}
+                                record-id={localSelectedCaseId}    
+                                onuploadfinished={handleUploadFinished} multiple>
+                            </lightning-file-upload>
+                        </div>
+                        <br/>
+                        <div class="slds-form-element__label">Description</div><br/>
+                        <lightning-formatted-text value={description}></lightning-formatted-text><br/>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+        <!--</lightning-card>-->
+    </div> 
+</div>
+</template>

@@ -1,0 +1,14 @@
+<template>
+
+    <!-- <lightning-button-stateful variant="neutral" class="slds-m-right_x-small" data-id={filter.id} label-when-off={filter.name} label-when-on={filter.name} label-when-hover={filter.name} icon-name-when-off="utility:add" icon-name-when-on="utility:check" icon-name-when-hover="utility:close" selected={checkActive} onclick={handleFilterClick}>
+    </lightning-button-stateful> -->
+    <li key={filter.id} data-id={filter.id} onmousedown={handleFilterClick} class="slds-listbox__item eachItem">
+        <div class="iconHolder">
+            <template if:true={checkActive}>
+                <lightning-icon icon-name="utility:check" size="x-small" title="check" alternative-text="icon" class="check"></lightning-icon>
+            </template>
+        </div>
+
+        <span class="slds-media slds-listbox__option_entity verticalAlign slds-truncate">{filter.name}</span>
+    </li>
+</template>

@@ -1,0 +1,20 @@
+<template>
+    <div class="main">
+        <div class={getStyle}>
+            <template for:each={items} for:item="item">
+                <div class="item" key={item.Id}>
+                    <c-custom-visual-picker onclick={selectItem} name={item.Name} data-id={item.Id} id={item.Name} imgsrc={item.Static_Resource_image_URL__c}></c-custom-visual-picker>
+                </div>
+            </template>
+            <div class={getArrowStyle} onclick={scrollRight}>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                    <path id="Icon" fill-rule="evenodd" clip-rule="evenodd" d="M6.88467 1.69233L14.8462 9.57694C15.077 9.80771 15.077 10.1923 14.8462 10.4231L6.88467 18.3077C6.6539 18.5385 6.26929 18.5385 6.03852 18.3077L5.19236 17.4616C4.96159 17.2308 4.96159 16.8462 5.19236 16.6154L11.4616 10.4231C11.6924 10.1923 11.6924 9.80771 11.4616 9.57694L5.23083 3.38463C5.00006 3.15386 5.00006 2.76925 5.23083 2.53848L6.07698 1.69233C6.30775 1.50002 6.6539 1.50002 6.88467 1.69233Z" fill="#0176D3"/>
+                    </g>
+                </svg>    
+            </div>
+        </div>
+        <div class="whitefade"></div>
+    </div>
+    
+</template>

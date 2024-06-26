@@ -1,0 +1,22 @@
+<template>
+    <article class="slds-card">
+        <ul>
+            <template if:true={loading}>
+                <div class="spinner-container slds-align-middle">
+                    <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                </div>
+            </template>
+            <template if:false={loading}>
+                <template if:true={hydratedConsentRecords}>
+                    <lightning-card title="Consent Information">
+                        <div class="slds-p-around--medium">
+                            <template for:each={relatedCPTCRecords} for:item="item" for:index="index">
+                                <c-con-cap-display-type key={item.type} item={item}></c-con-cap-display-type>
+                            </template>
+                        </div>
+                    </lightning-card>
+                </template>
+            </template>
+        </ul>
+    </article>
+</template>

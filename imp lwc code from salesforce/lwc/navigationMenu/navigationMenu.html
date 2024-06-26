@@ -1,0 +1,29 @@
+<template>
+    <div class="navbar slds-border_bottom">
+        <div class="slds-grid slds-gutters slds-wrap slds-grid_vertical-align-center">
+            <div class="slds-size_3-of-12 slds-wrap">
+                <img class="slds-var-m-right_medium" src={imgUrl} alt="Growth and Performance">
+                <span class="slds-text-heading_small slds-var-m-right_medium slds-size_1-of-3">Growth &amp; Performance</span>
+            </div>
+            <div class="slds-size_7-of-12"> 
+                <template for:each={menuItems} for:item="item">
+                    <span key={item.id} class="slds-item">
+                        <c-navigation-menu-item item={item}></c-navigation-menu-item>
+                    </span>
+                </template>
+            </div>
+            <div class="slds-size_2-of-12 slds-col_bump-left"> 
+                <div class="slds-badge badge-blue">
+                    <span class="slds-var-m-right_small"> <img class="profileImg" src={userPhoto} alt=""></span>
+                    <span>{name}</span>    
+                    <lightning-icon icon-name="utility:chevrondown" alternative-text="Open Menu" size="x-small" class="arrowIcon slds-var-p-left_medium" onclick={toggleDropdown}></lightning-icon>   
+                </div>
+                <div if:true={dropdownOpen} class="dropdown-content">
+                    <template for:each={dropDownOptions} for:item="option">
+                        <a key={option.label} href="#" data-option={option.label} onclick={handleOptionSelection}>{option.label}</a>
+                    </template>                
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

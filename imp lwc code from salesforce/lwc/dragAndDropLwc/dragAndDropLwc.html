@@ -1,0 +1,52 @@
+<!--
+  @description       : 
+  @author            : Urvish Shah (ushah)
+  @group             : 
+  @last modified on  : 06-29-2022
+  @last modified by  : Urvish Shah (ushah)
+-->
+<template>
+    <lightning-card class="my-css slds-m-bottom_xx-small">
+        <h1 slot="title" if:true={candidatesPresent}>
+            <lightning-icon slot="media" size="small" icon-name="standard:employee_organization"
+                class="slds-m-right_x-small">
+            </lightning-icon>
+            {jobReqName}
+            <p class="slds-text-body_small slds-truncate slds-var-p-horizontal_x-large" data-toggle="tooltip" data-placement="right" title={country}>{country}</p>
+        </h1>
+        <h1 slot="title" if:false={candidatesPresent}>
+            <lightning-icon slot="media" size="small" icon-name="standard:employee_organization"
+                class="slds-m-right_x-small">
+            </lightning-icon>
+            No Candidates have been added to Pool.
+        </h1>
+        <div slot="actions">
+            <lightning-button class="slds-p-left_xx-small" label="Back to Job Req" title="back" icon-name="action:back"
+                 onclick={backtoJobReq}>
+            </lightning-button>
+            <lightning-button class="slds-p-left_xx-small" label="Back to Seach" title="back" icon-name="action:back"
+                onclick={backtoSearch}>
+            </lightning-button>
+            <lightning-button class="slds-p-left_xx-small" label="Refresh" title="back" icon-name="utility:refresh"
+                onclick={refreshTable}>
+            </lightning-button>
+            <lightning-button class="slds-p-left_xx-small" label="Notify" title="Notify" disabled={disableNotifyButton} icon-name="utility:email"
+                onclick={notify}>
+            </lightning-button>
+        </div>
+    </lightning-card>
+    <template if:true={candidatesPresent} for:each={pickVals} for:item="item">
+        <div class="stageContainer" key={item} style={calcWidth}>
+            <h1 class="column_heading">
+                 {item}
+            </h1>
+            <template if:true={showLoader}>
+                <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+            </template>
+            <div if:true={records}>
+                <c-drag-and-drop-list records={records} stage={item} onlistitemdrag={handleListItemDrag} onremovecard={handleRemoveFromPool}
+                    onitemdrop={handleItemDrop}></c-drag-and-drop-list>
+            </div>
+        </div>
+    </template>
+</template>

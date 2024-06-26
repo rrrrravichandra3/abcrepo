@@ -1,0 +1,41 @@
+<template>
+    <c-pb-toast-message></c-pb-toast-message>
+    <div class="background2">
+        <img src={_background2} alt="background2"/>
+    </div>
+   
+        <template lwc:if={data}>
+            <div class="nav">
+                <c-pb-home-nav currentpage={_currentTask} onbtnclick={handleNav} buttonlabel={navlabel}></c-pb-home-nav>
+            </div>
+            <template lwc:if={isLoading}>
+                <div class="spinner">
+                    <lightning-spinner variant="brand" alternative-text="Loading" size="small"></lightning-spinner>
+                </div>
+            </template>
+            <template lwc:else>
+            <div class="main">
+                <template lwc:if={_showmain}>
+                     <c-pb-home-main oncontinuetask={handleNav} tasks-completed={_currentTask} total-tasks={_totalTasks} prov-case={data}></c-pb-home-main>
+                </template>
+                <template lwc:else>
+                     <template if:true={_tasks.equipment}>
+                        <c-pb-equipment-select prov-case={data} onbacktohome={handleNav} onselectedequipment={handleTaskComplete}></c-pb-equipment-select>
+                     </template>
+                     <template if:true={_tasks.workday}>
+                         <c-nhw-experience-workday onbacktohome={handleNav} onworkday={handleTaskComplete}></c-nhw-experience-workday>
+                     </template>
+                     <template if:true={_tasks.accessiblity}>
+                        <c-pb-accessibility-needs prov-case={data} onbacktohome={handleNav} onaccessiblityneeds={handleTaskComplete}></c-pb-accessibility-needs>
+                     </template>
+                     <template if:true={_tasks.badge}>
+                         <c-nhw-experience-badge onbacktohome={handleNav} onbadge={handleTaskComplete}></c-nhw-experience-badge>
+                     </template>
+                </template>
+             </div>
+             </template>
+        </template>
+    <div class="background">
+        <img src={_background} alt="background"/>
+    </div>
+</template>

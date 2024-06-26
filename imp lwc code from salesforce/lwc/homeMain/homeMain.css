@@ -1,0 +1,18 @@
+.container {
+    width: 87%;
+    margin: auto;
+    position: relative;
+    z-index: 5;
+}
+
+.container1 {
+    padding-bottom: 60px;
+}
+
+.startDateContainer {
+    padding-bottom: 30px;
+}
+
+.taskProgressContainer {
+    padding-bottom: 30px;
+}

@@ -1,0 +1,10 @@
+<template>
+  <template if:true={filtersApplied}>
+    <div class="slds-m-top_x-small">
+      <template for:each={activeFilters} for:item="filter">
+        <lightning-pill key={filter.id} data-filterid={filter.id} label={filter.name} onremove={removeHandler}>
+        </lightning-pill>
+      </template>
+    </div>
+  </template>
+</template>

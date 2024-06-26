@@ -1,0 +1,10 @@
+<template>
+    <li class={listClasses}>
+        <a tabindex="0" role= "button" onclick={navItemClick}  onkeypress={navItemClick} class="slds-nav-vertical__action" data-stageid={stage.programStage.Id}>{stage.programTemplateStage.Name}
+            <template if:true={stage.programStage.Completed__c}>
+                <lightning-icon icon-name="action:approval" alternative-text="Completed" size="xx-small" class="slds-col_bump-left" data-stageid={stage.programStage.Id}>
+                </lightning-icon>
+            </template>
+        </a>
+    </li>
+</template>

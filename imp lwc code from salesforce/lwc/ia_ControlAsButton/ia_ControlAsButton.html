@@ -1,0 +1,10 @@
+<template>
+  <div class="ia-container" style={getContainerStyles}>
+    <template if:true={asLink}>
+      <a style={getButtonStyles} class="ia-button ia-button__brand" href={url}> {label} </a>
+    </template>
+    <template if:false={asLink}>
+      <button style={getButtonStyles} class="ia-button ia-button__brand">{label}</button>
+    </template>
+  </div>
+</template>

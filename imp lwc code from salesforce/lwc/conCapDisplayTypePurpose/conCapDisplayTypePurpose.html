@@ -1,0 +1,19 @@
+<template>
+    <div style={activeStyle}>
+        <div class="slds-p-around--small">
+            <div class="slds-grid slds-wrap slds-gutters">
+                <div class="slds-col slds-size--10-of-12">
+                        <a class="slds-text-body--regular cc-text-bold slds-wrap"
+                                       onclick={viewRecord}>{item.contactPointName}</a>
+                        <div class ="slds-wrap">
+                                <div class="slds-text-body--regular ">{item.dataUsePurposeDescription}</div>
+                        </div>
+                    </div>
+                <div class="slds-col slds-size--2-of-12 slds-float--right ">
+                    <lightning-icon icon-name={iconState} alternative-text={iconStateAlternativeText}
+                                            title={iconStateTitle} variant={iconStateVariant}></lightning-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

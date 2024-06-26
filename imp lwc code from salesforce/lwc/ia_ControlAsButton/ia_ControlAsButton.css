@@ -1,0 +1,17 @@
+.ia-button {
+  font-family: "Salesforce Sans Semibold", sans-serif;
+  background-color: #eee;
+  border: 1px solid #aaa;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+  line-height: 28px;
+  font-size: 18px;
+  padding: 10px;
+  color: #333;
+}
+.ia-button__brand {
+  color: white;
+  background-color: #168aef;
+  border: 1px solid #168aef;
+}

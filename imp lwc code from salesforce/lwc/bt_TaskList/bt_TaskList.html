@@ -1,0 +1,59 @@
+<template>
+    <div>
+        <div if:true={devMode}>
+            HELLO, YOURE IN DEV MODE
+        </div>
+        <article class="slds-card my-card">
+            <div class="slds-card__header">
+                <header class="slds-has-flexi-truncate">
+                    <h2 class="slds-text-heading_small">
+                        Required to-do's before Day 1
+                    </h2>
+                    <div class="">
+                        Keep track of all your pending tasks for your start date - completing these will ensure you're ready to go for day 1!
+                    </div>
+                </header>
+            </div>
+
+            <div class="slds-card__body slds-card__body_inner slds-var-m-bottom_large">
+                <!--<div class="slds-col slds-size_8-of-12 slds-align-bottom">  
+                    <span class="slds-float_left slds-icon_container slds-icon-action-check slds-current-color my-icon_xxx-small slds-var-m-right_small slds-var-m-bottom_xx-small" title="Completed">
+                        <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                          <use xlink:href="/assets/icons/action-sprite/svg/symbols.svg#check"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Completed</span>
+                    </span>
+                    <h4>Offer accepted!</h4>
+                </div>
+                <div class="slds-col slds-size_4-of-12  ">
+                    <div class="slds-text-align_right">
+                        <a href="/support" class="slds-button slds-button_brand">
+                            <label>View offer</label>
+                        </a>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_12-of-12 slds-border_left slds-var-p-bottom_large slds-var-m-left_x-small slds-var-m-bottom_xx-small my-border_small">
+                </div>-->
+                <!--<li for:each={equalityGroups.value} for:item="item" key={item}-->
+                <div if:true={tasks}>
+                    <div class="slds-grid slds-wrap" for:each={tasks} for:item="task" key={task}>
+                        <div class="slds-col slds-size_8-of-12">  
+                            <div class="slds-var-m-right_small slds-float_left my-circle"></div>
+                            <h4>{task.taskDescription}</h4>
+                            <div class="slds-text-body_small slds-border_left slds-var-p-bottom_medium slds-var-p-left_large slds-var-m-left_x-small slds-var-m-bottom_xx-small my-border_small">{task.estimatedTimeInMinutes} minute estimated completion time</div>
+                        </div>
+                        <div class="slds-col slds-size_4-of-12">
+                            <div class="slds-text-align_right">
+                                <a href={task.taskLink} class="slds-button slds-button_brand">
+                                    <label>Get Started</label>
+                                </a>
+                            </div>
+                        </div>    
+                    </div>
+                </div>                  
+            </div>
+        </article>
+    </div>
+
+
+</template>

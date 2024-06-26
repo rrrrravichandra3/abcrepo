@@ -1,0 +1,29 @@
+<template>
+        <div>
+         <lightning-layout>
+                 <lightning-layout-item size="4">
+                         <c-ma-my-cases-list-view oncaseselect={handlecaseselect} 
+                                                  oncasestatuseventhandled={resetcasestatuschangevariables} 
+                                                  casestatuschangeid={statuschangecaseid} 
+                                                  casestatuschangeupdatedstatus={statuschangecasestatus}
+                                                  closed-status-set={closedStatusSet}></c-ma-my-cases-list-view>
+                 </lightning-layout-item>
+                 
+                 <lightning-layout-item size="4">
+                         <c-ma-my-cases-comment selectedcaseid={selectedcaseid} 
+                                                caseclosedstatus={closedCaseStatus} 
+                                                oncomment={handleCaseComment}></c-ma-my-cases-comment>
+                 </lightning-layout-item>
+     
+                 <lightning-layout-item size="4">
+                        <c-ma-my-cases-detail selectedcaseid={selectedcaseid} 
+                                              onclose={handlecaseclose} 
+                                              onreopen={handlecasereopen} 
+                                              oncasestatuschange={handlecasestatus} 
+                                              updated-case-status={statuschangecasestatus}
+                                              closed-status-set={closedStatusSet}></c-ma-my-cases-detail>                  
+                 </lightning-layout-item>
+     
+         </lightning-layout>
+       </div>
+</template>

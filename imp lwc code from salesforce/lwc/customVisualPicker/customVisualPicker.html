@@ -1,0 +1,25 @@
+<template>
+    <div class={_cls}>
+        <div class="image">
+            <img src={_imgsrc} alt="mobile phone"/>
+        </div>
+        <div class="name">
+            <h6 type-style="display-8">{name}</h6>
+        </div>
+        <div class="checkbox">
+            <template lwc:if = {isselected}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="22" fill="white"/>
+                    <circle cx="22" cy="22" r="16" fill="#0176D3" stroke="#0176D3" stroke-width="4"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M19.266 28.1508L13.1664 22.1208C12.9445 21.9028 12.9445 21.5396 13.1664 21.3216L13.9796 20.5225C14.2014 20.3045 14.5711 20.3045 14.7929 20.5225L19.3769 25.0631C19.5247 25.2084 19.7835 25.2084 19.9314 25.0631L28.9144 16.1635C29.1362 15.9455 29.5059 15.9455 29.7277 16.1635L30.541 16.9626C30.7628 17.1806 30.7628 17.5438 30.541 17.7618L20.0792 28.1508C19.8574 28.405 19.4878 28.405 19.266 28.1508Z" fill="white"/>
+                  </svg>
+            </template>
+            <template lwc:else>
+                <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="22" fill="white"/>
+                    <circle cx="22" cy="22" r="16" fill="white" stroke="#747474" stroke-width="4"/>
+                </svg>
+            </template>
+        </div>
+    </div>
+</template>

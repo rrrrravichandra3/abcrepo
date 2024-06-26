@@ -1,0 +1,13 @@
+.eachItem:hover {
+    background-color: #F1F1F1;
+    cursor: pointer;
+}
+
+.iconHolder {
+    min-width: .7rem;
+}
+
+.check {
+    --sds-c-icon-color-foreground-default: #0176d3;
+    vertical-align: -webkit-baseline-middle;
+}

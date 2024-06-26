@@ -1,0 +1,20 @@
+<template>
+
+    <div class="container">
+        <div class="ring">
+            <div  class="slds-progress-ring slds-progress-ring_large progressRing">
+                <div class="slds-progress-ring__progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow={taskPercentage}>
+                  <svg viewBox="-1 -1 2 2">
+                    <path class="slds-progress-ring__path" id="slds-progress-ring-path-155" d={progressvalue}></path>
+                  </svg>
+                </div>
+                <div class="slds-progress-ring__content">
+                  <span><h6 class="progressRingContent" type-style="display-8">{tasksCompleted}/{totalTasks}</h6></span>
+                </div>
+            </div>
+        </div>
+        <div class="containerText"><p type-style="eyebrow">Your Progress</p></div>
+    </div>
+
+        
+</template>

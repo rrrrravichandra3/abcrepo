@@ -1,0 +1,27 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <div class="rule-tile-spinner">
+        <template lwc:if={showSpinner}>
+            <lightning-spinner variant="brand" alternative-text="Loading Rules..."></lightning-spinner>
+        </template>
+    </div>
+    <lightning-layout multiple-rows="true" vertical-align="stretch" class="rule-tile-layout slds-size_1-of-1 slds-box slds-box_link slds-theme_shade">
+        <lightning-layout-item class="rule-layout-item">
+            <lightning-layout multiple-rows="true" class="slds-size_1-of-1">
+                <lightning-layout-item size="12">
+                    <lightning-formatted-text value={fieldLabel} class="field-label bold-font"></lightning-formatted-text>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="12">
+                    <lightning-formatted-text value={subtitleText} class="subtitle-text bold-font"></lightning-formatted-text>
+                    <lightning-formatted-text value={subtitleTextVal} class="subtitle-text-val bold-font"></lightning-formatted-text>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-layout-item>
+
+        <lightning-layout-item class="close-btn-layout-item slds-align_absolute-center">
+            <lightning-button-icon data-id="closeBtn" icon-name="utility:close" size="medium" variant="bare" alternative-text="Close" class="close-button">
+            </lightning-button-icon>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

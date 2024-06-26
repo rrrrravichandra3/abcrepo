@@ -1,0 +1,27 @@
+.name h6 {
+    color: var(--wes-g-color-palette-cloud-blue-70,#1ab9ff);
+    padding-top: 5px;
+}
+
+.welcome h6 {
+    display: inline;
+}
+
+.logo {
+    display: inline;
+    padding: 5px;
+}
+
+img {
+    height: 40px;
+}
+
+.container {
+    display: inline-block;
+    width: auto;
+    vertical-align: bottom;
+}
+
+.profilePhoto {
+    display: inline-block;
+}

@@ -1,0 +1,306 @@
+<template>
+    
+    <div class="c-container">
+    <lightning-layout multiple-rows = "true">   
+        <lightning-layout-item padding="around-small" size="12">
+          <template if:true={isEditEnabled}>
+            <div class="slds-text-heading_medium heading">{label.MA_Update_Filter_Criteria_Heading}</div>
+          </template>
+          <template if:false={isEditEnabled}>
+            <div class="slds-text-heading_medium heading">{label.MA_Create_Filter_Criteria_Heading}</div>
+          </template>
+            <lightning-layout multiple-rows = "true">
+                <lightning-layout-item padding="around-small" size="3">
+
+                    <lightning-combobox
+                        name="Object"
+                        label="Object"
+                        placeholder="Select Object"
+                        options={objectOptions}
+                        class="objectName"
+                        onchange={handleObjectChange} ></lightning-combobox>
+
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small" size="3">
+
+                    <lightning-combobox
+                        name="Field"
+                        label="Field"
+                        placeholder="Select Field"
+                        options={objectFields}
+                        class="fieldName"
+                        onchange={handleFieldChange} ></lightning-combobox>
+
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small" size="3">
+                    <lightning-combobox
+                        name="Operator"
+                        label="Operator"
+                        placeholder="Select Field"
+                        class="operator"
+                        options={operatorOptions}></lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small" size="3">
+                    <template if:true={isTextField}>
+                        <lightning-input type="text" label="Value" class="operand"></lightning-input>
+                    </template>
+                    <template if:true={isDateField}>
+                        <lightning-input type="date" label="Value" class="operand"></lightning-input>
+                    </template>
+                    <template if:true={isDateTimeField}>
+                        <lightning-input type="datetime" label="Value" class="operand"></lightning-input>
+                    </template>
+                    <template if:true={isNumberField}>
+                        <lightning-input type="number" label="Value" class="operand"></lightning-input>
+                    </template>
+                    <template if:true={isBoolean}>
+                        <lightning-combobox
+                        name="Value"
+                        label="Value"
+                        options={booleanOptions}
+                        class="operand"
+                    ></lightning-combobox>
+                    </template>
+                    <template if:true={isPickList}>
+                        <lightning-combobox
+                        name="Value"
+                        label="Value"
+                        options={isPickListFieldOptions}
+                        class="operand"
+                    ></lightning-combobox>
+                    </template>
+
+
+                  
+
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small" size="12">
+                  
+                  <template if:true={isEditEnabled}>
+                    <lightning-button variant="brand" label={label.MA_Update_Criteria_Button_Label} title={label.MA_Update_Criteria_Button_Label} onclick={updateFilter} class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button label={label.MA_Filter_Cancel_Button_Label} title={label.MA_Filter_Cancel_Button_Label} onclick={cancelEdit} class="slds-m-left_x-small"></lightning-button>
+                  </template>
+                  <template if:false={isEditEnabled}>
+                    <lightning-button variant="brand" label="Add Criteria" title="Add Criteria" onclick={SaveFilter} class="slds-m-left_x-small"></lightning-button>
+                  </template>
+
+                </lightning-layout-item>
+
+                <lightning-layout-item padding="around-small" size="12">
+                  
+                  <lightning-input type="checkbox" label={label.MA_Filter_Criteria_Formula_Label} checked={isCustomLogic} onchange={customLogicChecked}></lightning-input>
+                  <br/>
+                  <template if:true={isCustomLogic}>
+                    <lightning-input type="text" label={label.MA_AC_Formula_Label} value={existingCriterias.CustomLogics.Acquisition_Contacts__c} class="Acquisition_Contacts__c"></lightning-input>
+                    <br/>
+                    <lightning-input type="text" label={label.MA_AComp_Formula_Label} value={existingCriterias.CustomLogics.Acquisition_Compensation__c} class="Acquisition_Compensation__c"></lightning-input>
+                    <br/>
+                    <lightning-input type="text" label={label.MA_Acq_Prov_Formula_Label} value={existingCriterias.CustomLogics.Acquisition_Provisioning__c} class="Acquisition_Provisioning__c"></lightning-input>
+                    <br/>
+                    <lightning-button variant="brand" label="Save Formula" title="Save Formula" onclick={updateCommunityFilterCall} class="slds-m-left_x-small"></lightning-button>
+                  </template>
+
+                </lightning-layout-item>
+
+                
+               
+
+                
+            </lightning-layout>
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-small" size="12" class="criteriaDisplay">
+            <template if:true={hasContactCriteria}>
+              <div class="slds-text-heading_small">{label.MA_Acq_Con_Filter_Criteria_Label}</div>
+              <br/>
+
+                <table class="slds-table slds-table_cell-buffer slds-table_fixed-layout slds-max-medium-table_stacked-horizontal slds-table_bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="" scope="col">
+                              <div class="slds-cell-wrap" title={label.MA_Filter_Table_SRNO_Heading}>{label.MA_Filter_Table_SRNO_Heading}</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-cell-wrap" title={label.MA_Filter_Table_Label_Heading}>{label.MA_Filter_Table_Label_Heading}</div>
+                            </th>
+                            
+                            <th class="" scope="col">
+                                <div class="slds-cell-wrap" title={label.MA_Filter_Table_Operator_Heading}>{label.MA_Filter_Table_Operator_Heading}</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-cell-wrap" title={label.MA_Filter_Table_Value_Heading}>{label.MA_Filter_Table_Value_Heading}</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-cell-wrap" title={label.MA_Filter_Table_Action_Heading}>{label.MA_Filter_Table_Action_Heading}</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={contactCriteria} for:item="criteria" for:index="index">
+                        <tr class="slds-hint-parent" key={criteria.fieldName}>
+                            <th data-label="Field Name" scope="row">
+                              <div class="slds-cell-wrap" title={criteria.index}>
+                                {criteria.index}
+                              </div>
+                            </th>
+                            <th data-label="Field Name" scope="row">
+                                <div class="slds-cell-wrap" title={criteria.fieldLabel}>
+                                {criteria.fieldLabel}
+                                </div>
+                            </th>
+                            
+                            <th data-label="Operator" scope="row">
+                                <div class="slds-cell-wrap" title={criteria.operator}>
+                                {criteria.operator}
+                                </div>
+                            </th>
+                            <th data-label="Value" scope="row">
+                                <div class="slds-cell-wrap" title={criteria.value}>
+                                {criteria.value}
+                                </div>
+                            </th>
+                            <th data-label="Action" scope="row">
+                                <div class="slds-cell-wrap" >
+                                <a href="javascript:void(0)" onclick={editCriteria} data-object="Acquisition_Contacts__c"  data-sequence={index}>Edit</a> &nbsp;&nbsp;
+                                <a href="javascript:void(0)" onclick={deleteCriteria}  data-object="Acquisition_Contacts__c" data-sequence={index}>Delete</a>
+                                </div>
+                            </th>
+                        </tr>
+                        </template>
+                    </tbody>
+                </table>
+
+            </template>
+            <br/>
+            <template if:true={hasCompensastionCriteria}>
+              <div class="slds-text-heading_small">{label.MA_Acq_Comp_Filter_Criteria}</div>
+              <br/>
+                <table class="slds-table slds-table_cell-buffer slds-table_fixed-layout slds-max-medium-table_stacked-horizontal slds-table_bordered " >
+                    <thead>
+                      <tr class="slds-line-height_reset">
+                        <th class="" scope="col">
+                          <div class="slds-cell-wrap" title={label.MA_Filter_Table_SRNO_Heading}>{label.MA_Filter_Table_SRNO_Heading}</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-cell-wrap" title={label.MA_Filter_Table_Label_Heading}>{label.MA_Filter_Table_Label_Heading}</div>
+                        </th>
+                        
+                        <th class="" scope="col">
+                            <div class="slds-cell-wrap" title={label.MA_Filter_Table_Operator_Heading}>{label.MA_Filter_Table_Operator_Heading}</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-cell-wrap" title={label.MA_Filter_Table_Value_Heading}>{label.MA_Filter_Table_Value_Heading}</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-cell-wrap" title={label.MA_Filter_Table_Action_Heading}>{label.MA_Filter_Table_Action_Heading}</div>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={compensastionCriteria} for:item="criteria" for:index="index">
+                          <tr class="slds-hint-parent" key={criteria.fieldName}>
+                            <th data-label="Field Name" scope="row">
+                              <div class="slds-cell-wrap" title={criteria.index}>
+                                {criteria.index}
+                              </div>
+                            </th>
+                            <th data-label="Field Name" scope="row">
+                              <div class="slds-cell-wrap" title={criteria.fieldLabel}>
+                                {criteria.fieldLabel}
+                              </div>
+                            </th>
+                          
+                            <th data-label="Operator" scope="row">
+                              <div class="slds-cell-wrap" title={criteria.operator}>
+                                {criteria.operator}
+                              </div>
+                            </th>
+                            <th data-label="Value" scope="row">
+                              <div class="slds-cell-wrap" title={criteria.value}>
+                              {criteria.value}
+                              </div>
+                            </th>
+                            <th data-label="Action" scope="row">
+                              <div class="slds-cell-wrap" >
+                                <a href="javascript:void(0)" onclick={editCriteria} data-object="Acquisition_Compensation__c" data-sequence={index}>Edit</a> &nbsp;&nbsp;
+                                <a href="javascript:void(0)" onclick={deleteCriteria} data-object="Acquisition_Compensation__c"  data-sequence={index}>Delete</a>
+                              </div>
+                            </th>
+                          </tr>
+                        </template>
+                    </tbody>
+                </table>
+
+            </template>
+            <br/>
+            <template if:true={hasProvisioningCriteria}>
+              <div class="slds-text-heading_small">{label.MA_Acq_Prov_Filter_Criteria_Label}</div>
+              <br/>
+                <table class="slds-table slds-table_cell-buffer slds-table_fixed-layout slds-max-medium-table_stacked-horizontal slds-table_bordered ">
+                    <thead>
+                      <tr class="slds-line-height_reset">
+                        <th class="" scope="col">
+                          <div class="slds-cell-wrap" title={label.MA_Filter_Table_SRNO_Heading}>{label.MA_Filter_Table_SRNO_Heading}</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-cell-wrap" title={label.MA_Filter_Table_Label_Heading}>{label.MA_Filter_Table_Label_Heading}</div>
+                        </th>
+                        
+                        <th class="" scope="col">
+                            <div class="slds-cell-wrap" title={label.MA_Filter_Table_Operator_Heading}>{label.MA_Filter_Table_Operator_Heading}</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-cell-wrap" title={label.MA_Filter_Table_Value_Heading}>{label.MA_Filter_Table_Value_Heading}</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-cell-wrap" title={label.MA_Filter_Table_Action_Heading}>{label.MA_Filter_Table_Action_Heading}</div>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={provisioningCriteria} for:item="criteria" for:index="index">
+                        <tr class="slds-hint-parent" key={criteria.fieldName}>
+                          <th data-label="Field Name" scope="row">
+                            <div class="slds-cell-wrap" title={criteria.index}>
+                              {criteria.index}
+                            </div>
+                          </th>
+                          <th data-label="Field Name" scope="row">
+                            <div class="slds-cell-wrap" title={criteria.fieldLabel}>
+                              {criteria.fieldLabel}
+                            </div>
+                          </th>
+                         
+                          <th data-label="Operator" scope="row">
+                            <div class="slds-cell-wrap" title={criteria.operator}>
+                              {criteria.operator}
+                            </div>
+                          </th>
+                          <th data-label="Value" scope="row">
+                            <div class="slds-cell-wrap" title={criteria.value}>
+                             {criteria.value}
+                            </div>
+                          </th>
+                          <th data-label="Action" scope="row">
+                            <div class="slds-cell-wrap" >
+                              <a href="javascript:void(0)" onclick={editCriteria} data-object="Acquisition_Provisioning__c" data-sequence={index}>Edit</a> &nbsp;&nbsp;
+                              <a href="javascript:void(0)" onclick={deleteCriteria} data-object="Acquisition_Provisioning__c" data-sequence={index}>Delete</a>
+                            </div>
+                          </th>
+                        </tr>
+                        </template>
+                    </tbody>
+                </table>
+
+            </template>
+            
+        </lightning-layout-item>
+    </lightning-layout>
+    </div>
+    
+    <div if:true={showSpinner} >
+      <lightning-spinner
+          alternative-text="Loading..." variant="brand">
+      </lightning-spinner>
+    </div>
+
+</template>

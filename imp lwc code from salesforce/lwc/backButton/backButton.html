@@ -1,0 +1,16 @@
+<template>
+  <div class={classes}>
+    <!--Back button only shown on Mobile-->
+    <template if:true={isMobile}>
+      <lightning-button-icon icon-name="utility:chevronleft" variant="bare" onclick={backClickedHandler} size="large">
+      </lightning-button-icon>
+    </template>
+
+    <!--Heading-->
+    <h3 class="slds-m-left_xx-small slds-text-heading_medium">
+      <strong>
+        {heading}
+      </strong>
+    </h3>
+  </div>
+</template>

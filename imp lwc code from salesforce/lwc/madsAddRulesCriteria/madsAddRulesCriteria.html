@@ -1,0 +1,54 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <lightning-quick-action-panel header={label.addRulesCriteriaModalHeader}>
+        <div class="modal-body-spinner">
+            <template lwc:if={showSpinner}>
+                <lightning-spinner variant="brand" alternative-text="Loading Rules / Audit Flags..."></lightning-spinner>
+            </template>
+        </div>
+
+        <div class="add-rules-criteria-container">
+            <template lwc:if={hasRulesOrAuditFlags}>
+                <lightning-layout multiple-rows="true" vertical-align="stretch">
+                    <lightning-layout-item class="add-rules-tabset" size="12">
+                        <lightning-tabset variant="scoped">
+                            <template lwc:if={displayRulesCriteria}>
+                                <lightning-tab label={label.rulesCriteriaTab} value={label.rulesCriteriaTab} icon-name="utility:filterList">
+                                    <c-mads-rules-criteria-tab object-options={objectOptions} operators-map={operatorsMap} field-map={rulesFieldMap} 
+                                                               rules-criteria-map={rulesCriteriaMap} field-wrapper-map={rulesFieldWrapperMap}>
+                                    </c-mads-rules-criteria-tab>
+                                </lightning-tab>
+                            </template>
+
+                            <template lwc:if={displayAuditFlags}>
+                                <lightning-tab label={label.auditFlagsTab} value={label.auditFlagsTab} icon-name="utility:asset_audit">
+                                    <c-mads-audit-flags-tab object-options={objectOptions} field-map={auditFieldMap} audit-flags-map={auditFlagsMap} 
+                                                            field-wrapper-map={auditFieldWrapperMap} max-sample-size={maxSampleSize}>
+                                    </c-mads-audit-flags-tab>
+                                </lightning-tab>
+                            </template>
+                        </lightning-tabset>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </template>
+
+            <template lwc:else>
+                <div class="slds-illustration slds-illustration_large" aria-hidden="true">
+                    <img src="/img/chatter/Desert.svg" class="slds-illustration__svg" alt=""/>
+                    <div class="slds-text-color_weak">
+                        <h3 class="slds-text-heading_medium">
+                            <lightning-formatted-text value={illustrativeMsg}></lightning-formatted-text>
+                        </h3>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <div slot="footer">
+            <lightning-button variant="neutral" label="Cancel" onclick={handleCancel}></lightning-button>
+            <lightning-button variant="brand" label="Save" disabled={disabledSaveButton} class="slds-m-left_x-small" onclick={handleSave}>
+            </lightning-button>
+        </div>
+    </lightning-quick-action-panel>
+    
+</template>

@@ -1,0 +1,5 @@
+.profileImg {
+    border-radius: var(--lwc-borderRadiusCircle, 50%);
+    height: 100px;
+    width: 100px;
+}

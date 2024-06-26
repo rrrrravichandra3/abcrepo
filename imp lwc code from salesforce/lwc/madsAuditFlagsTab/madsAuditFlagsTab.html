@@ -1,0 +1,65 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <div class="audit-tab-spinner">
+        <template lwc:if={showSpinner}>
+            <lightning-spinner variant="brand" alternative-text="Loading Audit Flags..."></lightning-spinner>
+        </template>
+    </div>
+
+    <lightning-layout multiple-rows="true" vertical-align="stretch">
+        <lightning-layout-item class="object-layout-item slds-p-horizontal_xx-small">
+            <lightning-combobox name="objects"
+                                data-id="flagsObjCombobox"
+                                label={label.objectLabel}
+                                value={selectedObject}
+                                placeholder="Select Object"
+                                options={objectOptions}
+                                onchange={objectChangeHandler}
+                                class="object-combo-box bold-font">
+            </lightning-combobox>
+        </lightning-layout-item>
+
+        <lightning-layout-item class="field-layout-item slds-p-horizontal_xx-small">
+            <lightning-combobox name="fields"
+                                label={label.fieldLabel}
+                                value={selectedField}
+                                placeholder="Select Field"
+                                options={fieldOptions}
+                                onchange={fieldChangeHandler}
+                                class="field-combo-box bold-font">
+            </lightning-combobox>
+        </lightning-layout-item>
+
+        <lightning-layout-item class="sample-size-layout-item slds-p-horizontal_xx-small">
+            <lightning-combobox name="sample-sizes"
+                                label={label.sampleSizeLabel}
+                                value={selectedSampleSize}
+                                placeholder="Select Sample Size"
+                                options={sampleSizeOptions}
+                                onchange={sampleSizeChangeHandler}
+                                class="sample-size-combo-box bold-font">
+            </lightning-combobox>
+        </lightning-layout-item>
+
+        <lightning-layout-item class="add-layout-item align-bottom slds-p-horizontal_xx-small">
+            <lightning-button label={auditButtonLabel} variant="brand" icon-name="utility:add" stretch="true" class="align-bottom bold-font" onclick={handleAuditButtonClick}>
+            </lightning-button>
+        </lightning-layout-item>
+
+        <template for:each={selectedAuditFlags} for:item="selectedAuditFlag" for:index="objectAuditFlagIndex">
+            <lightning-layout-item key={selectedAuditFlag.objectKey} class="selected-obj-audit-flag-layout-item slds-m-top_medium slds-p-horizontal_xx-small">
+                <lightning-layout multiple-rows="true" vertical-align="start">
+                    <lightning-layout-item size="12" class="object-label-layout-item bold-font">
+                        <lightning-formatted-text value={selectedAuditFlag.objectLabel}></lightning-formatted-text>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="12" class="slds-m-top_xx-small slds-p-around_none">
+                        <c-mads-selected-rules data-id={selectedAuditFlag.objectKey} object-key={selectedAuditFlag.objectKey} rules={selectedAuditFlag.rules} 
+                                               onremove={handleRemoveAuditFlag} onselect={handleEditAuditFlag} onclear={handleClearEditMode}>
+                        </c-mads-selected-rules>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-layout-item>
+        </template>
+    </lightning-layout>
+</template>

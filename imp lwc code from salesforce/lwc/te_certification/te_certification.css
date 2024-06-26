@@ -1,0 +1,41 @@
+.certificate-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px;
+}
+
+.certificate-icon {
+  margin-right: 10px;
+}
+
+.certificate-name {
+  font-weight: bold;
+}
+
+.certificate-badge {
+  height: 75px;
+  width: 75px;
+}
+
+.add-skill-icon{
+  --sds-c-icon-color-foreground-default: #000000; 
+}
+
+.remove-skill-icon{
+  --slds-c-icon-color-foreground: #f3f3f3;
+}
+
+.action-utility-icon{
+  padding: 0;
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
+.frame-align_center{
+  text-align: center;
+}
+
+.frame-align_right{
+  text-align: right;
+}

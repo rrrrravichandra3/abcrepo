@@ -1,0 +1,13 @@
+<template>
+    <div class="tree-node">
+        <template for:each={parents} for:item="parentId">
+            <div key={parentId} class="line"></div>
+        </template>
+        <div class="slds-box slds-m-around_small">
+            <span>{label}</span>
+        </div>
+        <template if:true={children}>
+            <c-te-career-pathing-node-list graph={graph} nodes={children}></c-te-career-pathing-node-list>
+        </template>
+    </div>
+</template>

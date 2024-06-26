@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <isExposed>true</isExposed>
+
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <!-- Propteries for Headers -->
+            <property type="String" name="title" translatable="true" default="My Tickets"/>
+            <property type="String" name="column1Header" translatable="true" default="Tickets"/>
+            <property type="String" name="column2Header" translatable="true" default="Ticket Comments"/>
+            <property type="String" name="column3Header" translatable="true" default="Ticket Details"/>
+
+            <!-- Properties for Column 1 -->
+            <property type="String" name="ticketLabel" translatable="true" default="Ticket #:"/>
+            <property type="String" name="createdLabel" translatable="true" default="Created:"/>
+            <property type="String" name="modifiedLabel" translatable="true" default="Modified:"/>
+            <property type="String" name="openStatusText" translatable="true" default="Open"/>
+            <property type="String" name="closedStatusText" translatable="true" default="Closed"/>
+
+            <!-- Properties for Column 2 -->
+            <property type="String" name="inputPlaceholder" translatable="true" default="Type your message..."/>
+            <property type="String" name="addAttachmentsLabel" translatable="true" default="Add an attachment"/>
+            <property type="String" name="fileTypes" translatable="true" default=".xlsx, .xls, .csv, .png, .doc, .docx, .pdf"/>
+            <property type="String" name="agentName" translatable="true" default="Salesforce Internal"/>
+            <property type="String" name="attachmentErrorMessage" translatable="true" default="Please add a comment before adding an attachment."/>
+            <property type="String" name="successMessage" translatable="true" default="Your message has been saved."/>
+            <property type="String" name="errorMessage" translatable="true" default="An error has occurred."/>
+
+            <!-- Properties for Column 3 -->
+            <property type="String" name="ticketNumLabel" translatable="true" default="Ticket Number"/>
+            <property type="String" name="createdDateLabel" translatable="true" default="Date Created"/>
+            <property type="String" name="lastModifiedLabel" translatable="true" default="Last Modified"/>
+            <property type="String" name="subjectLabel" translatable="true" default="Subject"/>
+            <property type="String" name="statusLabel" translatable="true" default="Status"/>
+            <property type="String" name="ownerLabel" translatable="true" default="Assigned to"/>
+            <property type="String" name="attachmentsLabel" translatable="true" default="Attachments"/>
+            <property type="String" name="descriptionLabel" translatable="true" default="Description"/>
+            <property type="String" name="openCaseLabel" translatable="true" default="Open Ticket"/>
+            <property type="String" name="closeCaseLabel" translatable="true" default="Close Ticket"/>
+
+        </targetConfig>
+    </targetConfigs>
+
+</LightningComponentBundle>

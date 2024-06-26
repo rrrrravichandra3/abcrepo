@@ -1,0 +1,15 @@
+.card{
+    border: 1px solid #747474;
+    border-radius: 10px;
+    
+}
+.titleHeight{
+   
+}
+.wrapped-content{
+   overflow-wrap: break-word;
+   text-overflow: ellipsis;
+}
+.badge-blue{
+    background-color: rgba(238, 244, 255, 1);
+}

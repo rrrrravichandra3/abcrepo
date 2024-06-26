@@ -1,0 +1,58 @@
+<template>
+    <div data-id="overview" class="container  slds-p-around_large">
+        <template if:true={selectedcaseid}>
+            <!-- case comments-->
+            <div id="mydiv1" class="showCaseComments slds-m-bottom_small">
+                <!-- Spinner Logic-->
+                <template if:true={fetchCommentsServerCallInprogress}>
+                    <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </template>
+                <!-- Server call successful logic-->
+                <template if:true={casesCommentWrapper}>
+                    <lightning-layout class="slds-grid slds-grid_vertical" horizontal-align="left">
+                        <template for:each={casesCommentWrapper} for:item="currentcasecomment">
+
+                            <c-ma-case-comment-list-item
+                                key={currentcasecomment.commentId}
+                                macasecommentwrapper={currentcasecomment}
+                            ></c-ma-case-comment-list-item>
+                            
+                        </template>
+                    </lightning-layout>
+                </template>
+            </div>
+    
+            <!-- post new comment-->
+            <div id="mydiv2"  class="newCaseComment slds-m-top_small slds-p-top_small slds-border_top">
+                <!-- Spinner Logic-->
+                <template if:true={postCommentServerCallInProgress}>
+                    <div class="slds-is-relative">
+                        <lightning-spinner alternative-text="Loading..." variant="brand">
+                        </lightning-spinner>
+                    </div> 
+                </template>
+                <!-- post comment html-->
+                <lightning-layout class="slds-grid slds-grid_vertical">
+                    <lightning-layout-item>
+                        <!--  <span onkeypress={keycheck}> -->
+                        <lightning-textarea value={postNewCaseComment} 
+                                            onchange={updateCommentValue} 
+                                            placeholder="Start typing here..." 
+                                            max-length="4000" 
+                                            disabled={caseclosedstatus}>
+                        </lightning-textarea>
+                        <!--  </span> -->
+                    </lightning-layout-item>
+                    <br/>
+                    <lightning-layout-item>
+                        <lightning-button variant="brand" label="Send" title="Add a Comment on this Case" onclick={postNewComment} class="slds-align_absolute-center"></lightning-button>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+        </template>
+    </div>
+ 
+</template>

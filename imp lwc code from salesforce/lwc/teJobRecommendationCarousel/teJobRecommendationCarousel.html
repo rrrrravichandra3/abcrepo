@@ -1,0 +1,38 @@
+<!--
+  @description       : 
+  @author            : Urvish Shah (ushah)
+  @group             : 
+  @last modified on  : 02-07-2024
+  @last modified by  : Urvish Shah (ushah)
+-->
+<template>
+    <template lwc:if={recommendedJobs}> 
+        <div class="padding-left: 20px;">
+            <div class="slds-carousel">
+                <div class="slds-carousel__stage">
+                    <div class="slds-carousel__panels">
+                        <template for:each={jobsToShow} for:item="jobData">
+                            <div key={jobData.job.Reference_ID__c} class="slds-carousel__panel">
+                                <c-te-job-card
+                                contact={contact}
+                                job-data={jobData}
+                                skills={skills}>
+                                </c-te-job-card>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+                <div class="slds-carousel__controlsprevious">
+                    <button class="slds-button slds-button_icon slds-button_icon-border-filled slds-button_icon-x-small slds-text-color_default" title="Previous" onclick={handlePreviousBtn}>
+                        <lightning-icon icon-name="utility:chevronleft" size="x-small"></lightning-icon>
+                    </button>
+                </div>
+                <div class="slds-carousel__controlsforward">
+                    <button class="slds-button slds-button_icon slds-button_icon-border-filled slds-button_icon-x-small slds-text-color_default" title="Next" onclick={handleNextBtn}>
+                        <lightning-icon icon-name="utility:chevronright" size="x-small"></lightning-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

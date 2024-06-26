@@ -1,0 +1,22 @@
+.valuesContainer {
+    border-radius: 16px;
+    background: var(--wes-g-color-palette-green-95);
+    position: relative;
+    overflow:hidden;
+}
+
+.valuesHeader {
+    color: var(--wes-g-color-palette-green-30);
+}
+
+.valuesSubheader {
+    color: var(--wes-g-color-palette-neutral-40);
+}
+
+img.brandyImg {
+    width: auto;
+    height: 500px;
+    position: absolute;
+    bottom: -125px;
+    right: -150px;
+}

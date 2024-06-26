@@ -1,0 +1,59 @@
+<!--
+  @description       : 
+  @author            : Urvish Shah (ushah)
+  @group             : 
+  @last modified on  : 02-20-2024
+  @last modified by  : Urvish Shah (ushah)
+-->
+<template>
+    <template if:true={jobData}>
+        <div class="slds-card slds-m-vertical_small">
+            <div class="slds-grid slds-wrap slds-p-horizontal_small">
+                <!--<div class="slds-col slds-size_1-of-1 slds-p-top_medium">
+                    <span class=" slds-text-heading_small">
+                        {jobData.job.Reference_ID__c}
+                    </span>
+                </div>-->
+                <div class="slds-col slds-size_1-of-1 slds-p-top_small">
+                    <div class="slds-truncate slds-text-heading_small">
+                        {jobData.job.Job_Title__c}
+                    </div>
+                </div>
+                
+                <div class="slds-col slds-size_1-of-1 slds-p-vertical_small slds-border_bottom">
+                    <span>Grade</span>
+                    <span class="slds-float_right">{jobData.job.Compensation_Grade__c}</span>
+                </div>
+                <!--<div class="slds-col slds-size_1-of-1 slds-p-vertical_small slds-border_bottom">
+                    <span>Match Stength</span>
+                    <span class="slds-float_right"><lightning-formatted-number value={jobData.job.match_score__c} format-style="percent"></lightning-formatted-number></span>
+                </div>-->
+                <div class="slds-col slds-size_1-of-1 slds-p-vertical_small slds-border_bottom">
+                    <span>Team</span>
+                    <span class="slds-float_right">{jobData.job.Job_Family_Group__c}</span>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-p-vertical_small slds-border_bottom">
+                        <span >
+                            Location
+                         </span>
+                         <span class="slds-float_right slds-truncate">
+                            {jobData.job.Primary_Location__c}
+                         </span>
+                         
+                         <lightning-helptext  content={jobData.job.All_Locations__c} style="--slds-c-button-spacing-inline-start:0"></lightning-helptext>
+                               
+                </div>
+                <!--<div class="slds-col slds-size_1-of-1 slds-p-vertical_small slds-border_bottom">
+                    You have {jobData.matchingSkills} of the {totalSkills} required.
+                </div>-->
+                <div class=" slds-col slds-size_1-of-1 slds-p-top_medium">
+                    <div class="slds-p-top_large">
+                            <div class="slds-align_absolute-center slds-p-bottom_small">
+                                <lightning-button onclick={navigateToPosting} variant="base" label="View Job" class=""></lightning-button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

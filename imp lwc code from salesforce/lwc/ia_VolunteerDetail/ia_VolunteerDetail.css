@@ -1,0 +1,92 @@
+/* @font-face {
+    font-family: "salesforceLight";
+    src: url("resourceUrl/InsidersFonts/SalesforceSans-Light.ttf"),
+    url("@salesforce/resourceUrl/InsidersFonts/fonts/SalesforceSans-Light.ttf") format("truetype");
+} */
+
+:host .slds-box {
+    border: none !important;
+    border-radius: 0;
+    padding: 30px;
+}
+
+.image-container {
+    text-align: center;
+}
+
+.imageClass {
+    display: inline-block;
+    width: 334px;
+    height: auto;
+}
+
+.ia_VolunteerDetails_align_left {
+    text-align: left;
+}
+
+.filedLabel {
+    font-family: inherit;
+    color: rgb(0, 34, 68);
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.filedValue {
+    font-family: inherit;
+    color: rgb(0, 34, 68);
+    font-weight: lighter;
+    font-size: 18px;
+}
+
+.aboutInsiderClasslabel {
+    color: rgb(0, 34, 68);
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.aboutInsiderClass {
+    font-family: inherit;
+    color: rgb(0, 34, 68);
+    font-size: 18px;
+    font-weight: lighter;
+}
+
+.serviceResourceName {
+    font-family: inherit;
+    color: rgb(0, 161, 224);
+    text-transform: none;
+    font-weight: lighter;
+    text-align: left;
+    font-size: 32px;
+}
+
+.ia_VolunteerDetails-button {
+    background-color: rgb(33, 92, 160) !important;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 7px 15px;
+    min-width: 90px;
+    font-size: 16px;
+}
+
+.ia_VolunteerDetails-button:hover,
+.ia_VolunteerDetails-button:focus {
+    background-color: rgb(7, 66, 127) !important;
+}
+
+@media (max-width: 767px) {
+    .ia_VolunteerDetails_mobile_align_center {
+        text-align: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .ia_VolunteerDetails_mobile_align_center {
+        text-align: left;
+    }
+    .back-button-container {
+        position: relative;
+        margin-top: -78px;
+    }
+}

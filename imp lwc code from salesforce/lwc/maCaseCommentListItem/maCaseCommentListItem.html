@@ -1,0 +1,36 @@
+<template>
+    <div class="slds-m-bottom_small">
+        <!-- If it is user's own comment, align right-->
+        <template if:true={macasecommentwrapper.userOwnComment}>
+            <lightning-layout>
+                <lightning-layout-item size="4"></lightning-layout-item>
+                <lightning-layout-item size="8">
+                    <lightning-layout class="slds-grid slds-grid_vertical">
+                        <lightning-layout-item class="commonComment userComment">
+                            {macasecommentwrapper.commentBody}
+                        </lightning-layout-item>
+                        <lightning-layout-item class="slds-m-left_small">
+                            {macasecommentwrapper.commentAuthor} &#8226; {macasecommentwrapper.commentDate}
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </lightning-layout-item>
+            </lightning-layout>
+        </template>
+
+        <!-- If it is NOT user's own comment, align left-->
+        <template if:false={macasecommentwrapper.userOwnComment}>
+            <lightning-layout>
+                <lightning-layout-item size="8">
+                    <lightning-layout class="slds-grid slds-grid_vertical">
+                        <lightning-layout-item class="commonComment otherAuthors">
+                            {macasecommentwrapper.commentBody}
+                        </lightning-layout-item>
+                        <lightning-layout-item class="slds-m-left_small">
+                            {macasecommentwrapper.commentAuthor} &#8266; {macasecommentwrapper.commentDate}
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </lightning-layout-item>
+            </lightning-layout>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,76 @@
+<template>
+    <table aria-multiselectable="true" class="slds-table slds-table_cell-buffer slds-table_fixed-layout slds-table_bordered slds-table_resizable-cols slds-no-row-hover table-style">
+        
+        <thead class="table-head-style">
+            <tr class="slds-line-height_reset slds-cell_action-mode">
+                <th class="col-0-style" scope="col">
+                    <div class="slds-truncate" title="Row Count">
+                        <!-- Row count column -->
+                    </div>
+                </th>
+
+                <th class="slds-text-align_right slds-cell_action-mode column-header-style col-1-style" scope="col">
+                    <div class="slds-float_left slds-truncate slds-th__action slds-th__action_form" title="Select All">
+                        <lightning-input type="checkbox" onchange={handleSelectAllChange} data-name="select-all">
+                        </lightning-input>
+                    </div>
+                </th>
+        
+                <template for:each={columnHeaders} for:item="columnHeader" for:index="columnIndex">
+                    <th key={columnHeader.headerLabel} class={columnHeader.headerStyleClass} scope="col">
+                        <div class="slds-truncate" title={columnHeader.headerLabel}>
+                            {columnHeader.headerLabel}
+                        </div>
+                    </th>
+                </template>
+            </tr>
+        </thead>
+
+        <tbody class="template-rows">
+            <template for:each={availableTemplates} for:item="availableTemplate" for:index="templateIndex">
+                <tr class="slds-hint-parent row-style" key={availableTemplate.concatenatedId}>
+                    <td class="slds-cell_action-mode row-count-style"  role="gridcell">
+                        <div class="slds-truncate">
+                            {availableTemplate.templateRowNum}
+                        </div>
+                    </td>
+
+                    <td class="slds-text-align_right slds-cell_action-mode checkbox-style" role="gridcell">
+                        <div class="slds-float_left slds-truncate">
+                            <lightning-input type="checkbox" onchange={handleSelectChange} data-id={availableTemplate.concatenatedId}>
+                            </lightning-input>
+                        </div>
+                    </td>
+
+                    <td class="slds-cell_action-mode cell-padding" role="gridcell">
+                        <div class="slds-truncate" title={availableTemplate.MA_DS_Template_Being_Used__r.Name}>
+                            <lightning-formatted-text value={availableTemplate.MA_DS_Template_Being_Used__r.Name}>
+                            </lightning-formatted-text>
+                        </div>
+                    </td>
+
+                    <td class="slds-cell_action-mode cell-padding" role="gridcell">
+                        <div class="slds-truncate" title={availableTemplate.MA_DS_Template_Being_Used__r.MA_DS_Template_Document_Type__c}>
+                            <lightning-formatted-text value={availableTemplate.MA_DS_Template_Being_Used__r.MA_DS_Template_Document_Type__c}>
+                            </lightning-formatted-text>
+                        </div>
+                    </td>
+
+                    <td class="slds-cell_action-mode cell-padding" role="gridcell">
+                        <div class="slds-truncate" title={availableTemplate.mergeCapable}>
+                            <lightning-formatted-text value={availableTemplate.mergeCapable}>
+                            </lightning-formatted-text>
+                        </div>
+                    </td>
+
+                    <td class="slds-cell_action-mode cell-padding" role="gridcell">
+                        <div class="slds-truncate" title={availableTemplate.templateCopied}>
+                            <lightning-formatted-text value={availableTemplate.templateCopied}>
+                            </lightning-formatted-text>
+                        </div>
+                    </td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+</template>

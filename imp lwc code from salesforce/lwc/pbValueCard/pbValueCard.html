@@ -1,0 +1,15 @@
+<template>
+        <wes-card 
+            lwc:external
+            direction="2" 
+            depth="vertical"
+            >
+                <h2 type-style="display-6" slot="header">{title}</h2>
+                <div type-style="body-2" class="card-paragraph">{paragraph}</div>
+                <div  slot="footer">
+                    <a href={link} target="_blank" rel="noopener">
+                        <u>Learn More</u>
+                    </a>
+                </div>
+        </wes-card>
+</template>

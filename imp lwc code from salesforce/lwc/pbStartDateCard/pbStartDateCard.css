@@ -1,0 +1,18 @@
+.startCard {
+    width: 90%;
+    max-width: 130px;
+    height: 160px;
+    box-shadow: var(--wes-g-shadow-4, 0px 24px 48px -4px rgba(24, 24, 24, 0.20));
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-top: 16px;
+    text-align: center;
+    background: white;
+}
+
+
+h6.startDateText {
+    color: var(--wes-g-color-palette-cloud-blue-70,#1ab9ff);
+}

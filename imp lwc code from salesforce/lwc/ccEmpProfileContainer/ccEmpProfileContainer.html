@@ -1,0 +1,102 @@
+<template>
+    <div class="scriptContainer" lwc:dom="manual"></div>
+    <div class="profile-container">
+        <div class="leftNavigation">
+            <h4 type-style="display-3">{label.ccEmpMyProfileHeading}</h4>
+            <div class="side-navigation">
+                <ul>
+                    <p type-style="body-2">
+                        <template for:each={sectionLinks} for:item="link">
+                            <li key={link.DeveloperName} onclick={scrollToSction} data-key={link.key}
+                                class="sideNavLinks slds-p-vertical_small">
+                                {link.Label}
+                            </li>
+                        </template>
+                    </p>
+                </ul>
+            </div>
+            <div grid flow="wrap" class="progressContainer">
+                <div size="2:12">
+                    <div class="progress-bar">
+                        <progress id="html" min="0" max="100" value="92"></progress>
+                    </div>
+                </div>
+                <div size="10:12" class="completionHeding">
+                    <h7 type-style="display-7">{label.ccEmpProfileCompletion}</h7>
+                </div>
+                <div size="12:12" class="splitter"></div>
+                <div size="1:12">
+                    <lightning-progress-ring value="75" variant="active-step"> </lightning-progress-ring>
+                </div>
+
+                <div size="11:12">
+                    <h8 type-style="display-8">{label.ccEmpadd20Skills}</h8>
+                </div>
+                <div size="1:12">
+                    <lightning-progress-ring value="75" variant="active-step"> </lightning-progress-ring>
+                </div>
+                <div size="11:12">
+                    <h8 type-style="display-8">{label.ccEmpAddCerts}</h8>
+                </div>
+                <div size="1:12">
+                    <lightning-progress-ring value="75" variant="active-step"> </lightning-progress-ring>
+                </div>
+                <div size="11:12">
+                    <h8 type-style="display-8">{label.ccEmpCompleteCerts}</h8>
+                </div>
+                <div size="1:12">
+                    <lightning-progress-ring value="75" variant="active-step"> </lightning-progress-ring>
+                </div>
+                <div size="11:12">
+                    <h8 type-style="display-8">{label.ccEmpFindMentor}</h8>
+                </div>
+                <div size="1:12">
+                    <lightning-progress-ring value="75" variant="active-step"> </lightning-progress-ring>
+                </div>
+                <div size="11:12">
+                    <h8 type-style="display-8">{label.ccEmpAddProjects}</h8>
+                </div>
+            </div>
+        </div>
+        <div grid flow="wrap">
+            <div size="3:12"></div>
+            <div size="6:12"></div>
+            <div size="3:12">
+                <div grid flow="wrap">
+                    <div size="9:12">
+                        <c-wes-select>
+                            <div slot="label">{label.ccEmpViewAsHeading}</div>
+                            <template for:each={viewAsoptions} for:item="opt">
+                                <option key={opt.label} value={opt.value}>{opt.label}</option>
+                            </template>
+                        </c-wes-select>
+                    </div>
+                    <div size="3:12">
+                        <a href="jascript:void(0)" class="arrowIcon">
+                            <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="1" y="1" width="42" height="42" rx="3" fill="white" />
+                                <rect x="1" y="1" width="42" height="42" rx="3" stroke="#0176D3" stroke-width="2" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M13.308 23.1539H26.0772C26.4234 23.1539 26.5772 23.5769 26.3465 23.8077L22.6541 27.5C22.4234 27.7308 22.4234 28.0769 22.6541 28.3077L23.5003 29.1539C23.7311 29.3846 24.0772 29.3846 24.308 29.1539L31.0388 22.3846C31.2695 22.1539 31.2695 21.8077 31.0388 21.5769L24.308 14.8462C24.0772 14.6154 23.7311 14.6154 23.5003 14.8462L22.6926 15.6539C22.4618 15.8846 22.4618 16.2308 22.6926 16.4616L26.3849 20.1539C26.6157 20.4231 26.4618 20.8462 26.1157 20.8462H13.3465C13.0388 20.8462 12.7695 21.0769 12.7695 21.3846V22.5385C12.7695 22.8462 13.0003 23.1539 13.308 23.1539Z"
+                                    fill="#0176D3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div size="3:12"></div>
+            <div size="9:12" class="slds-m-top_large">
+                <article class="slds-card slds-p-around_large">
+                    <template if:true={hasLoaded}>
+                        <template for:each={componentInstances} for:item="section">
+                            <div key={section.key} class={section.key}>
+                                <lwc:component lwc:is={section.instance}></lwc:component>
+                            </div>
+                        </template>
+                    </template>
+                </article>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,7 @@
+.field {
+    overflow-wrap: break-word;
+}
+
+p.fieldLabel {
+    color: #444;
+}

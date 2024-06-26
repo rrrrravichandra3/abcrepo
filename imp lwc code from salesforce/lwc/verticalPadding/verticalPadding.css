@@ -1,0 +1,9 @@
+.padding-height {
+    height: var(--vp-height);
+}
+
+@media only screen and (max-width: 48em)  {
+    .padding-height {
+        height: var(--vp-height-mobile);
+    }
+}

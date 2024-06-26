@@ -1,0 +1,31 @@
+div {
+    border: 2px solid transparent;
+}
+
+.caseDetails {
+    color: #3e3e3c;
+}
+
+.c-default {
+    /*border-bottom-width: 2px;
+    border-bottom: #d8d8d8 ;
+    border-bottom-style: ridge;*/
+   border-bottom: 1px solid #d8d8d8;
+}
+
+.c-greyclosed {
+    /*border-bottom-width: 2px;
+    border-bottom: #d8d8d8 ;*/
+    background-color: #e6e6e6;
+    border-bottom: 1px solid #d8d8d8;
+    /*border-bottom-style: ridge;*/
+}
+
+.c-mouseover-border {
+    border: 1px solid #145FB2;
+}
+
+.c-highlight-selected{
+    background-color: #145FB2;
+    color: white;
+}

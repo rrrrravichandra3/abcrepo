@@ -1,0 +1,72 @@
+.container {
+    display: flex;
+    position: relative;
+    margin: auto;
+}
+
+
+.main {
+    width: 100%;
+    position: relative;
+}
+
+.default {
+    justify-content: space-evenly;
+}
+
+.arrowHidden {
+    display: none;
+}
+
+
+.whitefade {
+    background: linear-gradient(270deg, #FFF 0%, rgba(255, 255, 255, 0.00) 100%);
+    width: 30px;
+    height: 100%;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+
+.arrow {
+    position: sticky;
+    right: 5px;
+    top: 40%;
+    display: inline-flex;
+    height: 44px;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    border: 2px solid var(--vibrant-blue-50, #0176D3);
+    background: #FFF;
+}
+
+
+.overflow {
+    justify-content: left;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.item {
+    min-width: 30%;
+    margin: 10px;
+}
+
+.container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+.container {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+ }

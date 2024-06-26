@@ -1,0 +1,32 @@
+.progressRing {
+    scale: 150%;
+}
+
+.progressRingContent {
+    scale: 50%;
+    padding-top: 4px;
+}
+
+.ring {
+    position: relative;
+    left: 25%;
+    padding-top: 30%;
+}
+
+p {
+    font-size: 12px;
+}
+.containerText {
+    padding-top: 5px;
+}
+.container {
+    width: 100px;
+    height: 125px;
+    box-shadow: var(--wes-g-shadow-4, 0px 24px 48px -4px rgba(24, 24, 24, 0.20));
+    border-radius: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-top: 7px;
+    background: white;
+}

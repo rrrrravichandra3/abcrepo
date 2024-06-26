@@ -1,0 +1,8 @@
+<template>
+   <!--<c-m-fcustom-lightning-modal onclose={toggleDismissModal} oncancel={toggleDismissModal} onsave={dismissSuggestion} save-label={labels.removeSuggestionLabel}>
+   --><div class="slds-p-around_small slds-is-relative" >
+          <lightning-combobox name="dismissReason" label={labels.whyAreYouNotInterestedLabel} value={dismissalReason} options={reasonvalues} onchange={handleReasonChange}>
+          </lightning-combobox>
+          <lightning-textarea class="slds-m-top_medium" label={labels.anyAdditionalInformationLabel} placeholder={labels.pleaseTellUsMoreLabel} type="text" value={dismissalAdditionalInformation} onchange={handleDismissalInformationChange}></lightning-textarea>
+        </div>
+</template>

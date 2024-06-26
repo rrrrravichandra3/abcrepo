@@ -1,0 +1,55 @@
+.container {
+    background-color: var(--vibrant-indigo-50, #5867E8);
+    padding:10px;
+    border-radius: 0 100em 100em 0;
+    max-width: 85%;
+    margin-left: 0;
+    height: 120px;
+    position: relative;
+    display: flex;
+    text-decoration: none!important;
+}
+
+h6 {
+    color: white;
+}
+
+a {
+    text-decoration: none!important;
+}   
+
+.link {
+    text-decoration: none!important;
+}   
+
+
+.arrow {
+    --sds-c-icon-sizing-width: 30px;
+    --sds-c-icon-color-foreground: white;
+    position: relative;
+    padding-top: 7%;
+    right: 10px;
+}
+
+.text {
+    padding-left: 15px;
+    padding-top: 20px;
+}
+
+span {
+    color: var(--wes-g-color-palette-cloud-blue-70,#1ab9ff);
+}
+
+img {
+    position: relative;
+}
+
+svg {
+    fill: var(--theme-light-color-6, #4ED4CD);
+}
+
+.campbwellImg {
+    position: relative;
+    bottom: 120%;
+    scale: 90%;
+}

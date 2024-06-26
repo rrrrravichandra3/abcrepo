@@ -1,0 +1,48 @@
+.default {
+    border-radius: 16px;
+    border: 2px solid var(--foundation-gray-neutral-50, #747474);
+}
+
+img {
+    max-height: 300px;
+    min-height: 250px;
+    object-fit: contain;
+}
+
+
+.container {
+    text-align: center;
+    padding-top: 25px;
+    padding-left: 50px;
+    padding-right: 50px;
+    position: relative;
+    padding-bottom: 10px;
+    max-width: 300px;
+    margin: 25px;
+}
+
+.default:hover {
+    border-radius: 16px;
+    border: 3px solid var(--wes-g-color-brand-base-contrast-4,indigo);
+}
+
+.selected {
+    border-radius: 16px;
+    border: 3px solid var(--wes-g-color-brand-base-contrast-2,blue);
+}
+
+
+
+.name {
+    padding-top: 3%;
+max-width: 95%;
+white-space: initial;
+}
+
+.checkbox {
+    position: absolute;
+    top: 2%;
+    right: 4%;
+    height: 30px;
+    width: 30px;
+}

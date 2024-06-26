@@ -1,0 +1,8 @@
+.grey-background {
+  background-color: #F7F9FB;
+}
+
+.no-scroll {
+  height: 100vh;
+  overflow: hidden;
+}

@@ -1,0 +1,85 @@
+<template>
+    <div class="slds-grid slds-gutters slds-align_absolute-center">
+            <template lwc:if={isLoading}>
+                <div class="spinner">
+                    <lightning-spinner variant="brand" alternative-text="Loading" size="small"></lightning-spinner>
+                </div>
+              </template>
+            <template lwc:else>
+                <div class="position">
+
+            <div class="heading">
+                <p1 type-style="caption" >
+                    Complete the steps below to
+                </p1>
+            </div>
+            <div>
+                <p2 type-style="display-6" >
+                    Request a Badge
+                </p2>
+            </div>
+            <div>
+                <p3 type-style="caption">
+                    Upload a suitable picture below that will be submitted to CloudCard to produce your Salesforce badge.
+                </p3>
+            </div>
+            <div class="slds-grid slds-gutters" style="padding-top: 100px">
+                <div class="slds-col">
+                    <span>
+                        <p1>Step 1</p1>
+                        <div>
+                            <textdetail>
+                                Go to &nbsp;
+                            </textdetail>
+                            <workdaystep1>
+                                CloudCard
+                            </workdaystep1>
+                            <div class="slds-align_absolute-center">
+                                <div class="workdayimagecontainer">
+                                    <img style="width: 272px;" src={_image1}/>
+                                </div>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+                <div class="slds-col">
+                    <span>
+                        <p1>Step 2</p1>
+                        <div>
+                            <textdetail>
+                                Complete required steps
+                            </textdetail>
+                        </div>
+                        <div class="slds-align_absolute-center">
+                            <div class="workdayimagecontainer">
+                                    <img style="height: 189px;" src={_image2}/>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div style="padding-top: 100px">
+                <div class="slds-align_absolute-center">
+                    <div class="confirmationdiv">
+                       <div class="confirmationtext" style="padding-top: 28px">
+                            <input type="checkbox" name="options" id="checkbox-unique-id-85" value="checkbox-unique-id-85" onchange={handlecheck}/>
+                            &nbsp;I confirm I have completed my tasks in CloudCard
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav">
+                <div class="button">
+                    <lightning-button variant="brand" label="Back to home" onclick={handleHome}>
+                    </lightning-button>
+                </div>
+                <div class="button2">
+                    <lightning-button variant="brand" label = "Next Step: Complete Profile"  disabled = "{disabledValue}" onclick={handleNext}>
+                    </lightning-button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    </div>
+</template>

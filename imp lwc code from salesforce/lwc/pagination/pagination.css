@@ -1,0 +1,11 @@
+.input-wrapper-combobox {
+    display: inline-block;
+    width: 100px;
+}
+.input-wrapper-number {
+    display: inline-block;
+    width: 100px;
+}
+.dateRangeFieldWidth{
+    width : 80px;
+}

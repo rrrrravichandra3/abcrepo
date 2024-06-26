@@ -1,0 +1,12 @@
+<template>
+    <div class="toast">
+        <div class="message">
+            <template lwc:if={_success}> 
+                <div class="toasticon">
+                <wes-icon lwc:external symbol="check"></wes-icon> 
+                </div>
+            </template>
+            <span>{_toastMsg}</span>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,146 @@
+.container {
+    margin: auto;
+    border-radius: 10px;
+    border: 1px solid var(--foundation-black-transparent-16, rgba(0, 0, 0, 0.16));
+    background: #FFF;
+    /* Elevation/Level 2 */
+    box-shadow: 0px 8px 12px -2px rgba(24, 24, 24, 0.16), 0px 2px 8px -2px rgba(24, 24, 24, 0.08);
+    width: fit-content;
+    position: relative;
+    z-index: 2;
+}
+
+.main {
+    margin: auto;
+    width: fit-content;
+    position: relative;
+}
+
+.bg-1 {
+    position: fixed;
+}
+
+.bg-3 {
+    position: absolute;
+    right: -3%;
+    bottom: 0;
+    z-index: 3;
+}
+
+.bg-4 {
+    position: absolute;
+    right: -18%;
+    bottom: 0;
+}
+
+.bg-5 {
+    position: fixed;
+    right: 21%;
+    top: 7%;
+}
+
+.bg-2 {
+    position: fixed;
+    left: 10%;
+    top: 35%;
+    scale: 80%;
+    z-index: 1;
+}
+
+@media only screen and (max-width: 1026px) {
+    .bg-2  {
+        display: none;
+    }
+
+    .bg-1 {
+        display: none;
+    }
+
+    .bg-3  {
+        display: none;
+    }
+
+    .bg-4 {
+        display: none;
+    }
+
+    .bg-5  {
+        display: none;
+    }
+
+    .bg-6  {
+        display: none;
+    }
+
+}
+
+.bg-6 {
+    stroke-width: 1px;
+    stroke: var(--Cloud-Blue---80, #90D0FE);
+    position: absolute;
+    transform: rotate(20deg);
+    bottom: 20%;
+    right: 28%;
+}
+
+.sf-logo-img {
+    scale: 70%;
+    margin: auto;
+    display: block;
+}
+
+.sub-container {
+    width: 440px;
+    margin: 25px 30px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 37%;
+    font-size: x-small;
+}
+
+.heading-1 {
+    color: var(--wes-g-color-palette-cloud-blue-70,#1ab9ff);
+}
+
+.help-text {
+    color: var(--foundation-gray-neutral-30, #444);
+    font-size: 0.7rem;
+}
+
+.heading {
+    margin-top: 45px;
+    margin-bottom: 40px;
+    text-align: center;
+    z-index: 2;
+    position: relative;
+}
+
+.heading-3 {
+    margin-bottom: 15px;
+}
+
+a:link { text-decoration: none!important; }
+
+
+a:visited { text-decoration: none!important; }
+
+
+a:hover { text-decoration: none!important; }
+
+
+a:active { text-decoration: none!important; }
+
+a { text-decoration: none!important; }
+
+
+
+.btn {
+    text-align: center;
+}
+
+.login {
+    padding: 20px 0px;
+}

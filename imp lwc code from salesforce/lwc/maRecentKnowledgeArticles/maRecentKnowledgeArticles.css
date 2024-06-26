@@ -1,0 +1,20 @@
+.article-font-size {
+    font-size: 14px;
+}
+.article-datefont-size {
+    font-size: 13px;
+}
+.indication{
+    padding-left: 0.3rem;
+    color:red;
+    font-size: x-small;
+}
+.alignDate{
+    padding-top: 0.2rem;
+    padding-right: 0.7rem;
+}
+.titleStyle{
+    color: #215ca0;
+    text-transform: uppercase;
+    font-weight: bold;
+}

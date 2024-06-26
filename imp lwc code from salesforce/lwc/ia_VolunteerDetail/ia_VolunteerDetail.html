@@ -1,0 +1,63 @@
+<!--
+  @File Name          : ia_VolunteerDetail.html
+  @Description        : Shows Volunteer data.
+  @Author             : skolagani@salesforce.com
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    06/29/2020   skolagani@salesforce.com   Initial Version
+  1.1    12/04/2020   lolivera@salesforce.com    Added support for a fieldset, fixed responsiveness, modified how JS handles data.
+  1.2    01/29/2021   lolivera@salesforce.com    Fixed double "About this Insider" field bug.
+-->
+
+<template>
+    <div class="slds-box">
+        <div class="slds-grid slds-wrap">
+            <div class="image-container slds-col slds-size--1-of-1 slds-medium-size--2-of-4 slds-p-right_medium">
+                <lightning-formatted-rich-text value={serviceResource.Profile_Picture__c.value} aria-label={profilePictureAlt}	role="img" class="slds-align_absolute-center slds-p-around_medium imageClass"> </lightning-formatted-rich-text>
+            </div>
+
+            <div class="slds-col slds-size--1-of-1 slds-medium-size--2-of-4 ia_VolunteerDetails_align_left">
+                <div class="slds-align_absolute-left slds-m-around_medium ia_VolunteerDetails_mobile_align_center">
+                    <img src={insidersAppLogoUrl} />
+                </div>
+                <div class="slds-p-around_medium ia_VolunteerDetails_mobile_align_center">
+                    <p class="serviceResourceName">{serviceResource.Name.value}</p>
+                </div>
+                <template for:each={serviceResourceFields} for:item="fields">
+                    <div key={fields.Id} style="word-wrap: break-word" class="slds-align_absolute-left slds-p-left_medium">
+                        <dl class="slds-list_horizontal">
+                            <dt>
+                                <p class="filedLabel">{fields.label}:</p>
+                            </dt>
+                            <dd class="slds-p-left_xx-small filedValue">
+                                <p class="">{fields.value}</p>
+                            </dd>
+                        </dl>
+                    </div>
+                </template>
+                <div class="slds-align_absolute-left slds-p-left_medium slds-p-top_small slds-text-heading_small">
+                    <p>
+                        <span class="aboutInsiderClasslabel"> About this Insider: </span>
+                    </p>
+                    <lightning-formatted-text value={serviceResource.About_this_Insider__c.value} class="aboutInsiderClass"> </lightning-formatted-text>
+                </div>
+                <template if:false={isGhosted}>
+                    <div style="word-wrap:break-word;" class="slds-align_absolute-left slds-p-top_small slds-text-heading_small">
+                      <lightning-button variant="brand" label="CONNECT WITH ME" title="CONNECT WIH ME" onclick={connectButtonClick}
+                      class="slds-m-left_x-small">
+                      </lightning-button>
+                    </div>
+                  </template>
+                <template if:true={isGhosted}>
+                    <div style="word-wrap:break-word;" class="slds-align_absolute-left slds-p-top_small slds-text-heading_small">
+                      <lightning-button variant="brand" label="RSVP Closed" title="RSVP Closed" disabled class="slds-m-left_x-small"></lightning-button>
+                    </div>
+                </template>
+            </div>
+
+            <div class="back-button-container slds-p-around_medium slds-col slds-size--1-of-1 slds-medium-size--2-of-4 ia_VolunteerDetails_mobile_align_center">
+                <button class="slds-button slds-button_brand ia_VolunteerDetails-button" onclick={handleClickBack} title="back">back</button>
+            </div>
+        </div>
+    </div>
+</template>

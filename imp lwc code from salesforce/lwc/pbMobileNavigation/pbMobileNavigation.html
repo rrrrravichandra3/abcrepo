@@ -1,0 +1,60 @@
+<template>
+    <!-- Mobile Navigation Header -->
+    <div grid class="customHeaderContainer slds-hide_large slds-grid_vertical-align-center">
+        <div size="1:3" class="slds-grid_vertical-align-center slds-var-p-left_large slds-hide_large">
+            <a class="slds-float_left hamburgerToggle" href="/" onclick={handleHamburgerMenuToggle}>
+                <img class="hamburger-menu-icon" src={hamburgerIcon} alt="Hamburger Icon for Mobile Menu"/>
+            </a>
+        </div>
+        <div size="1:3" class="slds-hide_large">
+            <c-pb-logo logo={logo} class="slds-align_absolute-center"></c-pb-logo>
+        </div>
+        <div size="1:3" class="slds-var-p-right_large slds-hide_large">
+            <nav aria-labelledby="Main Menu Label">
+                <ul>
+                    <li class="mobileMenuItem slds-float_right">
+                        <a href="/" class="anchorTag">
+                            <lightning-icon class="slds-current-color" icon-name="utility:profile_alt" size="small" alternative-text="Profile Icon" title="Profile"></lightning-icon>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+     <!-- Vertical Navigation List for Mobile -->
+    <template if:true={showHamburgerMenu}>
+        <div grid class="slds-is-fixed hamburger-menu-container">
+            <div size="1:2">
+                <div grid class="slds-grid_vertical hamburger-menu">
+                    <div grid class="slds-grid_align-end mobileMenuClose slds-var-p-right_medium slds-var-p-top_medium">
+                        <div>
+                            <a href="/" onclick={handleHamburgerMenuToggle} class="xToggle">
+                                <img
+                                    class="hamburger-menu-icon"
+                                    src={xIcon}
+                                    alt="X Icon to close mobile menu"
+                                />
+                            </a>
+                        </div>
+                    </div>
+
+                        <div grid class="slds-grid_vertical mobileMenuList slds-var-p-left_medium slds-var-p-top_medium">
+                        <div>
+                            <a href="/" class="navbar-items ">
+                                My Profile
+                            </a>
+                        </div>
+                        <div>
+                            <a href="/" class="navbar-items">
+                                Region
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div size="1:2" class="transparentSection"></div>
+        </div>
+    </template>
+    
+</template>

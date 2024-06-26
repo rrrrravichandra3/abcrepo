@@ -1,0 +1,10 @@
+.welcomeText {
+    color: var(--wes-g-color-palette-cloud-blue-60);
+}
+
+.textSection{
+    width: 876px;
+    height: 168px;
+    top: 132px;
+    left: 686px
+}

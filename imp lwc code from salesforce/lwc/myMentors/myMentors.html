@@ -1,0 +1,180 @@
+<template>
+  <div class={containerClasses}>
+    <!--Show spinner when loading-->
+    <template if:true={loading}>
+      <lightning-spinner alternative-text="Loading"></lightning-spinner>
+    </template>
+
+    <lightning-layout multiple-rows>
+      <!--Header-->
+      <lightning-layout-item size="12">
+        <c-page-header heading={pageHeading}></c-page-header>
+      </lightning-layout-item>
+
+      <!-- MOBILE -->
+      <template if:true={isMobile}>
+        <template if:false={noMentorsFound}>
+          <div class="slds-tabs_default rounded slds-m-bottom_medium">
+            <ul class="slds-tabs_default__nav slds-grid" role="tablist">
+              <li class={currentClasses} title={labels.currentLabel} role="presentation">
+                <a class="slds-tabs_default__link slds-text-align_center slds-text-color_default" data-tab="current" onclick={changeTabHandler} role="tab" id="tab-default-1__item">{labels.currentLabel}</a>
+              </li>
+              <li class={pastClasses} title={labels.pastLabel} role="presentation">
+                <a class="slds-tabs_default__link slds-text-align_center slds-text-color_default" data-tab="past" onclick={changeTabHandler} role="tab" id="tab-default-2__item">{labels.pastLabel}</a>
+              </li>
+              <li class={pendingClasses} title={labels.pendingLabel} role="presentation">
+                <a class="slds-tabs_default__link slds-text-align_center slds-text-color_default slds-is-relative" data-tab="pending" onclick={changeTabHandler} role="tab" id="tab-default-3__item">
+                  {labels.pendingLabel}
+                  <template if:true={showRedDot}>
+                    <!--<div class="red-dot"></div>-->
+                    <span class="slds-notification-badge slds-incoming-notification slds-show-notification css-notification-override">{totalPending}</span>
+                  </template>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!--Current Mentors-->
+          <template if:true={showCurrent}>
+            <div class="slds-size_1-of-1 slds-p-horizontal_small slds-p-bottom_small">
+              <c-upload-picture-reminder></c-upload-picture-reminder>
+              <template for:each={current} for:item="match">
+                <c-person-card key={match.Id} match={match} onselected={userSelectedHandler} oncancel={loadData} hide-score show-menu-buttons mode={mode} onupdated={loadData}>
+                </c-person-card>
+              </template>
+              <!--If no mentors found, show 404 message-->
+              <template if:true={noCurrentMentors}>
+                <div class="slds-size_1-of-1">
+                  <c-illustration text={currentMissingMessage}>
+                  </c-illustration>
+                </div>
+              </template>
+            </div>
+          </template>
+
+          <!--Past Mentors-->
+          <template if:true={showPast}>
+            <div class="slds-size_1-of-1 slds-p-horizontal_small slds-p-bottom_small">
+              <c-upload-picture-reminder></c-upload-picture-reminder>
+              <template for:each={past} for:item="match">
+                <c-person-card key={match.Id} match={match} onselected={userSelectedHandler} oncancel={loadData} hide-score mode={mode} onupdated={loadData}>
+                </c-person-card>
+              </template>
+              <!--If no mentors found, show 404 message-->
+              <template if:true={noPastMentors}>
+                <div class="slds-size_1-of-1">
+                  <c-illustration text={pastMissingMessage}> </c-illustration>
+                </div>
+              </template>
+            </div>
+          </template>
+
+          <!--Pending Requests-->
+          <template if:true={showPending}>
+            <div class="slds-size_1-of-1 slds-p-horizontal_small slds-p-bottom_small" tabindex="0" role="button">
+              <c-upload-picture-reminder></c-upload-picture-reminder>
+              <template for:each={pending} for:item="match">
+                <c-person-card key={match.Id} match={match} onselected={userSelectedHandler} oncancel={loadData} hide-score show-approval-buttons={showApprovalButtons} show-pending-buttons={showPendingButtons} onupdated={loadData}>
+                </c-person-card>
+              </template>
+              <!--If no mentors found, show 404 message-->
+              <template if:true={noRequests}>
+                <div class="slds-size_1-of-1">
+                  <c-illustration text={labels.youHaveNoPendingRequestsLabel}>
+                  </c-illustration>
+                </div>
+              </template>
+            </div>
+          </template>
+        </template>
+      </template>
+
+      <!--DESKTOP-->
+      <template if:false={isMobile}>
+        <template if:false={noMentorsFound}>
+          <article class="slds-card slds-p-around_small slds-size_1-of-1 card-shadow">
+            <div class="slds-tabs_default slds-m-bottom_medium">
+              <ul class="slds-tabs_default__nav slds-grid" role="tablist">
+                <li class={currentDesktopClasses} title={labels.currentLabel} role="presentation">
+                  <a class="slds-tabs_default__link slds-text-align_center slds-text-color_default" data-tab="current"  onkeypress ={changeTabHandler} onclick={changeTabHandler} role="tab" tabindex="0" id="tab-default-11__item">{labels.currentLabel}</a>
+                </li>
+                <li class={pastDesktopClasses} title={labels.pastLabel} role="presentation">
+                  <a class="slds-tabs_default__link slds-text-align_center slds-text-color_default" data-tab="past" onkeypress ={changeTabHandler} onclick={changeTabHandler} role="tab" tabindex="0" id="tab-default-21__item">{labels.pastLabel}</a>
+                </li>
+                <li class={pendingDesktopClasses} title={labels.pendingLabel} role="presentation">
+                  <a class="slds-tabs_default__link slds-text-align_center slds-text-color_default slds-is-relative" data-tab="pending" onkeypress ={changeTabHandler} onclick={changeTabHandler} role="tab"  tabindex="0" id="tab-default-31__item">
+                    {labels.pendingLabel}
+                    <template if:true={showRedDot}>
+                      <!--<div class="red-dot"></div>-->
+                      <span class="slds-notification-badge slds-incoming-notification slds-show-notification css-notification-override-desktop">{totalPending}</span>
+                    </template>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!--Current Mentors-->
+            <template if:true={showCurrent}>
+              <c-upload-picture-reminder></c-upload-picture-reminder>
+              <div class="slds-grid slds-wrap slds-grid_pull-padded-small"  >
+                <template for:each={current} for:item="match">
+                  <div key={match.Id} class="slds-col slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-m-bottom_small" role="tabpanel">
+                    <c-person-card match={match} onselected={userSelectedHandler} oncancel={loadData} hide-score onupdated={loadData} show-menu-buttons mode={mode}>
+                    </c-person-card>
+                  </div>
+                </template>
+              </div>
+              <!--If no mentors found, show 404 message-->
+              <template if:true={noCurrentMentors}>
+                <div class="slds-size_1-of-1">
+                  <c-illustration text={currentMissingMessage}>
+                  </c-illustration>
+                </div>
+              </template>
+            </template>
+
+            <!--Past Mentors-->
+            <template if:true={showPast}>
+              <c-upload-picture-reminder></c-upload-picture-reminder>
+              <div class="slds-grid slds-wrap slds-grid_pull-padded-small">
+                <template for:each={past} for:item="match">
+                  <div key={match.Id} class="slds-col slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-m-bottom_small" role="tabpanel">
+                    <c-person-card match={match} onselected={userSelectedHandler} oncancel={loadData} hide-score onupdated={loadData}>
+                    </c-person-card>
+                  </div>
+                </template>
+              </div>
+              <!--If no mentors found, show 404 message-->
+              <template if:true={noPastMentors}>
+                <div class="slds-size_1-of-1">
+                  <c-illustration text={pastMissingMessage}> </c-illustration>
+                </div>
+              </template>
+            </template>
+
+            <!--Pending Requests-->
+            <template if:true={showPending}>
+              <c-upload-picture-reminder></c-upload-picture-reminder>
+              <div class="slds-grid slds-wrap slds-grid_pull-padded-small">
+                <template for:each={pending} for:item="match">
+                  <div key={match.Id} class="slds-col slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-m-bottom_small" role="tabpanel">
+                    <c-person-card match={match} onselected={userSelectedHandler} oncancel={loadData} hide-score onupdated={loadData} show-approval-buttons={showApprovalButtons} show-pending-buttons={showPendingButtons}>
+                    </c-person-card>
+                  </div>
+                </template>
+              </div>
+              <!--If no mentors found, show 404 message-->
+              <template if:true={noRequests}>
+                <div class="slds-size_1-of-1">
+                  <c-illustration text={labels.youHaveNoPendingRequestsLabel}>
+                  </c-illustration>
+                </div>
+              </template>
+            </template>
+          </article>
+        </template>
+      </template>
+      <c-q-footer></c-q-footer>
+    </lightning-layout>
+  </div>
+</template>

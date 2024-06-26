@@ -1,0 +1,10 @@
+<template>
+
+    <div if:true={isLoaded}>
+        <c-career-connect-spa-header></c-career-connect-spa-header>
+        <c-career-connect-spa-navigation current-page-id={currentPageId} menu-items={menuItems} current-page-reference={currentPageReference}></c-career-connect-spa-navigation>
+        <c-career-connect-spa-pages  current-page-id={currentPageId} ></c-career-connect-spa-pages>
+        <c-career-connect-spa-footer> </c-career-connect-spa-footer>
+    </div>
+
+</template>

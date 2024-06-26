@@ -1,0 +1,19 @@
+<template>
+  <template if:true={showReminder}>
+    <article class="slds-card card-shadow slds-theme_default slds-m-bottom_small">
+      <lightning-layout horizontal-align="spread" vertical-align="center">
+        <lightning-layout-item padding="around-small">
+          <div class="profile-photo"  style={profilePhotoBg}></div>
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-small" flexibility="grow">
+          <h2 class="slds-text-heading_small">
+            {label.ReminderLabel}
+          </h2>
+          <div class="slds-p-top_small">
+            <lightning-button variant="neutral" label={label.MyProfileLabel} onclick={navigateToProfile}></lightning-button>
+          </div>
+        </lightning-layout-item>
+      </lightning-layout>
+    </article>
+  </template>
+</template>

@@ -1,0 +1,9 @@
+<template>
+    <template for:each={savedJobs} for:item="job">
+        <lightning-card class="slds-p-around_medium" key={job.Id} title={job.Name} variant="narrow">
+            <lightning-button-icon id={job.Id}  icon-name="utility:bookmark_stroke" variant="border-filled" alternative-text="saveJob" slot="actions"></lightning-button-icon>
+            {job.Primary_Work_Location__c}
+        </lightning-card>
+    </template>
+    
+</template>

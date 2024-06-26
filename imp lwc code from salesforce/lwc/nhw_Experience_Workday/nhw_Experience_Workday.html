@@ -1,0 +1,85 @@
+<template>
+    <div class="maincontainer">
+        <div class="position">
+            <div>
+                <p1 type-style="caption" >
+                    {_containerText}
+                </p1>
+            </div>
+            <div>
+                <p2 type-style="display-6" >
+                    {_containerHeader}
+                </p2>
+            </div>
+            <div>
+                <p3 type-style="caption">
+                    {_containerBodyText}
+                </p3>
+            </div>
+            <div class="slds-grid slds-gutters" style="padding-top: 100px">
+                <div class="slds-col">
+                    <span>
+                        <p1>Step 1</p1>
+                        <div>
+                            <textdetail>
+                                {_text1}
+                            </textdetail>
+                            <workdaystep1>
+                                {_text2}
+                            </workdaystep1>
+                            <div class="workdayimagecontainer">
+                                    <img style="height: 189px; width: 308px;" src={_image1}/>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+                <div class="slds-col">
+                    <span>
+                        <p1>Step 2</p1>
+                        <div>
+                            <textdetail>
+                                {_text3}
+                            </textdetail>
+                        </div>
+                        <div class="workdayimagecontainer">
+                                <img style="height: 189px; width: 308px;" src={_image2}/>
+                        </div>
+                    </span>
+                </div>
+                <div class="slds-col">
+                    <span>
+                        <p1>Step 3</p1>
+                        <div>
+                            <textdetail>
+                                {_text4}
+                            </textdetail>
+                        </div>
+                        <div class="workdayimagecontainer">
+                                <img style="height: 189px; width: 308px;" src={_image3}/>
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div style="padding-top: 100px">
+                <div class="slds-align_absolute-center">
+                    <div class="confirmationdiv">
+                       <div class="confirmationtext" style="padding-top: 28px">
+                            <input type="checkbox" name="options" id="checkbox-unique-id-85" value="checkbox-unique-id-85" />
+                            {_labelConfirmation}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav">
+                <div class="button">
+                    <lightning-button variant="brand" label="Back to home">
+                    </lightning-button>
+                </div>
+                <div class="button2">
+                    <lightning-button variant="brand" label = "Next Step: Accessibility Needs"  disabled = {disableButton} onclick={handleNext}>
+                    </lightning-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

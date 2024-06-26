@@ -1,0 +1,21 @@
+<!--
+  @description       : 
+  @author            : Urvish Shah (ushah)
+  @group             : 
+  @last modified on  : 12-28-2023
+  @last modified by  : Urvish Shah (ushah)
+-->
+<template>
+    <div class="slds-grid slds-grid_align-end">
+        <lightning-button class="slds-m-bottom_medium" variant="brand" label="Saved Jobs" title="Saved Jobs" onclick={redirectToSavedJobs}></lightning-button>
+    </div>
+    <template class="slds-m-top_medium" if:true={isReadyForPagination}>
+        <c-talent-mp_search-jobs-pagination total-count={totalCount} oncallparentgetjobs={handleChildCallingToGetJobs}></c-talent-mp_search-jobs-pagination>
+    </template>
+    <template if:false={isReadyForPagination}>
+        <span>No jobs found</span>
+    </template>
+    <div>
+        <c-talent-mp_job-card contact={contact} searchedjobs={searchJobList}></c-talent-mp_job-card>
+    </div>
+</template>

@@ -1,0 +1,74 @@
+.gear-icon {
+    --sds-c-icon-sizing-width: 12px;
+}
+
+.add-icon {
+    --sds-c-icon-color-foreground: #0176D3;
+    --sds-c-icon-color-background: transparent;
+    --sds-c-icon-radius-border: 3px;
+}
+
+.add-icon:hover {
+    --sds-c-icon-color-foreground: #0176D3;
+    --sds-c-icon-color-background: #EEF4FF;
+    --sds-c-icon-radius-border: 3px;
+}
+
+.add-skill__button {
+    border: none;
+    background: transparent;
+    border-radius: 3px;
+    padding: 10px;
+    width: 44px;
+    height: 44px;
+}
+
+.add-skill__button:hover { 
+    background: rgb(238, 244, 255);
+}
+
+.active-icon{
+    --slds-c-icon-color-foreground-default: var(--lwc-brandAccessible);
+    --slds-c-button-radius-border: 50%;
+    vertical-align: text-bottom;
+}
+
+.icon:before, .icon:after {
+    content: '';
+    position: absolute;
+    display: block;
+}
+
+.active-icon:focus, .active-icon:active{
+    box-shadow:none;
+}
+
+.hidden{
+    display:none;
+}
+
+.contentFont{
+    color: #032D60;
+    font-weight: 600;
+}
+
+.align-right{
+    right: -27%;
+}
+
+.informationColor{
+    color: #181818;
+}
+
+.skills-dropdown {
+    min-width:fit-content;
+    position: relative;
+}
+
+/* .skills-dropdown[data-is-button-type="false"] {
+    top: -1.5rem;
+} */
+
+:host {
+    --slds-c-textarea-sizing-min-height: 114px;
+}

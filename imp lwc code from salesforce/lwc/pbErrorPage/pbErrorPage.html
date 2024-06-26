@@ -1,0 +1,139 @@
+<template>
+    <c-wes-scope enabled-features={enabledFeatures}>
+        <div>
+            <img src={SFLogo} width="94px" height="66.39px" style="margin-top: 33.82px; display: block;
+                margin-left: auto;
+                margin-right: auto;">
+        </div>
+            <!--div style="width: 2388.32px; height: 509.88px; position: relative">
+                <div style="width: 2127.32px; height: 262.06px; left: 261px; top: 244.41px; position: absolute">
+                    <div
+                        style="width: 2127.32px; height: 262.06px; left: 2127.32px; top: 0px; position: absolute; transform: rotate(180deg); transform-origin: 0 0; mix-blend-mode: multiply">
+                        <div
+                            style="width: 2127.32px; height: 262.06px; left: 0px; top: 0px; position: absolute; transform: rotate(180deg); transform-origin: 0 0">
+                            <img style="width: 1063.66px; height: 262.06px; left: -1063.66px; top: -0px; position: absolute"
+                                src={bgLeft} />
+                            <img style="width: 1063.66px; height: 262.06px; left: -1063.66px; top: -0px; position: absolute; transform: rotate(180deg); transform-origin: 0 0"
+                                src={bgRight} />
+                        </div>
+                        <div
+                            style="width: 2072.78px; height: 384.49px; left: 0.43px; top: -47.21px; position: absolute; transform: rotate(180deg); transform-origin: 0 0; background: linear-gradient(180deg, #FBF2DC 0%, rgba(249.69, 247.77, 245.53, 0) 100%)">
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 889.15px; height: 488.97px; left: 0px; top: 20.91px; position: absolute">
+                    <div
+                        style="width: 367.74px; height: 265.82px; left: 0px; top: 0px; position: absolute; opacity: 0.50; background: linear-gradient(0deg, #F9EFCE 0%, #F9EFCE 100%)">
+                    </div>
+                    <div style="width: 800.94px; height: 214.03px; left: 88.22px; top: 274.94px; position: absolute">
+                        <img style="width: 800.94px; height: 214.03px; left: 800.94px; top: 0px; position: absolute; transform: rotate(180deg); transform-origin: 0 0"
+                            src={bgCloud} />
+                        <div
+                            style="width: 762px; height: 480px; left: 42.10px; top: -301.85px; position: absolute; background: linear-gradient(180deg, #F6EAC9 0%, rgba(250.75, 244.31, 227.76, 0) 100%)">
+                        </div>
+                    </div>
+                </div>
+                <div
+                    style="width: 335px; height: 250px; left: 1621.32px; top: 0px; position: absolute; opacity: 0.50; background: linear-gradient(0deg, #F9EFCE 0%, #F9EFCE 100%)">
+                </div>
+            </div-->
+
+            <div style="text-align: center; justify-content: center; display: flex" class="slds-wrap">
+                <span style="width: 340px;height: 405.75px;">
+                    <img src={AstroErrorPage}>
+                </span>
+                <span style="margin-top: 138px;width: 876px;height: 168px; display: inline-block;">
+                    <span class="welcomeText" type-style='display-2'>
+                        <strong>{congratulationText}</strong>
+                    </span>
+                    <span class="title welcomeText slds-var-p-top_small" style="color: #032D60;" type-style='display-2'>
+                        &nbsp; {bodyText}
+                    </span>
+                    <p type-style="body-1">
+                        If you need support or access to your pre-boarding site information, please visit the links
+                        below:
+                    </p>
+                </span>
+            </div>
+
+            <div class="slds-wrap"
+                style="text-align: center; justify-content: center; display: flex; margin-top: 137px;">
+                <div grid="align-center"
+                    style=" text-align: center; margin-top: 137px; justify-content: center; align-items: flex-start; gap: 52px; display: inline-flex"
+                    class="slds-wrap">
+                    <div size="1:4@large 1:2@medium 1:1@small">
+                        <c-wes-card lwc:external direction="0" depth="vertical" media="fill">
+                            <div style="position: relative; height: 340px;
+                            background: white; 
+                            box-shadow: 0px 8px 12px -2px rgba(24, 24, 24, 0.16); 
+                            border-radius: 16px; 
+                            border: 1px rgba(24, 24, 24, 0.04) solid">
+                                <img slot="header-start" src={TicketError} width="68px" height="68px"
+                                    style="margin-top: 37px;">
+                                <h2 type-style="display-6" slot="header" style="margin-top: 37px;">My Tickets</h2>
+                                <div type-style="body-2" style="margin-top: 10px;">If you need access to your
+                                    pre-boarding tickets, they have
+                                    been
+                                    moved to Concierge. Please check your tickets there.</div>
+                                <div style="margin-top: 40px;">
+                                    <c-wes-button slot="footer" variant="secondary" onclick={gotoConcierge}>
+                                        See my Tickets
+                                    </c-wes-button>
+                                </div>
+                            </div>
+                        </c-wes-card>
+                    </div>
+                    <div size="1:4@large 1:2@medium 1:1@small">
+                        <c-wes-card lwc:external direction="0" depth="vertical" media="fill">
+                            <div style="position: relative; height: 340px;
+                                background: white; 
+                                box-shadow: 0px 8px 12px -2px rgba(24, 24, 24, 0.16); 
+                                border-radius: 16px; 
+                                border: 1px rgba(24, 24, 24, 0.04) solid">
+                                <img slot="header-start" src={WDError} width="68px" height="68px"
+                                    style="margin-top: 17px;">
+                                <h2 type-style="display-6" slot="header" style="margin-top: 37px;">Workday</h2>
+                                <div type-style="body-2" style="margin-top: 10px;">Access your workday account through
+                                    SSO using the link below.
+                                    Or try going to OKTA and clicking on the Workday tile.</div>
+                                <div style="margin-top: 40px;">
+                                    <c-wes-button slot="footer" variant="secondary" onclick={gotoWorkDay}>
+                                        Go to Workday
+                                    </c-wes-button>
+                                </div>
+                            </div>
+                        </c-wes-card>
+                    </div>
+                    <div size="1:4@large 1:2@medium 1:1@small">
+                        <c-wes-card lwc:external direction="0" depth="vertical" media="fill">
+                            <div style="position: relative; height: 340px;
+                                background: white; 
+                                box-shadow: 0px 8px 12px -2px rgba(24, 24, 24, 0.16); 
+                                border-radius: 16px; 
+                                border: 1px rgba(24, 24, 24, 0.04) solid">
+                                <img slot="header-start" src={SupportError} width="68px" height="68px"
+                                    style="margin-top: 37px;">
+                                <h2 type-style="display-6" slot="header" style="margin-top: 37px;">Need Support</h2>
+                                <div type-style="body-2" style="margin-top: 10px;">Do you have HR questions? Use the Ask
+                                    Concierge bot in Slack,
+                                    or type your questions in Concierge.</div>
+                                <div style="margin-top: 40px;">
+                                    <c-wes-button slot="footer" variant="secondary" onclick={gotoAskConcierge}>
+                                        Go to Ask Concierge
+                                    </c-wes-button>
+                                </div>
+                            </div>
+                        </c-wes-card>
+                    </div>
+                </div>
+            </div>
+        <div style="margin-top: 74px; margin-bottom: 69px; text-align: center">
+            <span type-style="body-1">
+                Are you still having problems? Call &nbsp;
+            </span>
+            <span class="welcomeText" type-style="body-1">
+                +1 855-376-5627
+            </span>
+        </div>
+    </c-wes-scope>
+</template>

@@ -1,0 +1,54 @@
+<template>
+    <div class="container">
+        <div class="slds-progress">
+            <ol class="slds-progress__list">
+              <template for:each={_progress} for:item="task">
+                  <template lwc:if = {task.completed}>
+                    <li readonly tabindex="-1" class="slds-progress__item" key={task.name}>
+                      <button readonly tabindex="-1" class="slds-button slds-progress__marker">
+                        <div class="checkicon checked">
+                          <wes-icon lwc:external symbol="check"></wes-icon>
+                        </div>
+                        <span class="slds-assistive-text">{task.name}</span>
+                      </button>
+                      <div class="slds-progress__item_content slds-grid_vertical step-container">
+                          <div class="step-title">{task.name}</div>
+                          <div class="step-time">( {task.estTime} )</div>
+                      </div>
+                    </li>
+                  </template>
+                  <template lwc:elseif = {task.active}>
+                    <li readonly tabindex="-1" class="slds-progress__item slds-is-active" key={task.name}>             
+                      <button readonly tabindex="-1" class="slds-button slds-progress__marker">
+                        <div class="checkicon unchecked">
+                          <wes-icon lwc:external symbol="check"></wes-icon>
+                        </div>        
+                        <span class="slds-assistive-text">{task.name}</span>
+                      </button>
+                      <div class="slds-progress__item_content slds-grid_vertical step-container">
+                          <div class="step-title">{task.name}</div>
+                          <div class="step-time">( {task.estTime} )</div>
+                      </div>
+                    </li>
+                  </template>
+                  <template lwc:else>
+                    <li readonly tabindex="-1" class="slds-progress__item" key={task.name}>
+                      <button readonly tabindex="-1" class="slds-button slds-progress__marker">
+                        <div class="checkicon unchecked">
+                          <wes-icon lwc:external symbol="check"></wes-icon>
+                        </div>
+                      <span class="slds-assistive-text">{task.name}</span>
+                      </button>
+                      <div class="slds-progress__item_content slds-grid_vertical step-container">
+                          <div class="step-title">{task.name}</div>
+                          <div class="step-time">( {task.estTime} )</div>
+                      </div>
+                    </li>
+                  </template>
+              </template>
+            </ol>
+            <div class="slds-progress-bar slds-progress-bar_x-small" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Placeholder for description of progress bar" role="progressbar">
+            </div>
+          </div>
+    </div>
+</template>

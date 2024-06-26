@@ -1,0 +1,18 @@
+:host:hover {
+    cursor: pointer;
+}
+
+.text-holder {
+    text-align: center;
+    font-size: 10px;
+}
+
+.icon-holder {
+    height: 20px;
+    width: 20px;
+    margin: 0px auto 5px;
+}
+
+.blue {
+    color: #006BC8;
+}

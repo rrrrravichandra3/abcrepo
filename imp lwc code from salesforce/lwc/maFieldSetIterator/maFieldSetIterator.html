@@ -1,0 +1,21 @@
+<template>
+    <div class="slds-form" role="list">
+        <template for:each={fieldSet} for:item="fieldSetMember">
+            <div class="slds-form__row" key={fieldSetMember.fieldPath}>
+                <div class="slds-form__item" role="listitem">
+                    <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                        <span class="slds-form-element__label">{fieldSetMember.label}</span>
+                        <div class="slds-form-element__control">
+                            <div class="slds-form-element__static">
+                                <c-ma-formatted-field-set-member sobj-record={sobjRecord} 
+                                                                 field-set-member={fieldSetMember} 
+                                                                 currency={currency}>
+                                </c-ma-formatted-field-set-member>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

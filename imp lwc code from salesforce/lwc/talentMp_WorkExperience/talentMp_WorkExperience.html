@@ -1,0 +1,84 @@
+<!--
+  @description       : 
+  @author            : Urvish Shah (ushah)
+  @group             : 
+  @last modified on  : 02-01-2024
+  @last modified by  : Urvish Shah (ushah)
+-->
+<template>
+    <lightning-card title="Experiences">
+        <lightning-icon size="small" style="cursor: pointer;" icon-name="utility:add" variant="border-filled" alternative-text="Add" slot="actions" onclick={handleAddExperience}></lightning-icon>            
+        <lightning-accordion allow-multiple-sections-open active-section-name={activeSessionName}>
+                <div if:true={error} class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error">
+                    <span class="slds-assistive-text">Error</span>
+                    <h2>{error}</h2>
+                </div>
+                <template for:each={experiences} for:item="experience">
+                    <lightning-accordion-section name={experience.Id} key={experience.Id} label={experience.sectionTitle}>
+                        <lightning-button-menu slot="actions" alternative-text="Show menu" menu-alignment="right" if:false={experience.isEditMode}>
+                            <lightning-menu-item  value="Edit" label="Edit" onclick={handleEditExperience} data-id={experience.Id}></lightning-menu-item>
+                            <lightning-menu-item  value="Delete" label="Delete" onclick={handleDeleteExperience} data-id={experience.Id}></lightning-menu-item>
+                        </lightning-button-menu>
+                        <div class="slds-grid slds-gutters slds-wrap">
+                            <div if:true={showError} class="slds-text-color_error">
+                                Please fill in all the required fields.
+                            </div>
+                            <template if:true={experience.isEditMode}>
+                                <div class="slds-col slds-size_1-of-1">
+                                    <lightning-input label="Job Title" data-name="jobTitle" value={experience.jobTitle} onchange={handleInputChange} data-id={experience.Id} required></lightning-input>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1">
+                                    <lightning-input label="Organization Name" data-name="organizationName" value={experience.organizationName} onchange={handleInputChange} data-id={experience.Id} required></lightning-input>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1">
+                                    <lightning-input type="checkbox" label="I am currently working in this role" data-name="isCurrent" checked={experience.isCurrent} onchange={handleInputChange} data-id={experience.Id}></lightning-input>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <lightning-input type="date" label="Start Date" data-name="startDate" value={experience.startDate} onchange={handleInputChange} data-id={experience.Id} required></lightning-input>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <lightning-input type="date" label="End Date" data-name="endDate" value={experience.endDate} onchange={handleInputChange} data-id={experience.Id} disabled={experience.isCurrent} required={isEndDateRequired}></lightning-input>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1">
+                                    <lightning-input-rich-text label="Description" data-name="description" value={experience.description} onchange={handleInputChange} data-id={experience.Id}></lightning-input-rich-text>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1">
+                                    <lightning-button-group class="slds-float_right">
+                                        <lightning-button label="Cancel" onclick={handleCancelExperience} data-id={experience.Id}></lightning-button>
+                                        <lightning-button label="Save" variant="brand" onclick={handleSaveExperience} data-id={experience.Id}></lightning-button>
+                                    </lightning-button-group>            
+                                </div>
+                            </template>
+                            <template if:false={experience.isEditMode}>
+                                        <div class="slds-col slds-size_1-of-2">
+                                            {experience.organizationName}
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2">
+                                            <div if:true={experience.isCurrent}>
+                                                <i><lightning-formatted-date-time value={experience.startDate}></lightning-formatted-date-time>
+                                                <span>
+                                                    &nbsp;-&nbsp;Current
+                                                </span>  
+                                                </i>   
+                                            </div>
+                                            <div if:false={experience.isCurrent}>
+                                                <i><lightning-formatted-date-time year="2-digit" month="short" day="2-digit" value={experience.startDate}></lightning-formatted-date-time> 
+                                                <span>
+                                                    &nbsp;-&nbsp;<lightning-formatted-date-time year="2-digit" month="short" day="2-digit" value={experience.endDate}></lightning-formatted-date-time> 
+                                               </span> 
+                                               </i>
+                                        </div>
+                                        </div>
+                                        <!-- <div class="slds-col slds-size_1-of-1 slds-text-body_bold slds-p-top_small">
+                                        <b>Description</b>
+                                        </div> -->
+                                        <div class="slds-col slds-size_1-of-1 slds-p-top_small">
+                                            <lightning-formatted-rich-text value={experience.description}></lightning-formatted-rich-text>
+                                        </div>
+                            </template>
+                        </div>
+                    </lightning-accordion-section>
+                </template>
+            </lightning-accordion>
+    </lightning-card>
+</template>

@@ -1,0 +1,3 @@
+public interface IAAssignPublicGroupToPortalUserInterface {
+	void assignPGToPortalUsers(List<IA_Assign_Public_Group_To_Portal_User__e> listOfPlatformEvents);
+}

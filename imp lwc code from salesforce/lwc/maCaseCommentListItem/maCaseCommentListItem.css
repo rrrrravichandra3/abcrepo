@@ -1,0 +1,13 @@
+.userComment {
+    background-color:#145FB2;
+    color: white;
+}
+
+.otherAuthors {
+    background-color: #f3f2f2;
+}
+
+.commonComment {
+    border-radius: 0.5rem;
+    padding: 1rem;
+}

@@ -1,0 +1,99 @@
+.tasksContainer {
+    background-color: var(--wes-g-color-palette-cloud-blue-95);
+    border-radius: 16px;
+}
+
+.stepsRow {
+    padding: 4rem 2rem 4rem 1rem;
+}
+
+.steps2row {
+    justify-content: center;
+}
+
+.steps3row {
+    justify-content: center;
+}
+
+.tasksHeader {
+    padding: 2em 0.9em 0;
+}
+
+.tasksRow {
+    padding-bottom: var(--wes-g-spacing-6);
+    padding-top: var(--wes-g-spacing-3);
+    padding-left: var(--wes-g-spacing-2);
+}
+
+.boldText {
+    font-weight: bold;
+    color: var(--wes-g-color-neutral-base-contrast-4);
+}
+
+.captionFont {
+    font-size: var(--wes-g-font-size-3);
+}
+
+.workdayButtonLink {
+    text-align: center;
+    padding-top: var(--wes-g-spacing-6);
+    font-size: var(--wes-g-font-size-3);
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bushesGraphic {
+    position: absolute;
+    left: 80%;
+    bottom: 6%;
+}
+
+.daysToGo {
+    color: #0D9DDA;
+    margin: 5px 0 0 1rem;
+}
+
+.balloon-style {
+    right: 4rem;
+    margin-top: -40px;
+}
+
+.logo {
+    padding-right: 10px;
+}
+
+.textColumns {
+    padding: 10px;
+}
+
+.custom-grid-container {
+    justify-content: space-between;
+    padding-bottom: 1rem;
+}
+
+.header-style {
+    margin: 10px 0 0 0;
+}
+
+.first-grid-container {
+    margin: 0 9rem 0 0;
+}
+
+.total-days {
+    width: 74px;
+}
+
+.custom-wes-container {
+    display: inline;
+}
+
+.bush-style {
+    top: -48px;
+    right: 6rem;
+    width: 14rem;
+}
+
+.innerGrid {
+    margin-bottom: -10px;
+}

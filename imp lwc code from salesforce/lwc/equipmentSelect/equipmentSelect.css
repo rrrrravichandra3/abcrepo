@@ -1,0 +1,250 @@
+.heading {
+    padding-top: 5%;
+    font-weight: bolder;
+    font-size: 1rem;
+    color: var(--wes-g-color-palette-cloud-blue-65,blue);
+}
+
+.choosenLaptop {
+    padding-top:50px
+}
+
+.choosenMobileImg {
+    scale:90%;
+}
+
+.navicon {
+    scale: 150%;
+}
+
+.vl {
+    height: 400px;
+    margin-top: auto;
+    margin-bottom: auto;
+    border-left: 2px solid #E9E9E9;
+}
+.astroLogo {
+    height: 500px;
+}
+.addressItem {
+    padding-top: 25px;
+}
+
+.address {
+    width: 60%;
+    margin: auto;
+    text-align: left;
+    --sds-c-inputtext-font-size : 0.8rem;
+}
+:host {
+    --sds-c-inputtext-font-size : 0.8rem;
+}
+.review {
+    display: flex;
+    justify-content: space-evenly;
+    padding-left: 10%;
+    margin-top: 50px;
+}
+
+.noteIcon {
+    width: 30px;
+    display: inline;
+    float: left;
+    padding-left: 10px;
+}
+
+.noteHeading {
+    color: #313131;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 114%;
+    margin-left: 4%;
+    letter-spacing: -0.504px;
+    text-align: left;
+    padding-top: 5px;
+}
+
+
+.noteText {
+    overflow: hidden;
+    color: var(--foundation-gray-neutral-10, #181818);
+    font-feature-settings: 'clig' off, 'liga' off;
+    text-overflow: ellipsis;
+    whitespace: nowrap;
+    font-family: Salesforce Sans;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    text-align: left;
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+
+.reviewNote {
+    border-radius: 16px;
+    background: #F6F6F6;
+    width: 95%;
+    margin: auto;
+}
+
+.subheading {
+    margin-top: 2%;
+}
+
+
+
+.confirmNote {
+    overflow: hidden;
+    color: var(--foundation-gray-neutral-10, #181818);
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    text-overflow: ellipsis;
+    whitespace: nowrap;
+    font-family: Salesforce Sans;
+    font-size: 12px;
+    width: 40%;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.019px;
+    text-align: center;
+    margin: auto;
+}
+
+
+.container1 {
+    box-shadow: var(--wes-g-shadow-4, 0px 24px 48px -4px rgba(24, 24, 24, 0.20));
+    border-radius: 16px;
+    z-index: 3;
+    width: 70%;
+    background: #ffffff;
+    margin: auto;
+    margin-top: 5%;
+    position: relative;
+}
+
+.main {
+    margin: auto;
+}
+
+.submain {
+    text-align: center;
+}
+
+.confirmImages {
+    width: 150px;
+    height: 300px;
+    margin: auto;
+}
+.confirmImages2 {
+    width: 150px;
+    margin: auto;
+    height: 125px;
+}
+
+.picker {
+    margin-top: 4%;
+}
+
+.confirmContainer {
+    display: flex;
+    justify-content: space-evenly;
+    width: 90%;
+    margin: auto;
+    margin-top:5%;
+}
+.confirmImageContainer{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 50px;
+}
+
+.miniIcon {
+    width: 25px;
+    margin-right: 10px;
+    maring-left: 5px;
+}
+
+.confirmAddress {
+    border-radius: 16px;
+    background: #F6F9FF;
+    width: 90%;
+    margin: auto;
+    text-align: left;
+    font-size:0.7rem;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.confirmEquipment {
+    border-radius: 16px;
+    border: 2px solid var(--foundation-gray-neutral-50, #747474);
+    background: #FFF;
+    height: fit-content;
+}
+
+.finishBtns {
+    text-align: center;
+    scale: 80%;
+}
+.finishBtn {
+    margin-bottom: 5px;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    background: #F6F6F6;
+    margin-top: 5%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+.button {
+   scale: 75%;
+   margin-left: 25px;
+}
+
+.button2 {
+   scale: 75%;
+   margin-right: 25px;
+}
+
+.navbar {
+    padding-top: 0.6%;
+    width: 40%;
+    scale: 70%;
+}
+
+a {
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.checked {
+    --sds-c-icon-sizing-border: 3px;
+    --sds-c-icon-sizing-width: 15px;
+    --sds-c-icon-radius-border: 20px;
+    --sds-c-icon-color-background: var(--vibrant-blue-50,blue);
+    --sds-c-icon-color-foreground: #ffffff;
+    --sds-c-icon-color-border: transparent;
+    position: relative;
+    right: 40%;
+}
+
+.unchecked {
+    display: none;
+}
+
+.businessSiteNote {
+    border-radius: 16px;
+    background: #F6F9FF;
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    text-align: left;
+}

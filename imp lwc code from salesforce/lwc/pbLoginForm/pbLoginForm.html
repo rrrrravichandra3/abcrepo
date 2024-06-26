@@ -1,0 +1,74 @@
+<template>
+    <c-pb-toast-message></c-pb-toast-message>
+    <div class="main">
+        <div class="heading">
+            <div class="headingIcon">            
+                <wes-icon lwc:external symbol="salesforce1"></wes-icon>
+            </div>
+            <div class="headingContent">
+                <p type-style="display-7">Preboarding Portal Login</p>
+            </div>
+        </div>
+        <div class="container">    
+            <template lwc:if={isVerifyForm}>
+                <div class="containerLabel">
+                    <p type-style="display-8">Enter the 6-digit verification code below</p>
+                </div>
+                <div class="containerInput">
+                    <wes-text-input lwc:external oninput={handleCodeChange} onkeydown={handleKeyPressCode}>
+                        <p type-style="caption">Verification Code</p>
+                        <div class="helptext" slot="help-text">You'll receive a 6-digit verification code at: <span style="font-weight: bolder;"> {_candidateEmail}</span></div>
+                    </wes-text-input>               
+                </div>
+                <div class="btns">
+                    <template lwc:if={isLoading}>
+                        <div class="spinner">
+                            <lightning-spinner variant="brand" alternative-text="Loading" size="small"></lightning-spinner>
+                        </div>  
+                    </template>
+                    <template lwc:else>
+                        <div class="backBtn">
+                            <wes-button lwc:external variant="secondary" size="small" onclick={handleBack}>
+                                <p class="btnLabel">Resend Code</p>
+                            </wes-button> 
+                        </div>
+                        <div class="loginBtn">
+                            <wes-button lwc:external variant="primary" size="small" onclick={handleSubmit}>
+                                <p class="btnLabel">Submit</p>
+                            </wes-button> 
+                        </div>
+                    </template>
+                </div>
+            </template>
+            <template lwc:else>
+                <div class="containerLabel">
+                    <p type-style="display-8">What's your email address?</p>
+                </div>
+                <div class="containerInput">
+                    <wes-text-input lwc:external oninput={handleEmailChange} onkeydown={handleKeyPressLogin} placeholder="example@example.com" value={_candidateEmail}>
+                        <p type-style="caption">Email Address</p>
+                        <div class="emailIcon" slot="start">                
+                            <wes-icon lwc:external symbol="email"></wes-icon>
+                        </div>
+                        <div slot="help-text">You will receive a 6-digit verification code in your email</div>
+                      </wes-text-input>
+                </div>
+                <div class="btns">
+                    <template lwc:if={isLoading}>
+                        <div class="spinner">
+                            <lightning-spinner variant="brand" alternative-text="Loading" size="small"></lightning-spinner>
+                        </div>               
+                     </template>
+                    <template lwc:else>
+                        <div class="loginBtn">
+                            <wes-button lwc:external variant="primary" size="small" onclick={handlelogin}>
+                                <p class="btnLabel">Send Code</p>
+                            </wes-button>
+                        </div>
+                    </template>     
+                </div>
+    
+            </template>
+        </div>
+    </div>
+</template>

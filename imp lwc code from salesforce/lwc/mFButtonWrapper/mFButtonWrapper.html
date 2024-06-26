@@ -1,0 +1,9 @@
+<template>
+    <template if:true={secondarybuttonlabel}>
+        <lightning-button label={secondarybuttonlabel} onclick={handleSecondaryAction} variant="Neutral"
+            class="slds-size_1-of-1 slds-m-right_x-small"></lightning-button>
+    </template>
+    <lightning-button label={primarybuttonlabel} onclick={handlePrimaryAction} variant="Brand"
+        class="slds-size_1-of-1 " if:true={primarybuttonlabel}></lightning-button>
+
+</template>

@@ -1,0 +1,8 @@
+<template>
+  <div class={tileClasses} onclick={selectHandler} onkeypress={selectHandler} tabindex="0" role="button" aria-label={ariaLabel}>
+    <slot></slot>
+    <template if:true={selected}>
+      <img src={iconSrc} alt="selected" class="icon"/>
+    </template>
+  </div>
+</template>

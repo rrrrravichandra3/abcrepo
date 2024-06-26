@@ -1,0 +1,36 @@
+.background {
+    background-color: white;
+  }
+  
+  .containerClasses{
+      height: 100px;
+      width: 100%;
+      background-size: cover;
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      line-height: 100px;
+      font-size: 20px;
+      font-weight: bold;
+  }
+  .containerClasses::before {
+      border-radius: 100%;
+      position: absolute;
+      background: white;
+      right: -200px;
+      left: -200px;
+      bottom: -480px;
+      content: '';
+      top: 80px;
+    }
+    .meetingInfo{
+        text-align: center;
+    }
+    .meetingNumber{
+      font-size: 30px;
+      font-weight: bold;
+    }
+    .meetingText{
+      font-size: 20px;
+    }

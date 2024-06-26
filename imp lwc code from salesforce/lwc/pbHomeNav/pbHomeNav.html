@@ -1,0 +1,20 @@
+<template>
+    <div grid class="container" >
+        <div class="todo">
+            <span class="bluetext">To-do</span> before
+            <br>Your <span class="bluetext">1st Day</span>
+        </div>
+        <div tabindex="-1" class="progressBar">
+            <c-pb-progress-bar currentstep={currentpage}></c-pb-progress-bar>
+        </div>
+        <div grid class="button">
+            <div class="whitefade"></div>
+            <div>
+                <wes-button onclick={handleClick} lwc:external variant={btnVariant} size="small">
+                    <p>{buttonlabel}</p>
+                </wes-button>
+                <p>{currentpage}/6 tasks Completed</p>
+            </div>
+        </div>
+    </div>
+</template>

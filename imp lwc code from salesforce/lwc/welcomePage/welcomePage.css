@@ -1,0 +1,42 @@
+.container {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: auto;
+  z-index: 9999;
+}
+
+.einstein {
+  max-width: 12.5rem;
+}
+
+.color-brand {
+  color: var(--lwc-colorTextBrand);
+}
+
+.character {
+  height: 4.25rem;
+}
+
+.header {
+  font-family: 'Neutra Display', 'Salesforce Sans', Helvetica;
+  color: var(--lwc-colorTextBrand);
+}
+
+.conatinerEdit {
+  margin-top: -60px;
+  z-index: 5;
+  position: relative;
+}
+
+
+.card {
+  background: white;  
+  border-radius: 1.5rem;
+}

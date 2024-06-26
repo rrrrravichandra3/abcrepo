@@ -1,0 +1,8 @@
+.profile-picture {
+  width: 74px;
+  height: 74px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 999px;
+}

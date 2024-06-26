@@ -1,0 +1,83 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <div class="">
+        <article class="slds-box slds-m-bottom_medium">
+            <div class="slds-grid slds-m-bottom_small">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title">
+                            <div class="slds-card__header-link slds-truncate">
+                                <p style="display: inline-flex;">{title} &nbsp;
+                                    <span style="position:relative; top:-4px;" onmouseenter={handleHelptextFocus} onfocusin={handleHelptextFocus}>
+                                        <lightning-helptext content={helptext} menu-alignment="left" class="custom-focus custom-helptext" icon-name="utility:info_alt">
+                                        </lightning-helptext>   
+                                    </span>
+                                </p>
+                            </div>
+                        </h2>
+                    </div>
+                    <div class="slds-no-flex">
+                        <template if:true={isAddObjectiveVisible}>
+                            <lightning-button label="Add Objective" class="custom-focus" variant="brand" slot="actions"
+                                onclick={addObjectives} aria-haspopup="dialog" ></lightning-button>
+                        </template>
+                        <template if:true={isEditVisible}>
+                                <lightning-button-icon slot="actions" icon-name="utility:edit" alternative-text="Edit" class="slds-m-left_xx-small custom-focus"
+                                    title="Edit" menu-alignment="auto" variant="container" onclick={makeEditable}></lightning-button-icon>
+                        </template>
+
+                    </div>
+                </header>
+            </div>
+            <div class="slds-p-left_xx-small slds-card__body_inner slds-is-relative">
+                <lightning-spinner lwc:if={isLoading} class="slds-is-absolute" alternative-text="Loading" size="medium"
+                    variant="brand"></lightning-spinner>
+                
+                    <template if:true={noObjective}>
+                        <template if:false={isEditable}>
+                            <p><lightning-formatted-text value={placeholder}></lightning-formatted-text></p>
+                        </template>
+                    </template>
+                    <template if:true={isTextArea}>
+                        <template if:false={isEditable}>
+                            <p><lightning-formatted-text value={textValue}></lightning-formatted-text></p>
+                        </template>
+                        <template if:false={ismanager}>
+                            <template if:true={isEditable}>
+                                <lightning-textarea type="text" variant="label-hidden" value={textValue}
+                                    onfocusout={handleTextChange} placeholder={placeholder} class="textarea_idp" ></lightning-textarea>
+                                <div class="slds-align_absolute-center">
+                                    <lightning-button class="slds-m-horizontal_small custom-focus" variant="brand-outline"
+                                        label="Cancel" onclick={cancelText}></lightning-button>
+                                    <lightning-button class="slds-m-horizontal_small custom-focus" variant="brand" label="Save"
+                                        onclick={saveText}></lightning-button>
+                                </div>
+                            </template>
+                        </template>
+                    </template>
+                    <template if:false={isTextArea}>
+                        <lightning-accordion allow-multiple-sections-open onsectiontoggle={handleSectionToggle}
+                            active-section-name={_activeSections}>
+                            <template for:each={_objectives} for:item="obj">
+                                <c-i-d-p_-objectives-accordion objective={obj} objective-name={obj.objectiveName} key={obj.recordId}
+                                    ondeleteobjective={deleteObjs} is-completed={isCompleted} ismanager={ismanager} idp-id={idpId}
+                                    onreorganizeobjectives={reorganizeObjectives} oneditobjective={editObj}></c-i-d-p_-objectives-accordion>
+                            </template>
+                            <template if:true={showNewObjectives}>
+                                <template for:each={newObjectives} for:item="obj" for:index="index">
+                                    <div key={obj.recordId} data-id={obj.recordId}>
+                                        <c-i-d-p_-objectives-accordion objective={obj} objective-name={obj.objectiveName} key={obj.recordId}
+                                            ondeleteobjective={deleteObjs} is-completed={isCompleted} is-editable={isEditable} idp-id={idpId}
+                                            onreorganizeobjectives={reorganizeObjectives} ismanager={ismanager}
+                                            oneditobjective={editObj}></c-i-d-p_-objectives-accordion>
+                                    </div>
+                                </template>
+                            </template>
+                        </lightning-accordion>
+                    </template>
+            </div>
+            <footer class="slds-card__footer">
+            </footer>
+        </article>
+    </div>
+</template>

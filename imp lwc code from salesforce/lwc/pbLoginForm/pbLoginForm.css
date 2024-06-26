@@ -1,0 +1,72 @@
+.spinner {
+     height: 50px;
+}
+.container {
+    box-shadow: var(--wes-g-shadow-4, 0px 24px 48px -4px rgba(24, 24, 24, 0.20));
+    border-radius: 20px;
+    background: white;
+    overflow: auto;
+    padding: 5px 30px;
+}
+
+.containerLabel {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.loginBtn {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    float: right;
+}
+
+.containerInput {
+    color: black;
+}
+
+.helptext {
+    font-size: 13px;
+    color: var(--foundation-gray-neutral-30, #444);
+}
+
+.btns {
+    position: relative;
+}
+
+.backBtn {
+    float: left;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.btnLabel {
+    font-size: 14px;
+    padding: 5px;
+}
+
+.headingIcon {
+    --sds-c-icon-sizing-width: 35px;
+    --sds-c-icon-color-foreground: var(--wes-g-color-palette-blue-50);
+}
+
+.emailIcon {
+    --sds-c-icon-sizing-width: 20px;
+    margin-top: 8px;
+    margin-right: 5px;
+    --sds-c-icon-color-foreground: var(--wes-g-color-palette-neutral-50);
+}
+
+.heading {
+    display: flex;
+}
+
+.main {
+    width: 500px;
+    margin: auto;
+}
+
+.headingContent {
+    display: inline;
+    margin-left: 10px;
+    margin-top: 4px;
+}

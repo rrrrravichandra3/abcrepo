@@ -1,0 +1,25 @@
+/**
+ * W-12456766
+ * Extends MA_DS_AbstractCalloutRequest class to invoke serialization of Params attribute content and set body of the HttpRequest.
+ * 
+ * Version      Date            Author                  Description
+ * -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ * v1.0         01/03/2023      Chakshu Malhotra        W-12456766 - Adds logic to set body of the HttpRequest after converting content to CLM accepted format.
+ * -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ */
+public without sharing class MA_DS_PackageCopyCalloutRequest extends MA_DS_AbstractCalloutRequest {
+    /**
+    * ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+    * Method to create payload for the HttpRequest, by serializing the Package Copy Params into XML format & wrapping it within a Root Element.
+    * Sets HttpRequest body using the serialized Params & the Resource / Instance Name of the Package Copy workflow.
+    * ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+    * @param    resourceInstance	            DESCRIPTION (Data Type String, Workflow instance / resource name)
+    * @param    calloutRequestParams	        DESCRIPTION (Data Type MA_DS_CalloutFramework.CalloutRequestParams, CalloutRequestParams instance)
+    * @return   void
+    * ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+    */
+    public override void setCalloutRequestBody(String resourceInstance, MA_DS_CalloutFramework.CalloutRequestParams calloutRequestParams) {
+        String xmlSerializedParams = calloutRequestParams?.serializeToXML(true, MA_DS_AbstractCalloutRequest.ROOT_ELEMENT_PARAMS);
+        this.setRequestBody(resourceInstance, xmlSerializedParams);
+    }
+}

@@ -1,0 +1,120 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <div class="onboarding-container">
+        <div>
+            <p type-style="body-2" class="font-style">
+                <b><span>{userName}</span></b>
+            </p>
+            <template if:false={allStepsCompleted}>
+                <h4 type-style="display-4">Complete Your Profile</h4>
+            </template>
+            <template if:true={allStepsCompleted}>
+                <h4 type-style="display-4">Thank you for completing your profile!</h4>
+            </template>
+
+        </div>
+        <div grid class="slds-m-top_x-large">
+            <!-- Left Navigation Panel -->
+            <div size="4:12" class="slds-progress slds-progress_vertical steps-container">
+                <ul class="slds-progress__list steps-list">
+                    <template for:each={steps} for:item="step">
+                        <li class={step.progressClass} key={step.Label} data-name={step.Label}
+                            onclick={handleStepSelection}>
+                            <span class={step.iconContainerClass} title={step.title}>
+                                <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                    <use xlink:href={step.iconHref}></use>
+                                </svg>
+                                <span class="slds-assistive-text">{step.status}</span>
+                            </span>
+                            <div class="slds-progress__item_content slds-grid slds-grid_align-spread">
+                                <div class="step-details">
+                                    <div>
+                                        <p type-style="body-2">
+                                            <b>
+                                                <template if:true={step.isRequired__c}>*</template>
+                                                <span>{step.Label}</span>
+                                            </b>
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p type-style="caption">
+                                            <span>{step.Section_Description__c}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+                <p type-style="caption" class="slds-p-top_medium">
+                    <span>* Required Sections</span>
+                </p>
+            </div>
+            <!-- Right Content Panel -->
+            <div size="9:12" class="onboarding-content slds-col">
+                <c-wes-card direction="2" depth="vertical" media="fill">
+                    <template if:true={currentStep}>
+                        <div class="slds-box slds-m-bottom_large">
+
+                            <template if:true={allStepsCompleted}>
+                                <!-- Render the profile completion component here -->
+                                <c-cc-emp-profile-completion-screen></c-cc-emp-profile-completion-screen>
+                            </template>
+                            <template if:false={allStepsCompleted}>
+                                <!-- Dynamically render the current step component -->
+                                <lwc:component lwc:is={componentInstances}></lwc:component>
+                            </template>
+
+                            <c-wes-divider variant="primary" direction="horizontal"></c-wes-divider>
+
+                            <div class="slds-grid slds-grid_vertical-align-center">
+                                <!-- Previous Button - Only show if it's not the first step -->
+                                <template if:false={allStepsCompleted}>
+                                    <template if:false={isFirstStep}>
+                                        <div class="slds-col slds-shrink-none">
+                                            <lightning-button variant="base" label="Previous" onclick={handlePrevious}
+                                                class="button-style"></lightning-button>
+                                        </div>
+                                    </template>
+                                    <!-- Skip Section Button - Only render on the first step and align it to the left -->
+                                    <template if:true={isFirstStep}>
+                                        <div class="slds-col slds-shrink-none">
+                                            <lightning-button variant="base" label="Skip Section" onclick={handleSkip}
+                                                disabled={isSkipDisabled} class="button-style"></lightning-button>
+                                        </div>
+                                    </template>
+                                </template>
+
+                                <!-- Skip Section and Next Button container -->
+                                <div class="slds-col slds-grid slds-grid_align-end slds-grow">
+                                    <template if:false={allStepsCompleted}>
+                                        <!-- Skip Section Button - Only render on non-first steps next to the Next button -->
+                                        <template if:false={isFirstStep}>
+                                            <lightning-button variant="base" label="Skip Section" onclick={handleSkip}
+                                                disabled={isSkipDisabled} class="button-style"></lightning-button>
+                                        </template>
+                                        <c-wes-button onclick={handleNext} disabled={isLastStep} variant="primary"
+                                            size="small" label="Next">
+                                            <button part="button">
+                                                <slot name="start" part="start"></slot>
+                                                Next
+                                                <slot name="end" part="end"><c-wes-icon
+                                                        symbol="arrow_right"></c-wes-icon>
+                                                </slot>
+                                            </button>
+                                        </c-wes-button>
+                                    </template>
+                                    <template if:true={allStepsCompleted}>
+                                        <lightning-button variant="brand" label="Get Started"
+                                            disabled={isGetStartedDisabled} onclick={handleGetStartedClick}
+                                            class="button-style"></lightning-button>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </c-wes-card>
+            </div>
+        </div>
+    </div>
+</template>

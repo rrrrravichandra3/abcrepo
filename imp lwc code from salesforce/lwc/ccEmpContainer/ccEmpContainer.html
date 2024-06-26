@@ -1,0 +1,11 @@
+<template>
+  <template if:true={isLoaded}>
+    <c-cc-emp-header-navigation header-navigation={headerNavigation}></c-cc-emp-header-navigation>
+    <template if:true={showBanner}>
+      <c-cc-emp-banner-navigation banner-navigation={bannerNavigation}></c-cc-emp-banner-navigation>
+    </template>
+    <div class="page-routes-position">
+      <c-cc-emp-pages-routes current-page-id={currentPageId}></c-cc-emp-pages-routes>
+    </div>
+  </template>
+</template>

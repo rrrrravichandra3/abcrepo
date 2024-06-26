@@ -1,0 +1,90 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <div>
+    <div class="slds-grid slds-wrap slds-text-body_small slds-m-horizontal_xx-small slds-grid_vertical-align-start slds-gutters_medium" style="font-weight:normal">
+        <div class="slds-col slds-size_6-of-12 slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_5-of-12">
+            <template if:false={isEditable}>
+                <div class="slds-form-element">
+                    <label for="textarea-id" class="slds-form-element__label">Action Name</label>
+                    <div class="slds-form-element__static slds-p-top_small">
+                        <p tabindex="0"> {action.Action} </p>
+                    </div>
+                </div>
+            </template>
+
+            <template if:true={isEditable}>
+                <lightning-textarea name="actName" onfocusout={handleChange} value={action.Action}
+                    placeholder="Enter Action Name" label="Action Name"
+                    message-when-value-missing="Action Name cannot be empty" maxlength="250"
+                    required></lightning-textarea>
+            </template>
+
+        </div>
+
+        <div
+            class="slds-col slds-size_2-of-12 slds-small-size_4-of-12 slds-medium-size_4-of-12 slds-large-size_3-of-12 ">
+            <template if:true={isEditable}>
+            <lightning-combobox style="width:100%" name="progress" value={action.Status} label="Status"
+                placeholder="Select Progress" options={options} onchange={handleChange}
+                ></lightning-combobox>
+            </template>
+            <template if:false={isEditable}>
+                <lightning-input name="readonly_progress" value={action.Status}
+                placeholder="Select Progress" label="Status" read-only></lightning-input>
+            </template>
+
+        </div>
+        <div
+            class="slds-col slds-size_2-of-12 slds-small-size_4-of-12 slds-medium-size_4-of-12 slds-large-size_3-of-12 ">
+            <template if:true={isEditable}>
+            <lightning-input name="completionDate" onchange={handleChange} type="date" label="Due Date"
+                placeholder="Select Date" value={action.completionDate} ></lightning-input>
+            </template>
+            <template if:false={isEditable}>
+                <lightning-input name="readonly_completionDate" value={action.completionDate}
+                placeholder="Select Date" label="Due Date" read-only></lightning-input>
+            </template>
+        </div>
+        <div
+            class="slds-col slds-size_1-of-12 slds-small-size_4-of-12 slds-medium-size_4-of-12 slds-large-size_1-of-12 slds-m-top_large">
+            <template if:false={ismanager}>
+            <lightning-button-icon slot="actions" class="custom-focus" icon-name="utility:delete" alternative-text="Delete" title="Delete"
+                onclick={onActionDelete}></lightning-button-icon>
+            </template>
+
+        </div>
+    </div>
+    <template if:false={isEditable}>
+        <template if:true={action.Comments}>
+            <div class="slds-grid slds-wrap slds-text-body_small slds-m-horizontal_xx-small slds-m-top_small slds-grid_vertical-align-start slds-gutters_medium slds-m-bottom_xx-small"
+                style="font-weight:normal">
+                <div
+                    class="slds-col slds-size_11-of-12 slds-small-size_11-of-12 slds-medium-size_11-of-12 slds-large-size_11-of-12">
+    
+                    <div class="slds-form-element">
+                        <span class="slds-form-element__label slds-m-top_xx-small">Comments</span>
+                        <div class="slds-form-element__control">
+                            <div class="slds-form-element__static">
+                                <p tabindex="0"> {action.Comments} </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </template>
+    
+    <template if:true={isEditable}>
+        <div class="slds-grid slds-wrap slds-text-body_small slds-m-horizontal_xx-small slds-m-top_small slds-grid_vertical-align-start slds-gutters_medium slds-m-bottom_xx-small"
+            style="font-weight:normal">
+            <div
+                class="slds-col slds-size_11-of-12 slds-small-size_11-of-12 slds-medium-size_11-of-12 slds-large-size_11-of-12 slds-m-top_xx-small">
+    
+                <lightning-textarea name="comments" onfocusout={handleChange} value={action.Comments}
+                    label="Comments"></lightning-textarea>
+            </div>
+        </div>
+    </template>
+</div>
+<hr class="slds-var-m-vertical_medium">
+</template>

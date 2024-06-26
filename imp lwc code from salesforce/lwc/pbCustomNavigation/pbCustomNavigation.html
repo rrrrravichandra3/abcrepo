@@ -1,0 +1,78 @@
+<template>    
+    <c-wes-scope enabled-features={enabledFeatures}>
+        <template if:false={showHamburgerMenu}>
+            <div class="top-region">
+                <header class="slds-border_bottom">
+                    <div grid class="customHeaderContainer slds-grid_vertical-align-center slds-show_large">
+                        <!-- Desktop Navigation Header -->
+                        <div size="1:8" class="slds-show_large">
+                           <c-pb-logo logo={_logoUrl}></c-pb-logo>
+                        </div>
+                        <div size="3:8" class="slds-show_large">
+                            <!-- Search Bar -->
+                            <c-pb-custom-search-bar search-placeholder={searchPlaceholder}></c-pb-custom-search-bar>
+                         </div>
+                        <div size="4:8" class="slds-show_large">
+                            <div class="slds-var-p-right_small slds-float_right">
+                                <nav aria-label="Site Main Menu">
+                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                        <li  class="slds-align_absolute-center">
+                                            <!-- My Tickets -->
+                                            <a href="/preboarding/tickets" class="myTicketsLink">
+                                                <h6 type-style="display-8">
+                                                    <lightning-icon
+                                                        icon-name="utility:help_center" 
+                                                        alternative-text="My Tickets Icon" 
+                                                        size="x-small" 
+                                                        class="slds-var-p-right_x-small slds-current-color">
+                                                    </lightning-icon>
+                                                    {myTicketsLabel}
+                                                </h6>
+                                            </a>
+                                        </li>
+                                        <li class="slds-var-p-left_medium slds-align_absolute-center">
+                                            <!-- Need Help Popover-->
+                                            <c-pb-help-popover label={helpLabel}></c-pb-help-popover>
+                                        </li>
+                                        <li class="slds-var-p-left_medium slds-align_absolute-center">
+                                            <!-- Language Selector -->
+                                            <div class="langSelectorContainer">
+                                                <lightning-icon 
+                                                    icon-name="utility:http" 
+                                                    size="small" 
+                                                    alternative-text="Worldwide Icon" 
+                                                    title="Region"
+                                                    class="slds-current-color"
+                                                ></lightning-icon>
+                                            </div>
+                                        </li>
+                                        <li class="slds-var-p-left_medium">
+                                            <!-- Profile Menu Popover -->
+                                            <c-pb-profile-menu
+                                                first-name={firstName}
+                                                last-name={lastName}
+                                                first-initial={firstInitial}
+                                                last-initial={lastInitial}
+                                                employee-id={employeeId}
+                                                employee-id-label={employeeIdLabel}
+                                                workday-link-text={workdayLinkText}
+                                                logout-text={logoutText}
+                                                profile-menu-image={profileMenuImage}
+                                            ></c-pb-profile-menu>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Navigation Header -->
+                    <c-pb-mobile-navigation
+                            logo={_logoUrl}>
+                    </c-pb-mobile-navigation>
+    
+                </header>
+            </div>
+        </template>
+    </c-wes-scope>
+</template>

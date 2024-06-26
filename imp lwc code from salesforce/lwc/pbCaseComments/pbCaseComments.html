@@ -1,0 +1,40 @@
+<template>
+    <div class="commentsContainer">
+        <div data-scroll-area class="commentsSection slds-scrollable_y">
+            <template if:true={commentsList}>
+                <ul>
+                    <template for:each={commentsList} for:item="comment">
+                        <li key={comment.Id} >
+                            <template if:true={comment.inbound}>
+                                <!-- Inbound Comment -->
+                                <c-pb-chat-inbound 
+                                    comment-body={comment.CommentBody}
+                                    created-by={comment.CreatedByName}
+                                    created-date={comment.CreatedDate}
+                                ></c-pb-chat-inbound>
+                            </template>
+                            <template if:true={comment.outbound}>
+                                <!-- Outbound Comment -->
+                                <c-pb-chat-outbound
+                                    comment-body={comment.CommentBody}
+                                    created-by={comment.CreatedByName}
+                                    created-date={comment.CreatedDate}
+                                ></c-pb-chat-outbound>
+                            </template>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+        </div>
+        <template if:false={isClosed}>
+            <div class="slds-var-p-around_medium">
+                <c-pb-case-comment-form
+                    record-id={recordId}
+                    input-placeholder={inputPlaceholder}
+                    add-attachments-label={addAttachmentsLabel}
+                    file-types={fileTypes}
+                ></c-pb-case-comment-form>
+            </div>
+        </template>
+    </div>
+</template>

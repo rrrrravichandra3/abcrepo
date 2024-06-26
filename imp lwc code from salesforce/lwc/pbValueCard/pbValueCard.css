@@ -1,0 +1,33 @@
+.card-paragraph {
+    color: #747474;
+    font-size: 16px;
+}
+
+ /* MOBILE: only show for 480px and smaller */
+ @media screen and (max-width: 480px) {
+    .card-paragraph {
+        height: 180px;
+    }
+}
+
+/* TABLET: 481px to 1024px */
+@media (min-width: 481px) and (max-width: 1023px) {
+    .card-paragraph {
+        height: 180px;
+    }
+
+}
+
+/* DESKTOP: 1024px to  1439 */
+@media (min-width:1024px) and (max-width: 1439px)  {
+    .card-paragraph {
+        height: 200px;
+    }
+}
+
+/* DESKTOP LG: 1440px and up  */
+@media screen and (min-width:1440px) {
+    .card-paragraph {
+        height: 180px;
+    }
+}

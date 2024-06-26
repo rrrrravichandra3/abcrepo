@@ -1,0 +1,110 @@
+.navigation-menu {
+  background-color: white;
+}
+
+.navigation-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation-menu ul li {
+  display: inline-block;
+  margin-right: 3rem;
+}
+
+.navigation-menu ul li span {
+  line-height: 19.38px;
+  letter-spacing: -0.021em;
+  text-align: left;
+  text-decoration: none;
+  padding: 12px 10px;
+  }
+  
+  .navigation-menu ul li span:hover,
+  .navigation-menu ul li span:active,
+  .navigation-menu ul li span:focus {
+      color: #0176D3;
+      border-bottom: 6px solid  #0176D3;
+      border-radius: 50px 0px 0px 0px;
+      opacity: 0px;
+  
+  }
+
+.sub-menu {
+  list-style-type: none;
+  padding: 0;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
+  margin-left: 2rem;
+  margin-top: 0.5rem;
+}
+
+.nav-menu li {
+ /* display: inline-block;*/
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.nav-menu li.active {
+  color: blue; /* Change color for active item */
+}
+
+.sub-menu a {
+  line-height: 1.5rem;
+  letter-spacing: 0.08px;
+  color: var(--wes-g-color-palette-blue-20);
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.sub-menu a:hover,
+.sub-menu a:focus {
+  text-decoration: none;
+  color: var(--wes-g-color-brand-inverse-contrast-1);
+}
+
+
+.ccemp-nav {
+  position: fixed;
+  width: 100%;
+  z-index: 2000;
+  box-shadow: 0px 2px 4px 1px rgba(24, 24, 24, 0.16), 0px 0px 2px 0px rgba(24, 24, 24, 0.08);
+  background-color: var(--wes-g-color-neutral-base-1);
+  right:0;
+  top: 5rem;
+}
+
+.ccemp-container {
+  max-width: 1440px;
+  padding-left: var(--wes-g-spacing-12);
+  padding-right: var(--wes-g-spacing-12);
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+}
+
+.chevrondown-icon{
+  width: 16px;
+}
+
+.nav-flex{
+  display: flex;
+}
+
+.navigation-menu ul li.active span {
+ color: #0176D3;
+      border-bottom: 6px solid  #0176D3;
+      border-radius: 50px 0px 0px 0px;
+      opacity: 0px;
+}
+
+a.active-sub{
+  text-decoration: none !important; 
+  color: var(--wes-g-color-brand-inverse-contrast-1) !important;
+}

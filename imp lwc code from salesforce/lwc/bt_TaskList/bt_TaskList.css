@@ -1,0 +1,19 @@
+.my-card {
+    background-color: white !important;
+}
+
+.my-icon_xxx-small {
+    padding: .2rem !important;
+    background-color: #1B96FF;
+}
+
+.my-border_small {
+    border-width: 2px;
+}
+
+.my-circle {
+    border: 5px solid #1B96FF;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+}

@@ -1,0 +1,82 @@
+<!--
+  @description       : 
+  @author            : Urvish Shah (ushah)
+  @group             : 
+  @last modified on  : 12-13-2023
+  @last modified by  : Urvish Shah (ushah)
+-->
+<template>
+    <div if:true={showSpinner}>
+        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+    </div>
+    <span style="--slds-c-card-body-spacing-inline-start: 0;">
+    <div class="slds-card slds-var-p-around_small">
+            <div class="slds-var-m-bottom_large slds-var-m-top_large">
+            <span class="slds-text-heading_small slds-var-m-vertical_small">
+                {title}
+            </span>
+            <span class="slds-float_right slds-var-m-right_medium">
+                <lightning-icon class="action-utility-icon add-skill-icon" size="x-small"  icon-name="utility:edit" variant="bare" alternative-text="Edit" if:true={editButtonVisibility} onclick={handleEditSkills}></lightning-icon>
+                <lightning-icon class="action-utility-icon add-skill-icon" size="small"  icon-name="action:recall" variant="error" alternative-text="Cancel" if:true={editView} onclick={handleCancelEditSkills}></lightning-icon>
+                <lightning-icon class="action-utility-icon add-skill-icon"  size="small" icon-name="utility:save" variant="success" alternative-text="Save" if:true={editView} onclick={saveUpdatedSkills}></lightning-icon>
+            </span>
+            </div>
+             <div class="slds-var-m-bottom_large">
+                 <template if:true={skillsExist}>
+                     <template for:each={skills} for:item="skill">
+                        <span key={skill.Id} class="slds-badge slds-theme_success slds-m-vertical_xx-small slds-m-left_none slds-var-m-right_xx-small remove-skill-icon">
+                            {skill.Skill__r.Name}
+                            <lightning-icon class="action-utility-icon" data-id={skill.Id} data-name={skill.Skill__r.Name} data-skillsource={skill.skillSource} onclick={handleRemoveSkill}  icon-name="action:remove" variant="bare" size="xx-small"  style="cursor:pointer;" alternative-text="remove" slot="actions" if:true={editView}></lightning-icon>
+                        </span>
+                    </template>
+                 </template>
+                 <template if:false={skillsExist}>
+                    <c-resume-parser onsendevent={resumeskillshandler}></c-resume-parser>
+                 </template>
+             </div>
+
+             <template if:true={editView}>
+                <div class="slds-text-title_bold slds-var-p-vertical_small">
+                    Suggested Skills
+                </div>
+                <div class="slds-var-m-bottom_large">
+                <template if:true={suggestedSkills}>
+                    <template for:each={suggestedSkills} for:item="skill">
+                        <lightning-badge label={skill} key={skill} class="slds-var-m-around_x-small" icon-name="utility:add" style="cursor:pointer;"
+                        data-id={skill} data-value={skill} onclick={handleAddSkill}  icon-position="end">
+                        </lightning-badge>
+                   </template>
+                </template>
+                <template if:false={suggestedSkills}>
+                     <p>No Skills Suggestions Based on Existing Skills</p>
+                </template>
+                </div>
+             </template>
+
+             <template if:true={editView}>
+                <div class="slds-form-element">
+                <div class={searchComboStyleClass} data-id="resultBox" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                    <div>
+                        <div role="none">
+                            <lightning-input type="text" placeholder="Search for a skill name" data-id="skillSearch" name="skillSearchText" onchange={handleSearchSkill} class="slds-c-input-spacing-horizontal-start" label="Skills Input" variant="label-hidden"></lightning-input>
+                        </div>
+                        <div id="listbox-id-1" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
+                            <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                <template for:each={searchSkillResults} for:item="skill">
+                                    <li role="presentation" class="slds-listbox__item" key={skill.Id}>
+                                        <div data-id={skill.Id} data-value={skill.Name} onclick={handleAddSkill} class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+                                            <span class="slds-media__body">
+                                                <span class="slds-listbox__option-text slds-listbox__option-text_entity">{skill.Name}</span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </div>
+             </template>
+            </div>
+         </span>
+ </template>

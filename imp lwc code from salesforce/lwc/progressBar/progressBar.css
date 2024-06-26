@@ -1,0 +1,40 @@
+.slds-progress__item {
+    position: relative;
+    top:9px;
+}
+
+.checked {
+    --sds-c-icon-sizing-border: 3px;
+    --sds-c-icon-sizing-width: 15px;
+    --sds-c-icon-radius-border: 20px;
+    --sds-c-icon-color-background: #2e844a;
+    --sds-c-icon-color-foreground: #ffffff;
+    --sds-c-icon-color-border: transparent;
+}
+
+.unchecked {
+    display: none;
+}
+
+
+.container {
+    width: 100%;
+}
+
+.step-container {
+    position: relative;
+    top: 25px;
+    right: 50%;
+    text-align: center;
+}
+
+
+.step-title {
+    font-size: 0.6rem;
+    font-weight: 800;
+}
+
+.step-time {
+    font-size: xx-small;
+    font-weight:lighter;
+}

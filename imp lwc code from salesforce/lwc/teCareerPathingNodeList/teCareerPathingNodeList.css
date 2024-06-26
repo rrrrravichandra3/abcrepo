@@ -1,0 +1,9 @@
+.tree-node-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tree-node {
+    margin-bottom: 8px; /* Adjust spacing between nodes */
+}

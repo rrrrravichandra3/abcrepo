@@ -1,0 +1,55 @@
+<template>
+    <div class="container" style="min-height:300px;">
+        <lightning-layout multiple-rows="true">
+            <template if:true={showCompanyComboBox}>
+                <lightning-layout-item padding="around-large" size="12">
+                    <lightning-combobox
+                        name={label.MA_Company_Combobox_Label}
+                        label={label.MA_Company_Combobox_Label}
+                        placeholder={label.MA_Select_Company_Label}
+                        options={activeCompanyList}
+                        onchange={handleChange} ></lightning-combobox>
+                </lightning-layout-item>
+            </template>
+            <template if:true={showPagesComboBox}>
+                <lightning-layout-item padding="around-large" size="12">
+                    <lightning-combobox
+                        name={label.MA_PagesCombobox_Label}
+                        label={label.MA_PagesCombobox_Label}
+                        placeholder="Select Page"
+                        options={communityPages}
+                        onchange={handlePageChange} ></lightning-combobox>
+                </lightning-layout-item>
+            </template>
+            <lightning-layout-item padding="around-large" size="12">
+                <template if:true={urlGenerated}>
+                    
+                        <template for:each={communityUrls} for:item="item">
+                            <lightning-layout multiple-rows="true" key={item.Title}>
+                                <lightning-layout-item  size="3" >
+                                    {item.Title}
+                                </lightning-layout-item>
+                                <lightning-layout-item size="8" >
+                                    <span class="urlText"><a href={item.URL} target="_blank">{item.URL}</a></span>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="1">
+                                    <lightning-icon icon-name="utility:copy_to_clipboard" data-title={item.Title} style="cursor:pointer !important" size="x-small" alternative-text="Copy" title="Copy" onclick={copyToClipBoard}></lightning-icon>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </template>
+                   
+                </template>  
+                <br/><br/>
+                <template if:true={ifSuccessCopy}>
+                    <p style="color:rgb(31 120 28)">{label.MA_URL_Copied_Label}</p>
+                </template>
+            </lightning-layout-item>
+        </lightning-layout>
+        
+    </div>
+    <div if:true={showSpinner} >
+        <lightning-spinner
+            alternative-text="Loading..." variant="brand">
+        </lightning-spinner>
+      </div>
+</template>

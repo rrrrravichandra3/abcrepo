@@ -1,0 +1,30 @@
+<template>
+    <template if:true={isJobsPage}>
+        <c-growth>
+
+        </c-growth>
+
+    </template>
+    <template if:true={isCareerPage}>
+        <c-te-career-pathing>
+ 
+        </c-te-career-pathing>
+ 
+     </template>
+
+     <template if:true={isJobSearchPage}>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_1-of-3">
+                <c-talent-mp_search-job-filters>
+
+                </c-talent-mp_search-job-filters>
+            </div>
+            <div class="slds-col slds-size_2-of-3">
+                <c-talent-mp_search-jobs-list>
+
+                </c-talent-mp_search-jobs-list>
+            </div>
+            
+          </div>
+     </template>
+</template>

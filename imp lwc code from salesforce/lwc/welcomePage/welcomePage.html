@@ -1,0 +1,253 @@
+<template>
+  <div class=conatinerEdit>
+    <template if:true={showOnboarding}>
+
+      <template if:true={showWelcomeScreen}>
+        <section class="slds-p-vertical_medium card">
+          <div style="padding: 0 100px;" aria-hidden="true">
+            <lightning-layout multiple-rows>
+              <lightning-layout-item flexibility="auto" padding="around-large">
+                <div class="slds-text-heading_small slds-p-top_medium">
+                  <strong>
+                    {labels.welcome_to} {labels.welcome_mentor_finder}
+                  </strong>
+                </div>
+                <div class="slds-text-color_weak slds-m-vertical_medium">
+                  <p>{labels.welcome_Use_this_app_to_find_mentors_or_mentees_track_your_mentoring_journey_an}
+                  </p>
+                </div>
+                <div class="slds-size_1-of-1 slds-p-top_medium">
+                  <lightning-button variant="brand" label="Get Started" onclick={showModePicker1} aria-haspopup="modal"></lightning-button>
+                </div>
+              </lightning-layout-item>
+              <lightning-layout-item flexibility="auto" padding="around-small">
+                <img src={einsteinStandingUrl} alt="" class="einstein" />
+              </lightning-layout-item>
+            </lightning-layout>
+          </div>
+        </section>
+      </template>
+      <template if:true={loading}>
+        <lightning-spinner alternative-text="Loading"></lightning-spinner>
+      </template>
+
+      <!--  <template if:true={showModePickerrrr}>
+      Show spinner if loading-
+        <template if:true={loading}>
+          <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+
+        -MOBILE-
+        <template if:true={isMobile}>
+           Modal/Popup Box LWC starts here -
+          <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open" data-my-id="modelpopup">
+            <div class="slds-modal__container">
+               Modal/Popup Box LWC header here -
+              <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close Modal"
+                  onclick={closeModal} data-id="modelclose">
+                  <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                    size="small"></lightning-icon>
+                </button>
+                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{labels.welcome} {userName}
+                </h2>
+              </header>
+               Modal/Popup Box LWC body starts here -
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <h4 class="color-brand slds-text-heading_small slds-text-align_center ">
+                  {labels.welcome_First_tell_us_what_you_would_like_to_do}
+                </h4>
+                <lightning-layout horizontal-align="center" multiple-rows class="slds-p-around_small">
+                  <lightning-layout-item size="12" class="slds-text-align_center">
+                    <div>
+                      <c-button-tile onselect={goToBoth}>
+                        <div
+                          class="onhover slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center slds-size_1-of-1">
+                          <img tabindex="0" role="button" src={bothMenteeAndMentorUrl} alt="" class="character" />
+                          <p class="slds-text-align_center slds-text-heading_small slds-p-top_small">
+                            <strong>{labels.welcome_Be_Both}</strong>
+                          </p>
+                        </div>
+                      </c-button-tile>
+                    </div>
+                    <p class="slds-m-top_small slds-p-horizontal_medium slds-text-color_weak">
+                      {labels.welcome_I_d_like_to_become_both_a_Mentor_and_a_Mentee}</p>
+                    <a href={mentorLearnMoreUrl} aria-label='More information about becoming both a mentor and mentee'
+                      target="_blank" class="slds-text-body_small slds-m-top_xx-small">{labels.welcome_Learn_More}</a>
+                  </lightning-layout-item>
+
+                  Find Mentor Button-
+                  <lightning-layout-item size="12" class="slds-m-bottom_large slds-text-align_center">
+                    <div>
+                      <c-button-tile onselect={goToSearchMentors}>
+                        <div
+                          class="onhover slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center slds-size_1-of-1">
+                          <img tabindex="0" role="button" src={menteeCharacterUrl} alt="" class="character" />
+                          <p class="slds-text-align_center slds-text-heading_small slds-p-top_small">
+                            <strong>{labels.welcome_Find_a_Mentor}</strong>
+                          </p>
+                        </div>
+                      </c-button-tile>
+                    </div>
+                    <p class="slds-m-top_small slds-p-horizontal_medium slds-text-color_weak">
+                      {labels.welcome_I_am_looking_for_a_mentor_to_help_build_my_career}</p>
+                    <a href={menteeLearnMoreUrl} aria-label='More information about finding a Mentor' target="_blank"
+                      class="slds-text-body_small slds-m-top_xx-small">{labels.welcome_Learn_More}</a>
+                  </lightning-layout-item>
+
+                  Be Mentor Button
+                  <lightning-layout-item size="12" class="slds-text-align_center">
+                    <div>
+                      <c-button-tile onselect={goToMyMentees}>
+                        <div
+                          class="onhover slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center slds-size_1-of-1">
+                          <img tabindex="0" role="button" src={mentorCharacterUrl} alt="" class="character" />
+                          <p class="slds-text-align_center slds-text-heading_small slds-p-top_small">
+                            <strong>{labels.welcome_Be_a_Mentor}</strong>
+                          </p>
+                        </div>
+                      </c-button-tile>
+                    </div>
+                    <p class="slds-m-top_small slds-p-horizontal_medium slds-text-color_weak">
+                      {labels.welcome_I_d_like_to_volunteer_my_time_to_help_a_Mentee_succeed}</p>
+                    <a href={mentorLearnMoreUrl} aria-label='More information about becoming a Mentor' target="_blank"
+                      class="slds-text-body_small slds-m-top_xx-small">{labels.welcome_Learn_More}</a>
+                  </lightning-layout-item>
+
+                </lightning-layout>
+              </div>
+               Modal/Popup Box LWC footer starts here 
+              <footer class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={submitDetails} title="OK">OK</button>
+                   -
+              </footer>
+            </div>
+          </section>
+          <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+
+          </lightning-layout>
+        </template>
+
+
+        DESKTOP new-
+        <template if:false={isMobile}>
+          Modal/Popup Box LWC starts here -
+          <section role="alertdialog" tabindex="-1" aria-labelledby="modal-heading-02" aria-modal="true"
+            aria-describedby="modal-content-id-2" class="slds-modal slds-fade-in-open" data-my-id="modelpopup">
+            <div class="slds-modal__container">
+               Modal/Popup Box LWC header here
+              <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close Modal"
+                  onclick={closeModal}>
+                  <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                    size="small"></lightning-icon>
+                </button>
+                <h2 id="modal-heading-02" role="heading" tabindex="0" class="slds-text-heading_medium slds-hyphenate">
+                  {labels.welcome} {userName}</h2>
+              </header>
+              Modal/Popup Box LWC body starts here 
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                <h4 class="color-brand slds-text-heading_small slds-text-align_center">
+                  {labels.welcome_First_tell_us_what_you_would_like_to_do}
+                </h4>
+
+                <lightning-layout horizontal-align="center" multiple-rows class="slds-p-around_small">
+                  Find Mentor Button-
+                  <lightning-layout-item size="4" small-device-size="12" medium-device-size="4" large-device-size="4"
+                    class="slds-m-bottom_large slds-text-align_center" padding="around-small">
+                    <div>
+                      <c-button-tile onselect={goToSearchMentors} class="onhover" aria-label="I'd like to find a mentor">
+                        <div
+                          class="slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center slds-size_1-of-1">
+                          <img src={menteeCharacterUrl} alt="" class="character" />
+                          <p class="slds-text-align_center slds-text-heading_small slds-p-top_small">
+                            <strong>{labels.welcome_Find_a_Mentor}</strong>
+                          </p>
+                        </div>
+                      </c-button-tile>
+                    </div>
+                    <p class="slds-m-top_small slds-p-horizontal_medium slds-text-color_weak">
+                      {labels.welcome_I_am_looking_for_a_mentor_to_help_build_my_career}</p>
+                    <a href={menteeLearnMoreUrl} aria-label='More information about finding a Mentor' target="_blank"
+                      class="slds-text-body_small slds-m-top_xx-small">{labels.welcome_Learn_More}</a>
+                  </lightning-layout-item>
+
+                  Be Mentor Button
+                  <lightning-layout-item size="4" small-device-size="12" medium-device-size="4" large-device-size="4"
+                    class="slds-text-align_center" padding="around-small">
+                    <div>
+                      <c-button-tile onselect={goToMyMentees} class="onhover" aria-label="I'd like to be a mentor">
+                        <div  
+                          class="slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center slds-size_1-of-1">
+                          <img src={mentorCharacterUrl} alt="" class="character" />
+                          <p class="slds-text-align_center slds-text-heading_small slds-p-top_small">
+                            <strong>{labels.welcome_Be_a_Mentor}</strong>
+                          </p>
+                        </div>
+                      </c-button-tile>
+                    </div>
+                    <p class="slds-m-top_small slds-p-horizontal_medium slds-text-color_weak">
+                      {labels.welcome_I_d_like_to_volunteer_my_time_to_help_a_Mentee_succeed}</p>
+                    <a href={mentorLearnMoreUrl} aria-label='More information about becoming a Mentor' target="_blank"
+                      class="slds-text-body_small slds-m-top_xx-small">{labels.welcome_Learn_More}</a>
+                  </lightning-layout-item>
+
+                  Find Mentor and Mentee (Both) Button
+                  <lightning-layout-item size="4" small-device-size="12" medium-device-size="4" large-device-size="4"
+                    class="slds-text-align_center" padding="around-small">
+                    <div>
+                      <c-button-tile onselect={goToBoth} class="onhover" aria-label="I'd like to be both a mentor and a mentee">
+                        <div 
+                          class="slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center slds-size_1-of-1">
+                          <img src={bothMenteeAndMentorUrl} alt="" class="character" />
+                          <p class="slds-text-align_center slds-text-heading_small slds-p-top_small">
+                            <strong>{labels.welcome_Be_Both}</strong>
+                          </p>
+                        </div>
+                      </c-button-tile>
+                    </div>
+                    <p class="slds-m-top_small slds-p-horizontal_medium slds-text-color_weak">
+                      {labels.welcome_I_d_like_to_become_both_a_Mentor_and_a_Mentee}</p>
+                    <a href={mentorLearnMoreUrl} aria-label='More information about becoming both a mentor and mentee'
+                      target="_blank" class="slds-text-body_small slds-m-top_xx-small">{labels.welcome_Learn_More}</a>
+                  </lightning-layout-item>
+
+                </lightning-layout>
+              </div>
+               Modal/Popup Box LWC footer starts here 
+              <footer class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral focus-trap" onclick={closeModal} title="Cancel" onkeypress={handleTab}>Cancel</button>
+                 <button class="slds-button slds-button_brand" onclick={submitDetails} title="OK">OK</button> 
+
+              </footer>
+            </div>
+          </section>
+          <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+
+        </template> -
+
+         new end -
+
+      </template> -->
+
+      <!-- Complete profile flow
+      <template if:true={showProfileFlow}>
+        <!MOBILE
+        <template if:true={isMobile}>
+          <div class="container">
+            <c-complete-profile-flow onclose={closeModal} user={user} mode={mode}></c-complete-profile-flow>
+          </div>
+        </template>
+
+        <!DESKTOP-
+        <template if:false={isMobile}>
+          <c-lightning-modal onclose={closeModal} hide-footer>
+            <c-complete-profile-flow onclose={closeModal} user={user} mode={mode}></c-complete-profile-flow>
+          </c-lightning-modal>
+        </template>
+      </template>-->
+    </template>
+  </div>
+</template>

@@ -1,0 +1,38 @@
+<template>
+    <template if:true={isTypeOther}>
+        {fieldSetMemberValue}
+    </template>
+
+    <template if:true={isTypeBoolean}>
+        <span class="slds-checkbox">
+            <input type="checkbox" checked={fieldSetMemberValue} disabled></input>
+            <label class="slds-checkbox__label">
+                <span class="slds-checkbox_faux disabled-checkbox"></span>
+            </label>
+        </span>
+    </template>
+
+    <template if:true={isTypeDate}>
+        <lightning-formatted-date-time value={fieldSetMemberValue} 
+                                       month="short" 
+                                       day="2-digit" 
+                                       year="numeric">
+        </lightning-formatted-date-time>
+    </template>
+
+    <template if:true={isTypeCurrency}>
+        <lightning-formatted-number currency-code={currency} 
+                                    format-style="currency" 
+                                    currency-display-as="code" 
+                                    value={fieldSetMemberValue}>
+        </lightning-formatted-number>
+    </template>
+    
+    <template if:true={isStockGrantField}>
+        <lightning-formatted-number currency-code={label.MA_DefaultUSDCurrencyCodeLabel} 
+                                    format-style="currency" 
+                                    currency-display-as="code" 
+                                    value={fieldSetMemberValue}>
+        </lightning-formatted-number>
+    </template>
+</template>

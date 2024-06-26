@@ -1,0 +1,95 @@
+<template>
+    <div style="background: linear-gradient(360deg, #EEF4FF 0%, #FFFFFF 156.68%);">
+        <img src="/talent/sfsites/c/cms/delivery/media/MCUUNDIEATXVCQDCUNEASVDRT6KE">
+        <c-te_profile-card
+          usr = {usr}
+          contact={contact}
+          skills={skillList}
+          preferences={preferences}
+        ></c-te_profile-card>   
+
+        <div class="slds-grid slds-wrap">
+            <div id="static_text" class="slds-col slds-size_1-of-1 slds-large-size_4-of-12 slds-p-around_x-large">
+                <div class="slds-text-heading_medium">
+                    What is your <span style="color:#0176D3"> long-term </span> career goal?
+                </div>
+                <div>
+                    Choose what role do you envision yourself in the next 5 years and our AI will generate a few career paths for you.
+                </div>
+            </div>
+            <div id="ai_suggestion" class="slds-col slds-size_1-of-1 slds-large-size_8-of-12 slds-p-around_x-large">
+                <div class="slds-text-heading_small">
+                    Suggested Roles                
+                </div>
+                <div>
+                    Based on your current objectives, following are suggested roles for your long-term goal.
+                </div>
+
+
+                <div class="slds-grid slds-wrap">
+                    <template for:each={futureJobs} for:item="job" >
+                        <div key={job.value} class="slds-col slds-size_1-of-1 slds-small-size_5-of-12 slds-p-around_small" >
+
+                                <div class="slds-var-m-top_medium" >
+                                    <lightning-card> 
+                                        <h2 slot="title" style="white-space:normal;">{job.label}</h2>
+                                        <lightning-input type="checkbox-button" label={job.label} slot="actions" name={job.value} value={job.value} 
+                                        onchange={handleJobClick} checked={job.isJobSelected}  >
+                                        </lightning-input>
+                                        
+                                        <div class="slds-grid slds-wrap slds-p-bottom_small">
+                                            <div class="slds-col slds-size_1-of-1 slds-small-size_6-of-12 slds-clearfix" >
+                                                <p class="slds-float_left">
+                                                    Grade {job.grade}   
+                                                </p>
+                                            </div>
+                                            <div class="slds-col slds-size_1-of-1 slds-small-size_6-of-12 slds-clearfix" >
+                                                <template lwc:if={job.isManager}>
+                                                    <lightning-badge label={job.level} class="slds-badge_inverse slds-float_right slds-theme_error slds-text-body_small"></lightning-badge>
+                                                </template>
+                                                <template lwc:else> 
+                                                    <lightning-badge label={job.level} class="slds-badge_inverse slds-float_right slds-theme_success slds-text-body_small"></lightning-badge>
+                                                </template>
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                           
+
+                                    </lightning-card> 
+                                </div>
+
+                        
+                        </div>
+                        
+                </template>
+                <!-- <div  class="slds-col slds-size_1-of-1 slds-small-size_2-of-12 slds-p-around_small" style="cursor:pointer;" onclick={handleClick}>
+                    <div class="slds-var-m-top_medium" >
+                        <lightning-card style="--slds-c-card-header-spacing-block-end:0rem;--slds-c-card-header-spacing-block-start:0rem"> 
+                            <lightning-icon icon-name="utility:add" class="slds-align_absolute-center slds-p-top_medium"></lightning-icon>
+                            
+                            </br>
+                            <p class="slds-align_absolute-center slds-var-m-bottom_x-large" style="color: #0176D3;" >New Role</p>
+                        </lightning-card>
+                    </div>
+                </div> -->
+            </div>
+              
+            </div>
+        </div>
+        <div class="slds-p-around_x-large">
+            <div class="slds-text-heading_small slds-p-bottom_medium">
+                Career Paths
+            </div>
+            
+        </div>
+
+        <div if:true={showSpinner}>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+
+        <div class="chart-container"></div>
+        
+    </div>
+</template>

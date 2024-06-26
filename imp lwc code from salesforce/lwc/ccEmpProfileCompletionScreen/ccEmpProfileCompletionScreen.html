@@ -1,0 +1,27 @@
+<template>
+    <div class="profile-completion-content slds-p-around_medium">
+        <div grid>
+            <div size="1:4">
+                <img src={einsteinImage} alt="Background" class="image-box"/>
+            </div>
+            <div size="3:4" class="completion-text-paddig">
+                <h4 type-style="display-4">Opt-in to Career Connect</h4>
+                <div>
+                    <p type-style="caption">
+                        <span>Before you can access the Career Connect platform, please read and accept the items
+                            below.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <template for:each={checklistItems} for:item="item">
+                <div key={item.id}>
+                    <lightning-input type="checkbox" label={item.label} checked={item.checked} class="checkbox-group"
+                        onchange={handleCheckboxChange} data-id={item.id}>{item.label}
+                    </lightning-input>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

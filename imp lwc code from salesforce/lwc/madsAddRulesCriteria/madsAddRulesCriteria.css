@@ -1,0 +1,7 @@
+.modal-body-spinner .slds-spinner_container {
+    position: inherit !important;
+}
+
+.add-rules-criteria-container {
+    max-height: 450px;
+}

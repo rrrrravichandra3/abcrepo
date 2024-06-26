@@ -1,0 +1,6 @@
+.caseDetailContainer {
+    border-radius: 10px;
+    border: 1px solid var(--foundation-gray-neutral-90, #E5E5E5);
+    background: #FFF;
+    box-shadow: 0px 8px 12px -2px rgba(24, 24, 24, 0.16), 0px 2px 8px -2px rgba(24, 24, 24, 0.08);
+}

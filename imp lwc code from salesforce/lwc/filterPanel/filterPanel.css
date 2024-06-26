@@ -1,0 +1,18 @@
+@keyframes append-animate {
+	from {
+		transform: scaleY(0);
+        opacity: 0;
+
+	}
+	to {
+		transform: scaleY(1);
+        opacity: 1;
+
+	}
+}
+
+/* animate new box */
+.filters {
+    transform-origin: 50% 0;
+	animation: append-animate .3s linear;
+}

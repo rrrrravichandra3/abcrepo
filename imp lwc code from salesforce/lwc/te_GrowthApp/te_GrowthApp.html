@@ -1,0 +1,58 @@
+<!--
+  @description       : 
+  @author            : Urvish Shah (ushah)
+  @group             : 
+  @last modified on  : 02-07-2024
+  @last modified by  : Urvish Shah (ushah)
+-->
+<template>
+    <template if:true={isLoading}>
+         <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+         </lightning-spinner>
+    </template>
+  <template if:true={preferences}>
+  <div style="background: linear-gradient(360deg, #EEF4FF 0%, #FFFFFF 156.68%);">
+    <img src={headerImgUrl} alt="Profile Card">
+    <c-te_profile-card
+      usr = {usr}
+      contact={contact}
+      skills={skillList}
+      preferences={preferences}
+    ></c-te_profile-card>
+    <div class="slds-grid slds-gutters slds-wrap">
+        <div class="slds-col slds-size_1-of-1 slds-large-size_3-of-12">
+          <div class="slds-card slds-var-m-left_large">
+            <div class="slds-var-p-around_small">
+              <div class="slds-text-heading_medium slds-var-p-bottom_small">
+                Filters
+              </div>
+              <div>
+                <lightning-combobox label="Preferred Location" options={locationOptions} value={preferences.Preferred_Work_Location__c} onchange={handleLocationChange}></lightning-combobox>
+              </div>
+              <div class="">
+                  <lightning-input onchange={handleRelocationChange} field-level-help="This will evaluate opportunities in your country, not just hub specific" type="checkbox" label="I am open for relocation" name="relocation" checked={preferences.Open_to_Relocation__c}></lightning-input> 
+              </div>
+              <div if:true={isOpenToRelocate}>
+                <lightning-combobox label="Relocation Country" options={relocationOptions} value={preferences.Relocation_Country__c} onchange={handleRelocationCountryChange}></lightning-combobox>
+              </div>
+              <div class="slds-align_absolute-center">
+                <lightning-button 
+                  variant="brand"
+                  label="Save" 
+                  onclick={handleClick} 
+                ></lightning-button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-col slds-size_1-of-1 slds-large-size_9-of-12" if:true={contact}>
+            <c-te-career-path-cmp
+            contact={contact}
+            skills={skillList}
+            preferences={preferences}
+            ></c-te-career-path-cmp>
+        </div>
+    </div>
+  </div>
+  </template>
+</template>

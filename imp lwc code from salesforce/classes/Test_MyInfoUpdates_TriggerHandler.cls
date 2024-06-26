@@ -1,0 +1,250 @@
+@isTest(SeeAllData=false)
+public class Test_MyInfoUpdates_TriggerHandler {
+
+    @testSetup static void createTestData() {
+
+        UserRole dummyRole = [Select Id From UserRole Where PortalType = 'None' Limit 1];       
+        Profile profile = [Select Id from Profile where name = 'System Administrator' Limit 1];     
+
+        User sysAdminUser = new User(
+            UserRoleId = dummyRole.Id,
+            ProfileId = profile.Id,
+            Username = 'testsysadminuser77687@test.com',
+            Alias = 'test1',
+            Email='test@test1.com',
+            EmailEncodingKey='UTF-8',
+            Firstname='Sys',
+            Lastname='Admin User',
+            LanguageLocaleKey='en_US',
+            LocaleSidKey='en_US',
+            TimeZoneSidKey='America/Chicago'
+        );
+        Database.insert(sysAdminUser);
+            
+        User portalUser = new User();
+        Contact contact = new Contact();
+              
+        System.runAs(sysAdminUser) {
+        
+            //Create acquisition company
+            Acquisition_Company__c accCompany = new Acquisition_Company__c(
+                
+                Acquisition_Company_Name__c = 'MA',
+                Name = 'MA',
+                Status__c = 'Pre-Diligence'
+            
+            );
+            
+            Database.insert(accCompany);
+            
+            //Create account
+            Account account = new Account(
+            
+                Name = 'MA',
+                Acquisition_Companies__c = accCompany.id,
+                OwnerId = sysAdminUser.Id
+            
+            );
+            Database.insert(account);
+            
+            Acquisition_Contacts__c accContact = new Acquisition_Contacts__c(
+            
+                Name = 'Test Community',
+                Contact_Status__c = 'New',
+                Hire_Reason__c = 'New Hire',
+                Acquisition_Company__c = accCompany.id,
+                Employee_ID_Target__c = '123456',
+                Email_Address_Target__c = 'test@community.com'
+            
+            );
+            Database.insert(accContact);
+
+            Acquisition_Compensation__c acqCompensation = new Acquisition_Compensation__c(
+                Acquisition_Contact__c = accContact.id,
+                Default_Hours__c =5.0,
+                Scheduled_Hours__c = 2.0
+            );
+            Database.insert(acqCompensation);
+                        
+            //Create contact
+            contact = new Contact(
+                FirstName = 'Community',
+                Lastname = 'Contact',
+                AccountId = account.Id,
+                Email = 'test@community.com',
+                Acquisition_Contacts__c = accContact.Id
+            );
+            Database.insert(contact);
+            
+            //Create users
+            List<User> userList = new List<User>();
+            Profile portalProfile = [SELECT Id FROM Profile WHERE Name ='M&A Community Portal Custom' Limit 1];
+            UserRole portalRole = [SELECT Id FROM UserRole WHERE Name = 'MA Customer User' Limit 1];
+            portalUser = new User(
+                Username = 'test7686portal@community.com.wayfinder',
+                ContactId = contact.Id,
+                ProfileId = portalProfile.Id,
+                UserRoleId = portalRole.id,
+                Alias = 'test123',
+                Email = 'test@community.com',
+                FederationIdentifier = 'test@community.com',
+                EmailEncodingKey = 'UTF-8',
+                LastName = 'Test',
+                CommunityNickname = 'test12345',
+                TimeZoneSidKey = 'America/Los_Angeles',
+                LocaleSidKey = 'en_US',
+                LanguageLocaleKey = 'en_US'
+            );
+            userList.add(portalUser);
+
+            Profile profileEmployee = [SELECT Id FROM Profile WHERE Name ='Employee' Limit 1];
+            UserRole roleMA_ES = [SELECT Id FROM UserRole WHERE Name = 'M&A ES' Limit 1];
+            User maApproverUser = new User(
+                Username = 'maApprover@community.com.wayfinder',
+                ProfileId = profileEmployee.Id,
+                UserRoleId = roleMA_ES.id,
+                Alias = 'maTest',
+                Email = 'maTest@community.com',
+                FederationIdentifier = 'maTest@community.com',
+                EmailEncodingKey = 'UTF-8',
+                LastName = 'Test',
+                CommunityNickname = 'maTest',
+                TimeZoneSidKey = 'America/Los_Angeles',
+                LocaleSidKey = 'en_US',
+                LanguageLocaleKey = 'en_US'
+            );
+            userList.add(maApproverUser);
+            Database.insert(userList);
+            
+            PermissionSet maCommunityAdminPS = [SELECT Id, Name FROM PermissionSet WHERE Name = 'M_A_Community_Administration' LIMIT 1];
+
+            PermissionSetAssignment assignmentMaAdminUser = new PermissionSetAssignment(PermissionSetId = maCommunityAdminPS.Id, AssigneeId = maApproverUser.Id);
+            Database.insert(assignmentMaAdminUser);
+
+            Group maApproversGroup = new Group();
+            maApproversGroup = [SELECT Id, Name, DeveloperName FROM Group WHERE DeveloperName = 'MA_Approvers' LIMIT 1];
+            GroupMember newGroupMember = new GroupMember(GroupId = maApproversGroup.Id, UserOrGroupId = maApproverUser.Id);
+            Database.insert(newGroupMember);
+            
+            List<MA_My_Info_Updates__c> listMyInfoUpdates = new List<MA_My_Info_Updates__c>();
+            Acquisition_Contacts__c acqContactRecord = [SELECT Id, Name, Last_Name_Legal__c FROM Acquisition_Contacts__c WHERE Name = 'Test Community' LIMIT 1];
+            Acquisition_Compensation__c acqCompensationRecord = [SELECT Id, Car_Allowance_Amount__c, Relocation_Assistance__c, Stock_Grant_Date__c,Default_Hours__c ,Scheduled_Hours__c  FROM Acquisition_Compensation__c LIMIT 1];
+
+            System.runAs(portalUser){
+                MA_My_Info_Updates__c myInfoChange1 = new MA_My_Info_Updates__c(Field_Name__c = 'Last_Name_Legal__c', New_Value__c = 'Test123', Object_API_Name__c = 'Acquisition_Contacts__c', Record_Id__c = acqContactRecord.Id);
+                listMyInfoUpdates.add(myInfoChange1);
+                MA_My_Info_Updates__c myInfoChange2 = new MA_My_Info_Updates__c(Field_Name__c = 'Car_Allowance_Amount__c', New_Value__c = '100', Object_API_Name__c = 'Acquisition_Compensation__c', Record_Id__c = acqCompensationRecord.Id);
+                listMyInfoUpdates.add(myInfoChange2);
+                MA_My_Info_Updates__c myInfoChange3 = new MA_My_Info_Updates__c(Field_Name__c = 'Relocation_Assistance__c', New_Value__c = 'False', Object_API_Name__c = 'Acquisition_Compensation__c', Record_Id__c = acqCompensationRecord.Id);
+                listMyInfoUpdates.add(myInfoChange3);
+                MA_My_Info_Updates__c myInfoChange4 = new MA_My_Info_Updates__c(Field_Name__c = 'Stock_Grant_Date__c', New_Value__c = '2020-1-1 12:0:0', Object_API_Name__c = 'Acquisition_Compensation__c', Record_Id__c = acqCompensationRecord.Id);
+                listMyInfoUpdates.add(myInfoChange4);
+                MA_My_Info_Updates__c myInfoChange5 = new MA_My_Info_Updates__c(Field_Name__c = 'Scheduled_Hours__c', New_Value__c = '5.0', Object_API_Name__c = 'Acquisition_Compensation__c', Record_Id__c = acqCompensationRecord.Id);
+                listMyInfoUpdates.add(myInfoChange5);
+                MA_My_Info_Updates__c myInfoChange6 = new MA_My_Info_Updates__c(Field_Name__c = 'Default_Hours__c', New_Value__c = '2.0', Object_API_Name__c = 'Acquisition_Compensation__c', Record_Id__c = acqCompensationRecord.Id);
+                listMyInfoUpdates.add(myInfoChange6);
+                
+                Database.insert(listMyInfoUpdates); 
+            }
+            
+        }
+    }
+
+    //Portal User changes data from My Info Page on M&A community.
+    @isTest 
+    static void portalUserCreateChanges(){
+        User portalUser = [SELECT Id, Name, Email FROM User WHERE Email = 'test@community.com'];
+        Acquisition_Contacts__c accContact = [SELECT Id, Name, First_Name_Legal__c, First_Name_Preferred__c, Last_Name_Legal__c, Last_Name_Preferred__c FROM Acquisition_Contacts__c WHERE Name = 'Test Community' LIMIT 1];
+        List<MA_My_Info_Updates__c> listMyInfoUpdates = new List<MA_My_Info_Updates__c>();
+        MA_My_Info_Updates__c myInfoChange1 = new MA_My_Info_Updates__c(Field_Name__c = 'First_Name_Legal__c', New_Value__c = 'Test123', Object_API_Name__c = 'Acquisition_Contacts__c', Record_Id__c = accContact.Id);
+        listMyInfoUpdates.add(myInfoChange1);
+        MA_My_Info_Updates__c myInfoChange2 = new MA_My_Info_Updates__c(Field_Name__c = 'First_Name_Preferred__c', New_Value__c = 'Test456', Object_API_Name__c = 'Acquisition_Contacts__c', Record_Id__c = accContact.Id);
+        listMyInfoUpdates.add(myInfoChange2);
+        Test.StartTest();
+            System.runAs(portalUser){
+                Insert listMyInfoUpdates;
+            }
+        Test.StopTest(); 
+        System.assertEquals(2, listMyInfoUpdates.Size());
+    }
+
+    //MA Admin User Approves Changes
+    @isTest 
+    static void maAdminApprovesChanges(){
+        User maAdminUser = [SELECT Id, Name, Email FROM User WHERE Email = 'maTest@community.com' LIMIT 1];
+        MA_My_Info_Updates__c myInfoChange = [SELECT Id, Name FROM MA_My_Info_Updates__c LIMIT 1];
+        ProcessInstance pendingProcess = [SELECT Id,Status,TargetObjectId FROM ProcessInstance WHERE Status='Pending' AND TargetObjectId =: myInfoChange.Id LIMIT 1];
+        ProcessInstanceWorkitem processInstanceWorkItemRequest = [SELECT Id,ProcessInstanceId FROM ProcessInstanceWorkitem WHERE ProcessInstanceId =: pendingProcess.Id LIMIT 1];
+        List<Approval.ProcessWorkitemRequest> approvalRequestList = new List<Approval.ProcessWorkitemRequest>();
+        Approval.ProcessWorkitemRequest request = new Approval.ProcessWorkitemRequest();
+        request.setComments('Approval process is approved');
+        request.setAction('Approve'); 
+        request.setWorkitemId(processInstanceWorkItemRequest.Id);
+        approvalRequestList.add(request);
+        Test.StartTest();
+            System.runAs(maAdminUser){
+                Approval.ProcessResult[] result =  Approval.process(approvalRequestList);
+            }
+        Test.StopTest();
+        MA_My_Info_Updates__c myInfoChangeCheckStatus = [SELECT Id, Name, Status__c FROM MA_My_Info_Updates__c WHERE Id =: myInfoChange.Id];
+        System.assertEquals('Accepted', myInfoChangeCheckStatus.Status__c);
+    }
+
+    //MA Admin User does mass approval
+    @isTest 
+    static void maAdminMassApproval(){
+        User maAdminUser = [SELECT Id, Name, Email FROM User WHERE Email = 'maTest@community.com' LIMIT 1];
+        List<MA_My_Info_Updates__c> listMyInfoUpdates = new List<MA_My_Info_Updates__c>();
+        for(MA_My_Info_Updates__c myInfoUpdateRecord : [SELECT Id, Name, Mass_Approval__c, Approver_Comments__c FROM MA_My_Info_Updates__c WHERE Status__c = 'Submit']){
+            myInfoUpdateRecord.Mass_Approval__c = true;
+            myInfoUpdateRecord.Approver_Comments__c = 'test comment';
+            listMyInfoUpdates.add(myInfoUpdateRecord);
+        }
+        Test.StartTest();
+            System.runAs(maAdminUser){
+                Update listMyInfoUpdates;
+            }
+        Test.StopTest();
+        List<MA_My_Info_Updates__c> listMyInfoUpdatesCheckStatus = [SELECT Id, Name, Status__c FROM MA_My_Info_Updates__c];
+        System.assertEquals('Accepted', listMyInfoUpdatesCheckStatus[0].Status__c);
+    }
+
+    //MA Admin User does mass rejection
+    @isTest
+    static void maAdminMassRejection(){
+        User maAdminUser = [SELECT Id, Name, Email FROM User WHERE Email = 'maTest@community.com' LIMIT 1];
+        List<MA_My_Info_Updates__c> listMyInfoUpdates = new List<MA_My_Info_Updates__c>();
+        for(MA_My_Info_Updates__c myInfoUpdateRecord : [SELECT Id, Name, Mass_Rejection__c, Approver_Comments__c FROM MA_My_Info_Updates__c WHERE Status__c = 'Submit']){
+            myInfoUpdateRecord.Mass_Rejection__c = true;
+            myInfoUpdateRecord.Approver_Comments__c = 'test comment';
+            listMyInfoUpdates.add(myInfoUpdateRecord);
+        }
+        Test.StartTest();
+            System.runAs(maAdminUser){
+                Update listMyInfoUpdates;
+            }
+        Test.StopTest();
+        List<MA_My_Info_Updates__c> listMyInfoUpdatesCheckStatus = [SELECT Id, Name, Status__c FROM MA_My_Info_Updates__c];
+        System.assertEquals('Rejected', listMyInfoUpdatesCheckStatus[0].Status__c);
+    }
+    
+    //MA Admin User does mass rejection
+    @isTest
+    static void maAutoApproveChanges(){
+        User portalUser = [SELECT Id, Name, Email FROM User WHERE Email = 'test@community.com'];
+        Acquisition_Contacts__c accContact = [SELECT Id, Name, First_Name_Legal__c, First_Name_Preferred__c, Last_Name_Legal__c, Last_Name_Preferred__c FROM Acquisition_Contacts__c WHERE Name = 'Test Community' LIMIT 1];
+        List<MA_My_Info_Updates__c> listMyInfoUpdates = new List<MA_My_Info_Updates__c>();
+        MA_My_Info_Updates__c myInfoChange1 = new MA_My_Info_Updates__c(Field_Name__c = 'Home_Address_City__c', New_Value__c = 'TestCity', Object_API_Name__c = 'Acquisition_Contacts__c', Record_Id__c = accContact.Id);
+        listMyInfoUpdates.add(myInfoChange1);
+        MA_My_Info_Updates__c myInfoChange2 = new MA_My_Info_Updates__c(Field_Name__c = 'Home_Address_Street__c', New_Value__c = 'TestStreet', Object_API_Name__c = 'Acquisition_Contacts__c', Record_Id__c = accContact.Id);
+        listMyInfoUpdates.add(myInfoChange2);
+        Test.StartTest();
+            System.runAs(portalUser){
+                Insert listMyInfoUpdates;
+            }
+        Test.StopTest(); 
+        System.assertEquals(2, listMyInfoUpdates.Size());
+    }
+    
+    
+}

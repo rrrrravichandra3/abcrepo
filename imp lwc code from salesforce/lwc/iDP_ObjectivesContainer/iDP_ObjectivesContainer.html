@@ -1,0 +1,73 @@
+<template>
+    <div style="background-color:white">
+        <div class="">
+            <article >
+                <img alt="" src={idpBanner}/>
+                <article class="slds-box slds-var-m-vertical_medium">
+                <div class="slds-var-m-bottom_large slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-grid slds-media__body">
+                            <div class="slds-grid slds-wrap slds-text-body_medium slds-size_11-of-12" style="font-weight:normal">
+                                <div class="slds-col slds-size_10-of-12 slds-medium-size_10-of-12 slds-large-size_10-of-12 slds-card__header-title">
+                                    <h1 >{employeeName} Hi Ben</h1>
+                                </div>
+                                <div class="slds-col slds-size_2-of-12 slds-medium-size_2-of-12 slds-large-size_2-of-12">
+                                    <span> <b>Manager</b> </span>
+                                </div>
+                                <div class="slds-col slds-size_10-of-12 slds-medium-size_10-of-12 slds-large-size_10-of-12">
+                                </div>
+                                <div class="slds-col slds-size_2-of-12 slds-medium-size_2-of-12 slds-large-size_2-of-12 ">
+                                    <span> {managerName} </span>
+                                </div>
+                            </div>
+                            <template if:true={idpId}>
+                                <div class="slds-col slds-text-align_right">
+                                    <lightning-button-menu class="custom-class custom-focus" label="" onselect={handleSelect} name="Actions" menu-alignment="right" alternative-text="Show menu">
+                                        <lightning-menu-item value="Print to PDF" label="Print to PDF" icon-name="utility:download"></lightning-menu-item>
+                                    </lightning-button-menu>
+                                </div> 
+                            </template>
+                        </div>
+                        <br>
+                    </header>
+                </div>
+                <div class="slds-card__body_inner">
+                    <lightning-formatted-text
+                        value={label.IDP_Intro}>
+                    </lightning-formatted-text>
+                    <lightning-formatted-url value={label.IDP_GuideUrl} tooltip={label.IDP_GuideUrl}
+                        label=" IDP Guide " target="_blank"></lightning-formatted-url>
+                        <lightning-formatted-text
+                        value={label.IDP_Intro2}>
+                    </lightning-formatted-text>
+                    <div class="slds-var-p-top_small">
+                        <lightning-formatted-text
+                        value={label.IDP_Intro_Manager_Access_Info}>
+                        </lightning-formatted-text>
+                    </div>
+                </div>
+            </article>
+            </article>
+        </div>
+        <lightning-spinner lwc:if={isLoading} class="slds-is-fixed" alternative-text="Loading" size="medium"
+            variant="brand"></lightning-spinner>
+        <template if:true={idpId}>
+            <template if:false={errorMessage}>
+        <c-i-d-p_-objectives objective-type="Text" field-name="Key_Strengths__c" idp-id={idpId} helptext={label.IDP_KeyStrengths_HelpText}
+            text-value={keyStrengths} title="Key Strengths" ismanager={isManager} placeholder={label.IDP_KeyStrengths_Placeholder}></c-i-d-p_-objectives>
+        
+        <c-i-d-p_-objectives objective-type="In_Progress" objectives={inProgressObjs} ismanager={isManager} helptext={label.IDP_ShortTermGoals_HelpText}
+             idp-id={idpId} onmoveobjtocompleted={reorganizeObjectives} placeholder={label.IDP_KeyStrengths_Placeholder} active-sections={activeSections} ></c-i-d-p_-objectives>
+        
+        <c-i-d-p_-objectives objective-type="Text" field-name="Career_Interest__c" idp-id={idpId} ismanager={isManager} helptext={label.IDP_LongTermGoals_HelpText}
+            text-value={longTermGoals} title="Long-Term Career Goals" placeholder={label.IDP_LongTermGoals_Placeholder}> </c-i-d-p_-objectives>
+        
+        <template if:true={isCompletedObjs} >
+            <c-i-d-p_-objectives objective-type="Completed" title="Completed / Archived Objectives" idp-id={idpId} ismanager={isManager} helptext={label.IDP_CompletedGoals_HelpText}
+                objectives={completedObjs} onmoveobjtocompleted={reorganizeObjectives} placeholder={label.IDP_CompletedGoals_Placeholder}></c-i-d-p_-objectives>
+        </template>
+    </template>
+</template>
+        
+    </div>
+</template>

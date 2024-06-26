@@ -1,0 +1,29 @@
+.whiteBackground{
+    background-color: whitesmoke;
+}
+.noOverFlow {
+    overflow-wrap: break-word;
+}
+.dateRangeFieldWidth{
+    width : 70px;
+}
+.lgc-bg {
+    background-color: rgb(229, 229, 237);
+}
+.slds-modal__content {
+    overflow: visible;
+}
+.fixedWidth{
+    width : 280px;
+}
+.dataTableMedSize {
+    height:500px;
+    width: 1070px;
+}
+.dataTableLargeSize {
+    height:600px;
+    width: 1550px;
+}
+.resumeModal{
+    max-width: 70%;
+}

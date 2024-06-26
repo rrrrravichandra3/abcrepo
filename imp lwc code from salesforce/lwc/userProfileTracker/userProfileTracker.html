@@ -1,0 +1,36 @@
+<template>
+    <div class="slds-box background">
+        <lightning-layout multiple-rows="true" horizontal-align="center">
+            <lightning-layout-item size="12">
+                <div class="containerClasses" style={bannerStyles}>
+                    
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item size="4">
+                <div class="meetingInfo">
+                    <div class="meetingNumber">{menteeCount}</div>
+                    <div class="meetingText">{menteeLabel}</div>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item size="4">
+                <div class="meetingInfo">
+                    <div class="meetingNumber">{mentorCount}</div>
+                    <div class="meetingText">{mentorLabel}</div>
+                </div>
+            </lightning-layout-item>
+            <!-- <lightning-layout-item size="4">
+                <div class="meetingInfo">
+                    <div class="meetingNumber">{meetingNumber}</div>
+                    <div class="meetingText">{meetingText}</div>
+                </div>
+            </lightning-layout-item> -->
+            <lightning-layout-item size="12" padding="around-small">
+                <div class="slds-align_absolute-center">
+                    <template if:true={showRequestButtons}>
+                        <c-mentor-request-buttons user={user} score={score} ></c-mentor-request-buttons>
+                    </template>
+                </div>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+</template>

@@ -1,0 +1,91 @@
+<template>
+    <div class="slds-var-p-horizontal_small slds-var-p-top_xx-large">
+
+        <div class="slds-text-heading_small blueText">
+            My Salesforce Career
+        </div>
+        <div class="slds-text-heading_medium slds-var-p-vertical_small">
+            Salesforce career paths
+        </div>
+
+        <div>
+            <lightning-tabset>
+                <lightning-tab label="Progress on my Role">
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-3">
+                            <c-te_-role-card 
+                                title="Senior Member of Technical Staff"
+                                grade="7"
+                                team="Business Technology"
+                                skills-list={skillsList}
+                                skills-missing-list={skillsMissingList}
+                                open-positions= 3
+                                salary-range="$95K - $126K"
+                            ></c-te_-role-card>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3">
+                            <c-te_-role-card 
+                                title="Lead Member of Technical Staff"
+                                grade="8"
+                                team="Business Technology"
+                                skills-list={skillsList}
+                                skills-missing-list={skillsMissingList}
+                                open-positions = 1
+                                salary-range="$113k - $158K"
+                            ></c-te_-role-card>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3">
+                            <c-te_-role-card 
+                                title="Principal Member of Technical Staff"
+                                grade="9"
+                                team="Business Technology"
+                                skills-list={skillsList}
+                                skills-missing-list={skillsMissingList}
+                                open-positions = 0
+                                salary-range="$152K - $224K"
+                            ></c-te_-role-card>
+                        </div>
+                    </div>
+                </lightning-tab>
+                <lightning-tab label="Explore New Roles">
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-3">
+                            <c-te_-role-card 
+                                title={JobOne}
+                                grade="7"
+                                team="Business Technology"
+                                skills-list={skillsList}
+                                skills-missing-list={skillsMissingList}
+                                open-positions= 3
+                                salary-range="$95K - $126K"
+                            ></c-te_-role-card>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3">
+                            <c-te_-role-card 
+                                title={JobTwo}
+                                team="Technology and Product"
+                                grade="7"
+                                skills-list={skillsList}
+                                skills-missing-list={skillsMissingList}
+                                open-positions = 4
+                                salary-range="$95K - $126K"
+                            ></c-te_-role-card>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3">
+                            <c-te_-role-card 
+                                title={JobThree}
+                                grade="7"
+                                team="Sales"
+                                skills-list={skillsList}
+                                skills-missing-list={skillsMissingList}
+                                open-positions = 2
+                                salary-range="$95K - $126K"
+                            ></c-te_-role-card>
+                        </div>
+                      </div>
+                </lightning-tab>
+            </lightning-tabset>
+        </div>
+
+    </div>
+</template>

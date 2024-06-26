@@ -1,0 +1,151 @@
+<template>
+    <template if:false={isError}>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_2-of-3">
+                <lightning-card title="Upload Community Videos" icon-name="utility:video">
+                <lightning-file-upload
+                    label="Select Video Files"
+                    name="fileUploader"
+                    accept={acceptedFormats}
+                    record-id={parentRecordId}
+                    onuploadfinished={handleUploadFinished}
+                    multiple
+                ></lightning-file-upload>
+                </lightning-card>
+            </div>
+            
+            
+        </div>
+
+        <br/><br/>
+
+
+        <lightning-accordion class="videoAccordion"  allow-multiple-sections-open onsectiontoggle={handleToggleSection}>
+            <template for:each={contentVersions} for:item="file" for:index="index">
+                <lightning-accordion-section name={file.Id} label={file.Title} key={file.Id}>
+                    <lightning-layout multiple-rows="true">
+
+                        <lightning-layout-item class="slds-p-around_xx-small" size="12">
+                            <lightning-layout>
+                                <lightning-layout-item size="2">
+                                    <b>Title</b>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="8">
+                                    <template if:false={file.IsEdit}>
+                                        {file.Title}
+                                    </template>
+                                    <template if:true={file.IsEdit}>
+                                        <lightning-input type="text"
+                                            data-index={index}
+                                            data-field="Title"
+                                            data-title={index}
+                                            value= {file.Title}
+                                            label=""
+                                            onchange={mapValuesToList}
+                                            variant="label-hidden">
+                                        </lightning-input>
+                                    </template>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="2" class="slds-text-align_right">
+                                    <template if:false={file.IsEdit}>
+                                        <lightning-button-icon icon-name="utility:edit" variant="brand" alternative-text="Edit" onclick={enableItemEdit} data-index={index} class="slds-m-left_xx-small" title="Edit"></lightning-button-icon>
+                                    </template>
+                                    <template if:true={file.IsEdit}>
+                                        <lightning-button-icon icon-name="utility:save" variant="brand" alternative-text="Save" onclick={saveElement} data-index={index} class="slds-m-left_xx-small" title="Edit"></lightning-button-icon>
+                                        <lightning-button-icon icon-name="utility:close" variant="brand" alternative-text="Save" onclick={disableEdit} data-index={index} class="slds-m-left_xx-small" title="Edit"></lightning-button-icon>
+                                    </template>
+
+                                    <lightning-button-icon icon-name="utility:preview" variant="brand" alternative-text="Preview" onclick={enableVideoModal} data-index={index} class="slds-m-left_xx-small" title="Preview"></lightning-button-icon> 
+                                    <lightning-button-icon icon-name="utility:delete"  variant="brand" alternative-text="Delete" onclick={deleteVideo} data-index={index} class="slds-m-left_xx-small" title="Delete"></lightning-button-icon>
+
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </lightning-layout-item>
+
+                        <lightning-layout-item class="slds-p-around_xx-small" size="12">
+                            <lightning-layout>
+                                <lightning-layout-item size="2">
+                                    <b>Description</b>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="8">
+                                
+                                    <template if:false={file.IsEdit}>
+                                        {file.Description}
+                                    </template>
+
+                                    <template if:true={file.IsEdit}>
+                                        <lightning-textarea 
+                                            value= {file.Description} 
+                                            data-field="Description"
+                                            data-index={index} 
+                                            data-textarea={index}
+                                            label="" 
+                                            onchange={mapValuesToList}
+                                            variant="label-hidden" >
+                                        </lightning-textarea>
+                                    </template>
+
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </lightning-layout-item>
+
+                        <lightning-layout-item class="slds-p-around_xx-small" size="12">
+                            <lightning-layout>
+                                <lightning-layout-item size="2">
+                                    <b>Size</b>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="10">
+                                    {file.ContentSize}
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </lightning-layout-item>
+                        <lightning-layout-item class="slds-p-around_xx-small" size="12">
+                            <lightning-layout>
+                                <lightning-layout-item size="2">
+                                    <b>File Uploaded By</b>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="10">
+                                    {file.CreatedBy.Name}
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </lightning-layout-item>
+
+                    </lightning-layout>
+
+                </lightning-accordion-section>
+            </template>
+        </lightning-accordion>
+
+        <template if:true={previewVideo}>
+        
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container containerStyle">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <div class="slds-modal__content" id="modal-content-id-1">
+                        <div class="slds-grid">
+                            <video class="slds-size_1-of-1" controls controlslist="nodownload">
+                                <source src={videoLink}>
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        
+                        </div>
+                    </div>
+                
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </template>
+    <div if:true={showSpinner} >
+        <lightning-spinner
+            alternative-text="Loading..." variant="brand">
+        </lightning-spinner>
+    </div>
+</template>

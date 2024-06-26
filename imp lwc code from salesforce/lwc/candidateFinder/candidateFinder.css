@@ -1,0 +1,12 @@
+.whiteBackground{
+    background-color: whitesmoke;
+}
+.noOverFlow {
+    overflow-wrap: break-word;
+}
+.dateRangeFieldWidth{
+    width : 70px;
+}
+.lgc-bg {
+    background-color: rgb(229, 229, 237);
+}

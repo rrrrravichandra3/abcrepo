@@ -1,0 +1,37 @@
+<template>
+    <template if:true={isSameStage}>
+        <li class="slds-item" draggable="true" ondragstart={itemDragStart}>
+            <lightning-card>
+                <h1 slot="title" id=cardTitle>
+                    <lightning-icon slot="media" icon-name="standard:employee_job" variant="base" class="slds-m-right_xx-small" size="x-small">
+                    </lightning-icon>
+                    {record.name}
+                </h1>
+                <div slot="actions">
+                    <lightning-button-menu variant="bare"  icon-size="small" menu-alignment="auto"
+                        alternative-text="Show menu">
+                        <lightning-menu-item  label="View Candidate" onclick={openRecord} data-id={record.candidateId}>
+                        </lightning-menu-item>
+                        <template if:true={record.linkedinURL}>
+                            <lightning-menu-item label="View LinkedIn" data-id={record.linkedinURL}
+                                onclick={openLinkedInProfile}></lightning-menu-item>
+                        </template>
+                        <lightning-menu-item if:true={isSourceCandidate} label="Remove From Pool" onclick={removeFromPool} id={record.Id}></lightning-menu-item>
+                        <lightning-menu-item label="Add Notes" onclick={openNoteModal} id={record.candidateId}></lightning-menu-item>
+                    </lightning-button-menu>
+                </div>
+                <p class="slds-text-body_small slds-truncate slds-var-p-horizontal_small" data-toggle="tooltip" data-placement="right" title={record.email}>Contact Info: {record.email}
+                </p>
+                <p class="slds-text-body_small slds-truncate slds-var-p-horizontal_small" data-toggle="tooltip" data-placement="right" title={record.title}>Job Title: {record.title}</p>
+                <p class="slds-text-body_small slds-truncate slds-var-p-horizontal_small" data-toggle="tooltip" data-placement="right" title={record.source}>Source: {record.source}</p>
+                <p class="slds-text-body_small slds-truncate slds-var-p-horizontal_small" data-toggle="tooltip" data-placement="right" title={record.recentCompany}>Company:
+                    {record.recentCompany}</p>
+            </lightning-card>
+        </li>
+    </template>
+    <template if:true={displayNoteModal}>
+        <c-create-note-modal id="note-modal"
+                             onclosemodal={closeModal}
+                             oncreatenoteandclose={createNoteAndClose}></c-create-note-modal>
+    </template>
+</template>

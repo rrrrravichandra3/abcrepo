@@ -1,0 +1,11 @@
+.container {
+    background-color:#f3f2f2;    
+    height:100vh;
+}
+
+.casetile {
+    font-family: 'HeaderFont';
+    src: url('/MA/s/sfsites/c/resource/CommunityFont');
+    color: #16325C;
+    font-size: x-large;
+}

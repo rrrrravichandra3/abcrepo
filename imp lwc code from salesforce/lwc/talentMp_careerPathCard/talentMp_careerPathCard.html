@@ -1,0 +1,34 @@
+<template>
+    <lightning-modal-header label="Select New Role"></lightning-modal-header>
+    <lightning-modal-body> 
+        <lightning-combobox
+            name="Job Group"
+            label="Job Group"
+            value={jobGroupValue}
+            options={jobGroup}
+            onchange={handleJobGroupChange}>
+        </lightning-combobox> 
+
+        <lightning-combobox
+            name="Job Family"
+            label="Job Family"
+            value={jobFamilyValue}
+            options={jobFamilyGroup}
+            onchange={handleJobFamilyChange}>
+        </lightning-combobox>    
+        
+        <lightning-combobox
+            name="Job Profile"
+            label="Job Profile"
+            value={jobProfileValue}
+            options={jobProfileGroup}
+            onchange={handleJobProfileChange}>
+        </lightning-combobox> 
+ 
+
+
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button label="Save" onclick={handleOkay}></lightning-button>
+    </lightning-modal-footer>
+</template>

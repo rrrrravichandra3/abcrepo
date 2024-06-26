@@ -1,0 +1,14 @@
+<template>
+    <lightning-layout  class="onhover container" tabindex="0" role="button" onclick={goToClick} onkeypress={goToClick}>
+        <lightning-layout-item size="1">
+            <div class="icon">
+                <lightning-icon icon-name="utility:copy" size="small"></lightning-icon>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="11">
+            <div class="label">
+                {label}
+            </div>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

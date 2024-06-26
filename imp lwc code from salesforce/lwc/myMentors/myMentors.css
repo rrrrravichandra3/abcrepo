@@ -1,0 +1,41 @@
+.no-scroll {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  padding-bottom: 50px;
+}
+
+.css-notification-override {
+  transform-origin: 8px 8px !important;
+  line-height: 1rem !important;
+  top: 11px !important;
+  right: 4px !important;
+}
+
+.css-notification-override-desktop {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  margin-right: 4px;
+}
+
+.red-dot {
+  position: absolute;
+  right: 8px;
+  top: 4px;
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background: #ec5457;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16), 0 1px 4px rgba(0, 0, 0, 0.23);
+}
+
+.card-shadow {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .1);
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}

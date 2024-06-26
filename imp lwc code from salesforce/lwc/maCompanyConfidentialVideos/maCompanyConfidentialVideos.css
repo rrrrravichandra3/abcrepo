@@ -1,0 +1,52 @@
+.videoPadding{
+    padding-left: 1rem;
+    padding-top: 3rem;
+}
+
+.videoMain video{
+    width:700px;
+    
+}
+.videoDescription{font-style: italic;text-align: center;}
+
+.buttonAlign{
+    text-align: center;
+    padding-top: 14px;
+}
+.videoWrapper{background:#fff !important;}
+
+.videoWrapper video{
+    width: 100% !important;
+    cursor: pointer;
+    max-height: 337px;
+    margin-top: 14px;
+}
+
+.videoBox{
+    position:relative;
+    cursor: pointer;
+}
+.video_overlays {
+    position: absolute;
+    z-index: 100;
+    text-align: center;
+    background: #fff;
+    width: 100%;
+    opacity: .2;
+    height: 100%;
+}
+
+.video_overlays img{
+    position: absolute;
+    top: 39%;
+    left: 45%;
+    height: 100px;
+    width: 100px;
+}
+
+.scrollContainer{
+    max-height: 840px;
+    overflow-y: auto;
+    margin: 0 3px;
+    border: 1px solid #d4d4d4;
+}

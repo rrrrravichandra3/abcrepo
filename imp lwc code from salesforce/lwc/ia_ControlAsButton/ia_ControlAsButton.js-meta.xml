@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>50.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>IA Control: Button</masterLabel>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property label="Label" name="label" type="String" default="Default Button Control Name" />
+            <property label="As link" name="asLink" type="Boolean" default="false" />
+            <property label="URL" name="url" type="String" default="javascript:void(0);" />
+            <property label="Container Text Alignment" name="containerAlignment" type="String" default="left" />
+            <property label="Container Padding" name="containerPadding" type="String" default="0" />
+            <property label="Button Width" name="buttonWidth" type="String" default="auto" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

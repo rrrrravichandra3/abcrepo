@@ -1,0 +1,8 @@
+.progressRing {
+    scale: 150%;
+}
+
+.progressRingContent {
+    scale: 50%;
+    padding-top: 4px;
+}

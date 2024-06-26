@@ -1,0 +1,11 @@
+.inboundComment {
+    border-radius: 15px 0px 15px 15px;
+    background: #F9F9F9;
+    color: var(--wes-g-color-neutral-base-contrast-4);
+    font-size: 16px;
+}
+
+.agentContainer {
+    background-color: #4FAFA7;
+    color: white;
+}

@@ -1,0 +1,14 @@
+:host {
+  --slds-c-button-success-text-color: var(--c-example-white);
+}
+
+.custom-focus:focus-within {
+  --slds-c-button-shadow-focus: 0 0 0px 5px rgb(1 118 211 / 25%);
+  border-radius: 4px;
+  outline: 1px solid #0176d3;
+}
+
+.custom-focus {
+  --slds-c-button-color-background-hover: #f3f3f3;
+  transition: 0.2s ease background-color;
+}

@@ -1,0 +1,246 @@
+<template>
+    <svg data-label="svg-sprite" style="display:none;" width="0" height="0">
+        <symbol id="pf-case_record-type-indicator" viewBox="0 0 52 52">
+            <path d="M26 8c9.9 0 18 8.1 18 18s-8.1 18-18 18S8 35.9 8 26 16.1 8 26 8z"></path>
+        </symbol>
+    </svg>
+
+    <article class="slds-card slds-card_boundary">
+        <div class="pf-card__header slds-wrap">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name="action:new_case" size="x-small"></lightning-icon>
+                </div>
+
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <span class="slds-truncate">
+                             <lightning-formatted-text value={cardLabel}></lightning-formatted-text>
+                        </span>
+                    </h2>
+                </div>
+
+                <template if:true={isERRecordType}>
+                    <div class="slds-no-flex">
+                        <button class="slds-button slds-button_neutral" onclick={handleToggleLegendsAction}>
+                            <lightning-formatted-text value={toggleLegendsLabel}></lightning-formatted-text>
+                        </button>
+
+                        <lightning-button-icon icon-name="utility:refresh"
+                                               variant="border-filled"
+                                               class="slds-p-left_small"
+                                               alternative-text="Refresh"
+                                               title="Refresh"
+                                               onclick={handleRefreshButton}>
+                        </lightning-button-icon>
+                    </div>
+                </template>
+            </header>
+
+            <template if:true={showERLegends}>
+                <ul class="pf-card__legends">
+                    <li title="General Employee Relations Case">
+                        <svg class="slds-icon slds-icon_small pf-case__legends-item" focusable="false" aria-hidden="true"
+                             data-record-type="General_Employee_Relations_Case">
+                            <use xlink:href="#pf-case_record-type-indicator"></use>
+                        </svg>
+                        <lightning-formatted-text value={legendGERCLabel}></lightning-formatted-text>
+                    </li>
+
+                    <li title="ER Performance Improvement">
+                        <svg class="slds-icon slds-icon_small pf-case__legends-item" focusable="false" aria-hidden="true"
+                             data-record-type="ER_Performance_Improvement">
+                            <use xlink:href="#pf-case_record-type-indicator"></use>
+                        </svg>
+                        <lightning-formatted-text value={legendERPILabel}></lightning-formatted-text>
+                    </li>
+
+                    <li title="ER Investigations">
+                        <svg class="slds-icon slds-icon_small pf-case__legends-item" focusable="false" aria-hidden="true"
+                             data-record-type="ER_Investigations">
+                            <use xlink:href="#pf-case_record-type-indicator"></use>
+                        </svg>
+                        <lightning-formatted-text value={legendERILabel}></lightning-formatted-text>
+                    </li>
+
+                    <li title="ER Investigations">
+                        <svg class="slds-icon slds-icon_small pf-case__legends-item" focusable="false" aria-hidden="true"
+                             data-record-type="Manager_Guidance_CRT">
+                            <use xlink:href="#pf-case_record-type-indicator"></use>
+                        </svg>
+                        <lightning-formatted-text value={legendMGLabel}></lightning-formatted-text>
+                    </li>
+
+                    <li title="Case is Restricted">
+                        <svg class="slds-icon slds-icon_small pf-case__legends-item" focusable="false" aria-hidden="true"
+                             data-record-type="Restricted">
+                            <use xlink:href="#pf-case_record-type-indicator"></use>
+                        </svg>
+                        <lightning-formatted-text value={legendRestrictedLabel}></lightning-formatted-text>
+                    </li>
+                </ul>
+            </template>
+        </div>
+
+        <div class="pf-card__body">
+            <lightning-spinner if:true={isProcessing}
+                               alternative-text="Loading"
+                               size="small"></lightning-spinner>
+
+            <template if:true={showContent}>
+                <table class="slds-table slds-table_bordered slds-table_fixed-layout">
+                    <thead>
+                    <tr class="slds-line-height_reset">
+                        <template for:each={defaultColumns} for:item="column">
+                            <th key={column.fieldName} scope="col">
+                                <div class="slds-truncate" title={column.label}>
+                                    <lightning-formatted-text value={column.label}></lightning-formatted-text>
+                                </div>
+                            </th>
+                        </template>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <template for:each={tableRecords} for:item="record">
+                        <tr key={record.id} class="slds-hint-parent pf-table__row" data-is-accessible={record.isOriginCase}>
+                            <td data-label={LABELS.CASE_NUMBER}
+                                class="pf-table__cell-case-number"
+                                data-is-er-type={isERRecordType}
+                                data-record-type={record.recordTypeDev}
+                                data-is-restricted={record.isRestricted}
+                                data-is-accessible={record.isOriginCase}>
+                                <div class="slds-truncate" title={record.caseNumber}>
+                                    <template if:true={showWarmLineFields}>
+                                        <lightning-formatted-text value={record.caseNumber}></lightning-formatted-text>
+                                    </template>
+
+                                    <template if:true={showERFields}>
+                                        <template if:true={record.isOriginCase}>
+                                            <a tabindex="-1" onclick={handleNavigateToLookup} data-target-id={record.id}>
+                                                <lightning-formatted-text value={record.caseNumber}></lightning-formatted-text>
+                                            </a>
+                                        </template>
+
+                                        <template if:false={record.isOriginCase}>
+                                            <lightning-formatted-text value={record.caseNumber}></lightning-formatted-text>
+                                        </template>
+                                    </template>
+                                </div>
+                            </td>
+
+                            <td data-label={LABELS.OWNER_NAME}>
+                                <div class="slds-truncate" title={record.ownerName}>
+                                    <template if:true={showWarmLineFields}>
+                                        <lightning-formatted-text value={record.ownerName}></lightning-formatted-text>
+                                    </template>
+
+                                    <template if:true={showERFields}>
+                                        <template if:true={record.isOriginCase}>
+                                            <a tabindex="-1" onclick={handleNavigateToLookup} data-target-id={record.ownerId}>
+                                                <lightning-formatted-text value={record.ownerName}></lightning-formatted-text>
+                                            </a>
+                                        </template>
+
+                                        <template if:false={record.isOriginCase}>
+                                            <lightning-formatted-text value={record.ownerName}></lightning-formatted-text>
+                                        </template>
+                                    </template>
+                                </div>
+                            </td>
+
+                            <td if:true={showWarmLineFields} data-label={LABELS.STATUS}>
+                                <div class="slds-truncate" title={record.status}>
+                                    <lightning-formatted-text value={record.status}></lightning-formatted-text>
+                                </div>
+                            </td>
+
+                            <td if:true={showWarmLineFields} data-label={LABELS.FINDINGS}>
+                                <div class="slds-truncate" title={record.findings}>
+                                    <lightning-formatted-text value={record.findings}></lightning-formatted-text>
+                                </div>
+                            </td>
+
+                            <td if:true={showWarmLineFields} data-label={LABELS.OUTCOME}>
+                                <div class="slds-truncate" title={record.outcome}>
+                                    <lightning-formatted-text value={record.outcome}></lightning-formatted-text>
+                                </div>
+                            </td>
+
+                            <td if:true={showERFields} data-label={LABELS.CONTACT_NAME}>
+                                <div class="slds-truncate" title={record.contactName}>
+                                    <template if:true={record.isOriginCase}>
+                                        <a tabindex="-1" onclick={handleNavigateToLookup} data-target-id={record.contactId}>
+                                            <lightning-formatted-text value={record.contactName}></lightning-formatted-text>
+                                        </a>
+                                    </template>
+
+                                    <template if:false={record.isOriginCase}>
+                                        <lightning-formatted-text value={record.contactName}></lightning-formatted-text>
+                                    </template>
+                                </div>
+                            </td>
+
+                            <td if:true={showERFields} data-label={LABELS.IN_REFERENCE_TO}>
+                                <div class="slds-truncate" title={record.inReferenceToName}>
+                                    <template if:true={record.isOriginCase}>
+                                        <a tabindex="-1" onclick={handleNavigateToLookup} data-target-id={record.inReferenceToId}>
+                                            <lightning-formatted-text value={record.inReferenceToName}></lightning-formatted-text>
+                                        </a>
+                                    </template>
+
+                                    <template if:false={record.isOriginCase}>
+                                        <lightning-formatted-text value={record.inReferenceToName}></lightning-formatted-text>
+                                    </template>
+                                </div>
+                            </td>
+
+                            <td if:true={showERFields} data-label={LABELS.STATUS}>
+                                <div class="slds-truncate" title={record.status}>
+                                    <lightning-formatted-text value={record.status}></lightning-formatted-text>
+                                </div>
+                            </td>
+
+                            <td data-label={LABELS.RECORD_TYPE_NAME}>
+                                <div class="slds-truncate" title={record.recordType}>
+                                    <lightning-formatted-text value={record.recordType}></lightning-formatted-text>
+                                </div>
+                            </td>
+
+                            <template for:each={record.extraFields} for:item="extraField">
+                                <td key={extraField.fieldPath} if:true={extraField.isEmptyCell}>
+                                    <div class="slds-truncate">
+
+                                    </div>
+                                </td>
+
+                                <td key={extraField.fieldPath} if:false={extraField.isEmptyCell} data-label={extraField.label}>
+                                    <div class="slds-truncate" title={extraField.value}>
+                                        {extraField.value}
+                                    </div>
+                                </td>
+                            </template>
+                        </tr>
+                    </template>
+                    </tbody>
+                </table>
+
+                <div if:false={hasRecords} class="slds-wrap slds-p-around_medium slds-text-align_center">
+                    <h2 class="slds-text-heading_small slds-text-color_weak">
+                        <lightning-formatted-text value={LABELS.MESSAGE_NO_RECORDS}></lightning-formatted-text>
+                    </h2>
+                </div>
+            </template>
+
+            <template if:true={showErrorBlock}>
+                <div class="slds-wrap slds-p-around_medium slds-text-align_center">
+                    <lightning-icon icon-name="utility:warning" size="small"></lightning-icon>
+
+                    <h2 class="slds-text-heading_small slds-text-color_weak">
+                        <lightning-formatted-text value={errorMessage}></lightning-formatted-text>
+                    </h2>
+                </div>
+            </template>
+        </div>
+    </article>
+</template>

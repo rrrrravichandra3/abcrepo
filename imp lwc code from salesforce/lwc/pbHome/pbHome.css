@@ -1,0 +1,34 @@
+.main {
+    margin-top: 50px;
+    z-index: 0;
+    background: transparent;
+}
+
+
+
+.nav {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 15;
+    background: white;
+}
+
+.background {
+    position: absolute;
+    opacity: 0.1;
+    bottom: 35%;
+    z-index: 0;
+}
+
+.spinner {
+    height: 400px;
+}
+
+.background2 {
+    position: absolute;
+    z-index: 0;
+    scale: 60%;
+    top: 15px;
+    left: 70%;
+}

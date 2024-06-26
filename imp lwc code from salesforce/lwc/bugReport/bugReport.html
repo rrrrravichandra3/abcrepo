@@ -1,0 +1,51 @@
+<template>
+  <!-- 
+    Component Description:
+    Bug icon displays new case form on click
+
+    @api global -> If true show bug icon, if false show "New" button
+  -->
+
+
+  <!-- <template if:true={showModal}>
+    <c-lightning-modal save-label={label.SubmitLabel} onclose={toggleBugModal} hide-footer>
+      <h2 class="slds-text-heading_medium slds-p-around_small slds-text-align_center slds-border_bottom">
+        {label.ModalTitleLabel}
+      </h2>
+      <lightning-record-edit-form object-api-name="Case" onsuccess={handleSuccess} onerror={handleError}>
+        <div class="slds-p-around_small">
+          <lightning-input-field field-name="Type" required></lightning-input-field>
+          <lightning-input-field field-name="Subject" required></lightning-input-field>
+          <lightning-input-field field-name="Description" required></lightning-input-field>
+        </div>
+        <footer class="slds-modal__footer">
+          <lightning-button class="slds-m-right_x-small" variant="neutral" label={label.CancelLabel} onclick={toggleBugModal}>
+          </lightning-button>
+          <lightning-button variant="brand" type="submit" label={label.SubmitLabel}>
+          </lightning-button>
+        </footer>
+      </lightning-record-edit-form>
+    </c-lightning-modal>
+  </template> -->
+
+  <template if:true={global}>
+    <template if:true={showTooltip}>
+      <img tabindex="0" role="button" src={Concierge_Logo} alt="Got a question?" class="button-icon" onclick={toggleBugModal} onmouseover={showlabel} />
+      <div onclick={dismissTooltip} class="slds-popover slds-popover_tooltip slds-nubbin_bottom-right tooltip-position" role="tooltip" id="help">
+        <div class="slds-popover__body">{label.AboutLabel}
+          <div class="slds-clearfix slds-m-top_x-small">
+            <div class="slds-float_right">{label.DismissLabel}</div>
+          </div>
+        </div>
+      </div>
+    </template>
+    <template if:false={showTooltip}>
+      <img tabindex="0" role="button" src={Concierge_Logo} alt="Got a question?" class="button-icon" onclick={toggleBugModal} onkeypress={toggleBugModal} onmouseover={showlabel}/>
+    </template>
+
+
+  </template>
+  <template if:false={global}>
+    <lightning-button variant="neutral" label="New" onclick={toggleBugModal}></lightning-button>
+  </template>
+</template>

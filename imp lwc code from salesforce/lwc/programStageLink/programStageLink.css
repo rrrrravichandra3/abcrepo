@@ -1,0 +1,29 @@
+.container {
+    background-color: #EBF4FC;
+    border-radius: 3px;
+    height: 56px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.icon {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    line-height: 56px;
+}
+
+.label {
+    height: 100%;
+    color: #000000;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+.onhover:hover{
+    overflow: hidden;
+    box-shadow: 0 0 0 2px #d0d0d0
+
+}

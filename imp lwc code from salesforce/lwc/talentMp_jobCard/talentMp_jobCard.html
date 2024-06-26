@@ -1,0 +1,37 @@
+<!--
+  @description       : 
+  @author            : Urvish Shah (ushah)
+  @group             : 
+  @last modified on  : 02-06-2024
+  @last modified by  : Urvish Shah (ushah)
+-->
+<template>
+    <div if:true={error} class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error">
+        <span class="slds-assistive-text">Error</span>
+        <h2>{error}</h2>
+    </div>
+    <template for:each={searchedjobsResults} for:item="job">
+        <div key={job.referenceId} class="slds-var-m-top_medium" data-id={job.referenceId}>
+            <lightning-card style="--slds-c-card-header-spacing-block-end:0rem;--slds-c-card-header-spacing-block-start:0rem">
+                <lightning-badge class="jobFamilyGroupBadge" label={job.jobFamilyGroup}></lightning-badge>
+                    <span class="slds-float_right" style="cursor: pointer;">
+                        <lightning-icon style={job.style} onclick={saveJobForLater} onmouseover={handleSaveForLaterMouseover} onmouseout ={handleSaveForLaterMouseout} size="small"  icon-name="utility:bookmark_stroke" alternative-text="Save" data-sfid={job.sfId} data-saved={job.isSaved} slot="actions"></lightning-icon>
+                    </span>
+                <div style="cursor: pointer;" data-id={job.referenceId} data-sfid={job.sfId} data-saved={job.isSaved} onclick={redirectToJobDetails}>
+                    <div class="slds-var-p-top_medium slds-text-heading_small">
+                        {job.title}
+                    </div>
+                    <div class="slds-var-p-top_medium slds-text-body_small">
+                        <lightning-icon size="x-small"  icon-name="utility:checkin" variant="bare" alternative-text="Save" slot="actions" onclick={saveJobForLater}></lightning-icon>
+                        <span class="slds-var-m-left_small">
+                            {job.primaryLoacation}
+                        </span>
+                        <span class="slds-float_right">
+                            {job.totalLocations} locations
+                        </span>
+                    </div>
+                </div>
+            </lightning-card> 
+        </div>
+    </template>
+</template>

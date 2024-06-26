@@ -1,0 +1,19 @@
+.card-shadow {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .1);
+}
+
+.profile-photo {
+  height: 70px;
+  width: 70px;
+  border-radius: 999px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .card-shadow {
+    border: none;
+    border-radius: 0.5rem;
+  }
+}

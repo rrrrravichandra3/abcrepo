@@ -1,0 +1,24 @@
+.subHeading {
+    padding-top: 25px;
+    color: var(--wes-g-color-palette-cloud-blue-70,#1ab9ff);
+    font-size: 0.7rem;
+    padding-left: 30px;
+}
+
+.container {
+    padding: 0;
+    --sds-c-card-header-spacing-block-start:0;
+    --sds-c-card-body-spacing-block-start:0;
+    --sds-c-card-header-spacing-block-end:0;
+    --sds-c-card-body-spacing-block-start:0;
+    --sds-c-card-body-spacing-block-end:0;
+    --sds-c-card-footer-spacing-block-end:0;
+    --sds-c-card-footer-spacing-block-start:0;
+}
+
+.detail {
+    line-height: normal;
+    font-size: 0.65rem;
+    padding-top: 5px;
+    padding-bottom: 15px;
+}

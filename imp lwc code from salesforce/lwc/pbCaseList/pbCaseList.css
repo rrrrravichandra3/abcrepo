@@ -1,0 +1,24 @@
+.listItem {
+    background: #F9F9F9;
+    border-bottom: 1px solid #C9C9C9;
+}
+
+li:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+li:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom: none;
+}
+
+.listItem:hover {
+    border: 1px solid var(--wes-g-color-brand-inverse-3);
+    cursor: pointer; 
+}
+
+.selected {
+    background-color: var(--wes-g-color-brand-inverse-2);
+}

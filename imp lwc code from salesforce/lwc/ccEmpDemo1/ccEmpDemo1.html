@@ -1,0 +1,23 @@
+<template>
+    <div>
+        <h2 class="slds-text-heading_small">Home Address</h2>
+        <lightning-button variant="base" label="Save" onclick={handleSave}></lightning-button>
+        <div grid flow="wrap">
+            <span size="1:2">
+                <lightning-input label="Address Line 1:" value="5 Brookfield, Atlanta" disabled="true"> </lightning-input>
+            </span>
+            <span size="1:2">
+                <lightning-input label="Address Line 2:" value=" " disabled="true" > </lightning-input>
+            </span>
+            <span size="1:2">
+                <lightning-input label="State/County:" value="Unlisted" disabled="true" > </lightning-input>
+            </span>
+            <span size="1:2">
+                <lightning-input label="Country:" value="Unlisted" disabled="true" > </lightning-input>
+            </span>
+            <span size="1:2">
+                <lightning-input label="EirCode:" value="AU0 000" disabled="true" > </lightning-input>
+            </span>
+            </div>
+       </div>
+</template>

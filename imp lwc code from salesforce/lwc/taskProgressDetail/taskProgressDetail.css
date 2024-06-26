@@ -1,0 +1,15 @@
+span {
+    color: var(--wes-g-color-palette-cloud-blue-70,#1ab9ff);
+} 
+
+p {
+    padding-top: 3px;
+    font-size: xx-small;
+    line-height: inherit;
+    padding-bottom: 10px;
+}
+
+.button {
+    font-size: xx-small;
+    padding: 0;
+}

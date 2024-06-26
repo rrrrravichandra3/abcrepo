@@ -1,0 +1,81 @@
+<template>
+    <c-wes-scope>
+
+        <div class="bg-1">
+            <img src={_bg1} alt="Logo"/>
+        </div>
+
+        <div class="bg-2">
+            <img  src={_bg2} alt="Logo"/>
+        </div>
+        
+        <div class="bg-5">
+            <img src={_bg5} alt="Logo"/>
+        </div>
+
+        <div class="bg-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="855" height="532" viewBox="0 0 855 532" fill="none">
+                <path d="M0.483523 531.265C120.486 362.195 570.724 663.187 518.564 321.094C497.582 183.484 793.366 350.229 843.435 293.402C895.442 234.376 736.5 123.5 754.5 82.5004C778.382 28.1017 826.5 82.5004 848.998 0.220337" stroke="#90D0FE" stroke-dasharray="4.06 7.62"/>
+            </svg>
+        </div>
+
+        <div class="sf-logo">
+            <img class="sf-logo-img" src={_sfLogo} alt="Salesforce Logo"/>
+        </div>
+
+        <div class="heading">
+            <h4 type-style="display-4">Welcome to <span class="heading-1">Salesforce!</span></h4>
+        </div>
+
+        <div class="main">
+            <div class="bg-3">
+                <img  src={_bg3} alt="Logo"/>
+            </div>
+    
+            <div class="bg-4">
+                <img src={_bg4} alt="Logo"/>
+            </div>
+
+
+            <div class="container">
+    
+               
+                <div class="sub-container">
+    
+                   
+                    <div class="heading-3">
+                        <h4 type-style="display-7">Log In</h4>
+    
+                    </div>
+                    <div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="text-input-id-48">Username</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" placeholder="user@dreamjobcentral.com" required="" class="slds-input"/>
+                            </div>
+                            <div class="slds-form-element__help help-text">You should have received your username from es@salesforce.com</div>
+                        </div>
+                    </div>        
+                    <div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="text-input-id-48">Password</label>
+                            <div class="slds-form-element__control">
+                                <input type="password" placeholder="password@123" required="" class="slds-input"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login btn">
+                        <c-wes-button variant="primary" size="small" fluid kx-type="ripple" onclick={handleLogin}>Log In</c-wes-button>
+                    </div>
+                    <div class="forgot btn">
+                       <a href="/ForgotPassword">Forgot your Password?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            Other problems logging in? Please contact your recruiter
+        </div>
+    </c-wes-scope>
+</template>

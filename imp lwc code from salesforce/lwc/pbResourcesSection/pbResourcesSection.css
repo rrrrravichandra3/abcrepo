@@ -1,0 +1,10 @@
+.resourcesContainer {
+    border-radius: 16px;
+    background-color: var(--wes-g-color-error-base-2);
+    background-repeat: no-repeat;
+    
+}
+
+.resourcesHeader {
+    color: var(--wes-g-color-error-base-contrast-4);
+}

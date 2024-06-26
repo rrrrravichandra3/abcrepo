@@ -1,0 +1,78 @@
+.profile-picture {
+  width: 4.625rem;
+  height: 4.625rem;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 999px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.grey-background {
+  background-color: #F7F9FB;
+}
+
+.input {
+  max-width: 18.75rem;
+}
+
+.banner-container {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  height: calc(100% + 60px);
+  width: calc(100% + 60px);
+  z-index: -1;
+}
+.image-container {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100px;
+  width: 100px;
+  border-radius: 999px;
+}
+
+.large-image {
+  width: 150px;
+  height: 150px;
+  border: 3px solid #efefef;
+}
+
+.stats {
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.statContainer {
+  height: 170px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.width-control{
+  max-width: 120px;;
+}
+
+.badge-fix{
+  margin-bottom: var(--lwc-spacingXSmall,0.5rem);
+  margin-right: var(--lwc-spacingXSmall,0.5rem);
+  margin-left: 0 !important;
+}
+
+.color-fix{ 
+  color: #000000;
+}
+
+.light-background{
+  background-color:#EAF5FB ;
+}

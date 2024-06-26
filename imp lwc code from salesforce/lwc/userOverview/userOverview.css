@@ -1,0 +1,16 @@
+.grey-box {
+  background-color: #e5e9ec;
+  border-radius: 0.25rem;
+}
+
+.heading {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #404040;
+}
+
+.sub-heading {
+  color: #919191;
+  font-weight: bold;
+  font-size: 0.6rem;
+}

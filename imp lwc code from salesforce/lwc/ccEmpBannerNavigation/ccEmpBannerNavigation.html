@@ -1,0 +1,23 @@
+<template>
+    <div class="card-container">
+        <div class="image-container">
+            <img src={headerImgUrl} alt="Background" class="image-curve" />
+            <div class="text-overlay" type-style="body-1">
+                <p type-style="code"><b>{bannerNavigationTitle}</b></p>
+            </div>
+        </div>
+        <div class="navigation">
+            <ul>
+                <h3 type-style="display-3">
+                    <template for:each={bannerNavigation} for:item="menuItem">
+                        <li key={menuItem.pageId}>
+                            <a href="javascript:void(0)" onclick={navigate} data-id={menuItem.pageId} data-page={menuItem.pageId}>
+                                {menuItem.Label}
+                            </a>
+                        </li>
+                    </template>
+                </h3>
+            </ul>
+        </div>
+    </div>
+</template>

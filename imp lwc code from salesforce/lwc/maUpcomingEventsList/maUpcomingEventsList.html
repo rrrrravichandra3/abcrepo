@@ -1,0 +1,241 @@
+<template>
+    <div>   
+        <article class="slds-card" data-id="principalContainer">
+            <div class="slds-card__body slds-card__body_inner">
+                <ul>
+                    <li>
+                        <template if:false={isHomePage}>
+                            <div class="slds-p-around_small slds-text-heading_medium" style="display:block">
+                                <span class="titleSF"> 
+                                    {title}
+                                </span>
+                            </div> 
+                        </template>
+                                              
+                        <template if:true={isHomePage}>
+                            <template if:true={listContainsElements}>
+                                <div class="titleSection">
+                                    <div class="slds-text-heading_small slds-p-left_small titleStyle">{title}</div>
+                                    <div class="slds-p-top_xxx-small slds-text-title_caps slds-m-right_x-medium slds-float_right">
+                                        Date
+                                    </div>
+                                </div>
+                                <template for:each={eventArray} for:item="event" for:index="index">
+                                    <div class="slds-p-around_xx-small slds-m-left_small slds-media" key={event.record.Id}>
+                                        <div class="slds-media__body">
+                                            <div class="slds-grid slds-grid_align-spread slds-timeline__trigger">
+                                                <div class="slds-grid slds-grid_vertical-align-center slds-truncate_container_75 slds-no-space">
+                                                    <div class="home-page-font-size">
+                                                       
+                                                        <template if:true={event.Required_Event__c}>
+                                                            <p style="display:flex;">
+                                                                {event.record.Name}<span class="requiredClass">*</span>
+                                                            </p>  
+                                                        </template>
+                                                        <template if:false={event.Required_Event__c}>
+                                                            <p>{event.record.Name}</p>
+                                                        </template>
+                                                    </div>
+                                                </div>
+                                                <div class="slds-timeline__actions slds-timeline__actions_inline">
+                                                    <p><lightning-formatted-text value={event.record.startDate}></lightning-formatted-text></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>       
+                                </template>
+                                <template if:true={isHomePage}>
+                                    <div class="slds-m-around_medium buttonContainer">
+                                        <lightning-button label={buttonLabel} onclick={loadMoreEvents}></lightning-button>
+                                    </div>                               
+                                </template>
+                            </template>
+                            <template if:false={listContainsElements}>
+                                <article class="slds-card">
+                                    <div class="slds-illustration slds-illustration_small" aria-hidden="true">
+                                        <img src="/projRes/ui-home-private/emptyStates/noTasks.svg" class="slds-illustration__svg" alt=""/>
+                                    </div>
+                                    <div class="slds-text-longform">
+                                        <h3 class="slds-align_absolute-center slds-text-heading_medium">{emptyEventsText}</h3>
+                                    </div>
+                                </article>
+                            </template>
+                        </template>
+                        <template if:false={isHomePage}>
+                            <article class="slds-card" data-id="innerContainer">
+                                <div class="slds-card__body slds-card__body_inner">
+
+                                    <div class="rowEvent slds-m-bottom_small">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="requiredCheckbox">{label.TimeZoneLabel}</label>
+                                            <div class="slds-form-element__control">
+                                               <b><lightning-formatted-text value={usertimezone}></lightning-formatted-text></b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="rowEvent slds-m-bottom_large">
+                                        <div class="widthCell">
+                                            <lightning-combobox name="month" label="Month" value={valueMonth} placeholder="Select Month" options={optionsMonths} onchange={handleChangeMonth}></lightning-combobox>
+                                        </div>
+                                        <div class="widthCell">
+                                            <lightning-combobox name="eventType" label="Event Type" value={valueEventType} placeholder="Select Event Type" options={optionsEventType} onchange={handleChangeEventType}></lightning-combobox>
+                                        </div>
+                                        <div class="widthCell">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="requiredCheckbox">Required</label>
+                                                <div class="slds-form-element__control">
+                                                    <span class="slds-checkbox slds-checkbox_standalone">
+                                                    <input type="checkbox" id="requiredCheckbox" name="required" onchange={handleChangeCheckBox}/>
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <template if:true={listContainsElements}>
+                                        <template for:each={eventArray} for:item="event" for:index="index">
+                                            <div class="slds-media slds-text-heading_medium" style="display: inline;" key={event.Id}>                                                
+                                                <div class="detailEventConatiner slds-media__body slds-border_top slds-border_bottom slds-border_right slds-border_left slds-m-bottom_medium">
+                                                    <div class="rowEvent slds-p-horizontal_medium slds-p-vertical_large">
+                                                        <div class="widthCell">
+                                                            <p><lightning-formatted-text value={event.record.startDate}></lightning-formatted-text></p>
+                                                            <template if:false={event.record.All_Day_Event__c}>
+                                                                <p class="headingTime"><lightning-formatted-date-time value={event.record.Start_Datetime__c} hour="numeric" minute="numeric" time-zone={timeZone}></lightning-formatted-date-time></p>
+                                                            </template>
+                                                            <p class="eventfile"><a href="javascript:void(0)" onclick={generateIcsFile} name={event.index}>Add to Calendar</a></p>
+                                                        </div>
+                                                        <div class="widthCell">
+                                                            <p class="slds-truncate boldHeading">{event.record.Name}</p>
+                                                           
+                                                        </div>
+                                                        <div class="widthCell requiredCell">
+                                                           
+                                                            <div class="rsvpbuttons">
+                                                                <h1>Going?</h1>
+                                                                <lightning-button-group>
+                                                                    <template if:true={event.record.RSVP_Yes}>
+                                                                        <lightning-button label="Yes" variant="brand" ></lightning-button>
+                                                                    </template>
+                                                                    <template if:false={event.record.RSVP_Yes}>
+                                                                        <lightning-button label="Yes" name={event.index} data-id="Yes" onclick={updateRSVP}></lightning-button>
+                                                                    </template>
+
+                                                                    <template if:true={event.record.RSVP_No}>
+                                                                        <lightning-button label="No"  variant="brand"></lightning-button>
+                                                                    </template>
+                                                                    <template if:false={event.record.RSVP_No}>
+                                                                        <lightning-button label="No" name={event.index} data-id="No" onclick={updateRSVP}> </lightning-button>
+                                                                    </template>
+
+                                                                    <template if:true={event.record.RSVP_May_Be}>
+                                                                        <lightning-button label="Maybe" variant="brand"></lightning-button>
+                                                                    </template>
+                                                                    <template if:false={event.record.RSVP_May_Be}>
+                                                                        <lightning-button label="Maybe" name={event.index} data-id="May Be" onclick={updateRSVP}></lightning-button>
+                                                                    </template>
+
+                                                                </lightning-button-group>
+                                                            </div>
+
+                                                            <template if:true={event.record.Required_Event__c}>
+                                                                <lightning-badge label="Required" class="slds-theme_error requiredBadge"></lightning-badge>
+                                                            </template>
+                                                        </div>
+                                                    </div>                                                   
+                                                    <template if:false={event.showDetails}>
+                                                        <div class="dropdownSection slds-p-bottom_medium">
+                                                            <lightning-button-icon name={event.index} icon-name="utility:chevrondown" onclick={hideDisplayDetails} class="downArrow" variant="bare" size="large" alternative-text="Hide Details" title="Hide Details"></lightning-button-icon>
+                                                        </div>
+                                                    </template>
+                                                    <template if:true={event.showDetails}>
+                                                        <div class="dropdownSection slds-p-bottom_medium">
+                                                            <lightning-button-icon name={event.index} icon-name="utility:chevronup" onclick={hideDisplayDetails} class="downArrow" variant="bare" size="large" alternative-text="Display Details" title="Display Details"></lightning-button-icon>
+                                                        </div>
+                                                        <div class="containerDetails slds-border_top">
+                                                            <lightning-layout multiple-rows="true">
+                                                                <lightning-layout-item padding="around-small" size="12">
+                                                                    <div class="slds-text-heading_small">
+                                                                        <i>{event.record.Description__c}</i> 
+                                                                    </div>
+                                                                </lightning-layout-item>
+                                                                <lightning-layout-item padding="around-small" size="12">
+                                                                    <div class="slds-text-heading_small">
+                                                                        Link: <a href={event.record.Event_Link__c} title="Event Link" target="_blank" class="slds-text-link linkStyle">{event.record.Event_Link__c}</a>
+                                                                    </div>
+                                                                </lightning-layout-item>
+                                                                <lightning-layout-item padding="around-small" size="12">
+                                                                    <div class="slds-text-heading_small">
+                                                                        Location: {event.record.Location__c}
+                                                                    </div>
+                                                                </lightning-layout-item>
+                                                                <lightning-layout-item padding="around-small" size="12">
+                                                                    <div class="slds-text-heading_small" style="display: flex;">
+                                                                        <div style="width: 250px;">
+                                                                            Start Date: <lightning-formatted-text value={event.record.startDate}></lightning-formatted-text>
+                                                                        </div>
+
+                                                                        <template if:false={event.record.All_Day_Event__c}>
+                                                                        <div>Time: <lightning-formatted-date-time value={event.record.Start_Datetime__c} hour="numeric" minute="numeric" time-zone={timeZone}></lightning-formatted-date-time></div>
+                                                                        </template>
+                                                                    </div>
+                                                                </lightning-layout-item>
+                                                                <lightning-layout-item padding="around-small" size="12">
+                                                                    <div class="slds-text-heading_small" style="display: flex;">
+                                                                        <div style="width: 250px;">End Date: <lightning-formatted-text value={event.record.endDate}></lightning-formatted-text></div>
+
+                                                                        <template if:false={event.record.All_Day_Event__c}>
+                                                                        <div>Time: <lightning-formatted-date-time value={event.record.End_Datetime__c} hour="numeric" minute="numeric" time-zone={timeZone}></lightning-formatted-date-time></div>
+                                                                        </template>
+
+                                                                    </div>
+                                                                </lightning-layout-item>
+                                                                
+                                                               
+                                                                <lightning-layout-item padding="around-small" size="12">
+                                                                    <div class="slds-text-heading_small" style="display: flex;">
+                                                                        <p>All Day Event:&#160;</p>
+                                                                        <template if:true={event.record.All_Day_Event__c}>
+                                                                            Yes
+                                                                        </template>
+                                                                        <template if:false={event.record.All_Day_Event__c}>
+                                                                            No
+                                                                        </template>
+                                                                    </div>
+                                                                </lightning-layout-item>
+                                                                <lightning-layout-item padding="around-small" size="12">
+                                                                    <div class="slds-text-heading_small">
+                                                                        Type: {event.record.Event_Type__c}
+                                                                    </div>
+                                                                </lightning-layout-item>
+                                                                
+                                                            </lightning-layout>
+                                                        </div>
+                                                    </template>                                                   
+                                                </div>
+                                            </div>
+                                        </template>
+                                        <template if:true={showLoadMoreButton}>
+                                            <div class="slds-m-around_medium buttonContainer">
+                                                <lightning-button label={buttonMoreEventsLabel} onclick={showMoreEvents}></lightning-button>
+                                            </div>  
+                                        </template>
+                                    </template>
+                                    <template if:false={listContainsElements}>
+                                        <article class="slds-card">
+                                            <div class="slds-illustration slds-illustration_small" aria-hidden="true">
+                                                <img src="/projRes/ui-home-private/emptyStates/noTasks.svg" class="slds-illustration__svg" alt=""/>
+                                            </div>
+                                            <div class="slds-text-longform">
+                                                <h3 class="slds-align_absolute-center slds-text-heading_medium">{emptyEventsText}</h3>
+                                            </div>
+                                        </article>
+                                    </template>
+                                </div>
+                                </article>
+                        </template>
+                    </li>
+                </ul>
+            </div>
+        </article>
+    </div>
+</template>

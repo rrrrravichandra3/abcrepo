@@ -1,0 +1,143 @@
+<template>
+	<section class="pb-core-section">
+		<div class="headerContainer slds-var-m-around_xx-large slds-var-p-around_xx-large text-center">
+			<div grid axis="row" class="custom-grid-container">
+				<div>
+					<h2 type-style="display-4" class="header-style">{header}</h2>
+					<div>
+						<p class="subheaderContainer text">{subheader}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row g-0">
+				<div class="col-12">
+					<div class="swiper mySwiper" style="overflow: visible">
+						<div class="swiper-wrapper">
+							<!--slide1-->
+							<div class="swiper-slide">
+								<div class="slds-card slide-card">
+									<div>
+										<div class="imageContainer imageBack1">
+											<img src={Value1Url} alt="Image" class="imageClass" />
+										</div>
+
+										<div class="text-container">
+											<h3 type-style="display-6" class="header-style" style="margin-bottom: 12px">
+												{value1header}
+											</h3>
+											<p class="text" style="margin-bottom: 20px">
+												{value1text}
+											</p>
+										</div>
+										<div class="buttonContainer">
+											<div class="slds">
+												<a href="https://salesforcebenefits.com/index.html"
+													class="slds-button slds-button_outline-brand buttonClass"
+													target="_blank" rel="noopener noreferrer">{buttonTitle}</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!--slide2-->
+							<div class="swiper-slide">
+								<div class="slds-card slide-card">
+									<div>
+										<div class="imageContainer imageBack2">
+											<img src={Value2Url} alt="Image" class="imageClass" />
+										</div>
+
+										<div class="text-container">
+											<h3 type-style="display-6" class="header-style" style="margin-bottom: 12px">
+												{value2header}
+											</h3>
+											<p class="text" style="margin-bottom: 20px">
+												{value2text}
+											</p>
+										</div>
+										<div class="buttonContainer">
+											<div class="slds">
+												<a href="https://www.google.com"
+													class="slds-button slds-button_outline-brand buttonClass"
+													target="_blank" rel="noopener noreferrer">{buttonTitle2}</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!--slide3-->
+							<div class="swiper-slide">
+								<div class="slds-card slide-card">
+									<div>
+										<div class="imageContainer imageBack3">
+											<img src={Value3Url} alt="Image" class="imageClass" />
+										</div>
+
+										<div class="text-container">
+											<h3 type-style="display-6" class="header-style" style="margin-bottom: 12px">
+												{value3header}
+											</h3>
+											<p class="text" style="margin-bottom: 20px">
+												{value3text}
+											</p>
+										</div>
+										<div class="buttonContainer">
+											<div class="slds">
+												<a href="https://www.salesforce.org/"
+													class="slds-button slds-button_outline-brand buttonClass"
+													target="_blank" rel="noopener noreferrer">{buttonTitle3}</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!--slide4-->
+							<div class="swiper-slide">
+								<div class="slds-card slide-card">
+									<div>
+										<div class="imageContainer imageBack4">
+											<img src={Value4Url} alt="Image" class="imageClass" />
+										</div>
+
+										<div class="text-container">
+											<h3 type-style="display-6" class="header-style" style="margin-bottom: 12px">
+												{value4header}
+											</h3>
+											<p class="text" style="margin-bottom: 20px">
+												{value4text}
+											</p>
+										</div>
+										<div class="buttonContainer">
+											<div class="slds">
+												<a href="https://trailhead.salesforce.com/"
+													class="slds-button slds-button_outline-brand buttonClass"
+													target="_blank" rel="noopener noreferrer">{buttonTitle4}</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-button-wrapper">
+							<div class="swiper-button-next" style="right: 39px; font-weight: bold"></div>
+							<div class="swiper-button-prev"
+								style="left: -46px; font-weight: bold; top: calc(50% - 26px)"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container" style="padding-bottom: 66px">
+			<div class="swiper-pagination">
+				<span class="swiper-pagination-bullet" style="padding: 10px"></span>
+				<span class="swiper-pagination-bullet"></span>
+				<span class="swiper-pagination-bullet"></span>
+			</div>
+		</div>
+	</section>
+</template>

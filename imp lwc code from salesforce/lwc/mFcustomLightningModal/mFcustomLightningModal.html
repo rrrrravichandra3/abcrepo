@@ -1,0 +1,39 @@
+<template>
+  Am i here?
+  <lightning-modal-header label={heading} class=""></lightning-modal-header>
+  <lightning-modal-body> 
+      <!--<c-message-composer input-label={inputLabel} button-label={buttonLabel} onsubmit={submitClickedhandler}></c-message-composer>-->
+      <template if:true={showMessageComposer}> 
+        <c-message-composer input-label={inputLabel} button-label={buttonLabel} onmessage={handleMessage}></c-message-composer>
+      </template>
+      <template if:true={showAcceptComposer}>
+        <c-message-composer input-label={inputLabel} button-label={buttonLabel} onmessage={handleMessage}></c-message-composer>
+      </template>
+      <template if:true={showRejectComposer}>
+        <c-message-composer input-label={inputLabel} button-label={buttonLabel} onmessage={handleMessage}></c-message-composer>
+      </template>
+      <template if:true={showDismissModal}> 
+        <c-m-fdismiss-modal-content reasonvalues={reasonvalues} input-label={inputLabel} button-label={buttonLabel} onreasonchange={handleReasonChange} oninformationchange={handleDismissalInformationChange}></c-m-fdismiss-modal-content>
+      </template>
+      
+  </lightning-modal-body>
+  <!--<lightning-modal-footer>
+      <c-button-wrapper onprimaryevent={handleConfirm} message={message} primarybuttonlabel ={saveLabel}></c-button-wrapper>    
+  </lightning-modal-footer>-->
+  <template if:false={hideFooter}>
+      <lightning-modal-footer>
+          <div class={buttonClass}>
+            <!--<template if:true={cancelLabel}>
+              <!<lightning-button class="slds-m-right_x-small" variant="neutral" title="Cancel" label={cancelLabel}
+                onclick={cancelClickedHandler}></lightning-button>
+                <c-button-wrapper variant="Neutral" message={message} onsecondaryevent={handleConfirm}  secondarybuttonlabel ={cancelLabel}></c-button-wrapper>    
+            </template>   -->         
+            <template if:true={saveLabel}>
+              <!--<lightning-button variant="brand" label={saveLabel} onclick={saveClickedHandler} disabled={saveDisabled}></lightning-button>-->
+              <c-m-f-button-wrapper variant="brand" message={message} primarybuttonlabel={saveLabel} onprimaryevent={submitClickedhandler} onsecondaryevent={cancelClickedHandler}  secondarybuttonlabel ={cancelLabel}></c-m-f-button-wrapper>
+            </template>
+            </div>
+      </lightning-modal-footer>
+  </template>
+ 
+</template>

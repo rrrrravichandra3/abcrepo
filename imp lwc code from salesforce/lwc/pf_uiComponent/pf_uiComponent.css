@@ -1,0 +1,100 @@
+:host {
+    --pf-ERIColor: rgb(6, 165, 154);
+    --pf-ERPIColor: rgb(144, 80, 233);
+    --pf-GERCColor: rgb(88, 103, 232);
+    --pf-MGColor: rgb(254, 147, 57);
+    --pf-RestrictedColor: rgb(254, 119, 101);
+    --pf-RestrictedTextColor: rgb(176, 173, 171);
+    --pf-RestrictedTextColorHint: rgb(112, 110, 107);
+    --pf-CardHeaderBackground: rgb(243, 242, 242);
+}
+
+.pf-card__header {
+    padding: .75rem;
+    margin: 0;
+    background-color: var(--pf-CardHeaderBackground);
+}
+
+.pf-card__legends {
+    margin-left: 2.5rem;
+}
+
+.pf-card__error {
+    padding: 1rem;
+    text-align: center;
+}
+
+.pf-case__legends-item[data-record-type="er_investigations" i] {
+    fill: var(--pf-ERIColor);
+}
+.pf-case__legends-item[data-record-type="er_performance_improvement" i] {
+    fill: var(--pf-ERPIColor);
+}
+.pf-case__legends-item[data-record-type="general_employee_relations_case" i] {
+    fill: var(--pf-GERCColor);
+}
+.pf-case__legends-item[data-record-type="manager_guidance_crt" i] {
+    fill: var(--pf-MGColor);
+}
+.pf-case__legends-item[data-record-type="restricted" i] {
+    fill: var(--pf-RestrictedColor);
+}
+
+.pf-table__row[data-is-accessible="false"] {
+    color: var(--pf-RestrictedTextColor);
+}
+.pf-table__row[data-is-accessible="false"]:hover {
+    color: var(--pf-RestrictedTextColorHint);
+}
+
+.pf-table__cell-case-number[data-is-accessible="false"] {
+    user-select: none;
+}
+.pf-table__cell-case-number[data-is-accessible="false"]:hover {
+    text-decoration: line-through;
+    cursor: not-allowed;
+}
+
+.pf-table__cell-case-number[data-is-er-type="true"] {
+    padding-left: 1.5rem;
+}
+
+.pf-table__cell-case-number[data-is-er-type="true"][data-record-type="er_investigations" i]:before,
+.pf-table__cell-case-number[data-is-er-type="true"][data-record-type="er_performance_improvement" i]:before,
+.pf-table__cell-case-number[data-is-er-type="true"][data-record-type="general_employee_relations_case" i]:before,
+.pf-table__cell-case-number[data-is-er-type="true"][data-record-type="manager_guidance_crt" i]:before {
+    display: block;
+    position: absolute;
+    content: "";
+    height: 1rem;
+    width: 1rem;
+    top: 50%;
+    left: .25rem;
+    transform: translatey(-50%);
+    border-radius: 50%;
+}
+
+.pf-table__cell-case-number[data-is-er-type="true"][data-record-type="er_investigations" i]:before {
+    background: var(--pf-ERIColor);
+}
+.pf-table__cell-case-number[data-is-er-type="true"][data-record-type="er_investigations" i][data-is-restricted="true"]:before {
+    background: linear-gradient(105deg, var(--pf-ERIColor) 0%, var(--pf-ERIColor) 55%, var(--pf-RestrictedColor) 55%);
+}
+.pf-table__cell-case-number[data-is-er-type="true"][data-record-type="er_performance_improvement" i]:before {
+    background: var(--pf-ERPIColor);
+}
+.pf-table__cell-case-number[data-is-er-type="true"][data-record-type="er_performance_improvement" i][data-is-restricted="true"]:before {
+    background: linear-gradient(105deg, var(--pf-ERPIColor) 0%, var(--pf-ERPIColor) 55%, var(--pf-RestrictedColor) 55%);
+}
+.pf-table__cell-case-number[data-is-er-type="true"][data-record-type="general_employee_relations_case" i]:before {
+    background: var(--pf-GERCColor);
+}
+.pf-table__cell-case-number[data-is-er-type="true"][data-record-type="general_employee_relations_case" i][data-is-restricted="true"]:before {
+    background: linear-gradient(105deg, var(--pf-GERCColor) 0%, var(--pf-GERCColor) 55%, var(--pf-RestrictedColor) 55%);
+}
+.pf-table__cell-case-number[data-is-er-type="true"][data-record-type="manager_guidance_crt" i]:before {
+    background: var(--pf-MGColor);
+}
+.pf-table__cell-case-number[data-is-er-type="true"][data-record-type="manager_guidance_crt" i][data-is-restricted="true"]:before {
+    background: linear-gradient(105deg, var(--pf-MGColor) 0%, var(--pf-MGColor) 55%, var(--pf-RestrictedColor) 55%);
+}

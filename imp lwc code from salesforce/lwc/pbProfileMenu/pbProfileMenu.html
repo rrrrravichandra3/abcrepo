@@ -1,0 +1,16 @@
+<template>
+    <div>
+        <button class="profileButton slds-var-p-around_x-small">
+            <div class="menuContainer">
+                <c-pb-avatar-circle
+                    first-initial={firstInitial}
+                    last-initial={lastInitial}
+                ></c-pb-avatar-circle>
+                <div type-style="display-8" class="name slds-var-p-left_x-small">
+                    {firstName} {lastInitial}.
+                </div>
+                <lightning-icon icon-name="utility:chevrondown" alternative-text="Open Menu" size="x-small" class="arrowIcon slds-var-p-left_medium"></lightning-icon>
+            </div>
+        </button>
+    </div>
+</template>

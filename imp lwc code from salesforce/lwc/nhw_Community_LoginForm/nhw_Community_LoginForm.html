@@ -1,0 +1,85 @@
+<template>
+    <template if:false={isInternalButtonClick}>
+    <div class="slds-box">
+
+
+        <template if:false={isVerifyForm}>
+            <template if:true={hasRegisterError}>
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error"
+                    id="registerError"
+                    role="alert">
+                    <span class="slds-assistive-text">error</span>
+                    <h2><strong>{signInErrorMessage}</strong></h2>
+                </div>
+            </template>
+            <div id="emailInput" class="col slds-p-bottom_medium">
+                <lightning-input
+                    name="candidateEmail"
+                    type="email"
+                    label=" Your Email Address"
+                    onchange={handleEmailChange}
+                    value={candidateEmail}
+                    class="email-input"
+                    >
+                </lightning-input>
+            </div>
+            <div id="loginButton" class="col slds-align_absolute-center">
+                <div if:false={isLoadedEmail} class="slds-is-relative">
+                    <lightning-button
+                        variant="brand"
+                        label="Login to New Hire Community"
+                        name="Login"
+                        onclick={handleloginToInsiders}>
+                    </lightning-button>
+                </div>
+            </div>
+        </template>
+
+        <template if:false={isInternal}>
+        <template if:true={isVerifyForm}>
+            <template if:true={hasValidationError}>
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error"
+                    role="alert"
+                    id="validationError">
+                    <span class="slds-assistive-text">error</span>
+                    <h2><strong>{verificationErrorMessage}</strong></h2>
+                </div>
+            </template>
+            <div id="codeInput" class="col slds-p-bottom_medium">
+                <lightning-input
+                    title="Verification Code"
+                    name="verifyInput"
+                    type="text"
+                    label="Verification Code"
+                    onchange={handleCodeChange}
+                    value={verificationCode}
+                    class="code-input">
+                </lightning-input>
+            </div>
+            <div if:false={isLoaded} class="slds-is-relative">
+                <div id="submit" class="col slds-align_absolute-center">
+                    <lightning-button variant="brand" label="Submit" name="Submit" onclick={handleSubmit}>
+                    </lightning-button>
+                </div>
+            </div>
+            <div if:true={isLoaded} class="slds-is-relative">
+                <lightning-spinner alternative-text="Loading..." variant="brand">
+                </lightning-spinner>
+            </div>
+        </template>
+    </template>
+    </div>
+</template>
+<br/>
+<template if:false={isVerifyForm}>
+    <div class="uiOutputRichText">
+        <p class="slds-text-body_medium">
+            <span> You will receive receive a verification code on your email </span>
+        </p>
+    </div>
+</template>
+<div if:true={isLoadedEmail} class="slds-is-relative">
+    <lightning-spinner alternative-text="Loading..." variant="brand">
+    </lightning-spinner>
+    </div>
+</template>

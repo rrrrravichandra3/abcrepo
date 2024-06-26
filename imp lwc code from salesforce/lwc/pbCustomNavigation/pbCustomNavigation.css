@@ -1,0 +1,13 @@
+.customHeaderContainer {
+    height: 94px;
+    padding: 0 20px;
+    background: var(--neutral-neutral-100-white, #FFF);
+}
+
+.myTicketsLink {
+    text-decoration: none !important;
+}
+
+.langSelectorContainer {
+    color: var(--wes-g-color-palette-blue-20);
+}

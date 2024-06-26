@@ -1,0 +1,53 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <template lwc:if={showSpinner}>
+        <lightning-spinner alternative-text="Loading Packages & Templates..."></lightning-spinner>
+    </template>
+
+    <lightning-quick-action-panel header={label.setupPackageModalHeader}>
+        <div class="setup-packages-container">
+            <template lwc:if={hasMasterPackages}>
+                <lightning-layout multiple-rows="true" vertical-align="stretch">
+                    <lightning-layout-item padding="around-small" class="copy-instructions slds-m-bottom_small" size="12">
+                        <lightning-formatted-text value={label.packageCopyInstructions}></lightning-formatted-text>
+                    </lightning-layout-item>
+                    
+                    <lightning-layout-item class="package-filter slds-p-vertical_small slds-p-right_small" size="4">
+                        <c-mads-filter-packages master-packages-map={masterPackagesMap} onchanged={updateSelectedPackageId}>
+                        </c-mads-filter-packages>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item class="package-detail slds-p-vertical_small slds-p-left_small" size="8">
+                        <c-mads-package-details package-name={selectedPackage.Name} package-description={selectedPackage.MA_DS_Package_Description__c} 
+                            available-templates-count={selectedPackage.MA_DS_Available_Number_of_Templates__c} derived-templates-count={totalDerivedTemplates}
+                            is-package-copied={isPackageCopied} derived-distributions-count={totalDerivedDistributions}>
+                        </c-mads-package-details>
+                    </lightning-layout-item>
+                    
+                    <lightning-layout-item class="available-templates slds-p-vertical_small" size="12">
+                        <c-mads-available-templates available-templates-map={availableTemplatesMap} disabled-all-rows={disabledSelectAllRows}
+                            onrowselect={toggleTemplateRowSelection} onallrowselect={toggleTemplateAllRowSelection}>
+                        </c-mads-available-templates>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </template>
+
+            <template lwc:else>
+                <div class="slds-illustration slds-illustration_large" aria-hidden="true">
+                    <img src="/img/chatter/Desert.svg" class="slds-illustration__svg" alt=""/>
+                    <div class="slds-text-color_weak">
+                        <h3 class="slds-text-heading_medium">
+                            <lightning-formatted-text value={label.noAvailablePackages}></lightning-formatted-text>
+                        </h3>
+                    </div>
+                </div>
+            </template>
+        </div>
+        
+        <div slot="footer">
+            <lightning-button variant="neutral" label="Cancel" onclick={handleCancel}></lightning-button>
+            <lightning-button variant="brand" label="Save" disabled={disabledSaveButton} class="slds-m-left_x-small" onclick={handleSave}>
+            </lightning-button>
+        </div>
+    </lightning-quick-action-panel>
+</template>

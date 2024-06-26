@@ -1,0 +1,40 @@
+<template>
+    <template lwc:if={isTextType}>
+        <lightning-input data-id="inputType" type="text" label={label.inputValueLabel} value={fieldValue} placeholder={label.valuePlaceholder}></lightning-input>
+    </template>
+
+    <template lwc:if={isNumberType}>
+        <lightning-input data-id="inputType" type="number" label={label.inputValueLabel} value={fieldValue} placeholder={label.numberPlaceholder}></lightning-input>
+    </template>
+
+    <template lwc:if={isDateType}>
+        <lightning-input data-id="inputType" type="date" label={label.inputValueLabel} value={fieldValue} placeholder={label.valuePlaceholder}></lightning-input>
+    </template>
+
+    <template lwc:if={isDatetimeType}>
+        <lightning-input data-id="inputType" type="datetime" label={constants.BLANK_LABEL} value={fieldValue} placeholder={label.valuePlaceholder}></lightning-input>
+    </template>
+
+    <template lwc:if={isBooleanType}>
+        <lightning-layout multiple-rows="true" vertical-align="stretch">
+            <lightning-layout-item size="12">
+                <lightning-formatted-text value={label.inputValueLabel} class="slds-form-element__label"></lightning-formatted-text>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="6">
+                <lightning-button data-id="trueBtn" label={label.booleanTrue} variant="neutral" stretch="true" onclick={handleTrueBtnClick}>
+                </lightning-button>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="6">
+                <lightning-button data-id="falseBtn" label={label.booleanFalse} variant="brand" stretch="true" onclick={handleFalseBtnClick}>
+                </lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </template>
+
+    <template lwc:if={isPicklistType}>
+        <c-mads-multiselect-combobox data-id="inputType" label={label.inputValueLabel} name={label.inputValueLabel} has-error={hasError} options={picklistOptions} onchange={handleOptionSelection}>
+        </c-mads-multiselect-combobox>
+    </template>
+</template>

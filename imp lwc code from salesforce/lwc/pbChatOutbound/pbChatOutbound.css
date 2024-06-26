@@ -1,0 +1,6 @@
+.outboundComment {
+    border-radius: 0px 15px 15px 15px;
+    background: var(--wes-g-color-brand-base-contrast-2);
+    color: #FFF;
+    font-size: 16px;
+}

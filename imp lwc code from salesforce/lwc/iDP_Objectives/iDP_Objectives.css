@@ -1,0 +1,22 @@
+.helpText{
+    padding-top: -4px;
+}
+
+.custom-focus:focus-within {
+    --slds-c-button-shadow-focus: 0 0 0px 5px rgb(1 118 211 / 25%);
+    border-radius: 4px;
+    outline: 1px solid #0176d3;
+}
+
+.custom-focus {
+    --slds-c-button-color-background-hover: #f3f3f3;
+    transition: .2s ease background-color;
+}
+
+.custom-helptext.custom-focus:focus-within {
+    outline: none;
+}
+
+h2.slds-card__header-title .slds-truncate {
+    padding: 8px 8px 8px 0;
+}

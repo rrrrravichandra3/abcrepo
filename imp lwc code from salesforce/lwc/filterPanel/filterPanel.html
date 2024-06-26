@@ -1,0 +1,35 @@
+<template>
+  <div class="slds-p-bottom_medium filters">
+    <!-- <div class="slds-m-bottom_small slds-text-align_center slds-p-bottom_small slds-border_bottom">
+      <lightning-button variant="brand" label="Apply based on my preferences" onclick={preselectFilters}>
+      </lightning-button>
+    </div> -->
+    <div class="slds-grid slds-gutters slds-wrap">
+
+      <template for:each={sortedCategories} for:item="filterCategory">
+        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_12-of-12" key={filterCategory.name}>
+          <c-filter-category start-filters={filterMap} category={filterCategory} ontoggle={handleParentClick} multi-select></c-filter-category>
+        </div>
+
+
+        <!--
+        <div key={filterCategory.name} class="slds-m-bottom_medium">
+          <p class="slds-m-bottom_x-small">{filterCategory.name}</p>
+          <div class="slds-grid slds-wrap">
+            <template for:each={filterCategory.filters} for:item="filter">
+              <div class="slds-m-bottom_x-small" key={filter.id}>
+                <c-filter-button filter={filter} start-filters={startFilters} onpressclick={handleFilterClick}>
+                </c-filter-button>
+              </div>
+            </template>
+          </div>
+        </div>
+        -->
+
+      </template>
+      <!-- <div class="slds-col slds-size_3-of-12">
+        <c-dropdown-tree></c-dropdown-tree>
+      </div> -->
+    </div>
+  </div>
+</template>

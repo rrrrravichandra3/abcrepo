@@ -1,0 +1,102 @@
+<template>
+  <c-lightning-modal hide-footer oncancel={cancelClicked} onsave={saveClicked} onclose={cancelClicked}>
+    <template if:true={showUseful}>
+      <div class="question-container slds-grid slds-grid_vertical-align-center">
+        <p class="slds-text-align_center slds-size_1-of-1 slds-text-heading_medium">
+          {labels.didYouFindMentoringExperienceUsefulLabel}
+        </p>
+      </div>
+      <footer class="answer-footer slds-grid slds-wrap slds-border_top">
+        <div class="slds-size_1-of-2 slds-p-around_small slds-grid">
+          <button  tabindex="0" role="button" title= "Yes"  aria-label={innerLabel} aria-pressed= {pressed} class="slds-button slds-button_neutral slds-size_1-of-1 slds-text-color_success" data-id="useful" data-answer="Yes" data-next="happy"  onclick={buttonClickedHandler}>
+            {capitalYesLabel}
+          </button>
+        </div>
+        <div class="slds-size_1-of-2 slds-p-around_small slds-grid">
+          <button class="slds-button slds-button_neutral slds-size_1-of-1 slds-text-color_error" data-id="useful" data-answer="No" data-next="happy" onclick={buttonClickedHandler}>
+            {capitalNoLabel}
+          </button>
+        </div>
+        <div class="slds-size_1-of-1">
+          <p class="slds-text-body_small slds-text-color_weak slds-text-align_center slds-p-bottom_small slds-p-horizontal_small">
+            {disclaimer}
+          </p>
+        </div>
+      </footer>
+    </template>
+
+    <template if:true={showHappy}>
+      <div class="question-container slds-grid slds-grid_vertical-align-center">
+        <p class="slds-text-align_center slds-size_1-of-1 slds-text-heading_medium">
+          {labels.areYouHappyWithYourMatchLabel}
+        </p>
+      </div>
+      <footer class="answer-footer slds-grid slds-border_top slds-wrap">
+        <div class="slds-size_1-of-2 slds-p-around_small slds-grid">
+          <button class="slds-button slds-button_neutral slds-size_1-of-1 slds-text-color_success" data-id="happy" data-answer="Yes" data-next="likes" onclick={buttonClickedHandler}>
+            {capitalYesLabel}
+          </button>
+        </div>
+        <div class="slds-size_1-of-2 slds-p-around_small slds-grid">
+          <button class="slds-button slds-button_neutral slds-size_1-of-1 slds-text-color_error" data-id="happy" data-answer="No" data-next="likes" onclick={buttonClickedHandler}>
+            {capitalNoLabel}
+          </button>
+        </div>
+        <div class="slds-size_1-of-1">
+          <p class="slds-text-body_small slds-text-color_weak slds-text-align_center slds-p-bottom_small slds-p-horizontal_small">
+            {disclaimer}
+          </p>
+        </div>
+      </footer>
+    </template>
+
+    <template if:true={showLikes}>
+      <div class="question-container slds-grid slds-grid_vertical slds-grid_align-center">
+        <div class="slds-text-align_center">
+          <lightning-icon icon-name="action:approval" alternative-text="Approved"></lightning-icon>
+        </div>
+        <p class="slds-text-align_center slds-size_1-of-1 slds-m-top_medium slds-text-heading_medium">{labels.whatDidYouLikeLabel}
+        </p>
+      </div>
+      <footer class="answer-footer slds-grid slds-wrap slds-border_top slds-p-around_small">
+        <lightning-textarea class="slds-size_1-of-1 slds-m-bottom_medium" name="likes" variant="label-hidden" placeholder={labels.shareYourThoughtsDontHoldBackLabel} value={likes} onchange={inputChangeHandler}>
+        </lightning-textarea>
+        <button class="slds-button slds-button_neutral slds-size_1-of-1" data-next="dislikes" onclick={nextClicked}>
+          {labels.nextLabel}
+        </button>
+        <div class="slds-size_1-of-1">
+          <p class="slds-text-body_small slds-text-color_weak slds-text-align_center slds-p-around_small">
+            {disclaimer}
+          </p>
+        </div>
+      </footer>
+    </template>
+
+    <template if:true={showDislikes}>
+      <div class="question-container slds-grid slds-grid_vertical slds-grid_align-center">
+        <div class="slds-text-align_center">
+          <lightning-icon icon-name="action:close" alternative-text="close"></lightning-icon>
+        </div>
+        <p class="slds-text-align_center slds-size_1-of-1 slds-m-top_medium slds-text-heading_medium">
+          {labels.whatDidntYouLikeLabel}
+        </p>
+      </div>
+      <footer class="answer-footer slds-grid slds-wrap slds-border_top slds-p-around_small slds-is-relative">
+        <template if:true={loading}>
+          <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+        </template>
+
+        <lightning-textarea class="slds-size_1-of-1 slds-m-bottom_medium" name="dislikes" variant="label-hidden" placeholder={labels.shareYourThoughtsDontHoldBackLabel} value={dislikes} onchange={inputChangeHandler}>
+        </lightning-textarea>
+        <button class="slds-button slds-button_brand slds-size_1-of-1" onclick={submitClicked}>
+          {labels.submitLabel}
+        </button>
+        <div class="slds-size_1-of-1">
+          <p class="slds-text-body_small slds-text-color_weak slds-text-align_center slds-p-around_small">
+            {disclaimer}
+          </p>
+        </div>
+      </footer>
+    </template>
+  </c-lightning-modal>
+</template>

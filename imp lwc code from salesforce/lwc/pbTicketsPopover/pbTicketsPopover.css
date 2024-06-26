@@ -1,0 +1,5 @@
+.myTicketsContainer {
+    width: 560px;
+    height: 528px;
+    overflow: scroll;
+}

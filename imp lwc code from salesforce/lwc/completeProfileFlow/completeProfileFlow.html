@@ -1,0 +1,16 @@
+<template>
+  <!--Show Spinner if Loading-->
+  <template if:true={loading}>
+    <lightning-spinner alternative-text="Loading"></lightning-spinner>
+  </template>
+
+  <!--What we know about you-->
+  <template if:true={showWhatWeKnow}>
+    <c-what-we-know city={userCity} country={userCountry} oncomplete={displayCreateForm} ondismiss={dismissClickedHandler}></c-what-we-know>
+  </template>
+
+  <!--Create Form-->
+  <template if:true={showCreateForm}>
+    <c-create-profile-form onclose={dismissClickedHandler} mode={mode}></c-create-profile-form>
+  </template>
+</template>

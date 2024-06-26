@@ -1,0 +1,27 @@
+.container {
+    height: 125px;
+    width: 125px;
+    background-color: #eef4ff;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+}
+
+.iconContainer {
+    height: 35px;
+    width: 35px;
+    background-color: #0176d3;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.icon {
+    --sds-c-icon-color-foreground: white;
+    padding-top: 20px;
+}
+
+h6 {
+    font-size: 0.7rem;
+    line-height: normal;
+    padding-top: 10px;
+}

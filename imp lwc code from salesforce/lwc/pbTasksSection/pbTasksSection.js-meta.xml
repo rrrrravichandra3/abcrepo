@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Preboarding Tasks Section</masterLabel>
+
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property type="String" name="header" translatable="true" />
+            <property type="String" name="subheader" translatable="true" />
+            <property type="ContentReference" name="balloonImageId" label="balloonImageId"
+                filter="cms_image" />
+        
+            <property type="String" name="totalDays" translatable="true" />
+            <property type="String" name="totalDay" translatable="true" />
+            <property type="String" name="wdFirstHeader" translatable="true" />
+            <property type="String" name="wdFirstSubheader" translatable="true" />
+            <property type="ContentReference" name="chevronId" label="chevronId" filter="cms_image" />
+            <property type="ContentReference" name="wdStep1Id" label="wdStep1Id" filter="cms_image" />
+            <property type="String" name="wdStep1Header" translatable="true" />
+            <property type="String" name="wdStep1Subheader" translatable="true" />
+            <property type="ContentReference" name="wdStep2Id" label="wdStep2Id" filter="cms_image" />
+            <property type="String" name="wdStep2Header" translatable="true" />
+            <property type="String" name="wdStep2Subheader" translatable="true" />
+            <property type="ContentReference" name="wdStep3Id" label="wdStep3Id" filter="cms_image" />
+            <property type="String" name="wdStep3Header" translatable="true" />
+            <property type="String" name="wdStep3Subheader" translatable="true" />
+            <property type="ContentReference" name="bushesImageId" label="bushesImageId"
+            filter="cms_image" />
+            <property type="String" name="wdSecondHeader" translatable="true" />
+            <property type="String" name="wdTask1Header" translatable="true" />
+            <property type="String" name="wdTask1Subheader" translatable="true" />
+            <property type="String" name="wdTask2Header" translatable="true" />
+            <property type="String" name="wdTask2Subheader" translatable="true" />
+            <property type="String" name="wdTask3Header" translatable="true" />
+            <property type="String" name="wdTask3Subheader" translatable="true" />
+            <property type="String" name="wdTask4Header" translatable="true" />
+            <property type="String" name="wdTask4Subheader" translatable="true" />
+            <property type="String" name="wdTask5Header" translatable="true" />
+            <property type="String" name="wdTask5Subheader" translatable="true" />
+            <property type="String" name="buttonText" translatable="true" />
+        </targetConfig>
+    </targetConfigs>
+
+</LightningComponentBundle>

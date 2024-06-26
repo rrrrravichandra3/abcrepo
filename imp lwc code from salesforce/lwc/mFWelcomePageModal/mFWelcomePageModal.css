@@ -1,0 +1,20 @@
+.color-brand {
+    color: var(--lwc-colorTextBrand);
+  }
+
+  .container {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: auto;
+    z-index: 9999;
+  }
+  .slds-modal__content {
+    max-height: 400px;
+    }

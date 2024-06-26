@@ -1,0 +1,21 @@
+.add-skill-icon{
+    --sds-c-icon-color-foreground-default: #000000; 
+}
+
+.remove-skill-icon{
+    --slds-c-icon-color-foreground: #f3f3f3;
+}
+
+.action-utility-icon{
+    padding: 0;
+    margin-left: 0.5rem;
+    cursor: pointer;
+}
+
+.textareabio{
+    min-height: 150px;
+}
+
+:host {
+    --slds-c-textarea-sizing-min-height: 200px;
+}

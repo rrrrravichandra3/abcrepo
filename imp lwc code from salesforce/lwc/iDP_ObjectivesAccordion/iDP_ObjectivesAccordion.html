@@ -1,0 +1,68 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <lightning-accordion-section name={_objective.recordId} key={_objective.recordId} data-id={_objective.recordId}
+        label={objectiveName}>
+        <lightning-spinner lwc:if={isLoading} class="slds-is-absolute" alternative-text="Loading" size="medium"
+        variant="brand"></lightning-spinner>
+        <template if:false={ismanager}>
+            <template if:false={isCompleted}>
+                <lightning-button-icon slot="actions" icon-name="utility:edit" alternative-text="Edit" title="Edit" class="slds-m-left_xx-small custom-focus"
+                    menu-alignment="auto" variant="container" data-id={_objective.recordId}
+                    onclick={makeObjEditable} tabindex="0"></lightning-button-icon>
+            </template>
+            <lightning-button-icon slot="actions" icon-name="utility:delete" alternative-text="Delete"
+                class="slds-m-left_xx-small custom-focus" title="Delete" menu-alignment="auto" variant="container"
+                data-id={_objective.recordId} onclick={handleRemoveRow}></lightning-button-icon>
+        </template>
+
+        <div class="slds-m-horizontal_large">
+            <div class="slds-grid slds-wrap slds-text-body_small " style="font-weight:normal">
+                <template if:true={isEditable}>
+                    <div
+                        class="slds-col slds-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12 slds-m-horizontal_small slds-m-bottom_small">
+                        <lightning-input type="text" value={_objective.objectiveName} placeholder="Enter Objective" style="width:90%"
+                            label="Objective Name" onfocusout={handleObjectiveNameChange} max-length="95"
+                            message-when-value-missing="Objective Name cannot be empty" data-id="objectiveName"
+                            required></lightning-input>
+                    </div>
+                </template>
+            </div>
+
+            <template for:each={actions} for:item="action" for:index="index">
+                <c-i-d-p_-actions action={action} key={action.recordId} is-editable={isEditable} data-index={index}
+                    ondeleteaction={deleteAction} onchangeaction={changeAction}
+                    is-read-only={isReadOnly} ismanager={ismanager}></c-i-d-p_-actions>
+            </template>
+            <template if:false={isCompleted}>
+
+                <template for:each={newActions} for:item="action">
+                    <div key={action.recordId} data-id={action.recordId}>
+                    <c-i-d-p_-actions action={action} key={action.recordId} is-editable={isEditable}
+                        ondeleteaction={deleteAction} onchangeaction={changeAction} is-read-only={isReadOnly}
+                        ismanager={ismanager}></c-i-d-p_-actions>
+                    </div>
+                </template>
+            </template>
+
+            <div>
+                <template if:false={isCompleted}>
+                    <template if:false={ismanager}>
+                        <div class="slds-m-left_large slds-align_absolute-center">
+                            <template if:true={isEditable}>
+                                <lightning-button class="slds-m-horizontal_small custom-focus" variant="brand-outline" label="Cancel"
+                                    onclick={cancelObjective}></lightning-button>
+                            </template>
+                            <lightning-button class="slds-m-horizontal_small custom-focus" variant="brand-outline" label="Add Action"
+                                onclick={addAccordion}></lightning-button>
+                            <template if:true={isEditable}>
+                                <lightning-button class="slds-m-horizontal_small custom-focus" variant="brand" label="Save"
+                                    onclick={saveObjective}></lightning-button>
+                            </template>
+                        </div>
+                    </template>
+                </template>
+            </div>
+        </div>
+    </lightning-accordion-section>
+    <hr class="slds-var-m-bottom_x-small slds-var-m-top_xx-small">
+</template>

@@ -1,0 +1,23 @@
+<template>
+    <c-wes-scope enabled-features={enabledFeatures}>
+        <div class="valuesContainer slds-var-m-around_xx-large slds-var-p-around_xx-large ">
+            <h2 type-style="display-4" class="valuesHeader slds-var-m-left_small">Our Values</h2>
+            <p class="valuesSubheader slds-var-m-left_small slds-var-m-bottom_medium">Our values guide every decision.</p>
+            <div grid flow="wrap">
+                <template for:each={valuesList} for:item="item">
+                    <div key={item.title} size="1:3@large 1:2@medium 1:1@small">
+                        <div class="slds-var-m-around_small valueCard">
+                            <c-pb-value-card 
+                                title={item.title}
+                                paragraph={item.paragraph}
+                                link={item.link}
+                                >
+                            </c-pb-value-card>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            <img src={brandyImg} alt="Brandy, a Salesforce Character" class="brandyImg" />
+        </div>
+    </c-wes-scope>
+</template>

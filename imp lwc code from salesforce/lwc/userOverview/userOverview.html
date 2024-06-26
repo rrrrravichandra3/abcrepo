@@ -1,0 +1,43 @@
+<template>
+  <lightning-layout horizontal-align="center" vertical-align="stretch"
+    class="slds-p-vertical_large grey-box">
+
+    <!--Experience-->
+    <lightning-layout-item size="4" padding="horizontal-small"
+      class="slds-border_right slds-text-align_center slds-grid slds-grid_vertical-align-center slds-grid_align-center">
+      <div>
+        <h2 class="heading">{experience} {labels.yearShortLabel}</h2>
+        <h3 class="sub-heading">{labels.atSalesforceLabel}</h3>
+      </div>
+    </lightning-layout-item>
+
+    <!--EQUALITY Groups-->
+    <lightning-layout-item size="4" padding="horizontal-small"
+      class="slds-text-align_center slds-grid slds-grid_vertical-align-center slds-grid_align-center">
+      <div>
+        <template if:true={equalityGroupsFound}>
+          <div class="slds-grid slds-wrap slds-grid_align-center">
+            <template for:each={equalityGroups} for:item="group">
+              <c-circle-logo key={group.name} image-url={group.logo}></c-circle-logo>
+            </template>
+          </div>
+        </template>
+        <template if:false={equalityGroupsFound}>
+          <div class="heading">
+            {labels.noLabel}
+          </div>
+        </template>
+        <h3 class="sub-heading">{equalityGroupsAlLCapsLabel}</h3>
+      </div>
+    </lightning-layout-item>
+
+    <!--Location-->
+    <lightning-layout-item size="4" padding="horizontal-small"
+      class="slds-text-align_center slds-border_left slds-grid slds-grid_vertical-align-center slds-grid_align-center">
+      <div>
+        <h2 class="heading">{city}</h2>
+        <h3 class="sub-heading">{locationAllCapsLabel}</h3>
+      </div>
+    </lightning-layout-item>
+  </lightning-layout>
+</template>

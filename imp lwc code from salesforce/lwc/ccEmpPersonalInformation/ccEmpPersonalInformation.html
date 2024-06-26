@@ -1,0 +1,71 @@
+<template>
+    <template if:true={hasLoaded}>
+        <div grid flow="wrap">
+            <div size="12:12">
+                <h6 type-style="display-6">Personal Information</h6>
+            </div>
+            <div size="6:12" class="slds-m-top_large slds-p-around_medium">
+                <div grid flow="wrap">
+                    <div size="4:12">
+
+                        <div class="avatar-container">
+                            <div class="avatar">
+                                <img src={userData.User__r.FullPhotoUrl} alt="Avatar">
+                            </div>
+                            <div class="edit-icon">
+                                <c-wes-icon symbol="edit" size="small" onclick={uploadImage} class="editIcon"
+                                    fluid="true"></c-wes-icon>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div size="8:12">
+                        <h5 type-style="display-5">{userData.User__r.Name}</h5>
+
+                        <p class="slds-m-bottom_small">{userData.User__r.Title}</p>
+
+
+                        <c-wes-badge type="default" style="cursor:pointer;">
+                            <span class="pinIcon">
+                                <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M6.11118 0.636841C3.6881 0.636841 1.72656 2.59838 1.72656 5.04453C1.72656 8.09069 4.86502 10.883 5.83425 11.6215C5.99579 11.7599 6.22656 11.7599 6.41118 11.6215C7.38041 10.8599 10.4958 8.09069 10.4958 5.04453C10.4958 2.59838 8.53425 0.636841 6.11118 0.636841ZM6.11133 6.86754C5.09594 6.86754 4.26517 6.03677 4.26517 5.02139C4.26517 4.006 5.09594 3.17523 6.11133 3.17523C7.12671 3.17523 7.95748 4.006 7.95748 5.02139C7.95748 6.03677 7.12671 6.86754 6.11133 6.86754Z"
+                                        fill="#5C5C5C" />
+                                </svg>
+                            </span>
+                            <span class="badge__label">Dallas, TX</span>
+                        </c-wes-badge>
+                        
+                        <lightning-input label={label.PERSONAL_WEBSITE_LABEL} name="personalWebsite" type="text"
+                            aria-placeholder={label.PERSONAL_WEBSITE_PLACEHOLDER} placeholder={label.PERSONAL_WEBSITE_PLACEHOLDER}
+                            value={userData.Personal_Website__c} class="slds-m-top_large inputcstm personalWebsiteInpt"></lightning-input>
+
+                        <lightning-input label={label.LINKEDIN_LABEL} name="linkedin" type="text"
+                            aria-placeholder={label.LINKEDIN_PLACEHOLDER}
+                            placeholder={label.LINKEDIN_PLACEHOLDER} value={userData.LinkedIn_Url__c}
+                            class="slds-m-top_large inputcstm linkedinInpt"></lightning-input>
+
+                    </div>
+                </div>
+            </div>
+
+            <div size="6:12" class="slds-p-around_medium">
+                <lightning-textarea class="bioText slds-m-bottom_none" name="bio"
+                    placeholder="Create a fun employee bio that will be shown in your BaseCamp Profile"
+                    label="Bio" value={userData.User__r.AboutMe}></lightning-textarea>
+                <div class="bottomText">This Bio will be shown in your profile across BaseCamp</div>
+            </div>
+            <div size="12:12" class="slds-p-around_medium slds-text-align_right">
+                <c-wes-button variant="secondary"  size="hero" onclick={updatePersonalInfo}>
+                    Save Personal Information
+                </c-wes-button>
+            </div>
+        </div>
+    </template>
+
+    <c-cc-emp-image-cropper-modal onsuccess={handleUploadResult}></c-cc-emp-image-cropper-modal>
+    <template if:true={showSpinner}>
+        <c-cc-emp-spinner></c-cc-emp-spinner>
+    </template>
+</template>

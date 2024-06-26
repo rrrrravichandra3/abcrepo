@@ -1,0 +1,56 @@
+<!--
+  @description       : 
+  @author            : Urvish Shah (ushah)
+  @group             : 
+  @last modified on  : 02-08-2024
+  @last modified by  : Urvish Shah (ushah)
+-->
+<template>
+    <div if:true={error} class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error">
+        <span class="slds-assistive-text">Error</span>
+        <h2>{error}</h2>
+    </div>
+    <div class="slds-grid slds-gutters slds-wrap">
+        <div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12">
+            <div class="slds-var-p-bottom_medium" if:true={isContactLoaded}>
+                <lightning-card icon-name="utility:sparkles" title="AI Insights">
+                    <c-talent-mp_job-einstein-insights contact={contact} employeeskills={employeeskills} jobid={jobId}></c-talent-mp_job-einstein-insights>
+                </lightning-card>
+            </div>
+            <lightning-card>
+                <lightning-button variant="brand" stretch class="slds-var-m-top_large slds-align_absolute-center slds-m-left_x-small" label="Apply Now" title="Apply Now" onclick={redirectToWorkday}></lightning-button>
+                <lightning-button stretch class="slds-var-m-top_large slds-align_absolute-center slds-m-left_x-small" label={buttonLabel} title={buttonLabel} onclick={saveJobForLater}></lightning-button>
+
+                <div class="slds-var-p-top_medium slds-text-body_medium">
+                    <lightning-icon class="icon_color" size="x-small"  icon-name="utility:topic2" variant="bare" alternative-text="Save" slot="actions" onclick={saveJobForLater}></lightning-icon>
+                    <span class="slds-var-m-left_medium">
+                        {jobRelatedData.referenceId}
+                    </span><br/>
+                    <lightning-icon class="icon_color" size="x-small"  icon-name="utility:shopping_bag" variant="bare" alternative-text="Save" slot="actions" onclick={saveJobForLater}></lightning-icon>
+                    <span class="slds-var-m-left_medium">
+                        {jobRelatedData.jobFamilyFroup}
+                    </span><br/>
+                    <lightning-icon class="icon_color" size="x-small"  icon-name="utility:checkin" variant="bare" alternative-text="Save" slot="actions" onclick={saveJobForLater}></lightning-icon>
+                        <template iterator:location={jobRelatedData.locations}>
+                            <span if:true={location.first} key={location} class="slds-var-m-left_medium">
+                                {location.value}<br/>
+                            </span>                          
+                            <span if:false={location.first} key={location} class="slds-var-m-left_x-large">
+                                {location.value}<br/>
+                            </span>
+                        </template>
+                </div>
+            </lightning-card>
+            <div class="slds-var-p-top_medium">
+                <c-talent-m-p_skills contact={contact} skillslist={jobRelatedData.skills} onupdateskills={handleSaveSkills} title="Required Skills" edit-ability=false></c-talent-m-p_skills>
+            </div>
+        </div>
+        <div class="slds-col slds-size_1-of-1 slds-large-size_8-of-12">
+            <lightning-card title={jobRelatedData.title}>
+                <lightning-formatted-rich-text
+                    value={jobRelatedData.description}
+                ></lightning-formatted-rich-text>
+            </lightning-card>
+        </div>
+    </div>
+</template>

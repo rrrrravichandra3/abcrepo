@@ -1,0 +1,13 @@
+.action-button {
+  margin-left: 0;
+}
+
+.modal-footer {
+  background-color: #F3F2F2;
+}
+
+.modal-body {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

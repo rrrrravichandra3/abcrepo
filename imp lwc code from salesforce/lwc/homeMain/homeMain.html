@@ -1,0 +1,34 @@
+<template>
+    <div class="container">
+            <div class="container1">
+                <c-new-hire-info prov-case={provCase}></c-new-hire-info>
+            </div>
+
+        <!-- row 2 -->
+        <div>
+            <div grid class="container2">
+                <div size="1:2">
+                    <div>
+                        <c-home-carousel></c-home-carousel>
+                    </div>
+                </div>
+
+                <div size="1:2">
+                    <div grid flow="wrap">
+                        <div size="1:1" class="startDateContainer">
+                            <c-start-date-comp prov-case={provCase}></c-start-date-comp>
+                        </div>
+
+                        <div size="1:1" class="taskProgressContainer">
+                            <c-task-progress-comp oncontinuetask={continueTask} total-tasks={totalTasks} tasks-completed={tasksCompleted}></c-task-progress-comp>
+                        </div>
+
+                        <div size="1:1" class="sayHiContainer">
+                            <c-say-hi-slack></c-say-hi-slack>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,15 @@
+<template>
+    <div onclick={handleClick} class={divClass}>
+        <lightning-layout horizontal-align="left" class="slds-grid slds-grid_vertical slds-text-align--left slds-p-right_medium">
+            <lightning-layout-item horizontal-align="left" class="slds-text-align--left slds-p-left_small">
+                <b>{macasewrapper.Subject}</b>
+            </lightning-layout-item>
+            <lightning-layout-item class="slds-text-align--left slds-m-top_small slds-p-left_small">
+                <lightning-layout class={caseDetails}>
+                    <lightning-layout-item  horizontal-align="left" size="4">Status: {macasewrapper.Status}</lightning-layout-item>
+                    <lightning-layout-item horizontal-align="right">Case Number: {macasewrapper.CaseNumber}</lightning-layout-item>
+                </lightning-layout>
+            </lightning-layout-item>
+        </lightning-layout>    
+    </div>   
+</template>

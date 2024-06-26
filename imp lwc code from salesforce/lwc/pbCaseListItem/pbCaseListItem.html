@@ -1,0 +1,30 @@
+<template>
+    <div grid class="slds-var-m-bottom_small">
+        <div size="6:8">
+            <h6 type-style="display-7" class="subject">{subject}</h6>
+        </div>
+        <div size="2:8">
+            <template if:true={isClosed}>
+                <c-wes-badge class="statusBadge">
+                    {closedStatusText}
+                </c-wes-badge>
+            </template>
+            <template if:false={isClosed}>
+                <c-wes-badge class="statusBadge">
+                    {openStatusText}
+                </c-wes-badge>
+            </template>
+        </div>
+    </div>
+    <div grid flow="wrap">
+        <div size="1:1 1:1@medium">
+            <p type-style="body-3" class="caseNum">{ticketLabel} {caseNumber}</p>
+        </div>
+        <div size="1:1 1:2@medium">
+            <p type-style="body-3"  class="dateCreated">{createdLabel} {dateCreated}</p>
+        </div>
+        <div size="1:1 1:2@medium">
+            <p type-style="body-3"  class="lastModified">{modifiedLabel} {lastModified}</p>
+        </div>
+    </div>
+</template>

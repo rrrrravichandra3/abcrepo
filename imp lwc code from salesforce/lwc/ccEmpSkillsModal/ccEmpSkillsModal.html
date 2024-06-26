@@ -1,0 +1,78 @@
+<template>
+    <!--MODAL HEADER-->
+    <!-- <template lwc:if={isModalHeader}>
+        <lightning-modal-header label={headerLabel}></lightning-modal-header>
+    </template> -->
+    <!--MODAL BODY-->
+    <lightning-modal-body>
+        <h5 type-style="display-5">Add Skill(s)</h5>
+
+        <div onkeyup={handleKeyUp}>
+            <lightning-input 
+                name="enter-search"
+                label="Skill Name"
+                type="search"
+                aria-placeholder="Search for a skill name like “Javascript” or “Workshop Facilitation”"
+                placeholder="Search for a skill name like “Javascript” or “Workshop Facilitation”"
+            ></lightning-input>
+        </div>
+
+        <template for:each={searchSkillResults} for:item="resultItem">
+        <li key={resultItem.Id}
+            onclick={addSkillToList}
+            tabindex="0"
+            data-name={resultItem.Name}
+            data-id={resultItem.Id}
+            class="popup-action"
+        >
+            <div class="slds-truncate">{resultItem.Name}</div>
+        </li>
+        </template>
+        <div lwc:if={selectedSkills.length}>
+            <span>Skills to be added</span>
+            <div style="display: flex;flex-wrap: wrap;">
+                <template for:each={selectedSkills} for:item="skill" for:index="index">
+                    <c-wes-badge key={skill} data-index="index" type="status" class="slds-m-around_xx-small">
+                        <span part="badge" style="padding: 0;">
+                            <slot name="start"></slot>
+                            {skill.Name}
+                            <slot name="end">
+                                <c-wes-icon
+                                    onclick={handleSkillRemove} 
+                                    symbol="delete"
+                                    data-index={index}
+                                    class="slds-m-left_x-small"
+                                    style="cursor: pointer;">
+                                </c-wes-icon>
+                            </slot>
+                        </span>
+                    </c-wes-badge>
+                </template>
+            </div>
+            <span style="color: #444444;">You can only add {addSkillLimit} more skills</span>
+        </div>
+    </lightning-modal-body>
+    <!--MODAL FOOTER-->
+    <lightning-modal-footer>
+        <div style="min-height: 32px;">
+            <button
+                title={labels.close}
+                aria-label={labels.close}
+                class="slds-button slds-button_neutral slds-float_left"
+                style="vertical-align: middle;"
+                onclick={handleCancel}
+            >
+                {labels.close}
+            </button>
+            <button
+                    title={labels.add}
+                    aria-label={labels.add}
+                    class="slds-button slds-button_brand"
+                    onclick={handleAddSkillsClick}
+                >
+                    <lightning-icon icon-name="utility:sparkles" size="x-small" class="slds-current-color slds-m-right_x-small" alternative-text={labels.add} title={labels.add}></lightning-icon>
+                    {labels.add} {selectedSkills.length} Skills
+            </button>
+        </div>
+    </lightning-modal-footer>
+</template>

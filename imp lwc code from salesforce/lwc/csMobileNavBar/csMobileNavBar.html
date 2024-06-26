@@ -1,0 +1,33 @@
+<template>
+  <template if:true={isMobile}>
+    <div class="status-bar-cover"></div>
+    <lightning-layout horizontal-align="space" vertical-align="center" class="nav-bar">
+      <template if:true={isMentee}>
+        <lightning-layout-item>
+          <c-cs-nav-item icon-name="mentor" title={labels.myMentorsLabel} the-u-r-l={myMentorsURL}></c-cs-nav-item>
+        </lightning-layout-item>
+        <lightning-layout-item>
+          <c-cs-nav-item icon-name="search" title={labels.searchMentorsLabel} the-u-r-l={searchMentorsURL}></c-cs-nav-item>
+        </lightning-layout-item>
+        <lightning-layout-item>
+          <c-cs-nav-item icon-name="notes" title={labels.myMessagesLabel} the-u-r-l={meetingsURL}></c-cs-nav-item>
+        </lightning-layout-item>
+        <lightning-layout-item>
+          <c-cs-nav-item icon-name="more" title={labels.showMoreLabel} the-u-r-l={showMoreURL}></c-cs-nav-item>
+        </lightning-layout-item>
+      </template>
+
+      <template if:false={isMentee}>
+        <lightning-layout-item>
+          <c-cs-nav-item icon-name="mentor" title={labels.myMenteesLabel} the-u-r-l={myMenteesURL}></c-cs-nav-item>
+        </lightning-layout-item>
+        <lightning-layout-item>
+          <c-cs-nav-item icon-name="notes" title={labels.myMessagesLabel} the-u-r-l={meetingsURL}></c-cs-nav-item>
+        </lightning-layout-item>
+        <lightning-layout-item>
+          <c-cs-nav-item icon-name="more" title={labels.showMoreLabel} the-u-r-l={showMoreURL}></c-cs-nav-item>
+        </lightning-layout-item>
+      </template>
+    </lightning-layout>
+  </template>
+</template>

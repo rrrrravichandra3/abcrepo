@@ -1,0 +1,160 @@
+<!-- sldsValidatorIgnore -->
+<template>
+
+    <div id={contact.Id}>
+        <!-- modal start --> 
+        <template if:true={isShowLookupModal}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container resumeModal">
+            <!-- modal header start -->
+            <header class="slds-modal__header">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideTextResume}>
+            <lightning-icon icon-name="utility:close"
+            alternative-text="close"
+            variant="inverse"
+            size="small" ></lightning-icon>
+            <span class="slds-assistive-text">Close</span>
+            </button>
+            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Text Resume</h2>
+            </header>
+            
+            <!-- modal body start -->
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1" style="overflow: auto;">
+                <lightning-formatted-text value={contact.Text_Resume__c}></lightning-formatted-text>
+            </div>
+            
+            <!-- modal footer start-->
+            <footer class="slds-modal__footer">
+            <button class="slds-button slds-button_neutral" onclick={hideTextResume}>Close</button>
+            </footer>
+            
+            </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+    <!-- modal end -->
+        <article class={articleClass}>
+            <div class="cardHeaderColor curvedTopBorder">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                
+            <div class="headTruncate slds-media__body">
+                <p class="headingFont slds-truncate slds-card__header-title slds-p-bottom_x-small slds-p-top_x-small slds-p-left_x-small">{contact.Name}</p>
+            </div>
+                <div class="slds-no-flex">
+                    <div class="lgc-bg curvedTopBorder">
+                        <template if:false={selected}>
+                            <lightning-button-icon icon-name="utility:add" size="small" 
+                                                class="whiteDropDown slds-p-right_xx-small slds-p-left_large"
+                                                alternative-text="Click to add to Candidate Pool"
+                                                onclick={selectCandidate}></lightning-button-icon>
+                        </template>
+                        <template if:true={selected}>
+                            <lightning-button-icon icon-name="utility:dash" size="small" 
+                                                class="whiteDropDown slds-p-right_xx-small slds-p-left_large"
+                                                alternative-text="Click to remove from Candidate Pool"
+                                                onclick={deSelectCandidate}></lightning-button-icon>
+                        </template>
+                        <template if:true={contact.Text_Resume__c}>
+                            <lightning-button-icon icon-name="utility:description" size="small" 
+                                                class="whiteDropDown slds-p-right_xx-small"
+                                                alternative-text="Show Text Resume"
+                                                title="Text Resume"
+                                                tooltip="Click to view text resume"
+                                                onclick={showTextResume}></lightning-button-icon>
+                        </template>
+                        <lightning-button-menu alternative-text="Show menu" icon-size="small" class="whiteDropDown slds-p-right_small">
+                            <lightning-menu-item label="View Candidate" onclick={openRecord} id={contact.Id}></lightning-menu-item>
+                            <template if:true={contact.IsValid_LinkedIn_URL__c}>
+                                <lightning-menu-item label="View LinkedIn" onclick={openLinkedInProfile}></lightning-menu-item>
+                            </template>
+                        </lightning-button-menu>
+                    </div>
+                 </div>
+            </header>
+         </div>
+
+         <div class="slds-card__body bodySize">
+            <lightning-layout>
+                <lightning-layout-item size="5">
+                    <div class="slds-p-around_xxx-small slds-text-align_left labelTextFont">Contact Info
+                        <lightning-icon icon-name="utility:email" size="xx-small" class="slds-p-left_xxx-small"></lightning-icon>
+                        <lightning-icon icon-name="utility:phone_portrait" size="xx-small" class="slds-p-left_xxx-small"></lightning-icon>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="7">
+                        <div class="slds-p-around_xxx-small slds-text-align_left scrollHideHorizontal contactInfoFont">
+                            <lightning-formatted-email value={contact.Email} hide-icon></lightning-formatted-email>
+                        </div>
+                    <div class="badgeTextFont">
+                        <lightning-formatted-phone class="slds-p-left_xxx-small" value={contact.Phone}></lightning-formatted-phone>
+                    </div>                    
+  
+                </lightning-layout-item>            
+            </lightning-layout>
+
+            <lightning-layout>
+                <lightning-layout-item size="5">
+                    <div class="slds-p-around_xxx-small slds-text-align_left labelTextFont">Candidate Stage</div>
+                </lightning-layout-item>
+                <lightning-layout-item  size="7">
+                    <div class="slds-p-around_xxx-small slds-text-align_left textFont">{contact.Candidate_Stage__c}</div>
+                </lightning-layout-item>            
+            </lightning-layout>
+            
+            <lightning-layout>
+                <lightning-layout-item size="5">
+                    <div class="slds-p-around_xxx-small slds-text-align_left labelTextFont">Job Title</div>
+                </lightning-layout-item>
+                <lightning-layout-item  size="7">
+                    <div class="slds-p-around_xxx-small slds-text-align_left scrollHideHorizontal valueHeight textFont">{contact.Title}</div>
+                </lightning-layout-item>              
+            </lightning-layout>
+
+            <lightning-layout>
+                <lightning-layout-item size="5">
+                    <div class="slds-p-around_xxx-small slds-text-align_left labelTextFont">Current Company</div>
+                </lightning-layout-item>
+                <lightning-layout-item size="7">
+                    <div class="slds-p-around_xxx-small slds-text-align_left scrollHide valueHeight textFont">
+                        <lightning-formatted-text value={currentCompanyName}></lightning-formatted-text>         
+                    </div>
+                </lightning-layout-item>              
+            </lightning-layout>
+
+            <lightning-layout>
+                <lightning-layout-item size="5">
+                    <div class="slds-p-around_xxx-small slds-text-align_left labelTextFont">Candidate Source</div>
+                </lightning-layout-item>
+                <lightning-layout-item size="7">
+                    <div class="slds-p-around_xxx-small slds-text-align_left valueHeight textFont">{contact.WD_Candidate_Source__c}</div>
+                </lightning-layout-item>          
+            </lightning-layout>
+
+            <lightning-layout>
+                <lightning-layout-item size="5">
+                    <div class="slds-p-around_xxx-small slds-text-align_left labelTextFont">MRS Application</div>
+                </lightning-layout-item>
+                <lightning-layout-item size="7" if:true={contact.MRS_App__r}>
+                    <div if:true={contact.MRS_App__r.Job__r} class="slds-p-around_xxx-small slds-text-align_left valueHeight textFont">
+                        <a href={MRSJobRecordPageURL} target="_blank">{contact.MRS_App__r.Job__r.Name}
+                        <span if:true={contact.MRS_App__r.Application_Date__c}>, Date Applied-{contact.MRS_App__r.Application_Date__c}</span>
+                        </a>
+                    </div>
+                </lightning-layout-item>          
+            </lightning-layout>
+
+         </div>
+         <footer class="slds-card__footer slds-p-left_small slds-p-right_small slds-p-bottom_xx-small slds-p-top_xx-small footerSize">
+            <template if:true={applied}>
+                <lightning-badge label="Applied" class={appliedBadge}></lightning-badge>
+            </template>
+            <lightning-badge label="URM" class={URMBagde}></lightning-badge>
+            <lightning-badge label="URG" class={URGBagde}></lightning-badge>
+            <lightning-badge label="Silver Medalist" class={silverBadge}></lightning-badge>
+            <template if:true={genderDataAvailable}>
+                <lightning-badge label={contact.MRS_App__r.Gender__c} class="badgeTextFont"></lightning-badge>
+            </template>
+          </footer>
+        </article>
+    </div>
+</template>

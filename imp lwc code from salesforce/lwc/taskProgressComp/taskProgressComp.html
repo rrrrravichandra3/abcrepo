@@ -1,0 +1,10 @@
+<template>
+    <div grid gap="x-large" class="container">
+      <div size="1:4">
+          <c-task-progress total-tasks={totalTasks} tasks-completed={tasksCompleted}></c-task-progress>
+      </div>
+      <div size="3:4" class="detail">
+        <c-task-progress-detail total-tasks={totalTasks} tasks-completed={tasksCompleted} oncontinuetask={continueTask}></c-task-progress-detail>
+    </div>
+    </div>
+  </template>

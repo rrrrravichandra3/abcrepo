@@ -1,0 +1,23 @@
+<template>
+    <div class="listContainer">
+        <ul>
+            <template for:each={records} for:item="caseItem">
+                <li 
+                    key={caseItem.Id} 
+                    data-id={caseItem.Id}
+                    class="listItem slds-var-p-around_large"
+                    onclick={handleClick}
+                    >
+                    <c-pb-case-list-item 
+                        case-item={caseItem}
+                        ticket-label={ticketLabel}
+                        created-label={createdLabel}
+                        modified-label={modifiedLabel}
+                        open-status-text={openStatusText}
+                        closed-status-text={closedStatusText}
+                    ></c-pb-case-list-item>
+                </li>
+            </template>
+        </ul>
+    </div>
+</template>

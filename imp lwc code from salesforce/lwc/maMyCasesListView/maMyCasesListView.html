@@ -1,0 +1,43 @@
+<template>
+    <div class="container slds-p-around_large slds-scrollable_y slds-theme_shade">
+       
+        <div>
+
+            <!-- Spinner Logic-->
+            <template if:true={isLoading}>    
+                <div class="slds-is-relative">
+                    <lightning-spinner alternative-text="Loading..." variant="brand">
+                    </lightning-spinner>
+                </div>               
+            </template>
+
+            <!-- Server call successful logic-->
+            <template if:true={caseswrapper}>
+                <lightning-layout class="slds-grid slds-grid_vertical" horizontal-align="left">
+                    <template for:each={caseswrapper} for:item="currentcase">
+
+                        <c-ma-case-list-item
+                            data-id={currentcase.caseId}
+                            key={currentcase.caseId}
+                            macasewrapper={currentcase}
+                            onselect={handleSelect}
+                            onmouseover={handleMouseover}
+                            onmouseout={handleMouseout}
+                            firstcaseid={firstCaseId}
+                            closed-status-set={closedStatusSet}
+                        ></c-ma-case-list-item>
+                        
+                    </template>
+                </lightning-layout>
+            </template>
+
+            <template if:true={shownocases}>
+                <div class="casesnotavailable">
+                    <br/> 
+                   {label.CasesNotAvailableLabel}
+                </div>  
+            </template>
+            
+        </div>      
+    </div>
+</template>

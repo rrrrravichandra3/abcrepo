@@ -1,0 +1,12 @@
+.commentsForm {
+    width: 80%;
+}
+
+.submitButton {
+    color: white;
+    background: var(--foundation-gray-neutral-65, #A0A0A0);
+    border-radius: 4px;
+    border: none;
+    width: 32px;
+    height: 32px;
+}

@@ -1,0 +1,22 @@
+<template>
+    <c-wes-scope enabled-features={enabledFeatures}>
+        <div style={getBackgroundImage} class="resourcesContainer slds-var-m-around_xx-large slds-var-p-around_xx-large">
+            <h2 type-style="display-4" class="resourcesHeader slds-var-m-left_small">Helpful Resources</h2>
+            <div grid flow="wrap">
+                <template for:each={resourcesList} for:item="item">
+                    <div key={item.title} size="1:3@large 1:2@medium 1:1@small">
+                        <div class="slds-var-m-around_small resourceCard">
+                            <c-pb-resources-card 
+                                title={item.title}
+                                paragraph={item.paragraph}
+                                link={item.link}
+                                subheader={item.subheader}
+                                >
+                            </c-pb-resources-card>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </c-wes-scope>
+</template>

@@ -1,0 +1,11 @@
+<template>
+    <div class="tree-node-list">
+        <template for:each={nodes} for:item="nodeId">
+            <c-te-career-pathing-node 
+                key={nodeId}
+                node-id={nodeId}
+                graph={graph}>
+            </c-te-career-pathing-node>
+        </template>
+    </div>
+</template>

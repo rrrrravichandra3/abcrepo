@@ -1,0 +1,56 @@
+<template>
+    <c-wes-scope enabled-features={enabledFeatures}>
+        <div class="bannerContainer slds-is-relative ">
+            <div grid flow="wrap" class="slds-var-p-top_large">
+                <div size="1:1 6:12@large" class="bannerText">
+                    <div class="locationContainer">
+                        <lightning-icon class="slds-current-color" icon-name="utility:checkin" size="small" alternative-text="Location" title="Location"></lightning-icon>
+                        <h6 type-style="display-8" class="locationText">
+                            {location}
+                        </h6>
+                    </div>
+                    <template if:true={boomerangFlag}>
+                        <h3 class="title welcomeText slds-var-p-top_small" type-style='display-3'>
+                            {boomerangText}
+                        </h3>
+                    </template>
+                    <template if:false={boomerangFlag}>
+                        <h3 class="title welcomeText slds-var-p-top_small" type-style='display-3'>
+                            {welcomeText}
+                        </h3>
+                    </template>
+                    <h1 class="userNameText" type-style='display-1'>
+                        <strong>{firstName}</strong>
+                    </h1>
+                    <h6 type-style="display-5" class="slds-var-p-bottom_medium">
+                        {greetingText}
+                    </h6>
+                    <div grid class="cardContainer">
+                        <div size="3:8 2:8@medium">
+                            <c-pb-start-date-card 
+                                start-date-day={_startDateDay} 
+                                start-date-month={_startDateMonth}
+                                start-date-text={startDateText}
+                            ></c-pb-start-date-card>
+                        </div>
+                        <div size="5:8 5:8@medium">
+                            <c-pb-title-card 
+                                title={jobTitle}
+                                title-text={titleText}
+                            ></c-pb-title-card>
+                        </div>
+                    </div>
+                </div>
+                <div size="6:12@large" class="slds-show_large">
+                    <c-pb-video-container 
+                        content-id={contentId} 
+                        content-id2={contentId2}
+                        content-id3={contentId3}
+                        content-id4={contentId4}
+                        video-id={videoId}
+                    ></c-pb-video-container>
+                </div>
+            </div>
+        </div>
+    </c-wes-scope>
+</template>

@@ -1,0 +1,24 @@
+<template>
+  <div class="slds-grid">
+    <div class="slds-size_1-of-2 slds-p-right_x-small">
+      <c-button-tile button-id="Mentee" onselect={selectHandler} selected={menteeSelected}>
+        <div class="slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center slds-size_1-of-1">
+          <img src={menteeCharacterUrl} alt="Astro" class="character" />
+          <p class="slds-text-align_center slds-text-heading_small slds-p-top_small">
+            <strong>{labels.menteeModeLabel}</strong>
+          </p>
+        </div>
+      </c-button-tile>
+    </div>
+    <div class="slds-size_1-of-2 slds-p-left_x-small">
+      <c-button-tile button-id="Mentor" onselect={selectHandler} selected={mentorSelected}>
+        <div class="slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center slds-size_1-of-1">
+          <img src={mentorCharacterUrl} alt="Codey" class="character" />
+          <p class="slds-text-align_center slds-text-heading_small slds-p-top_small">
+            <strong>{labels.mentorModeLabel}</strong>
+          </p>
+        </div>
+      </c-button-tile>
+    </div>
+  </div>
+</template>

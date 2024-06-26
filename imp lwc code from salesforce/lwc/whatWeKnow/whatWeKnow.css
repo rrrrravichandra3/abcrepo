@@ -1,0 +1,30 @@
+.einstein {
+  background-size: contain;
+  height: 10rem;
+  width: 15rem;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.color-brand {
+  color: var(--lwc-colorTextBrand);
+}
+
+.location-text {
+  position: absolute;
+  width: 170px;
+  top: 3.9375rem;
+  right: 0.625rem;
+  color: var(--lwc-colorTextBrand);
+  text-transform: uppercase;
+}
+
+.full-height {
+  height: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    height: 100vh;
+  }
+}

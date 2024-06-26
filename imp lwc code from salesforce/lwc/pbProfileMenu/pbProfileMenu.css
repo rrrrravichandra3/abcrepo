@@ -1,0 +1,14 @@
+.profileButton {
+    border-radius: 46px;
+    border: none;
+    background: var(--foundation-blue-blue-95, #EEF4FF);
+}
+
+.circle, .name, .arrowIcon {
+    display: inline-block;
+}
+
+.popoverAvatar {
+    top: -15px;
+    margin-left: 20px;
+}

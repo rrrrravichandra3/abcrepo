@@ -1,0 +1,36 @@
+.videoContainer {
+    position: relative;
+}
+
+.video, .astroGraphic, .branchGraphic, .birdGraphic, .bushGraphic {
+    position: absolute;
+}
+
+.video {
+    width: 90%;
+}
+
+.astroGraphic {
+    width: 250px;
+    z-index: -1;
+    top: 40%;
+    left: -25%;
+}
+
+.branchGraphic {
+    width: 230px;
+    z-index: -1;
+    top: -15%;
+    left: -15%;
+}
+
+.birdGraphic {
+    width: 60px;
+    left: 80%;
+}
+
+.bushGraphic {
+    width: 180px;
+    top: 70%;
+    left: 65%;
+}

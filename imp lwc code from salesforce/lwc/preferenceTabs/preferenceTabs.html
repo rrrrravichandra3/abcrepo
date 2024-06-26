@@ -1,0 +1,24 @@
+<template>
+  <div class="slds-tabs_default rounded slds-m-bottom_medium">
+    <ul class="slds-tabs_default__nav slds-grid" role="tablist">
+      <li class={tab1Classes} title="Item One" role="presentation">
+        <a class="slds-tabs_default__link slds-text-align_center slds-text-color_default" data-tab="tab1"
+          onclick={changeTabHandler} role="tab" id="tab-default-1__item">{label1}</a>
+      </li>
+      <li class={tab2Classes} title="Item Two" role="presentation">
+        <a class="slds-tabs_default__link slds-text-align_center slds-text-color_default slds-is-relative"
+          data-tab="tab2" onclick={changeTabHandler} role="tab" id="tab-default-2__item">
+          {label2}
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <template if:true={showTab1}>
+    <slot name="tab1"></slot>
+  </template>
+
+  <template if:false={showTab1}>
+    <slot name="tab2"></slot>
+  </template>
+</template>

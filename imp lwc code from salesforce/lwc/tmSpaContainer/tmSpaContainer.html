@@ -1,0 +1,10 @@
+<template>
+    <h1 class="title">Talent Marketplace - Single Page Application</h1>
+
+    <div class="container" if:true={isLoaded}>
+        <c-tm-spa-navigation current-page-id={currentPageId} menu-items={menuItems} current-page-reference={currentPageReference}></c-tm-spa-navigation>
+        <c-tm-spa-pages  current-page-id={currentPageId} ></c-tm-spa-pages>
+        <c-tm-spa-footer></c-tm-spa-footer>
+    </div>
+
+</template>

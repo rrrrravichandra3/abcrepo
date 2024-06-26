@@ -1,0 +1,137 @@
+<!--
+  @description       : 
+  @author            : Priyanka Kanani
+  @group             : 
+  @last modified on  : 15-12-2023
+  @last modified by  : Priyanka Kannai
+-->
+<template>
+  <div if:true={showSpinner}>
+    <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+  </div>
+  <div class="slds-card slds-var-p-around_small">
+    <div class="slds-var-m-bottom_large slds-var-m-top_large">
+      <span class="slds-text-heading_small slds-var-m-vertical_small">
+        {title}
+      </span>
+      <span class="slds-float_right slds-var-m-right_medium">
+        <lightning-icon class="action-utility-icon add-skill-icon" size="x-small" icon-name="utility:edit"
+          variant="bare" alternative-text="Edit" if:true={editButtonVisibility}
+          onclick={handleEditClick}></lightning-icon>
+        <lightning-icon class="action-utility-icon add-skill-icon" size="x-small" icon-name="action:recall"
+          variant="bare" alternative-text="Cancel" if:false={editButtonVisibility}
+          onclick={handleCancelClick}></lightning-icon>
+        <lightning-icon class="action-utility-icon add-skill-icon" size="x-small" icon-name="utility:save"
+          variant="bare" alternative-text="Save" if:false={editButtonVisibility} onclick={saveUpdatedCertifications}></lightning-icon>
+      </span>
+    </div>
+    <div class="slds-grid slds-wrap">
+      <template for:each={certifications} for:item="certification" if:true={hasCertifications}>
+        <div class="slds-size_1-of-4 slds-var-p-around_xx-small" key={certification.Id}>
+          <div class="slds-grid slds-grid_align-center slds-wrap">
+            <div class="slds-size_1-of-1 frame-align_right">
+              <lightning-icon data-id={certification.Id} data-name={certification.Name}
+                onclick={handleRemoveCertificate} icon-name="utility:close" variant="bare" size="xx-small"
+                alternative-text="remove" slot="actions" if:true={editView}></lightning-icon>
+            </div>
+            <div class="slds-size_1-of-1 frame-align_center">
+              <img src={certification.Image} class="certificate-badge" />
+              <p class="certificate-name">{certification.Name}</p>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+    <template if:false={hasCertifications}>
+      <p>No Certifications Added</p>
+    </template>
+
+    <template if:true={editMode}>
+      <lightning-card>
+        <div class="slds-form-element">
+          <h4 class="slds-card__header-title">
+            <span class="slds-text-heading_small slds-truncate">
+              Add Certifications</span>
+          </h4>
+          <div class={searchComboStyleClass} data-id="resultBox" aria-expanded="false" aria-haspopup="listbox"
+            role="combobox">
+            <div>
+              <div role="none">
+                <lightning-input type="text" placeholder="Search for a certificate name" data-id="certificateSearch"
+                  name="certificateSearchText" onchange={handleSearchCertificate}
+                  class="slds-c-input-spacing-horizontal-start" label="Certificatification Input" variant="label-hidden"></lightning-input>
+              </div>
+              <div id="listbox-id-1" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid"
+                role="listbox">
+                <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                  <template if:true={searchResults.length}>
+                    <template for:each={searchResults} for:item="certificate">
+                      <li role="presentation" class="slds-listbox__item" key={certificate.Id}>
+                        <div data-id={certificate.Id} data-value={certificate.Name} onclick={handleAddCertificate}
+                          class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta"
+                          role="option">
+                          <span class="slds-media__body">
+                            <span class="slds-listbox__option-text slds-listbox__option-text_entity">{certificate.Name}</span>
+                          </span>
+                        </div>
+                      </li>
+                    </template>
+                  </template>
+                  <template if:false={searchResults.length}>
+                    <li role="presentation" class="slds-listbox__item">
+                      <div class="slds-media slds-listbox__option slds-listbox__option_plain" role="option"
+                        onclick={openModal}>
+                        <span class="slds-media__figure slds-listbox__option-icon">
+                          <lightning-icon class="slds-var-m-around_xxx-small" icon-name="utility:add"
+                            alternative-text="Add" size="x-small" variant="bare"></lightning-icon>
+                        </span>
+                        <span class="slds-media__body">
+                          <span class="slds-listbox__option-text">
+                            Add Certification
+                          </span>
+                        </span>
+                      </div>
+                    </li>
+                  </template>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </lightning-card>
+    </template> 
+    <template if:true={isModalOpen}>
+      <div class="slds-backdrop slds-backdrop_open"></div>
+      <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+        aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+          <!-- Modal Header -->
+          <header class="slds-modal__header">
+            <span class="slds-text-heading_small slds-var-m-vertical_small">
+              Add Certification
+            </span>
+            <span class="slds-float_right slds-var-m-right_medium">
+              <lightning-icon class="action-utility-icon add-skill-icon" size="x-small" icon-name="action:recall" variant="bare" alternative-text="Cancel" onclick={closeModal}></lightning-icon>
+              <lightning-icon class="action-utility-icon add-skill-icon" size="x-small" icon-name="utility:save" variant="bare" alternative-text="Save" onclick={handleCreateCertification}></lightning-icon>
+            </span>
+          </header>
+
+          <!-- Modal Content -->
+          <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <!-- Your form elements for adding a certification -->
+            <lightning-input label="Certificate Name" value={certificateName} onchange={handleCertNameChange}></lightning-input>
+            <lightning-input label="Certificate Logo" type="file" accept=".jpg, .jpeg, .png" onchange={handleUploadFinished}></lightning-input>
+            <template if:true={selectedFile}>
+              <div class="slds-file-viewer">
+                <span class="slds-file-viewer__header">
+                  <span class="slds-file-viewer__icon slds-file-viewer__icon_pdf"></span>
+                  <span class="slds-file-viewer__title">{selectedFile.name}</span>
+                </span>
+              </div>
+            </template>
+          </div>
+        </div>
+      </section>
+    </template>
+ </div>
+</template>

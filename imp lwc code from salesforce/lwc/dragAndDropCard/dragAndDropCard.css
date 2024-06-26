@@ -1,0 +1,11 @@
+.slds-item {
+    border-radius: 0.25rem;
+    background-clip: padding-box;
+    padding: 0.15rem;
+    margin: 0.15rem;
+}
+
+.slds-item:hover{
+    background: rgb(7, 29, 80);
+    cursor: pointer;
+}

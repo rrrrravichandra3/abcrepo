@@ -1,0 +1,86 @@
+.bannerContainer {
+    overflow: hidden;
+}
+
+.bannerContainer * {
+    z-index: 1;
+}
+
+.bannerContainer::after {
+    border-radius: 100%;
+    position: absolute;
+    background-image:url("sfsites/c/cms/delivery/media/MCHQC7RLBU5VBSLLAMM55FN7SBMY");
+    background-repeat: no-repeat;
+    content: '';
+    bottom: 0;
+    margin-bottom: 50px;
+}
+
+.userNameText {
+    color: var(--wes-g-color-palette-cloud-blue-60);
+}
+
+.locationContainer {
+    color: var(--wes-g-color-brand-inverse-2);
+}
+
+.locationText {
+    display: inline;
+}
+
+
+ /* MOBILE: only show for 480px and smaller */
+ @media screen and (max-width: 480px) {
+     .bannerContainer {
+        height: 560px;
+     }
+
+    .bannerContainer::after {
+        right: -100px;
+        left: -100px;
+        top: -100px;
+    }
+
+     .bannerText {
+        padding-left: 15px;
+    }
+
+ }
+ 
+/* TABLET: 481px to 1024px */
+@media (min-width: 481px) and (max-width: 1024px) {
+    .bannerContainer {
+        height: 580px;
+     }
+
+     .bannerContainer::after {
+        right: -150px;
+        left: -150px;
+        top: -100px;
+    }
+
+    .bannerText {
+        padding-left: 20px;
+    }
+
+}
+ 
+ /* DESKTOP: 1024px and up  */
+ @media screen and (min-width:1025px) {
+    .bannerContainer {
+        height: 620px;
+    }
+
+    .bannerContainer::after {
+        right: -150px;
+        left: -150px;
+        top: -100px;
+    }
+
+    .bannerText {
+        padding-left: 60px;
+    }
+
+
+
+}

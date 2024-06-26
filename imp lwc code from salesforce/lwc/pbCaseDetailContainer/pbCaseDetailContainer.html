@@ -1,0 +1,74 @@
+<template>
+    <c-wes-scope enabled-features={enabledFeatures}>
+        <div class="caseDetailContainer">
+            <h5 type-style="display-5" class="slds-var-m-top_x-large slds-var-m-bottom_large slds-var-m-left_medium">
+                <lightning-icon
+                    icon-name="utility:help_center" 
+                    alternative-text="My Tickets Icon" 
+                    size="small" 
+                    class="slds-var-p-right_x-small slds-current-color">
+                </lightning-icon>
+                {title}
+            </h5>
+
+            <template if:true={records}>
+                <div grid flow="wrap" class="slds-var-m-bottom_large">
+                    <div size="1:1 1:3@medium" class="mainColumn">
+                        <div class="slds-var-m-around_medium">
+                            <h6 type-style="display-6" class="slds-var-m-bottom_medium">{column1Header}</h6>
+                            <c-pb-case-list 
+                                records={records}
+                                selected-record-id={selectedRecordId}
+                                ticket-label={ticketLabel}
+                                created-label={createdLabel}
+                                modified-label={modifiedLabel}
+                                open-status-text={openStatusText}
+                                closed-status-text={closedStatusText}
+                            ></c-pb-case-list>
+                        </div>
+                    </div>
+            
+                    <div size="1:1 1:3@medium" class="mainColumn">
+                        <div class="slds-var-m-around_medium">
+                            <h6 type-style="display-6" class="slds-var-m-bottom_medium">{column2Header}</h6>
+                            <c-pb-case-comments 
+                                selected-record={selectedRecord}
+                                selected-record-id={selectedRecordId}
+                                input-placeholder={inputPlaceholder}
+                                add-attachments-label={addAttachmentsLabel}
+                                file-types={fileTypes}
+                                agent-name={agentName}
+                                attachment-error-message={attachmentErrorMessage}
+                                success-message={successMessage}
+                                error-message={errorMessage}
+                            ></c-pb-case-comments>
+                        </div>
+                    
+                    </div>
+            
+                    <div size="1:1 1:3@medium" class="mainColumn">
+                        <div class="slds-var-m-around_medium">
+                            <h6 type-style="display-6" class="slds-var-m-bottom_medium">{column3Header}</h6>
+                            <c-pb-case-record-detail 
+                                selected-record={selectedRecord}
+                                ticket-num-label={ticketNumLabel}
+                                created-date-label={createdDateLabel}
+                                last-modified-label={lastModifiedLabel}
+                                subject-label={subjectLabel}
+                                status-label={statusLabel}
+                                open-status-text={openStatusText}
+                                closed-status-text={closedStatusText}
+                                owner-label={ownerLabel}
+                                attachments-label={attachmentsLabel}
+                                description-label={descriptionLabel}
+                                open-case-label={openCaseLabel}
+                                close-case-label={closeCaseLabel}
+                            ></c-pb-case-record-detail>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+        </div>
+    </c-wes-scope>
+</template>

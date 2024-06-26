@@ -1,0 +1,30 @@
+<template>
+  <header role="banner" class="ccemp-nav" grid="align-spread" axis="row">
+    <div class="ccemp-container slds-p-around_medium">
+      <div class="slds-grid">
+        <nav class="navigation-menu">
+          <ul>
+            <template for:each={updatedHeaderNavigation} for:item="menuItem">
+              <li key={menuItem.DeveloperName} class={menuItem.className}>
+                <div class="nav-flex">
+                  <p type-style="body-2"><b><span>{menuItem.Label}</span></b></p>
+                  <c-wes-icon symbol="chevrondown" onclick={toggleDropdown} data-key={menuItem.DeveloperName}
+                    class="chevrondown-icon"></c-wes-icon>
+                </div>
+                <div if:true={menuItem.isVisible} class="sub-menu">
+                  <p type-style="body-2">
+                    <template for:each={menuItem.subnavigationItems} for:item="subItem">
+                      <a href="#" key={subItem.pageId} onclick={navigate} data-page-id={subItem.pageId}
+                        data-parent-id={subItem.parentId} class={subItem.className}><b>
+                          {subItem.Label}</b></a>
+                    </template>
+                  </p>
+                </div>
+              </li>
+            </template>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+</template>

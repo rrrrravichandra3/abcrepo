@@ -1,0 +1,33 @@
+<template>
+    <h2 type-style="display-4" class="slds-var-m-left_small slds-align_absolute-center faqHeader">
+        Frequently Asked Questions
+    </h2>
+
+    <div class="faqList">
+
+        <template for:each={faqlist} for:item="obj" for:index="index">
+            <div class="faq-item slds-align_absolute-center slds-box" key={obj.question} onclick={handleClick}
+                data-id={index}>
+                <div class="faq-question " data-id={index}>
+                    <span>{obj.question}</span>
+                    <span class="slds-pill slds-pill_link customPill">
+                        <a class="slds-pill__action question-label" title="Full pill label verbiage mirrored here">
+                            <span class="slds-pill__label">{obj.label}</span>
+                        </a>
+                    </span>
+                    <span class="flex_col2">
+                        <lightning-icon class="myIcon" variant="inverse" size=" small" icon-name={obj.iconName}
+                            alternative-text="open" title="down"></lightning-icon>
+                    </span>
+                    <div class="borderline noshow" data-id={index}></div>
+                    <div class="faq-answer noshow" data-id={index}>
+                        <p>{obj.answer}</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </template>
+
+    </div>
+</template>

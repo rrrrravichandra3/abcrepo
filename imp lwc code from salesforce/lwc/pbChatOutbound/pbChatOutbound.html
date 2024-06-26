@@ -1,0 +1,23 @@
+<template>
+    <section role="log" class="slds-chat slds-var-m-left_medium slds-var-m-right_medium">
+        <div class="slds-var-p-right_small slds-var-p-top_small slds-text-align_left">
+            <c-pb-avatar-circle
+                class="slds-show_inline-block"
+                first-initial={firstInitial}
+                last-initial={lastInitial}
+            ></c-pb-avatar-circle>  
+            <h6 type-style="display-8" class="slds-show_inline-block slds-var-p-right_x-small">
+                {firstName} {lastInitial}.
+            </h6>
+        </div>
+        <div class="outboundComment slds-var-p-around_small slds-var-m-top_small">
+            <p>
+                {commentBody}
+            </p>
+        </div>
+        <div class="slds-chat-message__meta" aria-label="">
+            {firstName} {lastInitial}, {timestamp}
+        </div>
+    </section>
+
+</template>

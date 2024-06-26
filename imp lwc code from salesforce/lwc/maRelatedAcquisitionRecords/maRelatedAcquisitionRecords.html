@@ -1,0 +1,39 @@
+<!--
+  @description       : LWC to display related Aquisition Company, Aquisition Provisionong and Aquisition Contact 
+  @author            : Satyam Kumar
+  Modifications Log 
+  Ver   Date         Author          Modification
+  1.0   05-06-2021   Satyam Kumar   Initial Version
+-->
+<template>
+    <lightning-card  title={label.relatedAcquisitionRecordsHeader}>
+        
+        <!-- Spinner Logic-->
+        <template if:true={isLoading}>    
+            <div class="slds-is-relative">
+                <lightning-spinner alternative-text="Loading..." variant="brand">
+                </lightning-spinner>
+            </div>               
+        </template>
+        
+        <!-- Server call successful logic-->
+        <template if:true={acquisitionWrapper}>
+            <lightning-layout class="slds-grid slds-grid_vertical" horizontal-align="left">
+            <template for:each={acquisitionWrapper} for:item="acquisitionWrapperItem">
+                <lightning-layout-item key ={acquisitionWrapperItem.recordUrl} horizontal-align="left" class="slds-text-align--left slds-p-left_small">
+                        <b class="slds-p-left_small">{acquisitionWrapperItem.objectName} :</b>
+                        <lightning-formatted-url value={acquisitionWrapperItem.recordUrl} label={acquisitionWrapperItem.recordName} target="_blank"></lightning-formatted-url>
+                </lightning-layout-item>
+            </template>
+        </lightning-layout>
+    </template>
+
+        <template if:true={showNoRecords}>
+            <div class="casesnotavailable">
+                <br/> 
+                <p class="slds-p-left_small">{label.noRelatedAcquisitionRecords}</p>
+            </div>  
+        </template>
+        
+</lightning-card>
+</template>

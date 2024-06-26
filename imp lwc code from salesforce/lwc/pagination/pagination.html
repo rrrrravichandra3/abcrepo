@@ -1,0 +1,55 @@
+<!--
+  @description       : 
+  @author            : Urvish Shah (ushah)
+  @group             : 
+  @last modified on  : 09-23-2022
+  @last modified by  : Urvish Shah (ushah)
+-->
+<template>
+    <lightning-layout>
+        <lightning-layout-item size="3">
+            <div class="slds-form-element slds-form-element_horizontal">
+                <span>Cards per page</span>
+                <div class="input-wrapper-combobox">
+                    <lightning-combobox name="No of Records" label="Cards per page" variant="label-hidden"
+                        value={recordSize} dropdown-alignment="bottom-left"
+                        placeholder="Select number of cards per page" options={cardsPerPage}
+                        onchange={handleNumberOfCardsPerPage}>
+                    </lightning-combobox>
+                </div>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="2">
+            <lightning-button label="Previous" icon-name="utility:chevronleft" onclick={previousHandler}
+                disabled={disablePrevious}></lightning-button>
+        </lightning-layout-item>
+        <lightning-layout-item size="3" padding="horizontal-medium">
+            <div class="slds-form-element slds-form-element_horizontal">
+                <span>Page</span>
+                <div class="input-wrapper-number">
+                    <lightning-input 
+                        class="dateRangeFieldWidth"
+                        name="currentPageNumber"
+                        min="0"
+                        type="number"
+                        value={currentPage}
+                        onblur={handlePageNumberBlur}
+                        onchange={handlePageNumberChange}
+                        onkeyup={handlePageNumberKeyUp}>
+                </lightning-input>   
+                </div>
+                <span>of {totalPage}</span>
+            </div>
+                                                    
+        </lightning-layout-item>
+        <lightning-layout-item size="2">
+            <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right" onclick={nextHandler}
+                disabled={disableNext}></lightning-button>
+        </lightning-layout-item> 
+        <p class="slds-var-p-left_x-small slds-var-p-top_xx-small slds-var-p-right_x-small slds-text-align_center">
+            Found {totalRecordsSize} results</p>
+        <p class="slds-var-p-left_x-small slds-var-p-top_xx-small slds-var-p-right_x-small slds-text-align_center">
+            Max {maxNumberOfRecords}</p>
+    </lightning-layout>
+
+</template>

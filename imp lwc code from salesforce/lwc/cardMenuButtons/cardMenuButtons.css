@@ -1,0 +1,29 @@
+.oversized-button {
+  width: 100%;
+  height: 2.75rem;
+  border-radius: 0.25rem;
+  border: 2px solid #F3F2F2;
+}
+
+.oversized-button-brand {
+  background-color: #006BC8;
+  border: 2px solid transparent;
+}
+
+.menu {
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.1);
+  position: absolute;
+  min-width: 7.5rem;
+  top: 2.75rem;
+  right: 0;
+  z-index: 1;
+}
+
+.desktop-menu {
+  top: 2rem;
+}
+
+.customFullWidth{
+  display: grid;
+  width: 100%;
+}

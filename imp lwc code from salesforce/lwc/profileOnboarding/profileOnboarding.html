@@ -1,0 +1,153 @@
+<template>
+  <div onkeydown={handleKeyDown}>
+  <lightning-layout-item size="12" aria-hidden={ariahidden}>
+    <lightning-layout vertical-align="stretch" multiple-rows pull-to-boundary="small">
+      <template for:each={panels} for:item="panel">
+        <template if:true={panel.showPanel}>
+          <lightning-layout-item key={panel.Id} size="6" small-device-size="12" medium-device-size="6"
+            large-device-size="6" padding="around-small">
+            <lightning-card title={panel.Name} aria-hidden={ariahidden}>
+              <template if:true={allowEdit}>
+                <lightning-button label={labels.editLabel} slot="actions" onclick={displayCreateForm}
+                  data-id={panel.step}>
+                </lightning-button>
+              </template>
+              <ul class="slds-p-horizontal_medium containerHeight">
+                <template for:each={panel.fields} for:item="field">
+                  <li key={field.id}>
+                    <h3 class="slds-p-vertical_small slds-text-heading_small">{field.label}</h3>
+                    <template if:true={field.isTextarea}>
+                      <lightning-textarea value={field.values} placeholder={labels.bioPlaceholder} disabled
+                        variant="label-hidden" class="heightFix">
+                      </lightning-textarea>
+                    </template>
+                    <template if:true={field.isText}>
+                      <lightning-input value={field.values} disabled variant="label-hidden">
+                      </lightning-input>
+                    </template>
+                    <template if:true={field.isPill}>
+                      <template for:each={field.values} for:item="badge">
+                        <lightning-badge class="badge-fix" key={badge.name} label={badge.label}></lightning-badge>
+                      </template>
+                    </template>
+                  </li>
+                </template>
+              </ul>
+            </lightning-card>
+          </lightning-layout-item>
+        </template>
+      </template>
+    </lightning-layout>
+  </lightning-layout-item>
+  <!--Create Form-->
+  <!-- <template if:true={showCreateForm}>
+    <c-lightning-modal onclose={closeModal} hide-footer>
+      <c-create-profile-form onclose={closeModal} mode={mode}></c-create-profile-form>
+    </c-lightning-modal>
+  </template> -->
+
+  <template if:true={showModePicker}>
+    <!--Show spinner if loading-->
+    <template if:true={loading}>
+      <lightning-spinner alternative-text="Loading"></lightning-spinner>
+    </template>
+
+    <!--DESKTOP-->
+    <template if:false={isMobile}>
+      <!-- Modal/Popup Box LWC starts here -->
+      <section role="alertdialog" tabindex="-1" aria-labelledby="modal-heading-02" aria-modal="true"
+        aria-describedby="modal-content-id-2" class="slds-modal slds-fade-in-open" data-my-id="modelpopup">
+        <div class="slds-modal__container">
+          <!-- Modal/Popup Box LWC header here -->
+          <header class="slds-modal__header">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close Modal"
+              onclick={closeModal}>
+              <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                size="small"></lightning-icon>
+            </button>
+            <h2 id="modal-heading-02" role="heading" tabindex="0" class="slds-text-heading_medium slds-hyphenate">
+              {labels.welcome} {userName}</h2>
+          </header>
+          <!-- Modal/Popup Box LWC body starts here -->
+          <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+            <h4 class="color-brand slds-text-heading_small slds-text-align_center">
+              {labels.welcome_First_tell_us_what_you_would_like_to_do}
+            </h4>
+
+            <lightning-layout horizontal-align="center" multiple-rows class="slds-p-around_small">
+              <!--Find Mentor Button-->
+              <lightning-layout-item size="4" small-device-size="12" medium-device-size="4" large-device-size="4"
+                class="slds-m-bottom_large slds-text-align_center" padding="around-small">
+                <div>
+                  <c-button-tile onselect={goToSearchMentors} class="onhover" aria-label="I'd like to find a mentor">
+                    <div
+                      class="slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center slds-size_1-of-1">
+                      <img src={menteeCharacterUrl} alt="" class="character" />
+                      <p class="slds-text-align_center slds-text-heading_small slds-p-top_small">
+                        <strong>{labels.welcome_Find_a_Mentor}</strong>
+                      </p>
+                    </div>
+                  </c-button-tile>
+                </div>
+                <p class="slds-m-top_small slds-p-horizontal_medium slds-text-color_weak">
+                  {labels.welcome_I_am_looking_for_a_mentor_to_help_build_my_career}</p>
+                <a href={menteeLearnMoreUrl} aria-label='More information about finding a Mentor' target="_blank"
+                  class="slds-text-body_small slds-m-top_xx-small">{labels.welcome_Learn_More}</a>
+              </lightning-layout-item>
+
+              <!--Be Mentor Button-->
+              <lightning-layout-item size="4" small-device-size="12" medium-device-size="4" large-device-size="4"
+                class="slds-text-align_center" padding="around-small">
+                <div>
+                  <c-button-tile onselect={goToMyMentees} class="onhover" aria-label="I'd like to be a mentor">
+                    <div  
+                      class="slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center slds-size_1-of-1">
+                      <img src={mentorCharacterUrl} alt="" class="character" />
+                      <p class="slds-text-align_center slds-text-heading_small slds-p-top_small">
+                        <strong>{labels.welcome_Be_a_Mentor}</strong>
+                      </p>
+                    </div>
+                  </c-button-tile>
+                </div>
+                <p class="slds-m-top_small slds-p-horizontal_medium slds-text-color_weak">
+                  {labels.welcome_I_d_like_to_volunteer_my_time_to_help_a_Mentee_succeed}</p>
+                <a href={mentorLearnMoreUrl} aria-label='More information about becoming a Mentor' target="_blank"
+                  class="slds-text-body_small slds-m-top_xx-small">{labels.welcome_Learn_More}</a>
+              </lightning-layout-item>
+
+              <!--Find Mentor and Mentee (Both) Button-->
+              <lightning-layout-item size="4" small-device-size="12" medium-device-size="4" large-device-size="4"
+                class="slds-text-align_center" padding="around-small">
+                <div>
+                  <c-button-tile onselect={goToBoth} class="onhover" aria-label="I'd like to be both a mentor and a mentee">
+                    <div 
+                      class="slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center slds-size_1-of-1">
+                      <img src={bothMenteeAndMentorUrl} alt="" class="character" />
+                      <p class="slds-text-align_center slds-text-heading_small slds-p-top_small">
+                        <strong>{labels.welcome_Be_Both}</strong>
+                      </p>
+                    </div>
+                  </c-button-tile>
+                </div>
+                <p class="slds-m-top_small slds-p-horizontal_medium slds-text-color_weak">
+                  {labels.welcome_I_d_like_to_become_both_a_Mentor_and_a_Mentee}</p>
+                <a href={mentorLearnMoreUrl} aria-label='More information about becoming both a mentor and mentee'
+                  target="_blank" class="slds-text-body_small slds-m-top_xx-small">{labels.welcome_Learn_More}</a>
+              </lightning-layout-item>
+
+            </lightning-layout>
+          </div>
+          <!-- Modal/Popup Box LWC footer starts here -->
+          <footer class="slds-modal__footer">
+            <button class="slds-button slds-button_neutral focus-trap" onclick={closeModal} title="Cancel" onkeypress={handleTab}>Cancel</button>
+            <!-- <button class="slds-button slds-button_brand" onclick={submitDetails} title="OK">OK</button> -->
+
+          </footer>
+        </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+
+    </template>
+  </template>
+</div>
+</template>

@@ -1,0 +1,49 @@
+<template>
+    <div class="cssDiv" html-dom="manual"></div>
+
+    <template if:true={showSpinner}>
+        <div class="spinnerContainer">
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+    </template>
+
+    <div class="container">
+        <lightning-layout>
+            <lightning-layout-item padding="around-small" size="6"> 
+                <div class="slds-text-heading_medium heading">{label.MA_EmployeeCmpDetailHeader}</div>
+            </lightning-layout-item>
+
+            <lightning-layout-item padding="around-small" size="6"> 
+                <lightning-input placeholder="Search Employee Name"
+                                 variant="label-hidden" 
+                                 type="search" 
+                                 onchange={handleSearchEmployees} 
+                                 onclick={handleSearchEmployees} 
+                                 class="cstmSearch">
+                </lightning-input>
+            </lightning-layout-item>
+        </lightning-layout>
+       
+        <lightning-accordion class="teamDetailsAccordian" allow-multiple-sections-open onsectiontoggle={handleToggleSection}>
+            <template for:each={teamList} for:item="teamMember" >
+                <lightning-accordion-section name={teamMember.Id} label={teamMember.Name} key={teamMember.Name} >
+                    <lightning-layout multiple-rows="true">
+                        <lightning-layout-item padding="around-small" size="6"> 
+                            <c-ma-field-set-iterator field-set={acqContactFieldSet} 
+                                                     sobj-record={teamMember} 
+                                                     currency={teamMember.Acquisition_Compensation__r.CurrencyIsoCode}>
+                            </c-ma-field-set-iterator>
+                        </lightning-layout-item>
+    
+                        <lightning-layout-item padding="around-small" size="6"> 
+                            <c-ma-field-set-iterator field-set={acqCompensationFieldSet} 
+                                                     sobj-record={teamMember.Acquisition_Compensation__r} 
+                                                     currency={teamMember.Acquisition_Compensation__r.CurrencyIsoCode}>
+                            </c-ma-field-set-iterator>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </lightning-accordion-section>
+            </template>
+        </lightning-accordion>
+    </div>
+  </template>

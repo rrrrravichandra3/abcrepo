@@ -1,0 +1,44 @@
+<!--
+  @description       : 
+  @author            : Urvish Shah (ushah)
+  @group             : 
+  @last modified on  : 12-15-2023
+  @last modified by  : Urvish Shah (ushah)
+-->
+<template>
+    <div>
+        <lightning-card style="--slds-c-card-color-background:#0176D3;--slds-c-card-header-spacing-block-end:0rem;--slds-c-card-header-spacing-block-start:0rem">
+            <div class="slds-var-m-top_small slds-var-m-bottom_large slds-text-heading_medium" style="color: white;">
+                Filter jobs
+            </div>
+            <div class="slds-var-m-top_small slds-var-m-bottom_large slds-text-heading_small">
+                <span style="color: white;">
+                    Keywords
+                </span>
+                <lightning-input type="text" value={searchKeyword} onchange={handleKeywordChange} placeholder="Search job title"></lightning-input>
+            </div>
+            <div class="slds-var-m-top_small slds-var-m-bottom_large slds-text-heading_small">
+                <span style="color: white;">Job Family Group</span>
+                <lightning-combobox
+                    value={selectedJobFamilyGroup}
+                    options={jobFamilyGroups}
+                    placeholder="Select a Job Family Group"
+                    onchange={handleJobFamilyGroupChange}
+                    search-key="label"
+                ></lightning-combobox>
+            </div>
+            <div class="slds-var-m-top_small slds-var-m-bottom_large slds-text-heading_small">
+                <span style="color: white;">Country</span>
+                <lightning-combobox
+                    value={selectedCountry}
+                    options={countries}
+                    placeholder="Select a Country"
+                    onchange={handleCountryChange}
+                    search-key="label"
+                ></lightning-combobox>
+            </div>
+                <lightning-button stretch class="slds-var-m-top_large slds-align_absolute-center slds-m-left_x-small" label="Search" title="Search" onclick={handleJobSearchFilters}></lightning-button>
+                <!-- disabled={isSearchButtonDisabled} -->
+        </lightning-card>
+    </div>
+</template>

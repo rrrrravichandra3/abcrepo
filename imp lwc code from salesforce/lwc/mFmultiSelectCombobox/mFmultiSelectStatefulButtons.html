@@ -1,0 +1,13 @@
+<template>
+    <lightning-layout horizontal-align="center" multiple-rows="true" class="x-large">
+        <template for:each={optionData} for:item="option">
+            <lightning-layout-item key={option.value} flexibility="auto" padding="around-small" class="custom-box">
+                <lightning-button-stateful label-when-off={option.label} label-when-on={option.selectedLabel}
+                    label-when-hover={option.unselectLabel} icon-name-when-off="utility:add" icon-name-when-on="utility:check"
+                    icon-name-when-hover="utility:close" onclick={selectItem} data-id={option.value}
+                    selected={option.selected} variant={option.variant} >
+                </lightning-button-stateful>
+            </lightning-layout-item>
+        </template>
+    </lightning-layout>
+</template>

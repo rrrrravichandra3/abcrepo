@@ -1,0 +1,65 @@
+.onboarding-container{
+    margin: auto;
+    margin-top: 4%;
+    position: relative;
+    width: 73%;
+}
+.font-style{
+    color: #0D9DDA;
+}
+
+.button-style{
+  color: #0176D3 !important;
+  font-weight: 600;
+}
+
+.steps-container {
+  padding: 0;
+  margin: 0;
+}
+
+.steps-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.steps-list li, .button-color p{
+  cursor: pointer;
+}
+
+.step-item {
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end; /* Aligns buttons to the right */
+  gap: 10px; /* Spacing between buttons */
+}
+
+.icon-style-class{
+    border-top: 5px solid var(--slds-g-color-neutral-base-100, #fff);
+    border-bottom: 5px solid var(--slds-g-color-neutral-base-100, #fff);
+    vertical-align: middle;
+    background: var(--dxp-g-root);
+    margin-right: 1rem;
+    z-index: 5;
+}
+.icon-style-class .slds-icon{
+  fill: #0176D3 !important;
+}
+
+.slds-progress_vertical .slds-progress__item:before, .slds-progress_vertical .slds-progress__item:after {
+  left: calc((1rem / 2) - -1px);
+}
+.step-disabled {
+  pointer-events: none;
+  opacity: 0.7; /* or any other styling to indicate the step is disabled */
+}
+
+.steps-list{
+  height: auto;
+}

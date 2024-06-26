@@ -1,0 +1,39 @@
+.link {
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+.badge {
+  height: 1.5rem;
+  cursor: help;
+}
+
+.popover {
+  position: absolute;
+  top: 2.5rem;
+  right: -0.2rem;
+}
+
+.mentor-popover {
+  background-color: #23a1da;
+  border-color: #23a1da;
+  color: #fff;
+}
+
+.value-popover {
+  background-color: #1fb1a8;
+  border-color: #1fb1a8;
+  color: #fff;
+}
+
+.career-popover {
+  background-color: #e6a543;
+  border-color: #e6a543;
+  color: #fff;
+}
+
+.sales-popover {
+  background-color: #37386F;
+  border-color: #37386F;
+  color: #fff;
+}

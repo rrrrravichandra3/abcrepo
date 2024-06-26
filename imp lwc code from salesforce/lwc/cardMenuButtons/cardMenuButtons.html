@@ -1,0 +1,66 @@
+<template>
+  <!-- Feedback Flow -->
+  <template if:true={showFeedback}>
+    <c-feedback-flow oncancel={toggleFeedback} related-record-id={match.Id} mode={mode}></c-feedback-flow>
+  </template>
+
+  <lightning-layout vertical-align="center" class="slds-is-relative">
+    <!-- Show spinner if loading -->
+    <template if:true={loading}>
+      <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+    </template>
+
+    <!--MOBILE-->
+    <template if:true={isMobile}>
+      <lightning-layout-item size="8" class="slds-p-vertical_small slds-p-left_small">
+        <a href={meetingUrl} target="_blank" class="oversized-button oversized-button-brand slds-text-color_inverse slds-align_absolute-center">
+          {labels.scheduleMeetingLabel}
+        </a>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-small">
+        <div class="oversized-button slds-align_absolute-center slds-is-relative" onclick={moreClickedHandler}>
+          <lightning-icon icon-name="utility:threedots" size="small"></lightning-icon>
+
+          <template if:true={showSubMenu}>
+            <div class="menu slds-p-around_small slds-theme_default slds-card_boundary">
+              <ul>
+                <li class="slds-p-vertical_x-small">
+                  <a onclick={toggleFeedback}>{labels.giveFeedbackLabel}</a>
+                </li>
+                <li class="slds-p-vertical_x-small">
+                  <a onclick={completeJourney}>{labels.endMentoringLabel}</a>
+                </li>
+              </ul>
+            </div>
+          </template>
+        </div>
+      </lightning-layout-item>
+    </template>
+
+    <!--DESKTOP-->
+    <template if:false={isMobile}>
+      <lightning-layout horizontal-align="center" class="slds-size_1-of-1">
+        <lightning-button onclick={scheduleMeeting} label={labels.scheduleMeetingLabel} variant="brand" class="slds-m-right_xx-small"></lightning-button>
+        <lightning-button onclick={completeJourney} label={labels.endMentoringLabel} variant="neutral" class="slds-m-right_xx-small"></lightning-button>
+      </lightning-layout>    
+      <!--<lightning-layout-item flexibility="grow" class="slds-m-right_small">
+        <lightning-button onclick={scheduleMeeting} label={labels.scheduleMeetingLabel} variant="brand" class="customFullWidth"></lightning-button>
+      </lightning-layout-item>
+      <lightning-layout-item flexibility="shrink" class="slds-is-relative">
+        <lightning-button-icon icon-name="utility:threedots" onclick={moreClickedHandler}></lightning-button-icon>
+        <template if:true={showSubMenu}>
+          <div class="menu desktop-menu slds-p-around_small slds-theme_default slds-card_boundary">
+            <ul>
+              <li class="slds-p-vertical_x-small">
+                <a onclick={toggleFeedback} onkeyup={toggleFeedbackKeyPress} tabindex="0">{labels.giveFeedbackLabel}</a>
+              </li>
+              <li class="slds-p-vertical_x-small">
+                <a onclick={completeJourney} onkeyup={completeJourneyKeyPress} tabindex="0">{labels.endMentoringLabel}</a>
+              </li>
+            </ul>
+          </div>
+        </template>
+      </lightning-layout-item>-->
+    </template>
+  </lightning-layout>
+</template>

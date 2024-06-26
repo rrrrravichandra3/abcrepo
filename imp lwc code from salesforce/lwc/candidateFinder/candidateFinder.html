@@ -1,0 +1,184 @@
+<!--
+  @description       : 
+  @author            : Urvish Shah (ushah)
+  @group             : 
+  @last modified on  : 06-15-2022
+  @last modified by  : Urvish Shah (ushah)
+-->
+<template>
+    <div class="whiteBackground">
+        <template if:true={spinner}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+        <lightning-layout class="slds-var-p-bottom_x-small">
+            <lightning-layout-item size="3" class="slds-var-p-bottom_small slds-p-top_xx-small">
+                <div class="slds-p-top_large slds-float_left slds-p-left_medium">
+                    <lightning-button class="slds-p-left_xx-small" label="Back" title="back" 
+                                        icon-name="action:back"
+                                        icon-position="left"
+                                        onclick={backtoJobReq}>
+                    </lightning-button>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item size="5" class="slds-p-bottom_x-small slds-p-top_xx-small">                 
+                <div onkeyup={handleKeyUp} class="slds-p-left_x-large">
+                    <lightning-input
+                        name="searchText"
+                        type="search"
+                        placeholder="Search for Candidates.."
+                        onchange={handleSearchTextChange}>
+                    </lightning-input>
+                </div>  
+            </lightning-layout-item >
+            <lightning-layout-item size="4">
+                <div class="slds-p-top_large slds-float_right slds-p-right_medium">
+                    <lightning-button class="slds-p-right_x-small" label="Search" title="Search" onclick={search}>
+                    </lightning-button>
+                    <lightning-button class="slds-p-right_x-small" label="Add to Candidate Pool" title="Add to Candidate Pool" onclick={addToCandidatePool}>
+                    </lightning-button>
+                    <lightning-button label="Manage Candidate Pool" title="Manage Candidate Pool" onclick={navigateToCandidatePool}>
+                    </lightning-button>
+                    <lightning-button-group>
+                    </lightning-button-group>
+                   
+                </div>
+            </lightning-layout-item>
+        </lightning-layout>
+    <lightning-layout>
+        <lightning-layout-item flexibility="no-flex" padding="around-small" class="slds-theme_shade slds-p-top_none">
+            <div class="slds-grid">
+                <lightning-layout>
+                    <lightning-layout-item flexibility="no-grow">
+                        <div class="slds-align_absolute-center">                 
+                            <lightning-card variant="Narrow" icon-name="standard:filter">
+                                <h1 slot="title">Card Filters
+                                    <lightning-button-icon class="slds-p-left_x-large" icon-name="utility:close"  alternative-text="Clear all filters" title="Clear filters" onclick={clearFilters}></lightning-button-icon>
+                                    <lightning-button-icon class="slds-p-left_x-small" icon-name="utility:refresh"  alternative-text="Get filtered Contact Data" title="Get Contact data" onclick={search}></lightning-button-icon>
+                                </h1>
+                                <div class="slds-var-p-right_xx-large slds-var-p-left_medium slds-var-p-bottom_xx-small slds-var-p-top_x-small">
+                                    <lightning-input type="toggle" label="Applied Candidates only" name="onlyAppliedContacts"></lightning-input>
+                                </div>
+                                <div class="slds-p-right_xx-large slds-p-left_medium slds-p-bottom_small">
+                                    <template if:true={contactStages}>
+                                        <c-cemci-multi-select-combo-box 
+                                            multi-select="true" 
+                                            onselectoption={handleMultiSelectStages} 
+                                            options={contactStages} 
+                                            selected-value={selectedContactStages} 
+                                            label="Candidate Stage(s)"
+                                            name="contactStages"
+                                            id="contactStages">
+                                        </c-cemci-multi-select-combo-box>
+                                    </template>
+                                </div>  
+                                <div>
+                                    <lightning-input
+                                        name="currentEmployer"
+                                        class="slds-p-right_xx-large slds-p-left_medium slds-p-bottom_small"
+                                        type="text"
+                                        label="Current Employer">
+                                    </lightning-input>
+                                </div>   
+                                <div>
+                                    <lightning-input 
+                                        name="title"
+                                        class="slds-p-right_xx-large slds-p-left_medium slds-p-bottom_small"
+                                        type="text"
+                                        label="Title">
+                                    </lightning-input>
+                                </div> 
+                                <div class="slds-p-right_xx-large slds-p-left_medium slds-p-bottom_small">
+                                    <template if:true={countries}>
+                                        <c-cemci-multi-select-combo-box 
+                                            multi-select="true"
+                                            name="countries" 
+                                            onselectoption={handleMultiSelectCountries} 
+                                            options={countries} 
+                                            selected-value={selectedCountries} 
+                                            label="Country"
+                                            id="countries">
+                                        </c-cemci-multi-select-combo-box>
+                                    </template>
+                                </div>      
+                                <div class="slds-size_small">
+                                    <c-cemci-tag-container object-api-name="Contact" record-id={reqRecordId} dont-add-tag="true" onselected={handleTags}></c-cemci-tag-container>
+                                </div>      
+                                <div class="slds-p-left_medium slds-form-element__label slds-p-top_small">
+                                    Week range
+                                </div>
+                                <lightning-layout>
+                                    <lightning-layout-item>
+                                        <div class="slds-p-left_medium slds-text-align_center dateRangeFieldWidth">
+                                            <lightning-input 
+                                            name="fromWeek"
+                                            type="number"
+                                            label="From"
+                                            min="0">
+                                        </lightning-input>                                    
+                                        </div>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item>
+                                        <div class="slds-p-left_xx-small slds-p-right_xx-small slds-p-top_x-large">-</div>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item>
+                                        <div class="slds-p-left_xx-small slds-text-align_center dateRangeFieldWidth">
+                                            <lightning-input 
+                                                name="toWeek"
+                                                type="number"
+                                                label="To"
+                                                min="0">
+                                             </lightning-input>
+                                        </div>
+                                    </lightning-layout-item>
+                                </lightning-layout> 
+                                <div class="slds-p-right_xx-large slds-p-left_medium slds-p-bottom_small slds-p-top_medium">
+                                    <lightning-input type="toggle" label="Boomerang" name="boomerang"></lightning-input>
+                                </div>   
+                            </lightning-card>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+    
+        </lightning-layout-item>
+    
+    <lightning-layout-item padding="horizontal-large">
+        <lightning-layout multiple-rows="true">
+            <template if:true={firstLoad}>
+                <div class="slds-var-p-around_medium lgc-bg">
+                    {label.CandidateCardHelptext}
+                </div>
+            </template>
+            <template if:false={contactResults}>
+                <div class="slds-var-p-around_medium">
+                    No results to display
+                </div>
+            </template>
+            <template if:true={contactResults}>
+                <template for:each={visibleContacts} for:item="con">
+                    <lightning-layout-item key={con.Id} flexibility="no-flex" padding="around-medium">                 
+                        <c-candidate-card contact={con}
+                                          job-rec-id={reqRecordId}
+                                          reviewed-candidates={reviewedCandidates}
+                                          applied-candidates={appliedContacts}
+                                          selected-candidates={selectedCandidatesMap} 
+                                          onaddcandidate={addCandidateToSelected} 
+                                          onremovecandidate={removeCandidateFromSelected}
+                                          onmarkcandidateasreviewed={addToReviewedList}
+                                          onunmarkcandidateasreviewed={removeFromReviewedList}>                
+                        </c-candidate-card>
+                    </lightning-layout-item>
+                </template>           
+            </template>
+        </lightning-layout>
+        <template if:true={contactResults}>
+            <div>
+                <c-pagination records={contactResults} onupdate={updateContactHandler}></c-pagination>
+            </div>
+        </template>
+        
+    </lightning-layout-item>
+ 
+    </lightning-layout>
+    </div>
+    </template>

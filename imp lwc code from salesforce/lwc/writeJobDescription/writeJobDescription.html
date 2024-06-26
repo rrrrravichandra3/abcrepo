@@ -1,0 +1,19 @@
+<template>
+    <div class="slds-box slds-theme_default">
+        <template if:true={spinner}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+        <!-- Default/basic -->
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" label="Enter Prompt for Job Description" onchange={updatePrompText}></lightning-input>
+            <lightning-button label="Generate" onclick={handleClick} ></lightning-button>
+        </div>
+        <div class="textAreaBody">
+            <lightning-textarea
+                value={myVal}
+                onchange={handleChange}
+                >
+            </lightning-textarea>
+        </div>
+    </div>  
+</template>

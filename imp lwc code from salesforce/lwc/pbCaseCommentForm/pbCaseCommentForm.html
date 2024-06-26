@@ -1,0 +1,33 @@
+<template>
+    <template if:false={loaded}>
+        <div>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </div>
+    </template>
+    <template if:true={loaded}>         
+        <div onkeyup={handleNewComment}>
+            <div class="slds-show_inline-block commentsForm">
+                <lightning-input 
+                    type="text" 
+                    placeholder={inputPlaceholder} 
+                    class="commentInput" 
+                    label="Type in Message"
+                    variant="label-hidden"
+                    title="Add Comment"
+                ></lightning-input>
+            </div>
+            <div class="slds-show_inline-block slds-var-p-left_small">
+                <button onclick={handleNewComment} class="submitButton">
+                    <lightning-icon 
+                        size="x-small"
+                        icon-name="utility:send"
+                        alternative-text="Submit Icon"
+                        title="Submit Icon"
+                        class="submitIcon slds-current-color"
+                    ></lightning-icon>
+                </button>
+            </div>
+        </div> 
+
+    </template>
+</template>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>48.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Vertical Padding</masterLabel>
+    <description>Easily add vertical padding to your layout</description>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="heightpx" type="String" label="Large device height" default="3rem" description="Any possible value for CSS attribute height: px, rem, pt ..."/>
+            <property name="heightMobile" type="String" label="Small device height" description="If not used value defaults to Large device height value Any possible value for CSS attribute height: px, rem, pt ..."/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

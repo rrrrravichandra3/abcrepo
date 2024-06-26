@@ -1,0 +1,21 @@
+<!--
+  @description       : 
+  @author            : Urvish Shah (ushah)
+  @group             : 
+  @last modified on  : 12-04-2023
+  @last modified by  : Urvish Shah (ushah)
+-->
+<template>
+        <div>
+            Displaying <span if:true={isPaginationRequired}>{startJobIndex} to {endJobIndex} of </span> {totalCount} matching jobs
+            <span class="slds-float_right" if:true={isPaginationRequired}>
+                <ul class="slds-list_horizontal">
+                    <lightning-icon style="cursor: pointer;" data-id="previous" onclick={handlePageChange} if:true={isPreviousVisible} size="small"  icon-name="utility:chevronleft" variant="bare" alternative-text="Save" slot="actions"></lightning-icon>
+                    <template for:each={pageNumbersList} for:item="page">
+                        <li style={page.style} class="slds-var-m-left_medium" key={page.pageNumber} data-id={page.pageNumber} onclick={handlePageChange}>{page.pageNumber}</li>
+                    </template>
+                    <lightning-icon style="cursor: pointer;" data-id="next" onclick={handlePageChange} if:true={isNextVisible} class="slds-var-m-left_medium" size="small"  icon-name="utility:chevronright" variant="bare" alternative-text="Save" slot="actions"></lightning-icon>
+                </ul>
+            </span>
+        </div>
+</template>

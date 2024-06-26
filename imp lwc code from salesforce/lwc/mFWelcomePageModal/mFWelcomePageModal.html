@@ -1,0 +1,142 @@
+<template>
+  
+  <lightning-modal-header label={label} class="" > </lightning-modal-header>
+  <lightning-modal-body>
+    <div onkeydown={handleKeyDown}>
+    <!--<c-message-composer input-label={inputLabel} button-label={buttonLabel} onsubmit={submitClickedhandler}></c-message-composer>-->
+    <template if:true={welcomeModal}>
+      <template if:false={completeProfileFlow}>
+        <h4 class="color-brand slds-text-heading_small slds-text-align_center">
+          {labels.welcome_First_tell_us_what_you_would_like_to_do}
+        </h4>
+
+        <lightning-layout horizontal-align="center" multiple-rows class="slds-p-around_small">
+          <!--Find Mentor Button-->
+          <lightning-layout-item size="12" small-device-size="12" medium-device-size="4" large-device-size="4"
+            class="slds-m-bottom_large slds-text-align_center" padding="around-small">
+            <div>
+              <c-button-tile onselect={goToSearchMentors} class="onhover" aria-label="I'd like to find a mentor"
+                button-id="mentee">
+                <div
+                  class="slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center slds-size_1-of-1">
+                  <img src={menteeCharacterUrl} alt="" class="character" />
+                  <p class="slds-text-align_center slds-text-heading_small slds-p-top_small">
+                    <strong>{labels.welcome_Find_a_Mentor}</strong>
+                  </p>
+                </div>
+              </c-button-tile>
+            </div>
+            <p class="slds-m-top_small slds-p-horizontal_medium slds-text-color_weak">
+              {labels.welcome_I_am_looking_for_a_mentor_to_help_build_my_career}</p>
+            <a href={menteeLearnMoreUrl} aria-label='More information about finding a Mentor' target="_blank"
+              class="slds-text-body_small slds-m-top_xx-small">{labels.welcome_Learn_More}</a>
+          </lightning-layout-item>
+
+          <!--Be Mentor Button-->
+          <lightning-layout-item size="12" small-device-size="12" medium-device-size="4" large-device-size="4"
+            class="slds-text-align_center" padding="around-small">
+            <div>
+              <c-button-tile onselect={goToMyMentees} class="onhover" aria-label="I'd like to be a mentor"
+                button-id="mentor">
+                <div
+                  class="slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center slds-size_1-of-1">
+                  <img src={mentorCharacterUrl} alt="" class="character" />
+                  <p class="slds-text-align_center slds-text-heading_small slds-p-top_small">
+                    <strong>{labels.welcome_Be_a_Mentor}</strong>
+                  </p>
+                </div>
+              </c-button-tile>
+            </div>
+            <p class="slds-m-top_small slds-p-horizontal_medium slds-text-color_weak">
+              {labels.welcome_I_d_like_to_volunteer_my_time_to_help_a_Mentee_succeed}</p>
+            <a href={mentorLearnMoreUrl} aria-label='More information about becoming a Mentor' target="_blank"
+              class="slds-text-body_small slds-m-top_xx-small">{labels.welcome_Learn_More}</a>
+          </lightning-layout-item>
+
+          <!--Find Mentor and Mentee (Both) Button-->
+          <lightning-layout-item size="12" small-device-size="12" medium-device-size="4" large-device-size="4"
+            class="slds-text-align_center" padding="around-small">
+            <div>
+              <c-button-tile onselect={goToBoth} class="onhover" aria-label="I'd like to be both a mentor and a mentee"
+                button-id="both">
+                <div
+                  class="slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center slds-size_1-of-1">
+                  <img src={bothMenteeAndMentorUrl} alt="" class="character" />
+                  <p class="slds-text-align_center slds-text-heading_small slds-p-top_small">
+                    <strong>{labels.welcome_Be_Both}</strong>
+                  </p>
+                </div>
+              </c-button-tile>
+            </div>
+            <p class="slds-m-top_small slds-p-horizontal_medium slds-text-color_weak">
+              {labels.welcome_I_d_like_to_become_both_a_Mentor_and_a_Mentee}</p>
+            <a href={mentorLearnMoreUrl} aria-label='More information about becoming both a mentor and mentee'
+              target="_blank" class="slds-text-body_small slds-m-top_xx-small">{labels.welcome_Learn_More}</a>
+          </lightning-layout-item>
+        </lightning-layout>
+      </template>
+      <template if:true={completeProfileFlow}>
+        <template if:true={isMobile}>
+          <!-- <div class="container"> -->
+            <c-complete-profile-flow onclose={cancelClickedHandler} user={user} mode={mode}></c-complete-profile-flow>
+          <!-- </div> -->
+        </template>
+        <template if:false={isMobile}>
+            <c-complete-profile-flow  onclose={cancelClickedHandler} user={user} mode={mode}></c-complete-profile-flow>
+        </template>
+      </template>
+    </template>
+    <template if:false={welcomeModal}>
+      <template if:true={showCreateForm}>
+        <template if:false={isMobile}>
+        <c-create-profile-form onclose={cancelClickedHandler} mode={mode}
+          header-not-required={headerNotRequired} onescape={handleescape}></c-create-profile-form>
+          </template>
+          <template if:true={isMobile}>
+            <c-create-profile-form onclose={cancelClickedHandler} mode={mode}
+              header-not-required={headerNotRequired}></c-create-profile-form>
+              </template>
+      </template>
+    </template>
+  </div>
+  </lightning-modal-body>
+  <template if:false={hideFooter}>
+  <lightning-modal-footer>
+    <div class={buttonClass} if:true={welcomeModal}>
+      <template if:true={cancelLabel}>
+        <!--<lightning-button variant="brand" label={saveLabel} onclick={saveClickedHandler} disabled={saveDisabled}></lightning-button>-->
+        <c-m-f-button-wrapper onsecondaryevent={cancelClickedHandler}
+          secondarybuttonlabel={cancelLabel}></c-m-f-button-wrapper>
+      </template>
+    </div>
+    <div class={buttonClass} if:false={welcomeModal}>
+      <template if:true={showCreateForm}>
+        <template if:true={saveLabel}>
+          <!-- <lightning-button variant="brand" label={saveLabel} onclick={saveClickedHandler} disabled={saveDisabled}></lightning-button>-->
+          <lightning-button variant="brand" onclick={saveClickedHandler} label={saveLabel}
+            data-action="save"></lightning-button>
+        </template>
+      </template>
+    </div>
+  <div class="slds-grid">
+    <div class="slds-align_absolute-center" if:true ={welcomeModal} >
+      <template if:true={showAllButtons}>       
+        <template if:true={progressIsSet}>
+          <template if:true={stepIndex}>
+            <lightning-button variant="Neutral" data-action="back" onclick={submitClickedHandler} label={labels.backLabel} class="slds-button_neutral slds-grow slds-p-vertical_xx-small slds-m-right_xx-small" ></lightning-button>
+          </template>
+        </template>
+        <template if:true={showNextButton}>
+          <lightning-button variant="brand" onclick={submitClickedHandler} label={labels.nextLabel} data-action="next" class="slds-button_brand slds-grow slds-p-vertical_xx-small slds-m-left_xx-small"></lightning-button>
+        </template>
+        <template if:true={showFinishButton}>
+          <lightning-button variant="Brand" label={labels.finishLabel} onclick={submitClickedHandler} data-action="finish" class="slds-button_brand slds-grow slds-p-vertical_xx-small slds-m-left_xx-small"></lightning-button>
+        </template>
+      </template>
+    </div>
+   
+  </div>
+  </lightning-modal-footer>
+  </template>
+
+</template>

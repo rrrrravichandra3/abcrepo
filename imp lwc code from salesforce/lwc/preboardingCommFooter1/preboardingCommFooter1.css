@@ -1,0 +1,19 @@
+.sfLogo {
+   scale: 70%;
+   align-content: right;
+   position: relative;
+   float: right;
+}
+
+.THIS {
+    background-color: inherit;
+}
+
+li,span {
+    font-size: 12px;
+    padding: 0.75%;
+}
+
+.copyrightText {
+    font-size: 8px;
+}

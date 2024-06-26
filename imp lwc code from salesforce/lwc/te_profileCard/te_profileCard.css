@@ -1,0 +1,26 @@
+.profileImg {
+    border-radius: var(--lwc-borderRadiusCircle, 50%);
+    height: 100px;
+    width: 100px;
+}
+.dottedBox {
+    border: dashed 2px #F0F0F0;
+    padding: 10px
+}
+.roleProgression{
+    border: 1px solid #F0F0F0;
+    background-color: #F0F0F0;
+    height: 50px;
+}
+.greyCircle{
+    background: #A7A7A7;
+    height: 25px;
+    width: 25px;
+    border-radius: var(--lwc-borderRadiusCircle, 50%);
+}
+.cardPosition{
+    position: relative;
+    top: -4rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}

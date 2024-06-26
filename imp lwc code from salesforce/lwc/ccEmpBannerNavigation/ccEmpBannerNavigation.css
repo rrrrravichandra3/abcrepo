@@ -1,0 +1,78 @@
+.card-container {
+    position: relative;
+}
+
+.image-container {
+    position: relative;
+    top:1.5rem;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: rgba(234, 245, 254, 1);
+    clip-path: polygon(50% 0%, 100% 0, 100% 35%, 100% 55%, 78% 79%, 50% 93%, 20% 80%, 0 54%, 0% 35%, 0 0);
+}
+
+.text-overlay {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+   /* font-family: Avant Garde For Salesforce;
+    font-size: 25px;
+    font-weight: 600;*/
+    line-height: 53.65px;
+    letter-spacing: -0.018em;
+
+}
+
+.navigation {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navigation ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+.navigation ul li a {
+    color: #032D60;
+    text-decoration: none;
+    /*font-family: Avant Garde For Salesforce;
+    font-size: 55px;
+    font-weight: 600;*/
+    line-height: 53.65px;
+    letter-spacing: -0.018em;
+    text-align: left;
+
+
+}
+
+.navigation ul li a:hover,
+.navigation ul li a:focus {
+    color: #0176D3;
+    border-bottom: 6px solid  #0176D3;
+    border-radius: 50px 0px 0px 0px;
+    opacity: 0px;
+
+}
+
+.navigation ul li a.active {
+    color: #0176D3;
+    border-bottom: 6px solid #0176D3;
+    border-radius: 50px 0px 0px 0px;
+    opacity: 0px;
+}
